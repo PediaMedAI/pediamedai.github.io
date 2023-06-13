@@ -1,6 +1,6 @@
 ---
 title: ' Blog'
-heroHeading: 'M²LInES Blog'
+heroHeading: 'PediaMedAI Blog'
 heroSubHeading: ''
 heroBackground: '/images/retrosupply-jLwVAUtLOAQ-unsplash.jpeg'
 ---

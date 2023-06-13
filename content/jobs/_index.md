@@ -5,9 +5,9 @@ heroSubHeading: ''
 heroBackground: 'images/SouthAtlantic.A2002157.1055.250m.jpg'
 ---
 
-06/07/2023: There are currently no openings. 
+06/07/2023: New Hire!
 
-M²LInES affirms the value of differing perspectives in Sciences. As such, we strongly encourage applications from women, racial and ethnic minorities, and other individuals who are under-represented in the profession, across color, creed, race, ethnic and national origin, physical ability, gender and sexual identity, or any other legally protected basis. 
+We are hiring 1-2 summer research interns at Shenzhen Children's Hospital AI Lab. The summer research intern will have a chance to use all of our private clinical dataset and collaborate on 1-2 Pediatrics AI papers / Pediatrics AI Challenges that will be submitted to NeurIPS/CVPR/ICCV/ECCV/IJCAI/AAAI. The position is paid with a monthly subsidy ￥5000. If you are interested in this position, please email irohcao@gmail.com.
 
 
 

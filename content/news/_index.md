@@ -1,7 +1,7 @@
 ---
 title: ' News'
 heroHeading: 'News'
-heroSubHeading: 'M²LInES in the news and news from M²LInES'
+heroSubHeading: 'News from PediaMedAI'
 heroBackground: 'images/photo-newspapers-unsplash.jpeg'
 ---
 
