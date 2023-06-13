@@ -2,10 +2,10 @@
 title: "Xu Cao"
 draft: false
 image: ""
-jobtitle: "Principal Researcher"
+jobtitle: "Co-founder, Principal Researcher"
 promoted: true
 weight: 2
-Website:  
+Website: "https://www.irohxucao.com/"
 ---
 
 UIUC

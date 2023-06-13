@@ -2,10 +2,10 @@
 title: "Jianguo Cao"
 draft: false
 image: ""
-jobtitle: "Professor"
+jobtitle: "Co-founder, Professor"
 promoted: true
 weight: 3
-Website:  
+Website: "https://scholar.google.com/citations?hl=en&user=dPPOpHUAAAAJ" 
 ---
 
 Shenzhen Children's Hospital

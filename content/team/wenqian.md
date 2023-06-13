@@ -2,10 +2,10 @@
 title: "Wenqian Ye"
 draft: false
 image: ""
-jobtitle: "Principal Researcher"
+jobtitle: "Co-founder, Principal Researcher"
 promoted: true
 weight: 1
-Website:  
+Website: "https://wenqian-ye.github.io/" 
 ---
 
 University of Virginia
