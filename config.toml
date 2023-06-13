@@ -1,0 +1,110 @@
+baseURL = "https://m2lines.github.io/"
+relativeURLs = "True"
+languageCode = "en-us"
+title = "M²LInES"
+themesDir = "themes"
+theme = "hugo-hero-theme"
+sectionPagesMenu = "content"
+enableEmoji = true
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  google_analytics_id=""
+  google_tag_manager_id = "" 
+
+ [params.homepage]
+  show_call_box = true
+
+ [params.logo]
+  mobile = '/images/newlogo.png'
+  desktop = '/images/newlogo.png'
+  desktop_height = "48px"
+  mobile_height = "24px"
+
+  [params.homepage_meta_tags]
+    meta_description = "M²LInES"
+    meta_og_title = "M²LInES"
+    meta_og_type = "website"
+    meta_og_url = "https://m2lines.github.io/"
+    meta_og_image = "/static/favicon.png"
+    meta_og_description = "VESRI Collaboration on climate modeling"
+    meta_twitter_card = "summary"
+    meta_twitter_site = "@M2LInES"
+    meta_twitter_creator = "@M2LInES"
+
+[[menu.main]]
+	name = "About"
+	identifier = "about"
+	url = "/about/"
+    weight = 1
+
+    
+[[menu.main]]
+    name = "Jobs"
+    url = "/jobs/"
+    weight = 2
+
+[[menu.main]]
+    name = "Team"
+    url = "/team/"
+    weight = 3
+
+
+[[menu.main]]
+	identifier = "research"
+    name = "Research"
+    weight = 4
+
+[[menu.main]]
+	identifier = "themes"
+    name = "Themes"
+    url = "/research/"
+    parent = "research"
+    weight = 1
+    
+[[menu.main]]
+	identifier = "talks"
+    name = "Talks"
+    url = "/research/Talks/"
+    parent = "research"
+    weight = 2
+    
+[[menu.main]]
+    name = "Code"
+    url = "/Code/"
+    weight = 5
+
+[[menu.main]]
+    name = "Publications"
+    url = "/publications/"
+    weight = 6
+
+[[menu.main]]
+    name = "News"
+    identifier = "news"
+    weight = 7
+    
+[[menu.main]]
+	identifier = "Our news"
+    name = "Our news"
+    url = "/news/"
+    parent = "news"
+    weight = 1
+    
+[[menu.main]]
+	identifier = "Newsletters"
+    name = "Newsletters"
+    url = "/news/Newsletters/"
+    parent = "news"
+    weight = 2
+        
+#[[menu.main]]
+#    name = "Blog"
+#    url = "/blog/"
+#    weight = 8
+
+[permalinks]
+  post = "/:year/:month/:day/:slug/"
+  pages = "/:filename/"

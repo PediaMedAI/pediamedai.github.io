@@ -1,0 +1,25 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  .wrapper {
+    flex: 1;
+  }
+  
+   ol {
+  	list-style: decimal;
+    margin-bottom: 20px;
+      margin-bottom: 0;
+    }
+  ul:not(.menu__list):not(.submenu__list) {
+    list-style-type: disc;
+    margin-top:10px;
+    margin-bottom:20px;
+  }
+  li:not(.menu__item) {
+    margin-bottom: 5px;
+    line-height: 1.56;
+    margin-left: 20px;
+    color: #5C5A5A;
+  }
+}
