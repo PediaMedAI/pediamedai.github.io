@@ -9,4 +9,4 @@ images: ['images/news/Pierrepaper2-fig3.png']
 link: 'https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.098302' 
 ---
 
-M²LInES PI Pierre Gentine is the senior author and Research Scientist Tom Beucler is the lead author in this new publication on enforcing analytic constraints in Neural Networks emulating physical systems. Read their paper [here](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.098302)
+PediaMedAI PI Pierre Gentine is the senior author and Research Scientist Tom Beucler is the lead author in this new publication on enforcing analytic constraints in Neural Networks emulating physical systems. Read their paper [here](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.098302)

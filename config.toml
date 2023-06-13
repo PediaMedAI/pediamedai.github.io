@@ -1,7 +1,7 @@
 baseURL = "https://m2lines.github.io/"
 relativeURLs = "True"
 languageCode = "en-us"
-title = "M²LInES"
+title = "PediaMedAI"
 themesDir = "themes"
 theme = "hugo-hero-theme"
 sectionPagesMenu = "content"
@@ -24,8 +24,8 @@ enableEmoji = true
   mobile_height = "24px"
 
   [params.homepage_meta_tags]
-    meta_description = "M²LInES"
-    meta_og_title = "M²LInES"
+    meta_description = "PediaMedAI"
+    meta_og_title = "PediaMedAI"
     meta_og_type = "website"
     meta_og_url = "https://m2lines.github.io/"
     meta_og_image = "/static/favicon.png"

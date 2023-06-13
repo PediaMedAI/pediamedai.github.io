@@ -10,4 +10,4 @@ link: 'https://doi.org/10.5194/tc-15-4981-2021'
 ---
 
 Lead author Marika Holland demonstrates in this [paper](https://doi.org/10.5194/tc-15-4981-2021) the importance of accurately representing snow accumulation on sea-ice in coupled earth system models. 
-Diagnosing snow and ice thickness heterogeneity will be a crucial part of the M²LInES project.
+Diagnosing snow and ice thickness heterogeneity will be a crucial part of the PediaMedAI project.

@@ -1,7 +1,7 @@
 ---
 date: 2021-12-08T09:29:16+10:00
-title: ' AGU presentations by M²LInES team members'
-heroHeading: 'AGU presentations by M²LInES team members'
+title: ' AGU presentations by PediaMedAI team members'
+heroHeading: 'AGU presentations by PediaMedAI team members'
 heroSubHeading: ''
 heroBackground: ''
 thumbnail:  'images/news/ZiweiLi-thumb.png'  

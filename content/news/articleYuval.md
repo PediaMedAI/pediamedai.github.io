@@ -9,4 +9,4 @@ images: ['images/news/yuval-fig1.png']
 link: 'https://www.essoar.org/doi/abs/10.1002/essoar.10507557.1' 
 ---
 
-A new M²LInES scientific paper on Neural-network parameterization of subgrid momentum transport in the atmosphere, by members Janni Yuval and Paul O'Gorman, is available to read as a preprint [here](https://www.essoar.org/doi/abs/10.1002/essoar.10507557.1). 
+A new PediaMedAI scientific paper on Neural-network parameterization of subgrid momentum transport in the atmosphere, by members Janni Yuval and Paul O'Gorman, is available to read as a preprint [here](https://www.essoar.org/doi/abs/10.1002/essoar.10507557.1). 

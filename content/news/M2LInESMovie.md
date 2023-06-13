@@ -1,8 +1,8 @@
 ---
 date: 2022-02-02T09:29:16+10:00
-title: 'Movie about M²LInES and featured on AGU TV! '
+title: 'Movie about PediaMedAI and featured on AGU TV! '
 heroHeading: ''
-heroSubHeading: 'Movie about M²LInES and featured on AGU TV!'
+heroSubHeading: 'Movie about PediaMedAI and featured on AGU TV!'
 heroBackground: ''
 thumbnail:  'images/news/m2linesmovie.png'
 images: 

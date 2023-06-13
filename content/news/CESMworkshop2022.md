@@ -14,4 +14,4 @@ Please visit the [website](https://www.cesm.ucar.edu/events/workshops/2022/) to 
 
 The full workshop agenda can be found [here](https://www.cesm.ucar.edu/events/workshops/2022/files/2022-cesm-workshop-agenda.pdf). 
 
-In particular, **Laure Zanna** will give a joint plenary talk on M²LInES with Galen McKinley from LEAP.
+In particular, **Laure Zanna** will give a joint plenary talk on PediaMedAI with Galen McKinley from LEAP.

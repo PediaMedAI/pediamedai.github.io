@@ -30,5 +30,5 @@ Upcoming codes will be linked to this repository as they become available.
 
 #### Datasets
 
-All of the datasets used in M²LInES publications will be made openly available. When possible, they will be hosted on [Pangeo](https://pangeo.io/)
+All of the datasets used in PediaMedAI publications will be made openly available. When possible, they will be hosted on [Pangeo](https://pangeo.io/)
 

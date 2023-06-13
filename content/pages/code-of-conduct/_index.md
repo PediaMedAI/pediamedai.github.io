@@ -10,7 +10,7 @@ _____
 #### Purpose of document
 - A code of conduct is a statement of understanding among ourselves about expectations of behavior and values, and as an external statement, reflects our commitments to the community.
 
-- This code of conduct applies to all members of M²LInES without exception. We also expect external collaborators to comply with this code when interacting with M²LInES, and we extend guidelines (such as inclusion for authorship) to external collaborators.
+- This code of conduct applies to all members of PediaMedAI without exception. We also expect external collaborators to comply with this code when interacting with PediaMedAI, and we extend guidelines (such as inclusion for authorship) to external collaborators.
 
 - Key aspects of this document: Inclusivity, professionalism and conduct, unethical and/or unacceptable behavior, authorship, scientific integrity, and conflicts of interest. 
 
@@ -21,13 +21,13 @@ _____
 
 - Enjoyable, high-quality research can only be conducted when you **feel safe, secure, and supported**. All group members are thus dedicated to a **harassment-free experience for everyone, regardless of gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age, and/or religion [^1] (or lack thereof), family status or socio-economic status**. The group members also recognize that some of those biases can be unconscious and creep into different aspects of Academic life and research, such as meetings, publications, citations, hiring, etc. Members should strive to consciously combat those biases and bring awareness to others.
 
-- **Obligations to the M²LInES group**: We're on the same team. Help each other, especially those junior to you even if not directly working for you. 
+- **Obligations to the PediaMedAI group**: We're on the same team. Help each other, especially those junior to you even if not directly working for you. 
 
 - Be aware of, and address your positionality, power, privileges, and values. 
 
 - Early career researchers (ECRs) face additional challenges, having to navigate their career path in addition to performing their work. This additional uncertainty in their career can lead to added stress and possible burnout. If anything is placing undue stress or preventing ECRs from performing at their potential, they are encouraged to discuss with their group lead or with any other mentors they feel most comfortable. Sharing these issues can reduce stress and help others be accommodating towards their needs, and the team may be able to assist. 
 
-- The M²LInES team follows the principle that the whole is greater than the sum of its parts. As such all members are encouraged to communicate openly and frequently about their research, activities and the obstacles they might encounter along the way.
+- The PediaMedAI team follows the principle that the whole is greater than the sum of its parts. As such all members are encouraged to communicate openly and frequently about their research, activities and the obstacles they might encounter along the way.
 
 #### Professionalism and conduct
 
@@ -89,7 +89,7 @@ _____
 
 #### Authorship
 
-- We will follow the **[Vancouver Group recommendations](http://www.icmje.org/recommendations/)** (VGR) on authorship for all M²LInES publications and products (including software, datasets and presentations). The authorship guidelines apply to both M²LInES members and external collaborators.
+- We will follow the **[Vancouver Group recommendations](http://www.icmje.org/recommendations/)** (VGR) on authorship for all PediaMedAI publications and products (including software, datasets and presentations). The authorship guidelines apply to both PediaMedAI members and external collaborators.
 
 - We will use the **[CRediT taxonomy](http://credit.niso.org/)** for describing the authorship contributions.
 
@@ -97,7 +97,7 @@ _____
 
 - Consequently, **authorship should be established early in the creation process and established openly by expressing intent to the group**; there are often parallel efforts underway in such an interconnected project and we wish to not deprive anyone of the opportunity to publish their own efforts when it appears to be a duplication or “scooped”.
 
-- Appropriate acknowledgement of M²LInES is expected in publications and products. Prior to publications or any external communications, authors need to have written approval from NYU on whether our Grantor would like to be acknowledged. NYU will then ask them. If they do, the Grantor will provide the manner and wording of such acknowledgment. Should a publisher for an academic publication require the identification of the Grantor, you may identify them to the extent required by such publisher, as long as you give NYU at least 15 days advance notice to ask them. 
+- Appropriate acknowledgement of PediaMedAI is expected in publications and products. Prior to publications or any external communications, authors need to have written approval from NYU on whether our Grantor would like to be acknowledged. NYU will then ask them. If they do, the Grantor will provide the manner and wording of such acknowledgment. Should a publisher for an academic publication require the identification of the Grantor, you may identify them to the extent required by such publisher, as long as you give NYU at least 15 days advance notice to ask them. 
 
 #### Scientific integrity
 
@@ -107,20 +107,20 @@ _____
 
 - **Transparency and reproducibility** of the research and publication process are required, not only to aid the peer review process but also as a guiding principle.
 
-- The M²LInES team is committed to disseminate its research as broadly as possible. Whenever possible, all **publications should be submitted open access**, whether via the journal as a whole, or via payment of an open access fee. When not possible, all coauthors should take steps to submit the manuscript in their respective institutions’ internal server for publications, and also a pre-review server such as arXiv. Please note that the Grantor has a nonexclusive license to copy, publish and distribute any publications, studies, research or other copyrightable works funded by this Grant. 
+- The PediaMedAI team is committed to disseminate its research as broadly as possible. Whenever possible, all **publications should be submitted open access**, whether via the journal as a whole, or via payment of an open access fee. When not possible, all coauthors should take steps to submit the manuscript in their respective institutions’ internal server for publications, and also a pre-review server such as arXiv. Please note that the Grantor has a nonexclusive license to copy, publish and distribute any publications, studies, research or other copyrightable works funded by this Grant. 
 
 - Data used in publications should be made **openly available**, not just upon request. This can be prohibitive for some datasets but reduced forms of the data, as presented in the publication, are a minimum requirement. This is becoming the minimum standard at many society journals.
 
-- **Copyright on codes**: All codes produced within the context of M²LInES should be hosted by the M²LInES GitHub organization. Software produced in collaboration with M²LInES but not solely for M²LInES should be open source and accessible without fee or authentication barriers. It is reasonable to use private repositories during development. The particular license is up to the original authors but i) should ideally be consistent with your host institution, and ii) must be either FAIR or open source. We suggest the MIT license. For other products such as text, images, websites, etc., we suggest the Creative Commons CC-BY license.
+- **Copyright on codes**: All codes produced within the context of PediaMedAI should be hosted by the PediaMedAI GitHub organization. Software produced in collaboration with PediaMedAI but not solely for PediaMedAI should be open source and accessible without fee or authentication barriers. It is reasonable to use private repositories during development. The particular license is up to the original authors but i) should ideally be consistent with your host institution, and ii) must be either FAIR or open source. We suggest the MIT license. For other products such as text, images, websites, etc., we suggest the Creative Commons CC-BY license.
 
-- M²LInES scientific impact will rise higher if all its parts are lifted higher. As such, **members are encouraged to amplify each other’s contributions to the project** when opportunities arise (after checking for permissions). 
+- PediaMedAI scientific impact will rise higher if all its parts are lifted higher. As such, **members are encouraged to amplify each other’s contributions to the project** when opportunities arise (after checking for permissions). 
 
 #### Conflicts of interest
 
-- Many members of M²LInES are involved in other projects or have collaborators conducting related research. If a research idea being actively pursued by M²LInES happens to overlap with a colleague or collaborator of M²LInES then there can be a conflict of interest, or a perception of such even if none exists. 
-**We expect members to recognize or anticipate these situations and to inform M²LInES of any overlap** to avoid problems arising, discussing them with the management committee. 
+- Many members of PediaMedAI are involved in other projects or have collaborators conducting related research. If a research idea being actively pursued by PediaMedAI happens to overlap with a colleague or collaborator of PediaMedAI then there can be a conflict of interest, or a perception of such even if none exists. 
+**We expect members to recognize or anticipate these situations and to inform PediaMedAI of any overlap** to avoid problems arising, discussing them with the management committee. 
 
-- **Disclosure and regular communication within M²LInES** is by far the best way to avoid misunderstandings and conflicts among the group.
+- **Disclosure and regular communication within PediaMedAI** is by far the best way to avoid misunderstandings and conflicts among the group.
 
 
 [^1]: Copied verbatim from Chris Jackson’s BRG [Code of Conduct](https://wwwf.imperial.ac.uk/blog/assistant-provost-edi/2018/05/21/pirate-the-code-of-conduct/).
