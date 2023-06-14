@@ -18,8 +18,8 @@ enableEmoji = true
   show_call_box = true
 
  [params.logo]
-  mobile = '/images/pedia_logo.png'
-  desktop = '/images/pedia_logo.png'
+  mobile = '/images/home_logo.png'
+  desktop = '/images/home_logo.png'
   desktop_height = "48px"
   mobile_height = "24px"
 
