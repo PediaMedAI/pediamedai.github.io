@@ -1,4 +1,4 @@
-baseURL = "https://m2lines.github.io/"
+baseURL = "https://pediamedai.github.io/"
 relativeURLs = "True"
 languageCode = "en-us"
 title = "PediaMedAI"
@@ -18,8 +18,8 @@ enableEmoji = true
   show_call_box = true
 
  [params.logo]
-  mobile = '/images/newlogo.png'
-  desktop = '/images/newlogo.png'
+  mobile = '/images/pedia_logo.png'
+  desktop = '/images/pedia_logo.png'
   desktop_height = "48px"
   mobile_height = "24px"
 
@@ -27,12 +27,12 @@ enableEmoji = true
     meta_description = "PediaMedAI"
     meta_og_title = "PediaMedAI"
     meta_og_type = "website"
-    meta_og_url = "https://m2lines.github.io/"
+    meta_og_url = "https://pediamedai.github.io/"
     meta_og_image = "/static/favicon.png"
     meta_og_description = "VESRI Collaboration on climate modeling"
     meta_twitter_card = "summary"
-    meta_twitter_site = "@M2LInES"
-    meta_twitter_creator = "@M2LInES"
+    meta_twitter_site = "@pediamedai"
+    meta_twitter_creator = "@pediamedai"
 
 [[menu.main]]
 	name = "About"

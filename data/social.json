@@ -1,17 +1,17 @@
 [
     {
         "name": "Email",
-        "link": "mailto:m2lines@nyu.edu",
+        "link": "mailto:xc2057@nyu.edu",
         "image": "images/PICOL_icon_Mailw.png"
     },
     {
         "name": "Twitter",
-        "link": "https://twitter.com/M2LInES",
+        "link": "https://twitter.com/pediamedai",
         "image": "images/twitter.svg"
     },
      {
         "name": "Github",
-        "link": "https://github.com/m2lines",
+        "link": "https://github.com/pediamedai",
         "image": "images/GitHub-Mark-Light-64px.png"
     }
 ]

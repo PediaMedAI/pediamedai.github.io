@@ -9,4 +9,4 @@ heroSubHeading: ''
 heroBackground: ''
 ---
 
-##### Improving coupled climate models from leading modeling centers (NCAR, GFDL, and IPSL). 
+##### AggPose: Deep aggregation vision transformer for infant pose estimation. 

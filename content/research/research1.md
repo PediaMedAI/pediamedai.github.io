@@ -1,42 +1,15 @@
 ---
-title: 'Deepening our understanding of key climate processes'
+title: '[IJCAI 2022] AggPose: Deep Aggregation Vision Transformer for Infant Pose Estimation'
 draft: false
 featured: true
 weight: 1
-heroHeading: 'Deepening our understanding of key climate processes '
+heroHeading: 'AggPose: Deep Aggregation Vision Transformer for Infant Pose Estimation'
 heroSubHeading: ''
 heroBackground: '/images/32109555763_eb9bb215ef_k.jpg'
 ---
 
-Despite drastic improvements in climate model development, current simulations have difficulty capturing the interactions among different processes in the atmosphere, oceans, and ice and how they affect the Earth’s climate; this can hinder projections of temperature, rainfall, and sea level. 
-PediaMedAI will be focusing on understanding these key climate processes using two types of data: 1. Data from high-resolution simulation and observations. 2. Data resulting from model errors, also called data assimilation increments.    
- 
-Below is a representation of the physical processes that will be studied by the team:
+![title](/images/diag.jpg)
 
-![title](/images/research/physical-processes-simple.png)
-
-##### From high-resolution simulations and observational data
-We will diagnose small-scale physical processes such as:
+Movement and pose assessment of newborns lets trained pediatricians predict neurodevelopmental disorders, allowing early intervention for related diseases. However, most of newest approaches for human pose estimation method focus on adults, lacking publicly large-scale dataset and powerful deep learning framework for infant pose estimation. In this paper, we fill this gap by proposing Deep Aggregation Vision Transformer for human (infant) posture estimation (AggPose), which introduces a high-resolution transformer framework without using convolution operations to extract features in the early stages. It generalizes Transformer + MLP to multi-scale deep layer aggregation within feature maps, thus enabling information fusion between different levels of vision tokens. We pre-train AggPose on COCO pose estimation and apply it on our newly released large-scale infant pose estimation dataset. The results show that AggPose could effectively learn the multi-scale features among different resolutions and significantly improve the performance.
 
 
-* Atmospheric convection and clouds (O'Gorman, Yuval)
-* Atmospheric boundary layer processes at the ocean and sea-ice interface (Gentine, Connolly)
-* Ocean mesoscale buoyancy fluxes (Abernathey, Balwada)
-* Ocean submesoscale processes (Le Sommer, Gorbunova)
-* Ocean mesoscale momentum, energy and air-sea interactions (Zanna, Perezhogin)
-* Vertical mixing (Adcroft, Reichl, Sane)
-* Sea-ice heterogeneity and its influence on air-sea-ice interactions (Holland, Zampieri)
-
-##### We will also learn from the data resulting from model errors, or data assimilation increments, illustrated in the figure below:  
-
-![DAschematics](/images/research/DAillustration-logo-small.png)
-
-###### In particular, in this analysis we will be focusing on:
-
-* Atmospheric processes (Berner, Chapman) 
-* Ocean processes (Lu, Verma)
-* Sea-ice parametrization (Bushuk, Gregory)
-* Air-sea-ice fluxes (Berner, Holland, Bushuk, Chapman, Verma, Gregory)
-
-**Learn more:**
-Come discover Pangeo Forge and how it can help us solve complex problems in climate and weather research [here](https://vimeo.com/510830389) with Ryan Abernathey, head of big data at PediaMedAI. 

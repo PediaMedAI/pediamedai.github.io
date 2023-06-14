@@ -6,4 +6,4 @@ background: 'images/gulfstream_tir_2013099_lr-smaller.jpeg'
 align: left
 ---
 
-Our international team is based in the US and in France and includes scientists from New York University, Princeton, GFDL, Columbia, LDEO, NCAR, MIT, CNRS-IGE, and CNRS-IPSL.
+Our international team is based in the China and in US and includes scientists from Shenzhen Childrens Hospital, New York University, University of Virginia, University of Illinois Urbana-Champaign.

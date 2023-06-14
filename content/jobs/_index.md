@@ -2,7 +2,7 @@
 title: 'Jobs'
 heroHeading: 'Open positions'
 heroSubHeading: ''
-heroBackground: 'images/SouthAtlantic.A2002157.1055.250m.jpg'
+heroBackground: 'images/background2.png'
 ---
 
 06/07/2023: New Hire!
