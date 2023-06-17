@@ -6,4 +6,4 @@ background: 'images/seaofokhotsk.a2016039.0305.250-smaller.jpg'
 align: right
 ---
 
-##### The organization is supported by Shenzhen Children's Hospital. The founder of PediaMedAI is Xu Cao and Wenqian Ye.
+##### The organization is supported by Shenzhen Children's Hospital.
