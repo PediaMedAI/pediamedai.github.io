@@ -14,7 +14,7 @@ _____
 
 - Key aspects of this document: Inclusivity, professionalism and conduct, unethical and/or unacceptable behavior, authorship, scientific integrity, and conflicts of interest. 
 
-- Management committee (Laure, Johanna, Alistair, Carlos, Ryan) will deal with any issues arising: 
+- Management committee (Xu Cao) will deal with any issues arising: 
 
 
 #### Inclusivity
