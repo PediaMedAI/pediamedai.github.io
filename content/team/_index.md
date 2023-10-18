@@ -1,6 +1,6 @@
 ---
 title: 'Team'
-heroHeading: 'Meet members of PediaMedAI'
+heroHeading: 'Meet our members'
 heroSubHeading: ''
 heroBackground: 'images/background2.png'
 ---

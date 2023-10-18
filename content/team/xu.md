@@ -1,14 +1,14 @@
 ---
 title: "Xu Cao"
 draft: false
-image: ""
-jobtitle: "Co-founder, Principal Researcher"
+image: "images/people/xu.jpg"
+jobtitle: "Co-founder, Principal Research Scientist"
 promoted: true
 weight: 2
-Website: "https://www.irohxucao.com/"
+Website: "https://www.linkedin.com/in/irohxu/"
 ---
 
 UIUC
 
-*AI for Healthcare, Computer Vision*
+*AI for Healthcare, Computer Vision, Self-driving*
 

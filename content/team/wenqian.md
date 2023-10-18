@@ -1,15 +1,15 @@
 ---
 title: "Wenqian Ye"
 draft: false
-image: ""
-jobtitle: "Co-founder, Principal Researcher"
+image: "images/people/wenqian.jpeg"
+jobtitle: "Co-founder, Principal Research Scientist"
 promoted: true
-weight: 1
+weight: 3
 Website: "https://wenqian-ye.github.io/" 
 ---
 
 University of Virginia
 
-*AI for Healthcare, Uncertainty*
+*AI for Healthcare, Uncertainty, Bayesian ML*
 
 

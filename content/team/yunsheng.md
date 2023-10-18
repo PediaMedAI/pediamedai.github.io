@@ -10,6 +10,6 @@ Website: "https://maysonma.github.io/"
 
 Purdue University
 
-*Digital Twin*
+*Digital Twin, Self-driving*
 
 
