@@ -13,6 +13,7 @@ Our codes are hosted on our Github [repository](https://github.com/pediamedai).
   * [LRFormer](https://github.com/PediaMedAI/LRFormer) (Ye et al. 2023) 
 
 - Code for Medical AI research: 
+  * [PIE](https://github.com/irohxu/pie) （Liang et al. 2023）
   * [ViTASD](https://github.com/PediaMedAI/ViTASD) (Cao et al. 2023) 
   * [AggPose](https://github.com/PediaMedAI/AggPose) (Cao et al. 2022) 
 
