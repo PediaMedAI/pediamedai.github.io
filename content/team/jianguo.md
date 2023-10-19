@@ -2,7 +2,7 @@
 title: "Jianguo Cao"
 draft: false
 image: "images/people/jianguo.png"
-jobtitle: "Diector, Professor"
+jobtitle: "Director, Professor"
 promoted: true
 weight: 1
 Website: "https://scholar.google.com/citations?hl=en&user=dPPOpHUAAAAJ" 

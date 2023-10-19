@@ -10,6 +10,6 @@ Website: "https://wenqian-ye.github.io/"
 
 University of Virginia
 
-*AI for Healthcare, Uncertainty, Bayesian ML*
+*AI for Healthcare, Uncertainty AI, Bayesian ML, AI for Social Good*
 
 

@@ -10,5 +10,5 @@ Website: "https://www.linkedin.com/in/irohxu/"
 
 UIUC
 
-*AI for Healthcare, Computer Vision, Self-driving*
+*AI for Healthcare, Computer Vision, Self-driving, HD Map*
 
