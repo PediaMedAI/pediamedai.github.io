@@ -1,7 +1,7 @@
 ---
 title: "Xiaoqiang Lin"
 draft: false
-image: ""
+image: "images/people/xiaoqiang.jpg"
 jobtitle: "Research Consultant"
 promoted: true
 weight: 4

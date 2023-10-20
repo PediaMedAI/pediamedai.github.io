@@ -1,7 +1,7 @@
 ---
 title: "Yunsheng Ma"
 draft: false
-image: ""
+image: "images/people/yunsheng.jpg"
 jobtitle: "Research Consultant"
 promoted: true
 weight: 6

@@ -1,7 +1,7 @@
 ---
 title: "Kaizhao Liang"
 draft: false
-image: ""
+image: "images/people/kaizhao.jpg"
 jobtitle: "Research Consultant"
 promoted: true
 weight: 5
