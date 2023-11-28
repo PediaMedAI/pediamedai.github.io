@@ -7,7 +7,11 @@ heroBackground: 'images/susan-q-yin-2JIvboGLeho-unsplash.jpg'
 
 ### PediaMed AI Research Publications
 
-:page_facing_up: Ma Y, Lu J, Cui C, Zhao S, Cao X, Ye W, Wang Z. **[MACP: Efficient Model Adaptation for Cooperative Perception](https://arxiv.org/abs/2310.16870v1)**. IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2024. [Project Page](https://purduedigitaltwin.github.io/MACP/)
+:page_facing_up: Cui C, Ma Y, Cao X, Ye W, ..., Cao J, Wang Z, Zheng C. **[A Survey on Multimodal Large Language Models for Autonomous Driving](https://arxiv.org/abs/2311.12320)**. IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) Workshop, 2024. [Project Page](https://github.com/IrohXu/Awesome-Multimodal-LLM-Autonomous-Driving)
+
+:page_facing_up: Cui C, Ma Y, Cao X, Ye W, Wang Z. **[Drive as you speak: Enabling human-like interaction with large language models in autonomous vehicles](https://arxiv.org/abs/2309.10228)**. IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) Workshop, 2024.
+
+:page_facing_up: Ma Y, Lu J, Cui C, Zhao S, Cao X, Ye W, Wang Z. **[MACP: Efficient Model Adaptation for Cooperative Perception](https://arxiv.org/abs/2310.16870v2)**. IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), 2024. [Project Page](https://purduedigitaltwin.github.io/MACP/)
 
 :page_facing_up: Ye W, Ma Y, Cao X, Tang K. **[Mitigating Transformer Overconfidence via Lipschitz Regularization](https://proceedings.mlr.press/v216/ye23a.html)**. Uncertainty in Artificial Intelligence (UAI), 2023.
 

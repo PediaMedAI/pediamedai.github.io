@@ -2,14 +2,14 @@
 date: 2023-06-09
 title: ' New paper on Uncertainty in Artificial Intelligence by Wenqian'
 heroHeading: ''
-heroSubHeading: 'Mitigating Transformer Overconfidence via Lipschitz Regularization by PediaMedAI co-founder Wenqian Ye'
+heroSubHeading: 'Mitigating Transformer Overconfidence via Lipschitz Regularization by PediaMedAI co-founder Wenqian Ye and Xu Cao'
 heroBackground: ''
 thumbnail:  ''
 images: ['images/lrformer.jpg']
 link: '' 
 ---
 
-Our collaborative research paper "Mitigating Transformer Overconfidence via Lipschitz Regularization" at SZCHAI is accepted by UAI 2023. Congratulation to Wenqian!     
+Our collaborative research paper "Mitigating Transformer Overconfidence via Lipschitz Regularization" is accepted by UAI 2023. Congratulation to Wenqian!     
 
 Abstract     
 

@@ -2,14 +2,14 @@
 date: 2023-06-09
 title: ' New paper on ICASSP 2023 by Xu and Wenqian'
 heroHeading: ''
-heroSubHeading: 'ViTASD: Robust Vision Transformer Baselines for Autism Spectrum Disorder Facial Diagnosis by PediaMedAI co-founder Xu Cao'
+heroSubHeading: 'ViTASD: Robust Vision Transformer Baselines for Autism Spectrum Disorder Facial Diagnosis by PediaMed AI co-founder Xu Cao and Wenqian Ye'
 heroBackground: ''
 thumbnail:  ''
 images: ['images/vitasd.jpg']
 link: '' 
 ---
 
-Our collaborative research paper "ViTASD: Robust Vision Transformer Baselines for Autism Spectrum Disorder Facial Diagnosis" at SZCHAI is accepted by ICASSP 2023. Congratulation to Xu and Wenqian!     
+Our collaborative research paper "ViTASD: Robust Vision Transformer Baselines for Autism Spectrum Disorder Facial Diagnosis" is accepted by ICASSP 2023. Congratulation to Xu and Wenqian!     
 
 Abstract     
 
