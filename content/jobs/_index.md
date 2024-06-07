@@ -2,7 +2,7 @@
 title: 'Jobs'
 heroHeading: 'Open positions'
 heroSubHeading: ''
-heroBackground: 'images/background2.png'
+heroBackground: 'images/edwin-andrade-4V1dC_eoCwg-unsplash.jpeg'
 ---
 
 06/07/2023: New Hire!
