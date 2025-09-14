@@ -12,10 +12,10 @@ if [ -n "$*" ]; then
 fi
 
 #first push private changes
-git pull && git add --all && git commit -m "$msg" && git push --set-upstream origin master;
+git pull && git add --all && git commit -m "$msg" && git push --set-upstream origin redesign;
 
 # Build the project.
-hugo -t hugo-hero-theme # if using a theme, replace with `hugo -t <YOURTHEME>`
+hugo -t pediamedai-modern
 
 # Go To Public folder
 cd public
@@ -26,4 +26,4 @@ git add .
 git commit -m "$msg"
 
 # Push source and build repos.
-git push origin master
+git push origin redesign
