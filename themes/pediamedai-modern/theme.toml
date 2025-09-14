@@ -1,0 +1,12 @@
+name = "PediaMedAI Modern"
+license = "MIT"
+licenselink = "https://github.com/pediamedai/pediamedai.github.io/blob/main/LICENSE"
+description = "Modern, professional theme for PediaMedAI - a startup-style website for pediatric healthcare AI research"
+homepage = "https://github.com/pediamedai/pediamedai.github.io"
+tags = ["responsive","modern","clean","startup","healthcare","ai","academic"]
+features = ["team","research","publications","news","animations","modern-design"]
+min_version = "0.74.3"
+
+[author]
+  name = "PediaMedAI Team"
+  homepage = "https://pediamedai.github.io"

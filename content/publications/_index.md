@@ -1,8 +1,5 @@
 ---
 title: 'Publications'
-heroHeading: 'Publications'
-heroSubHeading: 'Research work and relevant papers by PediaMed AI'
-heroBackground: 'images/susan-q-yin-2JIvboGLeho-unsplash.jpg'
 ---
 
 ### PediaMed AI Research Publications

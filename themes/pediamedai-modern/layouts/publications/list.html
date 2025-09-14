@@ -1,0 +1,14 @@
+{{ define "title" }}Publications - {{ .Site.Title }}{{ end}}
+{{ define "body_classes" }}page-publications{{ end }}
+
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    <h2 class="text-center mb-4" data-aos="fade-up">Publications</h2>
+    
+    <div class="publications-section" data-aos="fade-up" data-aos-delay="200">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+{{ end }}

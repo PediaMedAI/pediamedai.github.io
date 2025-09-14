@@ -1,0 +1,27 @@
+{{ define "title" }}Team - {{ .Site.Title }}{{ end}}
+{{ define "body_classes" }}page-team{{ end }}
+
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    <h2 class="text-center mb-4" data-aos="fade-up">Our Team</h2>
+    
+    <div class="team-grid" data-aos="fade-up" data-aos-delay="200">
+      {{ range .Pages }}
+      <div class="team-member">
+        {{ if .Params.image }}
+        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" class="member-photo">
+        {{ else }}
+        <img src="{{ .Site.BaseURL }}images/people/{{ .File.BaseFileName }}.jpg" alt="{{ .Title }}" class="member-photo">
+        {{ end }}
+        <h4 class="member-name">{{ .Title }}</h4>
+        <p class="member-role">{{ .Params.jobtitle }}</p>
+        {{ if .Params.website }}
+        <a href="{{ .Params.website }}" target="_blank" class="btn btn-outline btn-sm">Profile</a>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

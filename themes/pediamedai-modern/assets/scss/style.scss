@@ -1,0 +1,579 @@
+// PediaMedAI Modern Theme
+// Design System Implementation
+
+// ===== DESIGN TOKENS =====
+:root {
+  // Colors (from migration plan)
+  --color-white: #FFFFFF;
+  --color-primary-text: #212121;
+  --color-secondary-text: #6F6F6F;
+  --color-accent: #0078FF;
+  --color-subtle-bg: #E9E9E9;
+  
+  // Typography
+  --font-heading: 'Crimson Text', serif;
+  --font-body: 'DM Sans', sans-serif;
+  
+  // Font Sizes
+  --font-size-h1: 60px;
+  --font-size-h2: 40px;
+  --font-size-body: 16px;
+  --font-size-nav: 15px;
+  
+  // Spacing
+  --section-padding: 80px;
+  --max-width: 1200px;
+  
+  // Transitions
+  --transition-smooth: all 0.3s ease-in-out;
+}
+
+// ===== RESET & BASE =====
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+  color: var(--color-primary-text);
+  background-color: var(--color-white);
+}
+
+// ===== TYPOGRAPHY =====
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--color-secondary-text);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// ===== LAYOUT SYSTEM =====
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ===== HEADER =====
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-white);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: var(--transition-smooth);
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  .logo {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-primary-text);
+  }
+  
+  .nav {
+    display: flex;
+    gap: 2rem;
+    
+    a {
+      font-size: var(--font-size-nav);
+      font-weight: 500;
+      color: var(--color-primary-text);
+      transition: var(--transition-smooth);
+      
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .nav {
+      display: none;
+    }
+    
+    .mobile-menu-toggle {
+      display: block;
+    }
+  }
+}
+
+// ===== HERO SECTION =====
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--color-white) 0%, #f8f9fa 100%);
+  
+  .hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    h1 {
+      margin-bottom: 1.5rem;
+      color: var(--color-primary-text);
+    }
+    
+    p {
+      font-size: 18px;
+      margin-bottom: 2rem;
+      color: var(--color-secondary-text);
+    }
+  }
+}
+
+// ===== BUTTONS =====
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  border: none;
+  font-size: var(--font-size-body);
+  
+  &.btn-primary {
+    background: var(--color-accent);
+    color: var(--color-white);
+    
+    &:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 120, 255, 0.3);
+    }
+  }
+  
+  &.btn-outline {
+    background: transparent;
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    
+    &:hover {
+      background: var(--color-accent);
+      color: var(--color-white);
+    }
+  }
+}
+
+// ===== CARDS =====
+.card {
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: var(--transition-smooth);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary-text);
+  }
+  
+  .card-text {
+    color: var(--color-secondary-text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+// ===== NEWS SECTION =====
+.news-section {
+  .featured-news {
+    margin-bottom: 3rem;
+    
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      
+      .featured-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      
+      .featured-content {
+        h3 {
+          font-size: 28px;
+          margin-bottom: 1rem;
+        }
+        
+        p {
+          font-size: 16px;
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
+  }
+  
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// ===== WORKSHOPS SECTION =====
+.workshops-section {
+  background: var(--color-subtle-bg);
+  
+  .workshop-card {
+    text-align: center;
+    padding: 2rem;
+    
+    .workshop-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: var(--color-white);
+    }
+    
+    h4 {
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 14px;
+    }
+  }
+}
+
+// ===== TEAM SECTION =====
+.team-section {
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .team-member {
+    text-align: center;
+    
+    .member-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+    
+    .member-name {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .member-role {
+      font-size: 16px;
+      color: var(--color-secondary-text);
+    }
+  }
+}
+
+// ===== RESEARCH SECTION =====
+.research-section {
+  .research-theme {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    
+    &:nth-child(even) {
+      .theme-image {
+        order: 2;
+      }
+      
+      .theme-content {
+        order: 1;
+      }
+    }
+    
+    .theme-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    .theme-content {
+      h3 {
+        font-size: 24px;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .principal-investigators {
+        h4 {
+          font-size: 18px;
+          margin-bottom: 0.5rem;
+        }
+        
+        ul {
+          list-style: none;
+          
+          li {
+            padding: 0.25rem 0;
+            color: var(--color-secondary-text);
+          }
+        }
+      }
+    }
+  }
+}
+
+// ===== PUBLICATIONS SECTION =====
+.publications-section {
+  .publication-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-subtle-bg);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .publication-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-primary-text);
+    }
+    
+    .publication-authors {
+      color: var(--color-secondary-text);
+      margin-bottom: 0.25rem;
+    }
+    
+    .publication-venue {
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+  }
+}
+
+// ===== FOOTER =====
+.footer {
+  background: var(--color-primary-text);
+  color: var(--color-white);
+  padding: 3rem 0 1rem;
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .footer-section {
+    h4 {
+      margin-bottom: 1rem;
+      color: var(--color-white);
+    }
+    
+    p, a {
+      color: #ccc;
+      font-size: 14px;
+    }
+    
+    a:hover {
+      color: var(--color-accent);
+    }
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+    color: #ccc;
+    font-size: 14px;
+  }
+}
+
+// ===== RESPONSIVE DESIGN =====
+@media (max-width: 768px) {
+  :root {
+    --font-size-h1: 40px;
+    --font-size-h2: 32px;
+    --section-padding: 40px;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  .hero {
+    min-height: 80vh;
+    
+    .hero-content {
+      h1 {
+        font-size: 36px;
+      }
+      
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+// ===== UTILITIES =====
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }

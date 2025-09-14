@@ -3,7 +3,7 @@ relativeURLs = "True"
 languageCode = "en-us"
 title = "PediaMedAI"
 themesDir = "themes"
-theme = "hugo-hero-theme"
+theme = "pediamedai-modern"
 sectionPagesMenu = "content"
 enableEmoji = true
 

@@ -1,0 +1,38 @@
+{{ define "title" }}Research - {{ .Site.Title }}{{ end}}
+{{ define "body_classes" }}page-research{{ end }}
+
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    <h2 class="text-center mb-4" data-aos="fade-up">Our Research Themes</h2>
+    
+    <div class="research-section">
+      {{ range .Pages }}
+      <div class="research-theme" data-aos="fade-up">
+        {{ if .Params.heroBackground }}
+        <img src="{{ .Params.heroBackground | relURL }}" alt="{{ .Title }}" class="theme-image">
+        {{ else }}
+        <img src="{{ .Site.BaseURL }}images/demo_new.jpg" alt="{{ .Title }}" class="theme-image">
+        {{ end }}
+        
+        <div class="theme-content">
+          <h3>{{ .Title }}</h3>
+          <p>{{ .Content }}</p>
+          
+          {{ if .Params.principal_investigators }}
+          <div class="principal-investigators">
+            <h4>Principal Investigators</h4>
+            <ul>
+              {{ range .Params.principal_investigators }}
+              <li>{{ . }}</li>
+              {{ end }}
+            </ul>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

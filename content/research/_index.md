@@ -1,12 +1,6 @@
 ---
-title: ''
-heroHeading: 'Research themes'
-heroSubHeading: ''
-heroBackground: 'images/background2.png'
-
+title: 'Research'
 ---
-
-## Project Goal
 
 
 
