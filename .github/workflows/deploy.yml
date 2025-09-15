@@ -5,6 +5,7 @@ on:
     branches: [ redesign ]
   pull_request:
     branches: [ redesign ]
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
   build-and-deploy:
