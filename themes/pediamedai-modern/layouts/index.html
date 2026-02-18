@@ -3,53 +3,204 @@
 
 {{ define "main" }}
 
-<!-- Hero Section -->
+<!-- Hero Section (medicus.ai / thefin.ai style) -->
 <section class="hero">
   <div class="container">
     <div class="hero-content" data-aos="fade-up">
-      <h1>Advancing Pediatric Healthcare with Human-Centric AI</h1>
-      <p>PediaMedAI is an international non-profit organization improving pediatric healthcare, using interpretable AI tools to assist pediatricians in diagnosing and early intervention of pediatric diseases.</p>
-      <a href="{{ .Site.BaseURL }}research" class="btn btn-primary">Explore Our Research</a>
+      <h1>Empower Pediatric Healthcare with Advanced AI Technology</h1>
+      <p>PediaMed AI is an innovative technology company that supports pediatric healthcare providers with AI-powered solutions to assist pediatricians in diagnosing and early intervention of pediatric diseases, using interpretable AI tools for better patient care.</p>
+      <div class="hero-ctas">
+        <a href="{{ .Site.BaseURL }}research" class="btn btn-primary">Explore Our Research</a>
+        <a href="{{ .Site.BaseURL }}contact" class="btn btn-outline">Contact Us</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- News Section -->
+<!-- What we've achieved (medicus.ai style: big numbers + label + one line) -->
+<section class="section stats-section">
+  <div class="container">
+    <h2 class="section-heading text-center" data-aos="fade-up">What we've achieved so far....</h2>
+    <div class="stats-grid" data-aos="fade-up" data-aos-delay="100">
+      <div class="stat-card">
+        <div class="stat-icon-wrap">
+          <img src="{{ .Site.BaseURL }}images/icons/icon-research.svg" alt="" class="stat-icon" aria-hidden="true">
+        </div>
+        <span class="stat-number">3</span>
+        <span class="stat-label">research themes</span>
+        <p class="stat-desc">PediaMed AI focuses on interpretable AI, vision transformers, and early intervention for pediatrics.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon-wrap">
+          <img src="{{ .Site.BaseURL }}images/icons/icon-publications.svg" alt="" class="stat-icon" aria-hidden="true">
+        </div>
+        <span class="stat-number">14+</span>
+        <span class="stat-label">publications</span>
+        <p class="stat-desc">Peer-reviewed work in top venues on pediatric AI and healthcare.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon-wrap">
+          <img src="{{ .Site.BaseURL }}images/icons/icon-partners.svg" alt="" class="stat-icon" aria-hidden="true">
+        </div>
+        <span class="stat-number">4</span>
+        <span class="stat-label">partners</span>
+        <p class="stat-desc">Collaborating with children's hospitals and leading universities worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How we can help you (medicus.ai style) -->
+<section class="section solutions-section">
+  <div class="container">
+    <h2 class="section-heading text-center" data-aos="fade-up">How we can help you</h2>
+    <div class="solutions-grid" data-aos="fade-up" data-aos-delay="100">
+      <div class="solution-card">
+        <div class="solution-image-wrap">
+          <img src="{{ .Site.BaseURL }}images/solutions/interpretable-ai.svg" alt="Interpretable AI" class="solution-image">
+        </div>
+        <h3>Interpretable AI for Diagnosis</h3>
+        <p>Transparent, reliable AI that supports clinical decision-making in pediatric settings.</p>
+        <a href="{{ .Site.BaseURL }}research" class="link-arrow">Learn More</a>
+      </div>
+      <div class="solution-card">
+        <div class="solution-image-wrap">
+          <img src="{{ .Site.BaseURL }}images/solutions/early-intervention.svg" alt="Early intervention" class="solution-image">
+        </div>
+        <h3>Early Intervention Tools</h3>
+        <p>Vision and multimodal models for early detection and intervention in developmental conditions.</p>
+        <a href="{{ .Site.BaseURL }}research" class="link-arrow">Learn More</a>
+      </div>
+      <div class="solution-card">
+        <div class="solution-image-wrap">
+          <img src="{{ .Site.BaseURL }}images/solutions/collaboration.svg" alt="Collaboration" class="solution-image">
+        </div>
+        <h3>Clinical & Research Collaboration</h3>
+        <p>Partner with us to deploy and validate AI tools in real-world pediatric healthcare.</p>
+        <a href="{{ .Site.BaseURL }}contact" class="link-arrow">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PediaMed AI in the news (medicus.ai style) -->
 <section class="section news-section">
   <div class="container">
-    <h2 class="text-center mb-4" data-aos="fade-up">Latest News & Developments</h2>
-    
-    <!-- Featured News -->
+    <h2 class="section-heading text-center" data-aos="fade-up">PediaMed AI in the news</h2>
+
     <div class="featured-news" data-aos="fade-up">
       <div class="featured-card">
         <img src="{{ .Site.BaseURL }}images/demo_new.jpg" alt="Featured News" class="featured-image">
         <div class="featured-content">
+          <div class="news-meta">
+            <span class="news-badge news-badge-featured">Featured</span>
+            <span class="news-date">28.04.2025</span>
+          </div>
           <h3>PediaMedAI Publishes Groundbreaking Study on AI in Early Autism Detection</h3>
           <p>Our latest research, published in Nature Medicine, showcases a novel vision transformer model that significantly improves early detection of autism spectrum disorder in pediatric patients.</p>
           <a href="{{ .Site.BaseURL }}news" class="btn btn-primary">Read More</a>
         </div>
       </div>
     </div>
-    
-    <!-- News Grid -->
+
     <div class="news-grid" data-aos="fade-up" data-aos-delay="200">
-      <div class="card">
+      <div class="card news-card">
         <img src="{{ .Site.BaseURL }}images/lrformer.jpg" alt="News 1" class="card-image">
+        <div class="news-meta">
+          <span class="news-badge">Article</span>
+          <span class="news-date">15.01.2025</span>
+        </div>
         <h4 class="card-title">New Collaboration with Children's Hospital</h4>
         <p class="card-text">We are excited to announce a partnership to deploy our diagnostic tools in clinical settings, bringing AI-powered healthcare directly to patients.</p>
       </div>
-      
-      <div class="card">
+      <div class="card news-card">
         <img src="{{ .Site.BaseURL }}images/vitasd.jpg" alt="News 2" class="card-image">
+        <div class="news-meta">
+          <span class="news-badge">Article</span>
+          <span class="news-date">08.12.2024</span>
+        </div>
         <h4 class="card-title">Dr. Eva Chen joins our Scientific Advisory Board</h4>
         <p class="card-text">A warm welcome to Dr. Chen, a leading expert in pediatric neurology who will help guide our research direction and clinical applications.</p>
       </div>
-      
-      <div class="card">
+      <div class="card news-card">
         <img src="{{ .Site.BaseURL }}images/MLLM4AD_survey.png" alt="News 3" class="card-image">
+        <div class="news-meta">
+          <span class="news-badge news-badge-featured">Featured</span>
+          <span class="news-date">19.09.2024</span>
+        </div>
         <h4 class="card-title">PediaMedAI Awarded Prestigious Grant</h4>
         <p class="card-text">The Future of Health Foundation has awarded us a grant to expand our work on interpretable AI for pediatric healthcare applications.</p>
       </div>
+    </div>
+
+    <p class="text-center mt-4" data-aos="fade-up">
+      <a href="{{ .Site.BaseURL }}news" class="btn btn-outline">See More</a>
+    </p>
+  </div>
+</section>
+
+<!-- Our Partners (medicus.ai "Our Clients and Partners") -->
+<section class="section partners-section">
+  <div class="container">
+    <h2 class="section-heading text-center" data-aos="fade-up">Our Partners</h2>
+    <p class="partners-intro text-center" data-aos="fade-up">Collaborating with leading institutions to advance pediatric AI.</p>
+    <div class="partners-row" data-aos="fade-up" data-aos-delay="100">
+      <div class="partner-item partner-item-with-image">
+        <img src="{{ .Site.BaseURL }}images/partners/shenzhen-childrens-hospital.png" alt="Shenzhen Children's Hospital Longhua Campus" class="partner-image partner-image-photo">
+        <span class="partner-name">Shenzhen Children's Hospital</span>
+      </div>
+      <div class="partner-item partner-item-with-image">
+        <img src="{{ .Site.BaseURL }}images/partners/nyu.svg" alt="New York University" class="partner-image partner-image-logo">
+        <span class="partner-name">New York University</span>
+      </div>
+      <div class="partner-item partner-item-with-image">
+        <img src="{{ .Site.BaseURL }}images/partners/uva.svg" alt="University of Virginia" class="partner-image partner-image-logo">
+        <span class="partner-name">University of Virginia</span>
+      </div>
+      <div class="partner-item partner-item-with-image">
+        <img src="{{ .Site.BaseURL }}images/partners/uiuc.png" alt="University of Illinois Urbana-Champaign" class="partner-image partner-image-logo">
+        <span class="partner-name">University of Illinois Urbana-Champaign</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials (medicus.ai "... and what they think of us") -->
+<section class="section testimonials-section">
+  <div class="container">
+    <h2 class="section-heading text-center" data-aos="fade-up">... and what they think of us</h2>
+    <div class="testimonials-grid" data-aos="fade-up" data-aos-delay="100">
+      <blockquote class="testimonial-card">
+        <p>The team is highly reactive and attentive to our needs. The experience has been very satisfactory. PediaMed AI is a professional and reliable partner, delivering on its promises for interpretable AI in pediatric care.</p>
+        <cite>— Clinical Partner, Children's Hospital</cite>
+      </blockquote>
+      <blockquote class="testimonial-card">
+        <p>Great experience so far. Very professional team with strong focus on clinical impact. PediaMed AI delivers innovative, patient-centric solutions built on distinctive AI capabilities.</p>
+        <cite>— Research Collaborator, Academic Institution</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- Get in touch (medicus.ai "Get your free trial") -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-content" data-aos="fade-up">
+      <h2>Get in touch</h2>
+      <p>Get in touch with our experts to learn more about how PediaMed AI solutions can support your practice or research.</p>
+      <a href="{{ .Site.BaseURL }}contact" class="btn btn-primary btn-lg">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Community / Bridging section (thefin.ai style) -->
+<section class="section community-section">
+  <div class="container">
+    <div class="community-content" data-aos="fade-up">
+      <span class="community-label">COMMUNITY</span>
+      <h2>Bridging AI and Pediatrics Through Research</h2>
+      <p>We are a community of researchers, clinicians, and engineers dedicated to advancing trustworthy and impactful AI for pediatric healthcare. Our collaboration, expertise, and partnerships drive interpretable AI tools from research into practice.</p>
+      <a href="{{ .Site.BaseURL }}about" class="btn btn-primary">Learn More</a>
     </div>
   </div>
 </section>
@@ -57,8 +208,8 @@
 <!-- Workshops Section -->
 <section class="section workshops-section">
   <div class="container">
-    <h2 class="text-center mb-4" data-aos="fade-up">AI in Action: Our Workshops</h2>
-    
+    <h2 class="section-heading text-center" data-aos="fade-up">AI in Action: Our Workshops</h2>
+
     <div class="grid grid-2" data-aos="fade-up" data-aos-delay="200">
       <div class="workshop-card">
         <div class="workshop-icon">🧠</div>
@@ -66,7 +217,7 @@
         <p>Bring pediatricians, psychologists, educationists, clinicians and AI researchers together to think about the future of AI for children's development, health, and education.</p>
         <a href="https://pediamedai.com/ai4chl/" target="_blank" class="btn btn-outline">Learn More</a>
       </div>
-      
+
       <div class="workshop-card">
         <div class="workshop-icon">💻</div>
         <h4>Building Robust Healthcare AI</h4>

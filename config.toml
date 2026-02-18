@@ -11,6 +11,7 @@ enableEmoji = true
   unsafe = true
 
 [params]
+  contact_email = "contact@pediamedai.com"
   google_analytics_id=""
   google_tag_manager_id = "" 
 
@@ -27,7 +28,7 @@ enableEmoji = true
     meta_description = "PediaMedAI"
     meta_og_title = "PediaMedAI"
     meta_og_type = "website"
-    meta_og_url = "https://pediamedai.github.io/"
+    meta_og_url = "https://www.pediamedai.com/"
     meta_og_image = "/static/favicon.png"
     meta_og_description = "Collaboration on AI for Pediatrics"
     meta_twitter_card = "summary"
