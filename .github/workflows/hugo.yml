@@ -46,7 +46,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Install Node.js dependencies
-        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+        run: "[] && npm ci || true"
 
       - name: Build with Hugo
         env:
@@ -56,8 +56,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --relativeURLs \
-            --baseURL "/"
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
