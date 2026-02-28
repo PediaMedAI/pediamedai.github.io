@@ -1,144 +1,60 @@
-{{ define "title" }}{{ .Site.Title }}{{ end}}
+{{ define "title" }}PediaMed AI — Interpretable AI for Pediatric Diagnosis & Early Intervention{{ end}}
 {{ define "body_classes" }}page-home{{ end }}
+
+{{ define "meta_tags" }}
+  <meta name="description" content="{{ .Site.Params.homepage_meta_tags.meta_description | default "Interpretable AI for pediatric diagnosis and early intervention." }}">
+{{ end }}
 
 {{ define "main" }}
 
-<!-- Hero Section (medicus.ai / thefin.ai style) -->
+<!-- Hero: one-liner + what we do (YC-friendly) -->
 <section class="hero">
   <div class="container">
     <div class="hero-content" data-aos="fade-up">
-      <h1>Empower Pediatric Healthcare with Advanced AI Technology</h1>
-      <p>PediaMed AI is an innovative technology company that supports pediatric healthcare providers with AI-powered solutions to assist pediatricians in diagnosing and early intervention of pediatric diseases, using interpretable AI tools for better patient care.</p>
+      <h1>Interpretable AI that helps pediatricians detect developmental conditions earlier</h1>
+      <p class="hero-oneliner">We build AI tools that clinicians can trust—so more children get the right care sooner. Starting with autism and gait; backed by hospital and university partners worldwide.</p>
+      <p class="hero-traction">Workshops at <strong>ICLR 2025</strong> & <strong>CVPR 2026</strong>. Partners: Shenzhen Children's Hospital, NYU, UVA, UIUC.</p>
       <div class="hero-ctas">
-        <a href="{{ .Site.BaseURL }}about" class="btn btn-primary">Learn More About Us</a>
-        <a href="{{ .Site.BaseURL }}contact" class="btn btn-outline">Contact Us</a>
+        <a href="{{ .Site.BaseURL }}contact" class="btn btn-primary">Get in touch</a>
+        <a href="{{ .Site.BaseURL }}about" class="btn btn-outline">Learn more</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- What we've achieved (medicus.ai style: big numbers + label + one line) -->
+<!-- Traction: stats first (proof) -->
 <section class="section stats-section">
   <div class="container">
-    <h2 class="section-heading text-center" data-aos="fade-up">What we've achieved so far....</h2>
+    <h2 class="section-heading text-center" data-aos="fade-up">What we've achieved so far</h2>
     <div class="stats-grid" data-aos="fade-up" data-aos-delay="100">
-      <div class="stat-card">
-        <div class="stat-icon-wrap">
-          <img src="{{ .Site.BaseURL }}images/icons/icon-research.svg" alt="" class="stat-icon" aria-hidden="true">
-        </div>
-        <span class="stat-number">3</span>
-        <span class="stat-label">research themes</span>
-        <p class="stat-desc">PediaMed AI focuses on interpretable AI, vision transformers, and early intervention for pediatrics.</p>
-      </div>
       <div class="stat-card">
         <div class="stat-icon-wrap">
           <img src="{{ .Site.BaseURL }}images/icons/icon-partners.svg" alt="" class="stat-icon" aria-hidden="true">
         </div>
         <span class="stat-number">4</span>
         <span class="stat-label">partners</span>
-        <p class="stat-desc">Collaborating with children's hospitals and leading universities worldwide.</p>
+        <p class="stat-desc">Children's hospitals and leading universities: Shenzhen, NYU, UVA, UIUC.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon-wrap">
+          <img src="{{ .Site.BaseURL }}images/icons/icon-research.svg" alt="" class="stat-icon" aria-hidden="true">
+        </div>
+        <span class="stat-number">2</span>
+        <span class="stat-label">top-tier workshops</span>
+        <p class="stat-desc">ICLR 2025 AI4CHL (done), CVPR 2026 CV4CHL (planning).</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- How we can help you (medicus.ai style) -->
-<section class="section solutions-section">
-  <div class="container">
-    <h2 class="section-heading text-center" data-aos="fade-up">How we can help you</h2>
-    <div class="solutions-grid" data-aos="fade-up" data-aos-delay="100">
-      <div class="solution-card">
-        <div class="solution-image-wrap">
-          <img src="{{ .Site.BaseURL }}images/solutions/interpretable-ai.svg" alt="Interpretable AI" class="solution-image">
-        </div>
-        <h3>Interpretable AI for Diagnosis</h3>
-        <p>Transparent, reliable AI that supports clinical decision-making in pediatric settings.</p>
-        <a href="{{ .Site.BaseURL }}about" class="link-arrow">Learn More</a>
-      </div>
-      <div class="solution-card">
-        <div class="solution-image-wrap">
-          <img src="{{ .Site.BaseURL }}images/solutions/early-intervention.svg" alt="Early intervention" class="solution-image">
-        </div>
-        <h3>Early Intervention Tools</h3>
-        <p>Vision and multimodal models for early detection and intervention in developmental conditions.</p>
-        <a href="{{ .Site.BaseURL }}about" class="link-arrow">Learn More</a>
-      </div>
-      <div class="solution-card">
-        <div class="solution-image-wrap">
-          <img src="{{ .Site.BaseURL }}images/solutions/collaboration.svg" alt="Collaboration" class="solution-image">
-        </div>
-        <h3>Clinical & Research Collaboration</h3>
-        <p>Partner with us to deploy and validate AI tools in real-world pediatric healthcare.</p>
-        <a href="{{ .Site.BaseURL }}contact" class="link-arrow">Get in Touch</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PediaMed AI in the news (medicus.ai style) -->
-<section class="section news-section">
-  <div class="container">
-    <h2 class="section-heading text-center" data-aos="fade-up">PediaMed AI in the news</h2>
-
-    <div class="featured-news" data-aos="fade-up">
-      <div class="featured-card">
-        <img src="{{ .Site.BaseURL }}images/demo_new.jpg" alt="Featured News" class="featured-image">
-        <div class="featured-content">
-          <div class="news-meta">
-            <span class="news-badge news-badge-featured">Featured</span>
-            <span class="news-date">28.04.2025</span>
-          </div>
-          <h3>PediaMedAI Publishes Groundbreaking Study on AI in Early Autism Detection</h3>
-          <p>Our latest research, published in Nature Medicine, showcases a novel vision transformer model that significantly improves early detection of autism spectrum disorder in pediatric patients.</p>
-          <a href="{{ .Site.BaseURL }}news" class="btn btn-primary">Read More</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="news-grid" data-aos="fade-up" data-aos-delay="200">
-      <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/lrformer.jpg" alt="News 1" class="card-image">
-        <div class="news-meta">
-          <span class="news-badge">Article</span>
-          <span class="news-date">15.01.2025</span>
-        </div>
-        <h4 class="card-title">New Collaboration with Children's Hospital</h4>
-        <p class="card-text">We are excited to announce a partnership to deploy our diagnostic tools in clinical settings, bringing AI-powered healthcare directly to patients.</p>
-      </div>
-      <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/vitasd.jpg" alt="News 2" class="card-image">
-        <div class="news-meta">
-          <span class="news-badge">Article</span>
-          <span class="news-date">08.12.2024</span>
-        </div>
-        <h4 class="card-title">Dr. Eva Chen joins our Scientific Advisory Board</h4>
-        <p class="card-text">A warm welcome to Dr. Chen, a leading expert in pediatric neurology who will help guide our research direction and clinical applications.</p>
-      </div>
-      <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/MLLM4AD_survey.png" alt="News 3" class="card-image">
-        <div class="news-meta">
-          <span class="news-badge news-badge-featured">Featured</span>
-          <span class="news-date">19.09.2024</span>
-        </div>
-        <h4 class="card-title">PediaMedAI Awarded Prestigious Grant</h4>
-        <p class="card-text">The Future of Health Foundation has awarded us a grant to expand our work on interpretable AI for pediatric healthcare applications.</p>
-      </div>
-    </div>
-
-    <p class="text-center mt-4" data-aos="fade-up">
-      <a href="{{ .Site.BaseURL }}news" class="btn btn-outline">See More</a>
-    </p>
-  </div>
-</section>
-
-<!-- Our Partners (medicus.ai "Our Clients and Partners") -->
+<!-- Partners (social proof) -->
 <section class="section partners-section">
   <div class="container">
-    <h2 class="section-heading text-center" data-aos="fade-up">Our Partners</h2>
+    <h2 class="section-heading text-center" data-aos="fade-up">Our partners</h2>
     <p class="partners-intro text-center" data-aos="fade-up">Collaborating with leading institutions to advance pediatric AI.</p>
     <div class="partners-row" data-aos="fade-up" data-aos-delay="100">
       <div class="partner-item partner-item-with-image">
-        <img src="{{ .Site.BaseURL }}images/partners/shenzhen-childrens-hospital.png" alt="Shenzhen Children's Hospital Longhua Campus" class="partner-image partner-image-photo">
+        <img src="{{ .Site.BaseURL }}images/partners/shenzhen-childrens-hospital.png" alt="Shenzhen Children's Hospital" class="partner-image partner-image-photo">
         <span class="partner-name">Shenzhen Children's Hospital</span>
       </div>
       <div class="partner-item partner-item-with-image">
@@ -157,51 +73,168 @@
   </div>
 </section>
 
-<!-- Testimonials (medicus.ai "... and what they think of us") -->
+<!-- Problem / Why pediatric AI (YC: problem & opportunity) -->
+<section class="section problem-section">
+  <div class="container">
+    <div class="problem-content" data-aos="fade-up">
+      <span class="problem-label">Why we're building this</span>
+      <h2 class="section-heading">Most AI is built for adults. Pediatric data is scarce—and trust is critical.</h2>
+      <p>Early detection in autism and developmental conditions can change outcomes. Clinicians need interpretable tools, not black boxes. We build AI that fits pediatric practice and scales with our hospital and university partners.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Team / Founders (YC: who we are) -->
+<section class="section team-teaser-section">
+  <div class="container">
+    <h2 class="section-heading text-center" data-aos="fade-up">Founders & team</h2>
+    <div class="team-teaser-grid" data-aos="fade-up" data-aos-delay="100">
+      {{ range where .Site.RegularPages "Section" "team" }}
+        {{ if ne .Title "Team" }}
+        <div class="team-teaser-card">
+          <div class="team-teaser-avatar" aria-hidden="true">{{ index (split .Title "") 0 }}</div>
+          <h4 class="team-teaser-name">{{ .Title }}</h4>
+          <p class="team-teaser-role">{{ .Params.jobtitle | default "Team" }}</p>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+    <p class="text-center mt-4" data-aos="fade-up">
+      <a href="{{ .Site.BaseURL }}team" class="btn btn-outline">Meet the full team</a>
+    </p>
+  </div>
+</section>
+
+<!-- How we can help you -->
+<section class="section solutions-section">
+  <div class="container">
+    <h2 class="section-heading text-center" data-aos="fade-up">How we can help you</h2>
+    <div class="solutions-grid" data-aos="fade-up" data-aos-delay="100">
+      <div class="solution-card">
+        <div class="solution-image-wrap">
+          <img src="{{ .Site.BaseURL }}images/solutions/interpretable-ai.svg" alt="Interpretable AI" class="solution-image">
+        </div>
+        <h3>Interpretable AI for diagnosis</h3>
+        <p>Transparent, reliable AI that supports clinical decision-making in pediatric settings.</p>
+        <a href="{{ .Site.BaseURL }}about" class="link-arrow">Learn more</a>
+      </div>
+      <div class="solution-card">
+        <div class="solution-image-wrap">
+          <img src="{{ .Site.BaseURL }}images/solutions/early-intervention.svg" alt="Early intervention" class="solution-image">
+        </div>
+        <h3>Early intervention tools</h3>
+        <p>Vision and multimodal models for early detection and intervention in developmental conditions.</p>
+        <a href="{{ .Site.BaseURL }}about" class="link-arrow">Learn more</a>
+      </div>
+      <div class="solution-card">
+        <div class="solution-image-wrap">
+          <img src="{{ .Site.BaseURL }}images/solutions/collaboration.svg" alt="Collaboration" class="solution-image">
+        </div>
+        <h3>Clinical & research collaboration</h3>
+        <p>Partner with us to deploy and validate AI tools in real-world pediatric healthcare.</p>
+        <a href="{{ .Site.BaseURL }}contact" class="link-arrow">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PediaMed AI in the news -->
+<section class="section news-section">
+  <div class="container">
+    <h2 class="section-heading text-center" data-aos="fade-up">PediaMed AI in the news</h2>
+    <div class="featured-news" data-aos="fade-up">
+      <div class="featured-card">
+        <img src="{{ .Site.BaseURL }}images/demo_new.jpg" alt="Featured News" class="featured-image">
+        <div class="featured-content">
+          <div class="news-meta">
+            <span class="news-badge news-badge-featured">Featured</span>
+            <span class="news-date">28.04.2025</span>
+          </div>
+          <h3>PediaMed AI and early autism detection</h3>
+          <p>Our vision transformer model improves early detection of autism spectrum disorder in pediatric patients—interpretable AI that clinicians can trust.</p>
+          <a href="{{ .Site.BaseURL }}news" class="btn btn-primary">Read more</a>
+        </div>
+      </div>
+    </div>
+    <div class="news-grid" data-aos="fade-up" data-aos-delay="200">
+      <div class="card news-card">
+        <img src="{{ .Site.BaseURL }}images/lrformer.jpg" alt="News 1" class="card-image">
+        <div class="news-meta">
+          <span class="news-badge">Article</span>
+          <span class="news-date">15.01.2025</span>
+        </div>
+        <h4 class="card-title">New collaboration with children's hospital</h4>
+        <p class="card-text">Deploying our diagnostic tools in clinical settings, bringing AI-powered healthcare directly to patients.</p>
+      </div>
+      <div class="card news-card">
+        <img src="{{ .Site.BaseURL }}images/vitasd.jpg" alt="News 2" class="card-image">
+        <div class="news-meta">
+          <span class="news-badge">Article</span>
+          <span class="news-date">08.12.2024</span>
+        </div>
+        <h4 class="card-title">Scientific advisory board</h4>
+        <p class="card-text">Leading experts in pediatric neurology guiding our research direction and clinical applications.</p>
+      </div>
+      <div class="card news-card">
+        <img src="{{ .Site.BaseURL }}images/MLLM4AD_survey.png" alt="News 3" class="card-image">
+        <div class="news-meta">
+          <span class="news-badge news-badge-featured">Featured</span>
+          <span class="news-date">19.09.2024</span>
+        </div>
+        <h4 class="card-title">Grant for interpretable AI</h4>
+        <p class="card-text">Expanding our work on interpretable AI for pediatric healthcare applications.</p>
+      </div>
+    </div>
+    <p class="text-center mt-4" data-aos="fade-up">
+      <a href="{{ .Site.BaseURL }}news" class="btn btn-outline">See more</a>
+    </p>
+  </div>
+</section>
+
+<!-- Testimonials -->
 <section class="section testimonials-section">
   <div class="container">
-    <h2 class="section-heading text-center" data-aos="fade-up">... and what they think of us</h2>
+    <h2 class="section-heading text-center" data-aos="fade-up">What partners say</h2>
     <div class="testimonials-grid" data-aos="fade-up" data-aos-delay="100">
       <blockquote class="testimonial-card">
-        <p>The team is highly reactive and attentive to our needs. The experience has been very satisfactory. PediaMed AI is a professional and reliable partner, delivering on its promises for interpretable AI in pediatric care.</p>
-        <cite>— Clinical Partner, Children's Hospital</cite>
+        <p>The team is highly reactive and attentive to our needs. PediaMed AI is a professional and reliable partner, delivering on its promises for interpretable AI in pediatric care.</p>
+        <cite>— Clinical partner, children's hospital</cite>
       </blockquote>
       <blockquote class="testimonial-card">
-        <p>Great experience so far. Very professional team with strong focus on clinical impact. PediaMed AI delivers innovative, patient-centric solutions built on distinctive AI capabilities.</p>
-        <cite>— Research Collaborator, Academic Institution</cite>
+        <p>Very professional team with strong focus on clinical impact. PediaMed AI delivers innovative, patient-centric solutions built on distinctive AI capabilities.</p>
+        <cite>— Research collaborator, academic institution</cite>
       </blockquote>
     </div>
   </div>
 </section>
 
-<!-- Get in touch (medicus.ai "Get your free trial") -->
+<!-- CTA: Get in touch -->
 <section class="section cta-section">
   <div class="container">
     <div class="cta-content" data-aos="fade-up">
       <h2>Get in touch</h2>
-      <p>Get in touch with our experts to learn more about how PediaMed AI solutions can support your practice or research.</p>
-      <a href="{{ .Site.BaseURL }}contact" class="btn btn-primary btn-lg">Contact Us</a>
+      <p>Partnerships, research collaboration, or investors—we'd love to hear from you.</p>
+      <a href="{{ .Site.BaseURL }}contact" class="btn btn-primary btn-lg">Contact us</a>
     </div>
   </div>
 </section>
 
-<!-- Community / Bridging section (thefin.ai style) -->
+<!-- Community -->
 <section class="section community-section">
   <div class="container">
     <div class="community-content" data-aos="fade-up">
-      <span class="community-label">COMMUNITY</span>
-      <h2>Bridging AI and Pediatrics Through Research</h2>
-      <p>We are a community of researchers, clinicians, and engineers dedicated to advancing trustworthy and impactful AI for pediatric healthcare. Our collaboration, expertise, and partnerships drive interpretable AI tools from research into practice.</p>
-      <a href="{{ .Site.BaseURL }}about" class="btn btn-primary">Learn More</a>
+      <span class="community-label">Community</span>
+      <h2>Bridging AI and pediatrics through research</h2>
+      <p>Researchers, clinicians, and engineers advancing trustworthy AI for pediatric healthcare. Our partnerships drive interpretable AI from research into practice.</p>
+      <a href="{{ .Site.BaseURL }}about" class="btn btn-primary">Learn more</a>
     </div>
   </div>
 </section>
 
-<!-- Workshops Section: ICLR (done) + CVPR (planning) -->
+<!-- Workshops -->
 <section class="section workshops-section">
   <div class="container">
-    <h2 class="section-heading text-center" data-aos="fade-up">AI in Action: Our Workshops</h2>
-
+    <h2 class="section-heading text-center" data-aos="fade-up">Our workshops</h2>
     <div class="workshops-grid" data-aos="fade-up" data-aos-delay="200">
       <div class="workshop-card">
         <div class="workshop-image-wrap">
@@ -209,18 +242,18 @@
         </div>
         <span class="workshop-badge workshop-badge-done">Done</span>
         <h4>ICLR 2025 Workshop on AI for Children (AI4CHL)</h4>
-        <p>Bring pediatricians, psychologists, educationists, clinicians and AI researchers together to think about the future of AI for children's development, health, and education.</p>
-        <a href="{{ .Site.BaseURL }}iclr" class="btn btn-outline">Learn More</a>
+        <p>Pediatricians, psychologists, clinicians and AI researchers on the future of AI for children's development, health, and education.</p>
+        <a href="{{ .Site.BaseURL }}iclr" class="btn btn-outline">Learn more</a>
       </div>
-
       <div class="workshop-card">
-        <div class="workshop-image-wrap workshop-image-placeholder">
-          <span class="workshop-icon" aria-hidden="true">👁</span>
+        <div class="workshop-image-wrap">
+          <img src="{{ .Site.BaseURL }}images/workshops/cv4chl_bg.jpg" alt="CVPR 2026 CV4CHL Workshop" class="workshop-image" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.classList.add('workshop-image-placeholder-fallback');">
+          <span class="workshop-icon workshop-icon-fallback" aria-hidden="true">👁</span>
         </div>
         <span class="workshop-badge workshop-badge-planning">Planning</span>
         <h4>CVPR 2026 Workshop on Computer Vision for Children (CV4CHL)</h4>
-        <p>Cutting-edge CV for children's development, health, and education. Denver, Colorado — June 2026. Featuring the Children Gait Competition.</p>
-        <a href="{{ .Site.BaseURL }}cvpr" class="btn btn-outline">Learn More</a>
+        <p>Denver, June 2026. Featuring the Children Gait Competition.</p>
+        <a href="{{ .Site.BaseURL }}cvpr" class="btn btn-outline">Learn more</a>
       </div>
     </div>
   </div>

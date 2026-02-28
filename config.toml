@@ -25,12 +25,12 @@ enableEmoji = true
   mobile_height = "24px"
 
   [params.homepage_meta_tags]
-    meta_description = "PediaMedAI"
-    meta_og_title = "PediaMedAI"
+    meta_description = "Interpretable AI that helps pediatricians detect developmental conditions earlier—starting with autism and gait. We build AI tools clinicians can trust."
+    meta_og_title = "PediaMed AI — Interpretable AI for Pediatric Diagnosis & Early Intervention"
     meta_og_type = "website"
     meta_og_url = "https://www.pediamedai.com/"
     meta_og_image = "/static/favicon.png"
-    meta_og_description = "Collaboration on AI for Pediatrics"
+    meta_og_description = "Interpretable AI that helps pediatricians detect developmental conditions earlier. Partners: Shenzhen Children's Hospital, NYU, UVA, UIUC. ICLR 2025 & CVPR 2026."
     meta_twitter_card = "summary"
     meta_twitter_site = "@pediamedai"
     meta_twitter_creator = "@pediamedai"
