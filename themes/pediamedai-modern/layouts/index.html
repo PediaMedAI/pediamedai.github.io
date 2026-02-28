@@ -10,7 +10,7 @@
       <h1>Empower Pediatric Healthcare with Advanced AI Technology</h1>
       <p>PediaMed AI is an innovative technology company that supports pediatric healthcare providers with AI-powered solutions to assist pediatricians in diagnosing and early intervention of pediatric diseases, using interpretable AI tools for better patient care.</p>
       <div class="hero-ctas">
-        <a href="{{ .Site.BaseURL }}research" class="btn btn-primary">Explore Our Research</a>
+        <a href="{{ .Site.BaseURL }}about" class="btn btn-primary">Learn More About Us</a>
         <a href="{{ .Site.BaseURL }}contact" class="btn btn-outline">Contact Us</a>
       </div>
     </div>
@@ -29,14 +29,6 @@
         <span class="stat-number">3</span>
         <span class="stat-label">research themes</span>
         <p class="stat-desc">PediaMed AI focuses on interpretable AI, vision transformers, and early intervention for pediatrics.</p>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon-wrap">
-          <img src="{{ .Site.BaseURL }}images/icons/icon-publications.svg" alt="" class="stat-icon" aria-hidden="true">
-        </div>
-        <span class="stat-number">14+</span>
-        <span class="stat-label">publications</span>
-        <p class="stat-desc">Peer-reviewed work in top venues on pediatric AI and healthcare.</p>
       </div>
       <div class="stat-card">
         <div class="stat-icon-wrap">
@@ -61,7 +53,7 @@
         </div>
         <h3>Interpretable AI for Diagnosis</h3>
         <p>Transparent, reliable AI that supports clinical decision-making in pediatric settings.</p>
-        <a href="{{ .Site.BaseURL }}research" class="link-arrow">Learn More</a>
+        <a href="{{ .Site.BaseURL }}about" class="link-arrow">Learn More</a>
       </div>
       <div class="solution-card">
         <div class="solution-image-wrap">
@@ -69,7 +61,7 @@
         </div>
         <h3>Early Intervention Tools</h3>
         <p>Vision and multimodal models for early detection and intervention in developmental conditions.</p>
-        <a href="{{ .Site.BaseURL }}research" class="link-arrow">Learn More</a>
+        <a href="{{ .Site.BaseURL }}about" class="link-arrow">Learn More</a>
       </div>
       <div class="solution-card">
         <div class="solution-image-wrap">
@@ -205,23 +197,30 @@
   </div>
 </section>
 
-<!-- Workshops Section -->
+<!-- Workshops Section: ICLR (done) + CVPR (planning) -->
 <section class="section workshops-section">
   <div class="container">
     <h2 class="section-heading text-center" data-aos="fade-up">AI in Action: Our Workshops</h2>
 
-    <div class="grid grid-2" data-aos="fade-up" data-aos-delay="200">
+    <div class="workshops-grid" data-aos="fade-up" data-aos-delay="200">
       <div class="workshop-card">
-        <div class="workshop-icon">🧠</div>
-        <h4>ICLR 2025 Workshop on AI for Children</h4>
+        <div class="workshop-image-wrap">
+          <img src="{{ .Site.BaseURL }}images/workshops/iclr_workshop_1.jpg" alt="ICLR 2025 AI4CHL Workshop" class="workshop-image">
+        </div>
+        <span class="workshop-badge workshop-badge-done">Done</span>
+        <h4>ICLR 2025 Workshop on AI for Children (AI4CHL)</h4>
         <p>Bring pediatricians, psychologists, educationists, clinicians and AI researchers together to think about the future of AI for children's development, health, and education.</p>
-        <a href="https://pediamedai.com/ai4chl/" target="_blank" class="btn btn-outline">Learn More</a>
+        <a href="{{ .Site.BaseURL }}iclr" class="btn btn-outline">Learn More</a>
       </div>
 
       <div class="workshop-card">
-        <div class="workshop-icon">💻</div>
-        <h4>Building Robust Healthcare AI</h4>
-        <p>A technical deep-dive for developers on creating fair, reliable, and secure medical AI models.</p>
+        <div class="workshop-image-wrap workshop-image-placeholder">
+          <span class="workshop-icon" aria-hidden="true">👁</span>
+        </div>
+        <span class="workshop-badge workshop-badge-planning">Planning</span>
+        <h4>CVPR 2026 Workshop on Computer Vision for Children (CV4CHL)</h4>
+        <p>Cutting-edge CV for children's development, health, and education. Denver, Colorado — June 2026. Featuring the Children Gait Competition.</p>
+        <a href="{{ .Site.BaseURL }}cvpr" class="btn btn-outline">Learn More</a>
       </div>
     </div>
   </div>

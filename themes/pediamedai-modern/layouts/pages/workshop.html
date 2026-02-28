@@ -1,0 +1,34 @@
+{{ define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+{{ define "body_classes" }}page-workshop{{ end }}
+
+{{ define "main" }}
+<section class="section workshop-page-hero">
+  <div class="container">
+    <p class="workshop-page-badge">{{ .Params.badge | default "Workshop" }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ if .Params.subtitle }}
+    <p class="workshop-page-subtitle">{{ .Params.subtitle }}</p>
+    {{ end }}
+    <div class="content workshop-page-content">
+      {{ .Content }}
+    </div>
+    {{ with .Params.gallery }}
+    <div class="workshop-gallery">
+      <h2 class="workshop-gallery-heading">Event photos</h2>
+      <div class="workshop-gallery-grid">
+        {{ range . }}
+        <div class="workshop-gallery-item">
+          <img src="{{ $.Site.BaseURL }}{{ . }}" alt="ICLR 2025 AI4CHL Workshop" loading="lazy">
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+    {{ with .Params.external_url }}
+    <p class="workshop-page-cta">
+      <a href="{{ . }}" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Visit full workshop site →</a>
+    </p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

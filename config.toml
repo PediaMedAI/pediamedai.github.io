@@ -54,38 +54,24 @@ enableEmoji = true
 
 
 [[menu.main]]
-	identifier = "research"
-    name = "Research"
-    weight = 4
-
-[[menu.main]]
-	identifier = "themes"
-    name = "Themes"
-    url = "/research/"
-    parent = "research"
-    weight = 1
-    
-[[menu.main]]
-	identifier = "talks"
-    name = "Talks"
-    url = "/research/Talks/"
-    parent = "research"
-    weight = 2
-    
-[[menu.main]]
     name = "Code"
     url = "/Code/"
     weight = 5
 
 [[menu.main]]
-    name = "Publications"
-    url = "/publications/"
+    name = "ICLR Workshop"
+    url = "/iclr/"
     weight = 6
+
+[[menu.main]]
+    name = "CVPR Workshop"
+    url = "/cvpr/"
+    weight = 7
 
 [[menu.main]]
     name = "News"
     identifier = "news"
-    weight = 7
+    weight = 8
     
 [[menu.main]]
 	identifier = "Our news"
@@ -93,7 +79,7 @@ enableEmoji = true
     url = "/news/"
     parent = "news"
     weight = 1
-    
+
 [[menu.main]]
 	identifier = "Newsletters"
     name = "Newsletters"

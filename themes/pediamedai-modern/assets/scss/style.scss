@@ -101,6 +101,11 @@ a {
   &:hover {
     opacity: 0.8;
   }
+  
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 }
 
 // ===== LAYOUT SYSTEM =====
@@ -262,9 +267,9 @@ a {
   
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     
     @media (max-width: 768px) {
@@ -759,35 +764,168 @@ a {
 // ===== WORKSHOPS SECTION =====
 .workshops-section {
   background: var(--color-subtle-bg);
-  
-  .workshop-card {
-    text-align: center;
-    padding: 2rem;
-    
-    .workshop-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 1rem;
-      background: var(--color-accent);
-      border-radius: 50%;
+}
+
+.workshops-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.workshop-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  position: relative;
+
+  .workshop-image-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background: var(--color-subtle-bg);
+
+    .workshop-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &.workshop-image-placeholder {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      color: var(--color-white);
+      background: linear-gradient(135deg, var(--color-subtle-bg) 0%, #e8f5e9 100%);
+
+      .workshop-icon {
+        font-size: 3rem;
+        opacity: 0.6;
+      }
     }
-    
-    h4 {
+  }
+
+  .workshop-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .workshop-badge-done {
+    background: #e8f5e9;
+    color: var(--color-accent);
+  }
+
+  .workshop-badge-planning {
+    background: #e3f2fd;
+    color: #1976d2;
+  }
+
+  h4 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 14px;
+    margin-bottom: 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  .btn {
+    margin-top: 0.5rem;
+  }
+}
+
+// ===== WORKSHOP PAGE (/iclr, /cvpr) =====
+.workshop-page-hero {
+  .workshop-page-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    background: var(--color-subtle-bg);
+    color: var(--color-accent);
+  }
+
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .workshop-page-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-secondary-text);
+    margin-bottom: 2rem;
+  }
+
+  .workshop-page-content {
+    max-width: 720px;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
       margin-bottom: 1rem;
+      padding-left: 1.5rem;
     }
-    
-    p {
-      font-size: 14px;
-      margin-bottom: 1.5rem;
+  }
+
+  .workshop-page-cta {
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+}
+
+.workshop-gallery {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+
+  .workshop-gallery-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .workshop-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
     }
-    
-    .btn {
-      margin-top: 1rem;
+  }
+
+  .workshop-gallery-item {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-subtle-bg);
+
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
     }
   }
 }
