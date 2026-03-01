@@ -16,7 +16,7 @@
       <p class="hero-traction">Workshops at <strong>ICLR 2025</strong> & <strong>CVPR 2026</strong>. Partners: Shenzhen Children's Hospital, NYU, UVA, UIUC.</p>
       <div class="hero-ctas">
         <a href="{{ .Site.BaseURL }}contact" class="btn btn-primary">Get in touch</a>
-        <a href="{{ .Site.BaseURL }}about" class="btn btn-outline">Learn more</a>
+        <a href="{{ .Site.BaseURL }}about" class="btn btn-outline">About us</a>
       </div>
     </div>
   </div>
@@ -92,9 +92,15 @@
       {{ range where .Site.RegularPages "Section" "team" }}
         {{ if ne .Title "Team" }}
         <div class="team-teaser-card">
+          {{ if .Params.image }}
+          <div class="team-teaser-photo-wrap">
+            <img src="{{ $.Site.BaseURL }}{{ .Params.image }}" alt="{{ .Title }}" class="team-teaser-photo" loading="lazy">
+          </div>
+          {{ else }}
           <div class="team-teaser-avatar" aria-hidden="true">{{ index (split .Title "") 0 }}</div>
+          {{ end }}
           <h4 class="team-teaser-name">{{ .Title }}</h4>
-          <p class="team-teaser-role">{{ .Params.jobtitle | default "Team" }}</p>
+          <p class="team-teaser-role">{{ .Params.jobtitle | default "Team member" }}</p>
         </div>
         {{ end }}
       {{ end }}
@@ -116,7 +122,7 @@
         </div>
         <h3>Interpretable AI for diagnosis</h3>
         <p>Transparent, reliable AI that supports clinical decision-making in pediatric settings.</p>
-        <a href="{{ .Site.BaseURL }}about" class="link-arrow">Learn more</a>
+        <a href="{{ .Site.BaseURL }}about" class="link-arrow">About us</a>
       </div>
       <div class="solution-card">
         <div class="solution-image-wrap">
@@ -124,7 +130,7 @@
         </div>
         <h3>Early intervention tools</h3>
         <p>Vision and multimodal models for early detection and intervention in developmental conditions.</p>
-        <a href="{{ .Site.BaseURL }}about" class="link-arrow">Learn more</a>
+        <a href="{{ .Site.BaseURL }}about" class="link-arrow">About us</a>
       </div>
       <div class="solution-card">
         <div class="solution-image-wrap">
@@ -144,7 +150,7 @@
     <h2 class="section-heading text-center" data-aos="fade-up">PediaMed AI in the news</h2>
     <div class="featured-news" data-aos="fade-up">
       <div class="featured-card">
-        <img src="{{ .Site.BaseURL }}images/demo_new.jpg" alt="Featured News" class="featured-image">
+        <img src="{{ .Site.BaseURL }}images/demo_new.jpg" alt="PediaMed AI research" class="featured-image">
         <div class="featured-content">
           <div class="news-meta">
             <span class="news-badge news-badge-featured">Featured</span>
@@ -152,41 +158,41 @@
           </div>
           <h3>PediaMed AI and early autism detection</h3>
           <p>Our vision transformer model improves early detection of autism spectrum disorder in pediatric patients—interpretable AI that clinicians can trust.</p>
-          <a href="{{ .Site.BaseURL }}news" class="btn btn-primary">Read more</a>
+          <a href="{{ .Site.BaseURL }}news" class="btn btn-primary">Read full story</a>
         </div>
       </div>
     </div>
     <div class="news-grid" data-aos="fade-up" data-aos-delay="200">
       <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/lrformer.jpg" alt="News 1" class="card-image">
+        <img src="{{ .Site.BaseURL }}images/lrformer.jpg" alt="Partnership with Shenzhen Children's Hospital" class="card-image">
         <div class="news-meta">
           <span class="news-badge">Article</span>
           <span class="news-date">15.01.2025</span>
         </div>
-        <h4 class="card-title">New collaboration with children's hospital</h4>
+        <h4 class="card-title">Partnership with Shenzhen Children's Hospital</h4>
         <p class="card-text">Deploying our diagnostic tools in clinical settings, bringing AI-powered healthcare directly to patients.</p>
       </div>
       <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/vitasd.jpg" alt="News 2" class="card-image">
+        <img src="{{ .Site.BaseURL }}images/vitasd.jpg" alt="Scientific advisory board" class="card-image">
         <div class="news-meta">
           <span class="news-badge">Article</span>
           <span class="news-date">08.12.2024</span>
         </div>
-        <h4 class="card-title">Scientific advisory board</h4>
+        <h4 class="card-title">Scientific advisory board members</h4>
         <p class="card-text">Leading experts in pediatric neurology guiding our research direction and clinical applications.</p>
       </div>
       <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/MLLM4AD_survey.png" alt="News 3" class="card-image">
+        <img src="{{ .Site.BaseURL }}images/MLLM4AD_survey.png" alt="Grant for interpretable AI" class="card-image">
         <div class="news-meta">
           <span class="news-badge news-badge-featured">Featured</span>
           <span class="news-date">19.09.2024</span>
         </div>
-        <h4 class="card-title">Grant for interpretable AI</h4>
+        <h4 class="card-title">Grant to expand interpretable AI work</h4>
         <p class="card-text">Expanding our work on interpretable AI for pediatric healthcare applications.</p>
       </div>
     </div>
     <p class="text-center mt-4" data-aos="fade-up">
-      <a href="{{ .Site.BaseURL }}news" class="btn btn-outline">See more</a>
+      <a href="{{ .Site.BaseURL }}news" class="btn btn-outline">See all news</a>
     </p>
   </div>
 </section>
@@ -198,11 +204,11 @@
     <div class="testimonials-grid" data-aos="fade-up" data-aos-delay="100">
       <blockquote class="testimonial-card">
         <p>The team is highly reactive and attentive to our needs. PediaMed AI is a professional and reliable partner, delivering on its promises for interpretable AI in pediatric care.</p>
-        <cite>— Clinical partner, children's hospital</cite>
+        <cite>— Clinical partner, Shenzhen Children's Hospital</cite>
       </blockquote>
       <blockquote class="testimonial-card">
         <p>Very professional team with strong focus on clinical impact. PediaMed AI delivers innovative, patient-centric solutions built on distinctive AI capabilities.</p>
-        <cite>— Research collaborator, academic institution</cite>
+        <cite>— Research partner, University of Illinois Urbana-Champaign</cite>
       </blockquote>
     </div>
   </div>
@@ -226,7 +232,7 @@
       <span class="community-label">Community</span>
       <h2>Bridging AI and pediatrics through research</h2>
       <p>Researchers, clinicians, and engineers advancing trustworthy AI for pediatric healthcare. Our partnerships drive interpretable AI from research into practice.</p>
-      <a href="{{ .Site.BaseURL }}about" class="btn btn-primary">Learn more</a>
+      <a href="{{ .Site.BaseURL }}about" class="btn btn-primary">About us</a>
     </div>
   </div>
 </section>
@@ -243,7 +249,7 @@
         <span class="workshop-badge workshop-badge-done">Done</span>
         <h4>ICLR 2025 Workshop on AI for Children (AI4CHL)</h4>
         <p>Pediatricians, psychologists, clinicians and AI researchers on the future of AI for children's development, health, and education.</p>
-        <a href="{{ .Site.BaseURL }}iclr" class="btn btn-outline">Learn more</a>
+        <a href="{{ .Site.BaseURL }}iclr" class="btn btn-outline">Workshop details</a>
       </div>
       <div class="workshop-card">
         <div class="workshop-image-wrap">
@@ -253,7 +259,7 @@
         <span class="workshop-badge workshop-badge-planning">Planning</span>
         <h4>CVPR 2026 Workshop on Computer Vision for Children (CV4CHL)</h4>
         <p>Denver, June 2026. Featuring the Children Gait Competition.</p>
-        <a href="{{ .Site.BaseURL }}cvpr" class="btn btn-outline">Learn more</a>
+        <a href="{{ .Site.BaseURL }}cvpr" class="btn btn-outline">Workshop details</a>
       </div>
     </div>
   </div>
