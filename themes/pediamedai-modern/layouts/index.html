@@ -73,44 +73,6 @@
   </div>
 </section>
 
-<!-- Problem / Why pediatric AI (YC: problem & opportunity) -->
-<section class="section problem-section">
-  <div class="container">
-    <div class="problem-content" data-aos="fade-up">
-      <span class="problem-label">Why we're building this</span>
-      <h2 class="section-heading">Most AI is built for adults. Pediatric data is scarce—and trust is critical.</h2>
-      <p>Early detection in autism and developmental conditions can change outcomes. Clinicians need interpretable tools, not black boxes. We build AI that fits pediatric practice and scales with our hospital and university partners.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Team / Founders (YC: who we are) -->
-<section class="section team-teaser-section">
-  <div class="container">
-    <h2 class="section-heading text-center" data-aos="fade-up">Founders & team</h2>
-    <div class="team-teaser-grid" data-aos="fade-up" data-aos-delay="100">
-      {{ range where .Site.RegularPages "Section" "team" }}
-        {{ if ne .Title "Team" }}
-        <div class="team-teaser-card">
-          {{ if .Params.image }}
-          <div class="team-teaser-photo-wrap">
-            <img src="{{ $.Site.BaseURL }}{{ .Params.image }}" alt="{{ .Title }}" class="team-teaser-photo" loading="lazy">
-          </div>
-          {{ else }}
-          <div class="team-teaser-avatar" aria-hidden="true">{{ index (split .Title "") 0 }}</div>
-          {{ end }}
-          <h4 class="team-teaser-name">{{ .Title }}</h4>
-          <p class="team-teaser-role">{{ .Params.jobtitle | default "Team member" }}</p>
-        </div>
-        {{ end }}
-      {{ end }}
-    </div>
-    <p class="text-center mt-4" data-aos="fade-up">
-      <a href="{{ .Site.BaseURL }}team" class="btn btn-outline">Meet the full team</a>
-    </p>
-  </div>
-</section>
-
 <!-- How we can help you -->
 <section class="section solutions-section">
   <div class="container">
@@ -141,59 +103,6 @@
         <a href="{{ .Site.BaseURL }}contact" class="link-arrow">Get in touch</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- PediaMed AI in the news -->
-<section class="section news-section">
-  <div class="container">
-    <h2 class="section-heading text-center" data-aos="fade-up">PediaMed AI in the news</h2>
-    <div class="featured-news" data-aos="fade-up">
-      <div class="featured-card">
-        <img src="{{ .Site.BaseURL }}images/demo_new.jpg" alt="PediaMed AI research" class="featured-image">
-        <div class="featured-content">
-          <div class="news-meta">
-            <span class="news-badge news-badge-featured">Featured</span>
-            <span class="news-date">28.04.2025</span>
-          </div>
-          <h3>PediaMed AI and early autism detection</h3>
-          <p>Our vision transformer model improves early detection of autism spectrum disorder in pediatric patients—interpretable AI that clinicians can trust.</p>
-          <a href="{{ .Site.BaseURL }}news" class="btn btn-primary">Read full story</a>
-        </div>
-      </div>
-    </div>
-    <div class="news-grid" data-aos="fade-up" data-aos-delay="200">
-      <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/lrformer.jpg" alt="Partnership with Shenzhen Children's Hospital" class="card-image">
-        <div class="news-meta">
-          <span class="news-badge">Article</span>
-          <span class="news-date">15.01.2025</span>
-        </div>
-        <h4 class="card-title">Partnership with Shenzhen Children's Hospital</h4>
-        <p class="card-text">Deploying our diagnostic tools in clinical settings, bringing AI-powered healthcare directly to patients.</p>
-      </div>
-      <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/vitasd.jpg" alt="Scientific advisory board" class="card-image">
-        <div class="news-meta">
-          <span class="news-badge">Article</span>
-          <span class="news-date">08.12.2024</span>
-        </div>
-        <h4 class="card-title">Scientific advisory board members</h4>
-        <p class="card-text">Leading experts in pediatric neurology guiding our research direction and clinical applications.</p>
-      </div>
-      <div class="card news-card">
-        <img src="{{ .Site.BaseURL }}images/MLLM4AD_survey.png" alt="Grant for interpretable AI" class="card-image">
-        <div class="news-meta">
-          <span class="news-badge news-badge-featured">Featured</span>
-          <span class="news-date">19.09.2024</span>
-        </div>
-        <h4 class="card-title">Grant to expand interpretable AI work</h4>
-        <p class="card-text">Expanding our work on interpretable AI for pediatric healthcare applications.</p>
-      </div>
-    </div>
-    <p class="text-center mt-4" data-aos="fade-up">
-      <a href="{{ .Site.BaseURL }}news" class="btn btn-outline">See all news</a>
-    </p>
   </div>
 </section>
 
