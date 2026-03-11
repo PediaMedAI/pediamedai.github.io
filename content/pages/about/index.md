@@ -17,6 +17,8 @@ We aim to bring transparent, reliable AI into pediatric practice—helping clini
 
 ### Xu Cao — Co-founder & Research Director, PediaMed AI
 
+<img src="/images/team/xu_cao.jpg" alt="Xu Cao, Co-founder & Research Director, PediaMed AI" style="max-width: 220px; border-radius: 8px; margin: 0 0 1.5rem 0;">
+
 Xu leads research at PediaMed AI, focusing on interpretable vision and multimodal AI systems designed specifically for pediatric care. Drawing on his experience across industry and academia, he drives the development of pediatric foundation models and AI-assisted tools for early detection and intervention in childhood conditions.
 
 Learn more about our team on the [Team page](/team/).

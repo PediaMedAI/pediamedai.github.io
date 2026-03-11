@@ -5,9 +5,30 @@
 <section class="section">
   <div class="container">
     <h2 class="text-center mb-4" data-aos="fade-up">Our Team</h2>
-    
-    <div class="content" data-aos="fade-up" data-aos-delay="200">
+
+    <div class="content mb-5" data-aos="fade-up" data-aos-delay="200">
       {{ .Content }}
+    </div>
+
+    <div class="row" data-aos="fade-up" data-aos-delay="300">
+      {{ range .Pages.ByWeight }}
+      <div class="col-12 col-md-4 mb-4">
+        <div class="card h-100 shadow-sm border-0">
+          {{ with .Params.image }}
+          <img src="{{ . | relURL }}" class="card-img-top" alt="Photo of {{ $.Title }}">
+          {{ end }}
+          <div class="card-body">
+            <h3 class="h5 mb-1">{{ .Title }}</h3>
+            {{ with .Params.jobtitle }}
+            <p class="text-muted mb-2">{{ . }}</p>
+            {{ end }}
+            {{ with .Content }}
+            <p class="mb-0">{{ . }}</p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
     </div>
   </div>
 </section>

@@ -41,6 +41,11 @@ enableEmoji = true
 	url = "/about/"
     weight = 1
 
+[[menu.main]]
+    name = "Team"
+    url = "/team/"
+    weight = 3
+
     
 [[menu.main]]
     name = "Jobs"
