@@ -13,6 +13,14 @@ PediaMed AI is an innovative technology company dedicated to advancing pediatric
 
 We aim to bring transparent, reliable AI into pediatric practice—helping clinicians make better decisions and improving outcomes for children. Our work focuses on interpretable models, vision and multimodal AI, and close collaboration with children's hospitals and universities.
 
+## Leadership
+
+### Xu Cao — Co-founder & Research Director, PediaMed AI
+
+Xu leads research at PediaMed AI, focusing on interpretable vision and multimodal AI systems designed specifically for pediatric care. Drawing on his experience across industry and academia, he drives the development of pediatric foundation models and AI-assisted tools for early detection and intervention in childhood conditions.
+
+Learn more about our team on the [Team page](/team/).
+
 ## Our partners
 
 We collaborate with leading institutions worldwide, including Shenzhen Children's Hospital, New York University, University of Virginia, and the University of Illinois Urbana-Champaign. These partnerships help us validate and deploy our tools in real-world clinical and research settings.
