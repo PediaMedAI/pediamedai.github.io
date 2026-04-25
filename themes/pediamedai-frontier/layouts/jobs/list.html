@@ -1,0 +1,23 @@
+{{ define "main" }}
+{{ partial "page-head.html" (dict
+  "kicker" "Jobs"
+  "title" "No open roles <em>right now.</em>"
+  "desc" "We're not actively hiring. If you're interested in collaborating on pediatric AI research, reach out by email and we'll keep your details on file.")
+}}
+
+<section class="section">
+  <div class="container">
+    <div class="prose">
+      {{ .Content }}
+    </div>
+
+    <div class="actions mt-lg">
+      {{- with .Site.Params.contact_email }}
+      <a class="btn" href="mailto:{{ . }}">{{ . }} <span class="arrow" aria-hidden="true">↗</span></a>
+      {{- end }}
+      <a class="btn ghost" href="{{ "/team/" | relURL }}">Meet the team</a>
+      <a class="btn ghost" href="{{ "/research/" | relURL }}">Read the research</a>
+    </div>
+  </div>
+</section>
+{{ end }}

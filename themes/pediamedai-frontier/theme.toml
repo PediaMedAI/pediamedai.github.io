@@ -1,0 +1,14 @@
+name = "PediaMedAI Frontier"
+license = "MIT"
+description = "Editorial pediatric AI research lab theme — warm bone palette, clinical instrumentation, Instrument Serif + Geist + JetBrains Mono."
+homepage = "https://github.com/PediaMedAI/pediamedai.github.io"
+tags = ["editorial", "research", "ai", "healthcare", "pediatric", "responsive"]
+features = ["team", "research", "publications", "workshops", "code", "dark-mode"]
+min_version = "0.111.0"
+
+[author]
+  name = "PediaMed AI"
+
+[original]
+  name = "PediaMedAI Frontier"
+  homepage = "https://github.com/PediaMedAI/pediamedai.github.io"

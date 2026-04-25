@@ -1,0 +1,42 @@
+{{- /* Card with optional image, tags, label, title, desc, and arrow-cell footer.
+       Args:
+         href     (required)  link target
+         image    (optional)  image src; if set, renders the .img wrapper
+         imageAlt (optional)  alt text
+         tags     (optional)  slice of dicts { class, text }
+         label    (optional)  label-mono text shown alongside tags
+         title    (required)  card heading (HTML allowed)
+         desc     (optional)  body-sm text
+         cta      (optional)  arrow-cell text; if empty, omit arrow-cell
+         external (optional)  bool — adds rel/target for cross-origin links
+*/ -}}
+{{- $href := .href -}}
+{{- $image := .image -}}
+{{- $imageAlt := default "" .imageAlt -}}
+{{- $tags := default (slice) .tags -}}
+{{- $label := default "" .label -}}
+{{- $title := .title -}}
+{{- $desc := default "" .desc -}}
+{{- $cta := default "" .cta -}}
+{{- $external := default false .external -}}
+
+<a class="card" href="{{ $href }}"{{ if $external }} target="_blank" rel="noopener"{{ end }}>
+  {{- with $image }}
+  <div class="img"><img src="{{ . | relURL }}" alt="{{ $imageAlt }}" loading="lazy"></div>
+  {{- end }}
+  <div class="body">
+    {{- if or (gt (len $tags) 0) $label }}
+    <div class="meta">
+      {{- range $tags }}
+      <span class="tag{{ with .class }} {{ . }}{{ end }}">{{ .text }}</span>
+      {{- end }}
+      {{- with $label }}<span class="label-mono">{{ . }}</span>{{ end }}
+    </div>
+    {{- end }}
+    <h3>{{ $title | safeHTML }}</h3>
+    {{- with $desc }}<p class="body-sm">{{ . }}</p>{{ end }}
+    {{- with $cta }}
+    <div class="arrow-cell"><span>{{ . }}</span><span aria-hidden="true">↗</span></div>
+    {{- end }}
+  </div>
+</a>

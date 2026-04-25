@@ -1,0 +1,14 @@
+{{- /* Page-head banner. Args: kicker, title (HTML allowed), desc (HTML allowed, optional). */ -}}
+<header class="page-head">
+  <div class="container">
+    <div class="grid">
+      <div class="meta">
+        <span class="kicker"><span class="dot" aria-hidden="true"></span>{{ .kicker }}</span>
+      </div>
+      <div>
+        <h1>{{ .title | safeHTML }}</h1>
+        {{- with .desc }}<p class="desc">{{ . | safeHTML }}</p>{{ end }}
+      </div>
+    </div>
+  </div>
+</header>

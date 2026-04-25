@@ -1,0 +1,21 @@
+{{- $description := default .Site.Params.metaDescription .Description }}
+{{- $ogTitle := default .Site.Title .Title }}
+{{- if .IsHome }}{{ $ogTitle = default .Site.Title .Site.Params.ogTitle }}{{ end }}
+{{- $ogImage := default .Site.Params.ogImage "/favicon.png" -}}
+
+<meta property="og:title" content="{{ $ogTitle }}">
+<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+{{- with $description }}<meta property="og:description" content="{{ . }}">{{ end }}
+{{- with $ogImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+
+<meta name="twitter:card" content="summary_large_image">
+{{- with .Site.Params.twitterHandle }}
+<meta name="twitter:site" content="{{ . }}">
+{{- end }}
+<meta name="twitter:title" content="{{ $ogTitle }}">
+{{- with $description }}<meta name="twitter:description" content="{{ . }}">{{ end }}
+{{- with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+
+<link rel="canonical" href="{{ .Permalink }}">

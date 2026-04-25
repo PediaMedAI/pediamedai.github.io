@@ -1,0 +1,128 @@
+{{- /*
+  Hero static SVG — Direction A.
+  Pose-overlay artifact: 15 keypoints + skeleton + per-keypoint confidence rings + growth-chart percentile bands.
+  Strict label allow-list (locked Stage 0): no latency, no live counters, no AggPose-v2, no patient age.
+*/ -}}
+<svg class="lattice" viewBox="0 0 540 540" preserveAspectRatio="xMidYMid meet" aria-labelledby="hero-pose-title hero-pose-desc" role="img">
+  <title id="hero-pose-title">Illustrative pediatric pose-overlay artifact</title>
+  <desc id="hero-pose-desc">A diagrammatic infant pose overlay with 15 landmark points and per-point confidence rings, layered over light growth-chart percentile bands. The visual illustrates how AggPose attaches calibrated confidence to each landmark; it is not a live model output.</desc>
+
+  <defs>
+    <radialGradient id="halo-accent" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.18"></stop>
+      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"></stop>
+    </radialGradient>
+    <radialGradient id="halo-signal" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--signal)" stop-opacity="0.22"></stop>
+      <stop offset="100%" stop-color="var(--signal)" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+
+  {{- /* —— Growth-chart percentile bands (background, low opacity) —— */ -}}
+  <g opacity="0.18" stroke="currentColor" fill="none" stroke-width="0.75">
+    <path d="M30 460 Q 130 420 270 380 T 510 320" stroke-dasharray="3 3"></path>
+    <path d="M30 420 Q 130 380 270 340 T 510 280"></path>
+    <path d="M30 380 Q 130 340 270 300 T 510 240" stroke-width="1"></path>
+    <path d="M30 340 Q 130 300 270 260 T 510 200"></path>
+    <path d="M30 300 Q 130 260 270 220 T 510 160" stroke-dasharray="3 3"></path>
+  </g>
+  <g font-family="var(--mono)" font-size="9" fill="var(--ink-4)" opacity="0.6">
+    <text x="514" y="322">P3</text>
+    <text x="514" y="282">P15</text>
+    <text x="514" y="242">P50</text>
+    <text x="514" y="202">P85</text>
+    <text x="514" y="162">P97</text>
+  </g>
+
+  {{- /* —— Tick rulers —— */ -}}
+  <g stroke="var(--ink-4)" stroke-width="0.75" opacity="0.5">
+    {{- range $i, $_ := seq 0 9 }}
+    <line x1="{{ add 30 (mul $i 56) }}" y1="510" x2="{{ add 30 (mul $i 56) }}" y2="514"></line>
+    <line x1="20" y1="{{ add 60 (mul $i 56) }}" x2="24" y2="{{ add 60 (mul $i 56) }}"></line>
+    {{- end }}
+  </g>
+
+  {{- /* —— Skeleton bones —— */ -}}
+  <g stroke="var(--ink-2)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.7">
+    <line x1="270" y1="108" x2="270" y2="173"></line>
+    <line x1="270" y1="173" x2="216" y2="194"></line>
+    <line x1="270" y1="173" x2="324" y2="194"></line>
+    <line x1="216" y1="194" x2="173" y2="270"></line>
+    <line x1="324" y1="194" x2="367" y2="270"></line>
+    <line x1="173" y1="270" x2="151" y2="346"></line>
+    <line x1="367" y1="270" x2="389" y2="346"></line>
+    <line x1="270" y1="173" x2="270" y2="270"></line>
+    <line x1="270" y1="270" x2="238" y2="335"></line>
+    <line x1="270" y1="270" x2="302" y2="335"></line>
+    <line x1="238" y1="335" x2="221" y2="411"></line>
+    <line x1="302" y1="335" x2="319" y2="411"></line>
+    <line x1="221" y1="411" x2="211" y2="486"></line>
+    <line x1="319" y1="411" x2="329" y2="486"></line>
+  </g>
+
+  {{- /* —— Confidence rings (high = accent, low = signal) —— */ -}}
+  {{- $points := slice
+    (dict "x" 270 "y" 108 "conf" 0.97 "name" "head")
+    (dict "x" 270 "y" 173 "conf" 0.95 "name" "neck")
+    (dict "x" 216 "y" 194 "conf" 0.93 "name" "lsh")
+    (dict "x" 324 "y" 194 "conf" 0.94 "name" "rsh")
+    (dict "x" 173 "y" 270 "conf" 0.88 "name" "lel")
+    (dict "x" 367 "y" 270 "conf" 0.86 "name" "rel")
+    (dict "x" 151 "y" 346 "conf" 0.79 "name" "lwr")
+    (dict "x" 389 "y" 346 "conf" 0.74 "name" "rwr")
+    (dict "x" 270 "y" 270 "conf" 0.96 "name" "torso")
+    (dict "x" 238 "y" 335 "conf" 0.92 "name" "lhp")
+    (dict "x" 302 "y" 335 "conf" 0.92 "name" "rhp")
+    (dict "x" 221 "y" 411 "conf" 0.90 "name" "lkn")
+    (dict "x" 319 "y" 411 "conf" 0.89 "name" "rkn")
+    (dict "x" 211 "y" 486 "conf" 0.83 "name" "lan")
+    (dict "x" 329 "y" 486 "conf" 0.81 "name" "ran")
+  -}}
+  <g fill="none" stroke-width="1">
+    {{- range $points }}
+      {{- $isHigh := ge .conf 0.85 }}
+      {{- $r := mul (sub 1 .conf) 60 }}
+      {{- if lt $r 6.0 }}{{ $r = 6.0 }}{{ end }}
+      <circle cx="{{ .x }}" cy="{{ .y }}" r="{{ $r }}" stroke="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}" stroke-opacity="0.55" stroke-dasharray="2 3"></circle>
+    {{- end }}
+  </g>
+
+  {{- /* —— Keypoints —— */ -}}
+  <g>
+    {{- range $points }}
+      {{- $isHigh := ge .conf 0.85 }}
+      <circle cx="{{ .x }}" cy="{{ .y }}" r="3" fill="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}"></circle>
+    {{- end }}
+  </g>
+
+  {{- /* —— Lowest-confidence callout (right wrist, the lowest in the static set) —— */ -}}
+  <g font-family="var(--mono)" font-size="9" fill="var(--ink-3)" letter-spacing="0.06em">
+    <line x1="389" y1="346" x2="464" y2="312" stroke="var(--signal)" stroke-width="0.75" stroke-dasharray="2 3"></line>
+    <rect x="380" y="296" width="138" height="32" fill="var(--bg-elevated)" stroke="var(--rule)" rx="3"></rect>
+    <text x="388" y="310" fill="var(--signal)">CONFIDENCE ENCODING</text>
+    <text x="388" y="322" fill="var(--ink-3)">LOWER → WIDER RING</text>
+  </g>
+
+  {{- /* —— Per-keypoint confidence bars (lower-left mini-panel) —— */ -}}
+  <g font-family="var(--mono)" font-size="8" fill="var(--ink-4)" letter-spacing="0.06em">
+    <rect x="22" y="406" width="116" height="92" fill="var(--bg-elevated)" stroke="var(--rule)" rx="3" opacity="0.92"></rect>
+    <text x="28" y="418">15 LANDMARKS</text>
+    {{- $bars := slice
+      (dict "name" "HEAD" "conf" 0.97)
+      (dict "name" "TORSO" "conf" 0.96)
+      (dict "name" "LSH" "conf" 0.93)
+      (dict "name" "RSH" "conf" 0.94)
+      (dict "name" "LEL" "conf" 0.88)
+      (dict "name" "REL" "conf" 0.86)
+      (dict "name" "LWR" "conf" 0.79)
+      (dict "name" "RWR" "conf" 0.74)
+    -}}
+    {{- range $i, $b := $bars }}
+      {{- $y := add 428 (mul $i 9) }}
+      <text x="28" y="{{ $y }}" fill="var(--ink-3)">{{ $b.name }}</text>
+      <rect x="64" y="{{ sub $y 6 }}" width="64" height="6" fill="var(--bg-tinted)"></rect>
+      {{- $w := mul $b.conf 64 }}
+      <rect x="64" y="{{ sub $y 6 }}" width="{{ $w }}" height="6" fill="{{ if ge $b.conf 0.85 }}var(--accent){{ else }}var(--signal){{ end }}"></rect>
+    {{- end }}
+  </g>
+</svg>

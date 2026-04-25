@@ -1,0 +1,123 @@
+{{ define "main" }}
+
+{{ partial "hero.html" . }}
+
+{{ partial "ticker.html" . }}
+
+{{- /* —— Mission section —— */ -}}
+<section class="section">
+  <div class="container">
+    <div class="mission reveal">
+      <div class="meta eyebrow">— Mission</div>
+      <div class="big">
+        Pediatric medicine deserves the same generation of AI tools as oncology and radiology — designed for the bodies, faces, and rare diseases of children.
+        <em>We are building them with clinicians, for children.</em>
+      </div>
+    </div>
+
+    <div class="cap-row" style="margin-top: 64px;">
+      <div class="cap reveal">
+        <div class="num">— 01 / Interpretable</div>
+        <p>Every prediction comes with a faithful, clinician-readable explanation. No black boxes at the bedside.</p>
+      </div>
+      <div class="cap reveal">
+        <div class="num">— 02 / Pediatric-first</div>
+        <p>Models trained, validated, and benchmarked on children — not adapted from adult datasets after the fact.</p>
+      </div>
+      <div class="cap reveal">
+        <div class="num">— 03 / Open by default</div>
+        <p>Datasets, weights, and methods released openly. Knowledge belongs to the field.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{- /* —— Research preview —— */ -}}
+<section class="section">
+  <div class="container">
+    {{ partial "section-head.html" (dict "meta" "Research" "title" "Three themes, <em>one promise</em>: AI a clinician can defend.") }}
+
+    <div class="grid-3 reveal">
+      {{ partial "card.html" (dict
+        "href" (relURL "/research/")
+        "tags" (slice (dict "class" "accent" "text" "01"))
+        "label" "Foundations"
+        "title" "Clinician-Defensible AI"
+        "desc" "Calibrated, Lipschitz-bounded transformers that know what they don't know. Uncertainty isn't a feature — it's a clinical requirement."
+        "cta" "LRFormer · UAI 2023")
+      }}
+      {{ partial "card.html" (dict
+        "href" (relURL "/research/")
+        "tags" (slice (dict "class" "signal" "text" "02"))
+        "label" "Applied"
+        "title" "Pediatric Behavioral &amp; Vision Models"
+        "desc" "Vision transformers for facial and behavioral analysis — built to support, never replace, the clinical interview."
+        "cta" "ViTASD · ICASSP 2023")
+      }}
+      {{ partial "card.html" (dict
+        "href" (relURL "/research/")
+        "tags" (slice (dict "class" "" "text" "03"))
+        "label" "Open"
+        "title" "Open Tools for Underserved Children"
+        "desc" "Open datasets and infant pose estimation released to any lab that needs them. Impact measured in children reached, not papers cited."
+        "cta" "AggPose · IJCAI 2022")
+      }}
+    </div>
+
+    <div class="actions mt-lg">
+      <a class="btn ghost" href="{{ "/research/" | relURL }}">All research <span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+{{- /* —— Workshops —— */ -}}
+<section class="section">
+  <div class="container">
+    {{ partial "section-head.html" (dict "meta" "Workshops" "title" "Workshops &amp; <em>clinical training.</em>") }}
+
+    <div class="grid-2 reveal">
+      {{ partial "card.html" (dict
+        "href" (relURL "/cvpr/")
+        "image" "/images/workshops/cv4chl_bg.jpg"
+        "imageAlt" "CVPR 2026 CV4CHL workshop background"
+        "tags" (slice (dict "class" "accent" "text" "Planning"))
+        "label" "June 2026 · Denver"
+        "title" "CVPR 2026 · Computer Vision for Children (CV4CHL)"
+        "desc" "Workshop on computer vision for children's development, health, and education. Hosting the Children's Gait Competition."
+        "cta" "Workshop site")
+      }}
+      {{ partial "card.html" (dict
+        "href" (relURL "/iclr/")
+        "image" "/images/workshops/iclr_workshop/iclr_1.jpg"
+        "imageAlt" "ICLR 2025 AI4CHL workshop"
+        "tags" (slice (dict "class" "" "text" "Done"))
+        "label" "2025 · Singapore"
+        "title" "ICLR 2025 · AI for Children (AI4CHL)"
+        "desc" "Workshop bringing pediatricians, psychologists, educators, and AI researchers together. Recap and gallery inside."
+        "cta" "Workshop recap")
+      }}
+    </div>
+  </div>
+</section>
+
+{{- /* —— CTA —— */ -}}
+<section class="section">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div>
+        <span class="kicker"><span class="dot" aria-hidden="true"></span>Open to collaboration</span>
+      </div>
+      <div>
+        <h2 class="h2-section lg">Clinicians, hospitals, and ML researchers: <em>let's build pediatric AI together.</em></h2>
+        <div class="actions mt-lg">
+          {{- with .Site.Params.contact_email }}
+          <a class="btn lg" href="mailto:{{ . }}">{{ . }} <span class="arrow" aria-hidden="true">↗</span></a>
+          {{- end }}
+          <a class="btn ghost lg" href="{{ "/team/" | relURL }}">Meet the team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

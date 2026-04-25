@@ -1,0 +1,108 @@
+{{ define "main" }}
+{{ partial "page-head.html" (dict
+  "kicker" "Research"
+  "title" "Three themes, <em>one method.</em>"
+  "desc" "A clinician-defensible model is not one technique — it's a stack: calibration, interpretability, pediatric-specific data, and external validation. Each theme contributes one layer.")
+}}
+
+<section class="section flush-top">
+  <div class="container">
+
+    {{- /* Theme 01 — Foundations / LRFormer */ -}}
+    <article class="theme reveal">
+      <div class="visual">
+        <img src="{{ "/images/lrformer.jpg" | relURL }}" alt="LRFormer architecture sketch" loading="lazy">
+      </div>
+      <div>
+        <span class="kicker"><span class="dot" aria-hidden="true"></span>Theme · Foundations</span>
+        <h3>Responsible AI <em>for medicine.</em></h3>
+        <p class="body-md">We design transformer architectures that are calibrated, robust, and Lipschitz-bounded — so a model's confidence has clinical meaning. <strong>LRFormer</strong> (UAI 2023) provides a theoretical guarantee for uncertainty estimation in single-forward-pass vision models, addressing the overconfidence that has kept transformers off the wards.</p>
+        <div class="pi">
+          <div class="label">ARCH · LRFORMER</div>
+          <div class="name">Wenqian Ye et al.</div>
+        </div>
+      </div>
+    </article>
+
+    {{- /* Theme 02 — Applied / ViTASD */ -}}
+    <article class="theme reveal">
+      <div class="visual">
+        <img src="{{ "/images/vitasd.jpg" | relURL }}" alt="ViTASD pipeline" loading="lazy">
+      </div>
+      <div>
+        <span class="kicker"><span class="dot" aria-hidden="true"></span>Theme · Applied</span>
+        <h3>AI for Autism <em>Spectrum Disorder.</em></h3>
+        <p class="body-md"><strong>ViTASD</strong> (ICASSP 2023) introduced a robust ViT baseline for pediatric ASD facial diagnosis — distilling knowledge from large facial-expression datasets and adding a Gaussian-process decoder for clinical robustness.</p>
+        <div class="pi">
+          <div class="label">BENCHMARK · VITASD</div>
+          <div class="name">Xu Cao et al.</div>
+        </div>
+      </div>
+    </article>
+
+    {{- /* Theme 03 — Open / AggPose */ -}}
+    <article class="theme reveal">
+      <div class="visual">
+        <img src="{{ "/images/diag.jpg" | relURL }}" alt="AggPose multi-scale aggregation" loading="lazy">
+      </div>
+      <div>
+        <span class="kicker"><span class="dot" aria-hidden="true"></span>Theme · Open</span>
+        <h3>AI for <em>social good.</em></h3>
+        <p class="body-md">We build and release open tools where pediatric medicine has been overlooked. <strong>AggPose</strong> (IJCAI 2022) is a large-scale infant pose-estimation dataset and a high-resolution transformer model intended to support pediatric research on early neurodevelopmental assessment. Datasets, weights, and training recipes are released under permissive licenses.</p>
+        <div class="pi">
+          <div class="label">DATASET · AGGPOSE</div>
+          <div class="name">Xu Cao et al.</div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {{ partial "section-head.html" (dict "meta" "Selected Works" "title" "Recent <em>publications &amp; preprints.</em>") }}
+    <div class="grid-3 reveal">
+      {{ partial "card.html" (dict
+        "href" "/publications/"
+        "tags" (slice (dict "class" "" "text" "2024 · WACV"))
+        "title" "A Survey on Multimodal Large Language Models for Autonomous Driving"
+        "desc" "Cui C, Ma Y, Cao X, Ye W, et al.")
+      }}
+      {{ partial "card.html" (dict
+        "href" "/publications/"
+        "tags" (slice (dict "class" "" "text" "2024 · WACV"))
+        "title" "MACP: Efficient Model Adaptation for Cooperative Perception"
+        "desc" "Ma Y, Lu J, Cui C, Zhao S, Cao X, Ye W, Wang Z.")
+      }}
+      {{ partial "card.html" (dict
+        "href" "/publications/"
+        "tags" (slice (dict "class" "accent" "text" "2023 · UAI"))
+        "title" "Mitigating Transformer Overconfidence via Lipschitz Regularization"
+        "desc" "Ye W, Ma Y, Cao X, Tang K.")
+      }}
+      {{ partial "card.html" (dict
+        "href" "/publications/"
+        "tags" (slice (dict "class" "accent" "text" "2023 · ICASSP"))
+        "title" "ViTASD: Robust Vision Transformer Baselines for ASD Facial Diagnosis"
+        "desc" "Cao X, Ye W, Sizikova E, Bai X, Coffee M, Zeng H, Cao J.")
+      }}
+      {{ partial "card.html" (dict
+        "href" "/publications/"
+        "tags" (slice (dict "class" "accent" "text" "2022 · IJCAI"))
+        "title" "AggPose: Deep Aggregation Vision Transformer for Infant Pose Estimation"
+        "desc" "Cao X, Li X, Ma L, Huang Y, Feng X, Chen Z, Zeng H, Cao J.")
+      }}
+      {{ partial "card.html" (dict
+        "href" "/publications/"
+        "tags" (slice (dict "class" "signal" "text" "Preprint"))
+        "title" "PIE: Simulating Disease Progression via Progressive Image Editing"
+        "desc" "Liang K, Cao X, Liao KD, Gao T, Ye W, Chen Z, Cao J, Nama T, Sun J.")
+      }}
+    </div>
+    <div class="actions mt-lg">
+      <a class="btn ghost" href="{{ "/publications/" | relURL }}">All publications <span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,48 @@
+<footer>
+  <div class="container">
+    <div class="big">Trustworthy AI <em>for every child.</em></div>
+
+    <div class="row">
+      <div class="col">
+        <h5>Lab</h5>
+        <a href="{{ "/research/" | relURL }}">Research</a>
+        <a href="{{ "/publications/" | relURL }}">Publications</a>
+        <a href="{{ "/team/" | relURL }}">Team</a>
+        <a href="{{ "/code/" | relURL }}">Code</a>
+        <a href="{{ "/workshops/" | relURL }}">Workshops</a>
+      </div>
+      <div class="col">
+        <h5>About</h5>
+        <a href="{{ "/about/" | relURL }}">About</a>
+        <a href="{{ "/contact/" | relURL }}">Contact</a>
+        <a href="{{ "/code-of-conduct/" | relURL }}">Code of conduct</a>
+      </div>
+      <div class="col">
+        <h5>Connect</h5>
+        {{- with .Site.Params.contact_email }}
+        <a href="mailto:{{ . }}">{{ . }}</a>
+        {{- end }}
+        {{- with .Site.Params.twitterHandle }}
+        <a href="https://twitter.com/{{ . | replaceRE "^@" "" }}">Twitter / X</a>
+        {{- end }}
+        <a href="https://github.com/pediamedai">GitHub</a>
+      </div>
+      <div class="col">
+        <h5>Lab note</h5>
+        <p style="font-size: 14px; color: color-mix(in oklab, var(--bg) 70%, transparent); line-height: 1.5; margin: 0;">Research updates and clinical partner stories. Newsletter coming later — for now, reach us by email.</p>
+      </div>
+    </div>
+
+    <div class="baseline">
+      <span>© {{ now.Year }} PediaMed AI</span>
+      <span>v.{{ now.Format "2006.01" }} · Built with clinicians, for children</span>
+    </div>
+  </div>
+</footer>
+
+{{- $reveal := resources.Get "js/reveal.js" | minify | fingerprint }}
+<script src="{{ $reveal.RelPermalink }}" integrity="{{ $reveal.Data.Integrity }}" defer></script>
+{{- $themeJs := resources.Get "js/theme.js" | minify | fingerprint }}
+<script src="{{ $themeJs.RelPermalink }}" integrity="{{ $themeJs.Data.Integrity }}" defer></script>
+{{- $pubFilter := resources.Get "js/pub-filter.js" | minify | fingerprint }}
+<script src="{{ $pubFilter.RelPermalink }}" integrity="{{ $pubFilter.Data.Integrity }}" defer></script>

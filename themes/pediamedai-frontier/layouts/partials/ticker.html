@@ -1,0 +1,19 @@
+{{- /* Real venues only. Stage 0 lock. */ -}}
+{{- $items := slice
+  "IJCAI 2022 · AggPose"
+  "ICASSP 2023 · ViTASD"
+  "UAI 2023 · LRFormer"
+  "WACV 2024 · MLLM Survey"
+  "ICLR 2025 · AI4CHL Workshop"
+  "CVPR 2026 · CV4CHL (planning)"
+-}}
+<div class="ticker" aria-label="Recent publications and workshops">
+  <div class="row" aria-hidden="true">
+    {{- range seq 1 2 }}
+      {{- range $items }}
+      <span>{{ . }}</span>
+      <span class="dot">●</span>
+      {{- end }}
+    {{- end }}
+  </div>
+</div>

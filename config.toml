@@ -1,10 +1,8 @@
 baseURL = "https://pediamedai.github.io/"
-relativeURLs = "True"
 languageCode = "en-us"
-title = "PediaMedAI"
+title = "PediaMed AI"
 themesDir = "themes"
-theme = "pediamedai-modern"
-sectionPagesMenu = "content"
+theme = "pediamedai-frontier"
 enableEmoji = true
 
 [markup.goldmark.renderer]
@@ -12,66 +10,40 @@ enableEmoji = true
 
 [params]
   contact_email = "contact@pediamedai.com"
-  google_analytics_id=""
-  google_tag_manager_id = "" 
-
- [params.homepage]
-  show_call_box = true
-
- [params.logo]
-  mobile = '/images/home_logo.png'
-  desktop = '/images/home_logo.png'
-  desktop_height = "48px"
-  mobile_height = "24px"
-
-  [params.homepage_meta_tags]
-    meta_description = "Interpretable AI that helps pediatricians detect developmental conditions earlier—starting with autism and gait. We build AI tools clinicians can trust."
-    meta_og_title = "PediaMed AI — Interpretable AI for Pediatric Diagnosis & Early Intervention"
-    meta_og_type = "website"
-    meta_og_url = "https://www.pediamedai.com/"
-    meta_og_image = "/static/favicon.png"
-    meta_og_description = "Interpretable AI that helps pediatricians detect developmental conditions earlier. Partners: Shenzhen Children's Hospital, NYU, UVA, UIUC. ICLR 2025 & CVPR 2026."
-    meta_twitter_card = "summary"
-    meta_twitter_site = "@pediamedai"
-    meta_twitter_creator = "@pediamedai"
+  twitterHandle = "@pediamedai"
+  metaDescription = "PediaMed AI is a pediatric AI research lab building interpretable vision and multimodal models for early detection and clinician-readable explanations."
+  ogTitle = "PediaMed AI — Pediatric AI Research Lab"
+  ogImage = "/favicon.png"
 
 [[menu.main]]
-	name = "About"
-	identifier = "about"
-	url = "/about/"
-    weight = 1
+  name = "Home"
+  url = "/"
+  weight = 1
 
 [[menu.main]]
-    name = "Team"
-    url = "/team/"
-    weight = 3
-
-    
-[[menu.main]]
-    name = "Jobs"
-    url = "/jobs/"
-    weight = 2
+  name = "Research"
+  url = "/research/"
+  weight = 2
 
 [[menu.main]]
-    name = "Code"
-    url = "/Code/"
-    weight = 5
+  name = "Publications"
+  url = "/publications/"
+  weight = 3
 
 [[menu.main]]
-    name = "ICLR Workshop"
-    url = "/iclr/"
-    weight = 6
+  name = "Team"
+  url = "/team/"
+  weight = 4
 
 [[menu.main]]
-    name = "CVPR Workshop"
-    url = "/cvpr/"
-    weight = 7
+  name = "Code"
+  url = "/code/"
+  weight = 5
 
-#[[menu.main]]
-#    name = "Blog"
-#    url = "/blog/"
-#    weight = 8
+[[menu.main]]
+  name = "Workshops"
+  url = "/workshops/"
+  weight = 6
 
 [permalinks]
-  post = "/:year/:month/:day/:slug/"
-  pages = "/:filename/"
+  pages = "/:contentbasename/"

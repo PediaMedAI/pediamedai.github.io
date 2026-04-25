@@ -1,0 +1,38 @@
+{{- $title := .Title }}
+{{- if .IsHome }}{{ $title = .Site.Title }}{{ end }}
+{{- $description := default .Site.Params.metaDescription .Description }}
+{{- if .Description }}{{ $description = .Description }}{{ end }}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+
+  <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
+  {{- with $description }}<meta name="description" content="{{ . }}">{{ end }}
+
+  {{- /* Theme bootstrap — set data-theme before paint to avoid flash */ -}}
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("pediamedai-theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = stored || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  {{- /* Self-hosted-fonts hook will replace this in Stage 2 polish; CDN preconnect for now */ -}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+  {{- $css := resources.Get "scss/style.scss" | toCSS (dict "outputStyle" "compressed" "targetPath" "css/style.css") | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+  {{- partial "meta.html" . }}
+
+  {{- $favicon := "favicon.png" -}}
+  <link rel="icon" type="image/png" href="{{ $favicon | absURL }}">
+</head>

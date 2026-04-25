@@ -1,0 +1,49 @@
+{{ define "main" }}
+{{ partial "page-head.html" (dict
+  "kicker" "Founders"
+  "title" "The people <em>building it.</em>"
+  "desc" "PediaMed AI is built by a founder team spanning pediatric medicine, clinical leadership, and AI engineering. The group has collaborated on pediatric computer vision research across UIUC and Shenzhen Children's Hospital for roughly 3 years.")
+}}
+
+{{- $founders := where .Pages "Section" "team" -}}
+{{- $clinical := where $founders "Params.track" "clinical" -}}
+{{- $technical := where $founders "Params.track" "technical" -}}
+
+<section class="section flush-top">
+  <div class="container">
+    <div class="team-section">
+      <h2 class="h2-section">Clinical leadership</h2>
+      <div class="team-grid">
+        {{- range $i, $p := sort $clinical "Weight" "asc" }}
+          {{ partial "team-cell.html" (dict
+            "name" $p.Title
+            "role" $p.Params.role
+            "bio" $p.Params.bio
+            "image" $p.Params.image
+            "link" $p.Params.link
+            "initials" $p.Params.initials
+            "num" (printf "%02d" (add $i 1))
+          ) }}
+        {{- end }}
+      </div>
+    </div>
+
+    <div class="team-section">
+      <h2 class="h2-section">Technical leadership</h2>
+      <div class="team-grid">
+        {{- range $i, $p := sort $technical "Weight" "asc" }}
+          {{ partial "team-cell.html" (dict
+            "name" $p.Title
+            "role" $p.Params.role
+            "bio" $p.Params.bio
+            "image" $p.Params.image
+            "link" $p.Params.link
+            "initials" $p.Params.initials
+            "num" (printf "%02d" (add $i 1))
+          ) }}
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{ partial "page-head.html" (dict
+  "kicker" (humanize (default "Page" .Section))
+  "title" .Title
+  "desc" .Description)
+}}
+<section class="section">
+  <div class="container">
+    <div class="prose">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+{{ end }}

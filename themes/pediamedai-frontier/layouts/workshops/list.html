@@ -1,0 +1,34 @@
+{{ define "main" }}
+{{ partial "page-head.html" (dict
+  "kicker" "Workshops"
+  "title" "Workshops &amp; <em>clinical training.</em>"
+  "desc" "PediaMed AI runs and supports workshops at major venues. Recap of past events, planning notes for upcoming ones.")
+}}
+
+<section class="section">
+  <div class="container">
+    <div class="grid-2 reveal">
+      {{ partial "card.html" (dict
+        "href" (relURL "/cvpr/")
+        "image" "/images/workshops/cv4chl_bg.jpg"
+        "imageAlt" "CVPR 2026 CV4CHL"
+        "tags" (slice (dict "class" "accent" "text" "Planning"))
+        "label" "CVPR · June 2026 · Denver"
+        "title" "Computer Vision for Children (CV4CHL)"
+        "desc" "Hosting the Children's Gait Competition. Speakers from Stanford, Bristol, UIUC, EPFL, and more."
+        "cta" "Read more")
+      }}
+      {{ partial "card.html" (dict
+        "href" (relURL "/iclr/")
+        "image" "/images/workshops/iclr_workshop/iclr_1.jpg"
+        "imageAlt" "ICLR 2025 AI4CHL"
+        "tags" (slice (dict "class" "" "text" "Done"))
+        "label" "ICLR · 2025 · Singapore"
+        "title" "AI for Children (AI4CHL)"
+        "desc" "Pediatricians, psychologists, educators, and AI researchers in one room. Recap and gallery inside."
+        "cta" "Read recap")
+      }}
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,47 @@
+:root {
+  --bg: #f6f5f1;
+  --bg-elevated: #ffffff;
+  --bg-tinted: #efece4;
+  --bg-inverse: #0c0d0e;
+  --ink: #0c0d0e;
+  --ink-2: #2a2b2c;
+  --ink-3: #5b5d5e;
+  --ink-4: #8d8e8f;
+  --rule: #d9d6cc;
+  --rule-soft: #e7e4d9;
+  --accent: #1d4ed8;
+  --accent-soft: #dde6ff;
+  --signal: #c44a2a;
+  --signal-soft: #f3e0d6;
+  --ok: #2f7d4f;
+
+  --serif: "Instrument Serif", "Tiempos", "Source Serif Pro", Georgia, serif;
+  --sans: "Geist", "Inter", "Söhne", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --maxw: 1280px;
+  --gutter: 32px;
+  --radius: 4px;
+
+  --shadow-1: 0 1px 0 rgba(12, 13, 14, 0.06);
+  --shadow-2: 0 24px 48px -24px rgba(12, 13, 14, 0.18);
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0c0d0e;
+  --bg-elevated: #131415;
+  --bg-tinted: #16181a;
+  --bg-inverse: #f6f5f1;
+  --ink: #f6f5f1;
+  --ink-2: #d9d6cc;
+  --ink-3: #9a9c9e;
+  --ink-4: #6b6d6f;
+  --rule: #25272a;
+  --rule-soft: #1b1d1f;
+  --accent: #6f9bff;
+  --accent-soft: #1c2640;
+  --signal: #e88467;
+  --signal-soft: #2a1c17;
+}

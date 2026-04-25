@@ -1,32 +1,19 @@
 ---
-title: 'About'
-date: 2018-12-06T09:29:16+10:00
-layout: 'about'
-heroHeading: 'About Us'
-heroSubHeading: "PediaMed AI"
-heroBackground: 'images/gulfstream_tir_2013099_lr-smaller.jpeg'
+title: "About"
+date: 2026-04-25T00:00:00Z
+layout: "about"
 ---
 
-PediaMed AI is an innovative technology company dedicated to advancing pediatric healthcare through interpretable AI. We support healthcare providers and researchers with AI-powered tools for diagnosis and early intervention of pediatric diseases.
+PediaMed AI is a pediatric AI research lab building interpretable vision and multimodal models for early detection and clinician-readable explanations. We work with pediatricians, hospitals, and academic collaborators to make sure the tools we build are both technically rigorous and useful at the bedside.
 
 ## Our mission
 
-We aim to bring transparent, reliable AI into pediatric practice—helping clinicians make better decisions and improving outcomes for children. Our work focuses on interpretable models, vision and multimodal AI, and close collaboration with children's hospitals and universities.
-
-## Leadership
-
-### Xu Cao — Co-founder & Research Director, PediaMed AI
-
-<img src="/images/team/xu_cao.jpg" alt="Xu Cao, Co-founder & Research Director, PediaMed AI" style="max-width: 220px; border-radius: 8px; margin: 0 0 1.5rem 0;">
-
-Xu leads research at PediaMed AI, focusing on interpretable vision and multimodal AI systems designed specifically for pediatric care. Drawing on his experience across industry and academia, he drives the development of pediatric foundation models and AI-assisted tools for early detection and intervention in childhood conditions.
-
-Learn more about our team on the [Team page](/team/).
+Pediatric medicine deserves the same generation of AI tools as oncology and radiology — designed for the bodies, faces, and rare diseases of children. We are building those tools with clinicians, for children. Our work focuses on calibration and interpretability, pediatric-specific vision models, and openly released datasets and tooling.
 
 ## Our partners
 
-We collaborate with leading institutions worldwide, including Shenzhen Children's Hospital, New York University, University of Virginia, and the University of Illinois Urbana-Champaign. These partnerships help us validate and deploy our tools in real-world clinical and research settings.
+We collaborate with Shenzhen Children's Hospital, New York University, the University of Virginia, and the University of Illinois Urbana-Champaign. These partnerships shape what we build and where it is validated.
 
 ## Get in touch
 
-To learn more about our research, partnerships, or how PediaMed AI can support your practice, contact us at [contact@pediamedai.com](mailto:contact@pediamedai.com).
+For research collaboration, hospital partnerships, press, or general inquiries, email [contact@pediamedai.com](mailto:contact@pediamedai.com).

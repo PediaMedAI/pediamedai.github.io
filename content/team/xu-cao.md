@@ -1,13 +1,12 @@
 ---
 title: "Xu Cao"
-date: 2026-03-11T00:00:00Z
-image: "images/team/xu_cao.jpg"
-jobtitle: "Co-founder & Research Director, PediaMed AI"
-website: "https://www.irohxucao.com/"
-promoted: true
+date: 2026-04-25T00:00:00Z
+image: "/images/team/xu_cao.jpg"
+role: "Founder, CEO"
+link: "https://www.linkedin.com/in/irohxu/"
+track: "technical"
+initials: "XC"
 weight: 1
+bio: "Xu Cao leads PediaMed AI's company direction, AI research, and technical development."
 draft: false
 ---
-
-Xu leads research at PediaMed AI, where he focuses on building interpretable vision and multimodal AI systems tailored for pediatrics. As a co-founder and Research Director, he drives the development of pediatric foundation models and AI-assisted tools for early detection and intervention in childhood conditions, working closely with clinicians, hospitals, and academic collaborators.
-

@@ -1,0 +1,31 @@
+{{ define "main" }}
+{{- $badge := default "Workshop" .Params.badge -}}
+{{- $subtitle := default "" .Params.subtitle -}}
+{{- $externalUrl := default "" .Params.external_url -}}
+{{- $gallery := default (slice) .Params.gallery -}}
+
+{{ partial "page-head.html" (dict "kicker" $badge "title" .Title "desc" $subtitle) }}
+
+<section class="section">
+  <div class="container">
+    <div class="workshop-body">
+      {{ .Content }}
+    </div>
+
+    {{- with $externalUrl }}
+    <div class="actions mt-lg">
+      <a class="btn" href="{{ . }}" target="_blank" rel="noopener">Workshop website <span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+    {{- end }}
+
+    {{- if gt (len $gallery) 0 }}
+    <h2 class="h2-section">Gallery</h2>
+    <div class="workshop-gallery">
+      {{- range $gallery }}
+      <img src="{{ . | relURL }}" alt="" loading="lazy">
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</section>
+{{ end }}

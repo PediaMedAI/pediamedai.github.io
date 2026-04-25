@@ -1,9 +1,7 @@
 ---
-title: 'Code of conduct'
+title: "Code of conduct"
 date: 2018-12-06T09:29:16+10:00
-heroHeading: 'Code of Conduct'
-heroSubHeading: ""
-heroBackground: 'images/photo-1597200381847-30ec200eeb9a.jpeg'
+url: "/code-of-conduct/"
 ---
 _____
 

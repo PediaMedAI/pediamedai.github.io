@@ -1,2 +1,13 @@
-public/*
+# Hugo build output
+public/
+
+# Hugo build cache
+resources/_gen/
+.hugo_build.lock
+
+# OS / editor
+.DS_Store
 *.sw[a-z]
+
+# Internal-only design reference (contains prototype copy with fabricated claims — do not publish)
+design_handoff_pediamedai_redesign/

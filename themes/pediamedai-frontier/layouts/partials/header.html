@@ -1,0 +1,29 @@
+{{- $current := .RelPermalink -}}
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="nav" aria-label="Primary">
+  <div class="container row">
+    <a class="logo" href="{{ "/" | relURL }}" aria-label="PediaMed AI home">
+      <span class="mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
+      <span>PediaMed AI</span>
+    </a>
+
+    <div class="links" role="menubar">
+      {{- range .Site.Menus.main -}}
+        {{- $isActive := or (eq $current .URL) (and (ne .URL "/") (hasPrefix $current .URL)) -}}
+        <a class="link{{ if $isActive }} active{{ end }}" href="{{ .URL | relURL }}" role="menuitem"{{ if $isActive }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{- end -}}
+    </div>
+
+    <div class="right">
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode" data-theme-toggle>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
