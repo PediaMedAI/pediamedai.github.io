@@ -47,7 +47,7 @@
       </div>
       <div>
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Theme · Open</span>
-        <h3>AI for <em>social good.</em></h3>
+        <h3>Open <em>pediatric AI.</em></h3>
         <p class="body-md">We build and release open tools where pediatric medicine has been overlooked. <strong>AggPose</strong> (IJCAI 2022) is a large-scale infant pose-estimation dataset and a high-resolution transformer model intended to support pediatric research on early neurodevelopmental assessment. Datasets, weights, and training recipes are released under permissive licenses.</p>
         <div class="pi">
           <div class="label">DATASET · AGGPOSE</div>
@@ -62,43 +62,18 @@
 <section class="section">
   <div class="container">
     {{ partial "section-head.html" (dict "meta" "Selected Works" "title" "Recent <em>publications &amp; preprints.</em>") }}
+    {{- $featured := where .Site.Data.publications "featured" true -}}
     <div class="grid-3 reveal">
-      {{ partial "card.html" (dict
-        "href" "/publications/"
-        "tags" (slice (dict "class" "" "text" "2024 · WACV"))
-        "title" "A Survey on Multimodal Large Language Models for Autonomous Driving"
-        "desc" "Cui C, Ma Y, Cao X, Ye W, et al.")
-      }}
-      {{ partial "card.html" (dict
-        "href" "/publications/"
-        "tags" (slice (dict "class" "" "text" "2024 · WACV"))
-        "title" "MACP: Efficient Model Adaptation for Cooperative Perception"
-        "desc" "Ma Y, Lu J, Cui C, Zhao S, Cao X, Ye W, Wang Z.")
-      }}
-      {{ partial "card.html" (dict
-        "href" "/publications/"
-        "tags" (slice (dict "class" "accent" "text" "2023 · UAI"))
-        "title" "Mitigating Transformer Overconfidence via Lipschitz Regularization"
-        "desc" "Ye W, Ma Y, Cao X, Tang K.")
-      }}
-      {{ partial "card.html" (dict
-        "href" "/publications/"
-        "tags" (slice (dict "class" "accent" "text" "2023 · ICASSP"))
-        "title" "ViTASD: Robust Vision Transformer Baselines for ASD Facial Diagnosis"
-        "desc" "Cao X, Ye W, Sizikova E, Bai X, Coffee M, Zeng H, Cao J.")
-      }}
-      {{ partial "card.html" (dict
-        "href" "/publications/"
-        "tags" (slice (dict "class" "accent" "text" "2022 · IJCAI"))
-        "title" "AggPose: Deep Aggregation Vision Transformer for Infant Pose Estimation"
-        "desc" "Cao X, Li X, Ma L, Huang Y, Feng X, Chen Z, Zeng H, Cao J.")
-      }}
-      {{ partial "card.html" (dict
-        "href" "/publications/"
-        "tags" (slice (dict "class" "signal" "text" "Preprint"))
-        "title" "PIE: Simulating Disease Progression via Progressive Image Editing"
-        "desc" "Liang K, Cao X, Liao KD, Gao T, Ye W, Chen Z, Cao J, Nama T, Sun J.")
-      }}
+      {{- range $featured }}
+        {{- $tagText := cond (eq .venue "Preprint") "Preprint" (printf "%s · %s" .year .venue) -}}
+        {{ partial "card.html" (dict
+          "href" .url
+          "external" true
+          "tags" (slice (dict "class" .tagClass "text" $tagText))
+          "title" .title
+          "desc" .authors)
+        }}
+      {{- end }}
     </div>
     <div class="actions mt-lg">
       <a class="btn ghost" href="{{ "/publications/" | relURL }}">All publications <span class="arrow" aria-hidden="true">↗</span></a>

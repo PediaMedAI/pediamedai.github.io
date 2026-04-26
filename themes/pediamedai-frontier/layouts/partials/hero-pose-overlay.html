@@ -2,6 +2,10 @@
   Hero static SVG — Direction A.
   Pose-overlay artifact: 15 keypoints + skeleton + per-keypoint confidence rings + growth-chart percentile bands.
   Strict label allow-list (locked Stage 0): no latency, no live counters, no AggPose-v2, no patient age.
+
+  Group classes (hero-bg-percentiles, hero-bg-ticks, hero-bg-labels,
+  hero-bones, hero-conf-rings, hero-keypoints, hero-callout, hero-bars)
+  are referenced by _motion.scss for the sequential reveal — rename in lockstep.
 */ -}}
 <svg class="lattice" viewBox="0 0 540 540" preserveAspectRatio="xMidYMid meet" aria-labelledby="hero-pose-title hero-pose-desc" role="img">
   <title id="hero-pose-title">Illustrative pediatric pose-overlay artifact</title>
@@ -19,14 +23,14 @@
   </defs>
 
   {{- /* —— Growth-chart percentile bands (background, low opacity) —— */ -}}
-  <g opacity="0.18" stroke="currentColor" fill="none" stroke-width="0.75">
+  <g class="hero-bg-percentiles" opacity="0.18" stroke="currentColor" fill="none" stroke-width="0.75">
     <path d="M30 460 Q 130 420 270 380 T 510 320" stroke-dasharray="3 3"></path>
     <path d="M30 420 Q 130 380 270 340 T 510 280"></path>
     <path d="M30 380 Q 130 340 270 300 T 510 240" stroke-width="1"></path>
     <path d="M30 340 Q 130 300 270 260 T 510 200"></path>
     <path d="M30 300 Q 130 260 270 220 T 510 160" stroke-dasharray="3 3"></path>
   </g>
-  <g font-family="var(--mono)" font-size="9" fill="var(--ink-4)" opacity="0.6">
+  <g class="hero-bg-labels" font-family="var(--mono)" font-size="9" fill="var(--ink-4)" opacity="0.6">
     <text x="514" y="322">P3</text>
     <text x="514" y="282">P15</text>
     <text x="514" y="242">P50</text>
@@ -34,16 +38,16 @@
     <text x="514" y="162">P97</text>
   </g>
 
-  {{- /* —— Tick rulers —— */ -}}
-  <g stroke="var(--ink-4)" stroke-width="0.75" opacity="0.5">
-    {{- range $i, $_ := seq 0 9 }}
+  {{- /* —— Tick rulers (9 ticks; last Y at 60+8·56=508, inside the 540 viewBox) —— */ -}}
+  <g class="hero-bg-ticks" stroke="var(--ink-4)" stroke-width="0.75" opacity="0.5">
+    {{- range $i, $_ := seq 0 8 }}
     <line x1="{{ add 30 (mul $i 56) }}" y1="510" x2="{{ add 30 (mul $i 56) }}" y2="514"></line>
     <line x1="20" y1="{{ add 60 (mul $i 56) }}" x2="24" y2="{{ add 60 (mul $i 56) }}"></line>
     {{- end }}
   </g>
 
   {{- /* —— Skeleton bones —— */ -}}
-  <g stroke="var(--ink-2)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.7">
+  <g class="hero-bones" stroke="var(--ink-2)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.7">
     <line x1="270" y1="108" x2="270" y2="173"></line>
     <line x1="270" y1="173" x2="216" y2="194"></line>
     <line x1="270" y1="173" x2="324" y2="194"></line>
@@ -78,7 +82,7 @@
     (dict "x" 211 "y" 486 "conf" 0.83 "name" "lan")
     (dict "x" 329 "y" 486 "conf" 0.81 "name" "ran")
   -}}
-  <g fill="none" stroke-width="1">
+  <g class="hero-conf-rings" fill="none" stroke-width="1">
     {{- range $points }}
       {{- $isHigh := ge .conf 0.85 }}
       {{- $r := mul (sub 1 .conf) 60 }}
@@ -88,7 +92,7 @@
   </g>
 
   {{- /* —— Keypoints —— */ -}}
-  <g>
+  <g class="hero-keypoints">
     {{- range $points }}
       {{- $isHigh := ge .conf 0.85 }}
       <circle cx="{{ .x }}" cy="{{ .y }}" r="3" fill="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}"></circle>
@@ -96,7 +100,7 @@
   </g>
 
   {{- /* —— Lowest-confidence callout (right wrist, the lowest in the static set) —— */ -}}
-  <g font-family="var(--mono)" font-size="9" fill="var(--ink-3)" letter-spacing="0.06em">
+  <g class="hero-callout" font-family="var(--mono)" font-size="9" fill="var(--ink-3)" letter-spacing="0.06em">
     <line x1="389" y1="346" x2="464" y2="312" stroke="var(--signal)" stroke-width="0.75" stroke-dasharray="2 3"></line>
     <rect x="380" y="296" width="138" height="32" fill="var(--bg-elevated)" stroke="var(--rule)" rx="3"></rect>
     <text x="388" y="310" fill="var(--signal)">CONFIDENCE ENCODING</text>
@@ -104,7 +108,7 @@
   </g>
 
   {{- /* —— Per-keypoint confidence bars (lower-left mini-panel) —— */ -}}
-  <g font-family="var(--mono)" font-size="8" fill="var(--ink-4)" letter-spacing="0.06em">
+  <g class="hero-bars" font-family="var(--mono)" font-size="8" fill="var(--ink-4)" letter-spacing="0.06em">
     <rect x="22" y="406" width="116" height="92" fill="var(--bg-elevated)" stroke="var(--rule)" rx="3" opacity="0.92"></rect>
     <text x="28" y="418">15 LANDMARKS</text>
     {{- $bars := slice

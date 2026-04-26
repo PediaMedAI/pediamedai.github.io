@@ -9,19 +9,42 @@
   }
 }
 
-.page {
-  animation: pageFade 0.35s var(--ease);
+/* ——— Hero pose-overlay sequential reveal (Direction B) ——— */
+@keyframes hero-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-viz svg {
+  .hero-bg-percentiles { animation: hero-fade 0.7s var(--ease) 0.05s both; }
+  .hero-bg-ticks       { animation: hero-fade 0.5s var(--ease) 0.20s both; }
+  .hero-bg-labels      { animation: hero-fade 0.5s var(--ease) 0.40s both; }
+
+  @for $i from 1 through 14 {
+    .hero-bones line:nth-child(#{$i}) {
+      animation: hero-fade 0.4s var(--ease) calc(0.35s + #{($i - 1) * 0.035}s) both;
+    }
   }
-  to {
-    opacity: 1;
-    transform: none;
+
+  @for $i from 1 through 15 {
+    .hero-conf-rings circle:nth-child(#{$i}) {
+      animation: hero-fade 0.35s var(--ease) calc(0.85s + #{($i - 1) * 0.04}s) both;
+    }
+    .hero-keypoints circle:nth-child(#{$i}) {
+      animation: hero-fade 0.3s var(--ease) calc(0.90s + #{($i - 1) * 0.04}s) both;
+    }
   }
+
+  /* Annotation panels fire AFTER the last keypoint settles
+     (last keypoint ends ≈ 0.90 + 14·0.04 + 0.30 = 1.76s).
+     They semantically depend on rings/points being visible. */
+  .hero-callout { animation: hero-fade-up 0.5s var(--ease) 1.80s both; }
+  .hero-bars    { animation: hero-fade-up 0.5s var(--ease) 1.95s both; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -40,6 +63,14 @@
 
   .reveal {
     opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Hero SVG: kill the reveal animations entirely. The SVG's authored
+     opacity/stroke-opacity attributes (e.g. 0.18 on the percentile band)
+     define the intended steady-state and must not be overridden. */
+  .hero-viz svg * {
+    animation: none !important;
     transform: none !important;
   }
 }

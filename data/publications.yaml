@@ -1,0 +1,71 @@
+# PediaMed AI publications & preprints. Single source of truth for the
+# Publications page (full archive) AND the research-page "Selected Works"
+# grid (entries marked featured: true).
+#
+# Fields:
+#   year, venue, title, authors, url   — required.
+#   tags                                — list, used by /publications/ filter.
+#   featured                            — bool, surfaces on /research/ Selected Works.
+#   tagClass                            — "" | "accent" | "signal", venue-color hint.
+- year: "2024"
+  venue: "WACV"
+  title: "A Survey on Multimodal Large Language Models for Autonomous Driving"
+  authors: "Cui C, Ma Y, Cao X, Ye W, …, Cao J, Wang Z, Zheng C."
+  url: "https://arxiv.org/abs/2311.12320"
+  tags: [vision, survey]
+  featured: true
+  tagClass: ""
+- year: "2024"
+  venue: "WACV"
+  title: "Drive as You Speak: Enabling human-like interaction with LLMs in autonomous vehicles"
+  authors: "Cui C, Ma Y, Cao X, Ye W, Wang Z."
+  url: "https://arxiv.org/abs/2309.10228"
+  tags: [vision]
+  tagClass: ""
+- year: "2024"
+  venue: "WACV"
+  title: "MACP: Efficient Model Adaptation for Cooperative Perception"
+  authors: "Ma Y, Lu J, Cui C, Zhao S, Cao X, Ye W, Wang Z."
+  url: "https://arxiv.org/abs/2310.16870v2"
+  tags: [vision]
+  featured: true
+  tagClass: ""
+- year: "2023"
+  venue: "UAI"
+  title: "Mitigating Transformer Overconfidence via Lipschitz Regularization"
+  authors: "Ye W, Ma Y, Cao X, Tang K."
+  url: "https://proceedings.mlr.press/v216/ye23a.html"
+  tags: [calibration]
+  featured: true
+  tagClass: "accent"
+- year: "2023"
+  venue: "ICASSP"
+  title: "ViTASD: Robust Vision Transformer Baselines for Autism Spectrum Disorder Facial Diagnosis"
+  authors: "Cao X, Ye W, Sizikova E, Bai X, Coffee M, Zeng H, Cao J."
+  url: "https://ieeexplore.ieee.org/document/10094684"
+  tags: [asd, vision]
+  featured: true
+  tagClass: "accent"
+- year: "2022"
+  venue: "IJCAI"
+  title: "AggPose: Deep aggregation vision transformer for infant pose estimation"
+  authors: "Cao X, Li X, Ma L, Huang Y, Feng X, Chen Z, Zeng H, Cao J."
+  url: "https://www.ijcai.org/proceedings/2022/700"
+  tags: [datasets, vision]
+  featured: true
+  tagClass: "accent"
+- year: "2023"
+  venue: "Preprint"
+  title: "Receive, Reason, and React: Drive as You Say with LLMs in Autonomous Vehicles"
+  authors: "Cui C, Ma Y, Cao X, Ye W, Wang Z."
+  url: "https://arxiv.org/abs/2310.08034"
+  tags: [vision]
+  tagClass: "signal"
+- year: "2023"
+  venue: "Preprint"
+  title: "PIE: Simulating Disease Progression via Progressive Image Editing"
+  authors: "Liang K, Cao X, Liao KD, Gao T, Ye W, Chen Z, Cao J, Nama T, Sun J."
+  url: "https://arxiv.org/abs/2309.11745"
+  tags: [vision]
+  featured: true
+  tagClass: "signal"
