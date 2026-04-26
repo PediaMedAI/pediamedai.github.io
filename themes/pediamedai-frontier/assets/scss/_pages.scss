@@ -81,11 +81,16 @@
   border-top: 1px solid var(--rule);
 
   .cell {
-    padding: 24px 0 0;
+    padding: 40px 24px 8px;
     border-right: 1px solid var(--rule-soft);
+
+    &:first-child {
+      padding-left: 0;
+    }
 
     &:last-child {
       border-right: none;
+      padding-right: 0;
     }
 
     .v {
@@ -93,6 +98,7 @@
       font-size: 36px;
       letter-spacing: -0.02em;
       color: var(--ink);
+      line-height: 1;
     }
 
     .l {
@@ -101,7 +107,7 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--ink-3);
-      margin-top: 4px;
+      margin-top: 8px;
     }
   }
 }
@@ -461,16 +467,16 @@
 }
 
 /* ——— Footer ——— */
+/* Footer always uses the inverse-of-body palette: bg = --bg-inverse,
+   foreground colors are derived from --bg (which flips with theme),
+   so the same rules give light text on dark in light mode and dark
+   text on light in dark mode without overrides. */
 footer {
   background: var(--bg-inverse);
   color: color-mix(in oklab, var(--bg) 80%, transparent);
   padding: 96px 0 32px;
   position: relative;
   overflow: hidden;
-
-  [data-theme="dark"] & {
-    color: var(--ink-2);
-  }
 
   .big {
     font-family: var(--serif);
@@ -479,10 +485,6 @@ footer {
     line-height: 0.95;
     letter-spacing: -0.03em;
     color: var(--bg);
-
-    [data-theme="dark"] & {
-      color: var(--ink);
-    }
 
     em {
       font-style: italic;

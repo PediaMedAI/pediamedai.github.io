@@ -90,9 +90,26 @@
     letter-spacing: -0.005em;
     transition: color 0.2s var(--ease), background 0.2s var(--ease);
 
+    &::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 2px;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s var(--ease), background 0.2s var(--ease);
+    }
+
     &:hover {
       color: var(--ink);
       background: var(--bg-tinted);
+
+      &::before {
+        transform: scaleX(1);
+      }
     }
 
     &.active {
@@ -100,12 +117,8 @@
       background: var(--bg-tinted);
 
       &::before {
-        content: "";
-        position: absolute;
-        inset: auto auto -1px 14px;
-        width: 14px;
-        height: 1px;
         background: var(--ink);
+        transform: scaleX(1);
       }
     }
   }
@@ -247,12 +260,16 @@
 }
 
 .cap {
-  padding: 32px 24px 32px 0;
+  padding: 40px 32px;
   border-right: 1px solid var(--rule);
   display: flex;
   flex-direction: column;
   gap: 14px;
   position: relative;
+
+  &:first-child {
+    padding-left: 0;
+  }
 
   &:last-child {
     border-right: none;
