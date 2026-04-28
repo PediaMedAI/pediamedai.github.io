@@ -48,6 +48,15 @@
          blends with the page. */ -}}
   <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0c0d0e" media="(prefers-color-scheme: dark)">
+
+  {{- /* DNS prefetch for paper hosts on /publications/ so click-outs to
+         arxiv et al. don't pay the DNS+TLS cost on cold cache. */ -}}
+  {{- if and (eq .Section "publications") (eq .Kind "section") }}
+  <link rel="dns-prefetch" href="https://arxiv.org">
+  <link rel="dns-prefetch" href="https://ieeexplore.ieee.org">
+  <link rel="dns-prefetch" href="https://proceedings.mlr.press">
+  <link rel="dns-prefetch" href="https://www.ijcai.org">
+  {{- end }}
   {{- with .OutputFormats.Get "RSS" }}
   <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
   {{- end }}
