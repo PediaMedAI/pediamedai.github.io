@@ -14,6 +14,7 @@
   title: "A Survey on Multimodal Large Language Models for Autonomous Driving"
   authors: "Cui C, Ma Y, Cao X, Ye W, …, Cao J, Wang Z, Zheng C."
   url: "https://arxiv.org/abs/2311.12320"
+  arxiv: "2311.12320"
   tags: [vision, survey]
   featured: true
   tagClass: ""
@@ -30,6 +31,7 @@
   title: "Drive as You Speak: Enabling human-like interaction with LLMs in autonomous vehicles"
   authors: "Cui C, Ma Y, Cao X, Ye W, Wang Z."
   url: "https://arxiv.org/abs/2309.10228"
+  arxiv: "2309.10228"
   tags: [vision]
   tagClass: ""
   bibtex: |
@@ -45,6 +47,7 @@
   title: "MACP: Efficient Model Adaptation for Cooperative Perception"
   authors: "Ma Y, Lu J, Cui C, Zhao S, Cao X, Ye W, Wang Z."
   url: "https://arxiv.org/abs/2310.16870v2"
+  arxiv: "2310.16870"
   tags: [vision]
   featured: true
   tagClass: ""
@@ -109,6 +112,7 @@
   title: "Receive, Reason, and React: Drive as You Say with LLMs in Autonomous Vehicles"
   authors: "Cui C, Ma Y, Cao X, Ye W, Wang Z."
   url: "https://arxiv.org/abs/2310.08034"
+  arxiv: "2310.08034"
   tags: [vision]
   tagClass: "signal"
   bibtex: |
@@ -124,6 +128,7 @@
   title: "PIE: Simulating Disease Progression via Progressive Image Editing"
   authors: "Liang K, Cao X, Liao KD, Gao T, Ye W, Chen Z, Cao J, Nama T, Sun J."
   url: "https://arxiv.org/abs/2309.11745"
+  arxiv: "2309.11745"
   tags: [vision]
   featured: true
   tagClass: "signal"
