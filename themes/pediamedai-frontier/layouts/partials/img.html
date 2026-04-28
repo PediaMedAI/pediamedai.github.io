@@ -1,0 +1,39 @@
+{{- /* Render an <img>.
+
+       If the path resolves as a theme asset under assets/ (raster sources
+       get resized to {width}x and converted to WebP at the configured
+       quality; SVGs pass through), Hugo emits a fingerprinted local URL.
+       Otherwise the path is treated as a static URL and passed through
+       relURL — this lets callers reference any path uniformly without
+       branching at the call site.
+
+       Args:
+         src      (required)  e.g. "img/workshops/cv4chl_bg.jpg" or "/images/legacy.jpg"
+         alt      (required)
+         width    (optional)  resize target width for raster (default 800);
+                              also emitted as an HTML width attribute on
+                              SVG and fallback paths so the browser can
+                              reserve layout space and avoid CLS.
+         height   (optional)  HTML height attribute (only used when not derivable)
+         quality  (optional)  WebP quality (default 82; logos can use ~70)
+         loading  (optional)  default "lazy"
+         class    (optional)
+*/ -}}
+{{- $src := .src -}}
+{{- $alt := default "" .alt -}}
+{{- $width := default 800 .width -}}
+{{- $height := default 0 .height -}}
+{{- $quality := default 82 .quality -}}
+{{- $loading := default "lazy" .loading -}}
+{{- $class := default "" .class -}}
+{{- $r := resources.Get $src -}}
+{{- if $r -}}
+  {{- if eq $r.MediaType.SubType "svg" -}}
+    <img src="{{ $r.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
+  {{- else -}}
+    {{- $resized := $r.Resize (printf "%dx webp q%d" $width $quality) -}}
+    <img src="{{ $resized.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" width="{{ $resized.Width }}" height="{{ $resized.Height }}"{{ with $class }} class="{{ . }}"{{ end }}>
+  {{- end -}}
+{{- else -}}
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="{{ $loading }}" width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
+{{- end -}}

@@ -1,7 +1,7 @@
 {{- $description := default .Site.Params.metaDescription .Description }}
 {{- $ogTitle := default .Site.Title .Title }}
 {{- if .IsHome }}{{ $ogTitle = default .Site.Title .Site.Params.ogTitle }}{{ end }}
-{{- $ogImage := default .Site.Params.ogImage "/favicon.png" -}}
+{{- $ogImage := default .Site.Params.ogImage "/images/home_logo.png" -}}
 
 <meta property="og:title" content="{{ $ogTitle }}">
 <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
@@ -19,3 +19,42 @@
 {{- with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
 
 <link rel="canonical" href="{{ .Permalink }}">
+
+{{- if .IsHome }}
+{{- /* Multi-typed: PediaMed AI is a research-and-medical organization
+       running an ongoing pediatric AI research project. Schema.org's
+       ResearchProject (pending/extension area) is included so SERPs can
+       surface project-flavored rich results in addition to the standard
+       Organization treatment. */ -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ResearchOrganization", "MedicalOrganization", "ResearchProject"],
+  "name": "PediaMed AI",
+  "url": "{{ .Site.BaseURL }}",
+  "logo": "{{ "/images/home_logo.png" | absURL }}",
+  "description": "{{ $description }}",
+  {{- with .Site.Params.contact_email }}
+  "email": "{{ . }}",
+  {{- end }}
+  "knowsAbout": [
+    "pediatric medicine",
+    "computer vision",
+    "transformer calibration",
+    "infant pose estimation",
+    "autism spectrum disorder",
+    "interpretable machine learning"
+  ],
+  "memberOf": [
+    {"@type": "Organization", "name": "Shenzhen Children's Hospital"},
+    {"@type": "CollegeOrUniversity", "name": "New York University"},
+    {"@type": "CollegeOrUniversity", "name": "University of Virginia"},
+    {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}
+  ],
+  "sameAs": [
+    "https://github.com/pediamedai"{{ with .Site.Params.twitterHandle }},
+    "https://twitter.com/{{ . | replaceRE "^@" "" }}"{{ end }}
+  ]
+}
+</script>
+{{- end }}

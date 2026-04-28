@@ -22,7 +22,9 @@
 
 <a class="card" href="{{ $href }}"{{ if $external }} target="_blank" rel="noopener"{{ end }}>
   {{- with $image }}
-  <div class="img"><img src="{{ . | relURL }}" alt="{{ $imageAlt }}" loading="lazy"></div>
+  <div class="img">
+    {{ partial "img.html" (dict "src" . "alt" $imageAlt "width" 960) }}
+  </div>
   {{- end }}
   <div class="body">
     {{- if or (gt (len $tags) 0) $label }}

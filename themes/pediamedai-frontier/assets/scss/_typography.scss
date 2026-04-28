@@ -1,3 +1,25 @@
+/* ——— Self-hosted fonts (woff2 in static/fonts/) ———
+   Absolute /fonts/ paths assume baseURL is at the domain root. For
+   sub-path deploys these would need to be templated through Hugo. */
+$fonts: (
+  ("Instrument Serif", 400, normal, "instrument-serif-400"),
+  ("Instrument Serif", 400, italic, "instrument-serif-400-italic"),
+  ("Geist",            400, normal, "geist-400"),
+  ("Geist",            500, normal, "geist-500"),
+  ("Geist",            600, normal, "geist-600"),
+  ("JetBrains Mono",   400, normal, "jetbrains-mono-400")
+);
+
+@each $family, $weight, $style, $slug in $fonts {
+  @font-face {
+    font-family: $family;
+    font-style: $style;
+    font-weight: $weight;
+    font-display: swap;
+    src: url("/fonts/#{$slug}.woff2") format("woff2");
+  }
+}
+
 .display {
   font-family: var(--serif);
   font-weight: 400;

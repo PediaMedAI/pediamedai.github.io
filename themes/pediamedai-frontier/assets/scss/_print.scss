@@ -1,0 +1,125 @@
+@media print {
+  /* Force light, ink-on-paper regardless of theme. */
+  :root,
+  [data-theme="dark"] {
+    --bg: #ffffff;
+    --bg-elevated: #ffffff;
+    --bg-tinted: #ffffff;
+    --bg-inverse: #ffffff;
+    --ink: #000000;
+    --ink-2: #1a1a1a;
+    --ink-3: #4a4a4a;
+    --ink-4: #6a6a6a;
+    --rule: #cccccc;
+    --rule-soft: #e0e0e0;
+    --accent: #000000;
+    --signal: #000000;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  /* Hide chrome and interactive widgets only. .reveal is NOT hidden —
+     it wraps real content (homepage sections, research themes, code
+     cards, etc.) and only happens to start at opacity:0 for the JS
+     scroll-reveal animation. Force it to its visible final state. */
+  .nav,
+  footer,
+  .skip-link,
+  .theme-toggle,
+  .nav-toggle,
+  .ticker,
+  .pub-filter {
+    display: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Hero: print only the headline + subhead, drop the visual. */
+  .hero-viz,
+  .hero .grid-bg {
+    display: none !important;
+  }
+
+  .hero {
+    padding: 0 0 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero .stack {
+    display: block;
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: 24pt;
+    line-height: 1.05;
+    margin: 0 0 12px;
+  }
+
+  .hero .sub {
+    font-size: 12pt;
+    margin-bottom: 0;
+  }
+
+  .actions,
+  .hero-meta {
+    display: none !important;
+  }
+
+  /* Section rhythm shrinks; let the browser paginate naturally. */
+  .section,
+  .page-head {
+    padding: 16pt 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .page-head h1 {
+    font-size: 28pt;
+    margin-top: 0;
+  }
+
+  /* Don't break across pages mid-block. */
+  .card,
+  .theme,
+  .team-cell,
+  .pub,
+  .callout {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Show URLs after links so a printed page is self-contained,
+     except for navigation-style internal links. */
+  a[href^="http"]::after,
+  a[href^="mailto"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--ink-3);
+    word-break: break-all;
+  }
+
+  /* Cards: drop the lift-on-hover shadow and over-decoration. */
+  .card,
+  .theme .visual {
+    box-shadow: none !important;
+    border: 1px solid var(--rule);
+    transform: none !important;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}

@@ -129,7 +129,8 @@
     gap: 12px;
   }
 
-  .theme-toggle {
+  .theme-toggle,
+  .nav-toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -144,9 +145,23 @@
       background: var(--bg-tinted);
       color: var(--ink);
     }
+  }
 
+  .theme-toggle {
     .icon-sun { display: inline-flex; }
     .icon-moon { display: none; }
+  }
+
+  .nav-toggle {
+    display: none; /* shown on mobile only via responsive.scss */
+
+    .icon-menu { display: inline-flex; }
+    .icon-close { display: none; }
+  }
+
+  &[data-nav-open="true"] .nav-toggle {
+    .icon-menu { display: none; }
+    .icon-close { display: inline-flex; }
   }
 }
 

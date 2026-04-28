@@ -1,6 +1,7 @@
 ---
 title: "Jobs"
 date: 2026-04-25T00:00:00Z
+description: "PediaMed AI is not actively hiring. Reach out by email to express interest in collaborating on pediatric AI research."
 ---
 
 We're not actively hiring right now.

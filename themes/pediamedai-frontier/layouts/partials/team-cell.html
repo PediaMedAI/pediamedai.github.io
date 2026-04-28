@@ -11,11 +11,11 @@
 <article class="team-cell">
   <div class="num">/{{ $num }}</div>
   <div class="avatar">
-    {{- if $image }}
-      <img src="{{ $image | relURL }}" alt="Portrait of {{ $name }}" loading="lazy">
-    {{- else }}
+    {{- if $image -}}
+      {{ partial "img.html" (dict "src" $image "alt" (printf "Portrait of %s" $name) "width" 480) }}
+    {{- else -}}
       <div class="avatar-fallback" aria-hidden="true">{{ $initials }}</div>
-    {{- end }}
+    {{- end -}}
   </div>
   <h4>{{ $name }}</h4>
   <div class="role">{{ $role }}</div>

@@ -38,11 +38,74 @@
       display: inline-block;
     }
   }
-  .nav .links a.link {
-    display: none;
-  }
   .workshop-gallery {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ——— Mobile nav drawer ——— */
+  .nav {
+    .nav-toggle {
+      display: inline-flex;
+    }
+
+    .links {
+      position: fixed;
+      inset: 64px 0 0 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 24px var(--gutter);
+      background: color-mix(in oklab, var(--bg) 92%, transparent);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      border-bottom: 1px solid var(--rule);
+      transform: translateY(-8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s var(--ease), transform 0.2s var(--ease),
+                  visibility 0s linear 0.2s;
+      z-index: 49;
+    }
+
+    /* When open: visibility flips immediately so links are tabbable
+       during the fade-in. When closed: visibility waits until the fade
+       finishes (transition delay above) so the elements remain visible
+       while exiting. visibility: hidden also removes from the keyboard
+       tab order, fixing the focus-trap risk that pointer-events: none
+       alone wouldn't address. */
+    &[data-nav-open="true"] .links {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.2s var(--ease), transform 0.2s var(--ease),
+                  visibility 0s linear 0s;
+    }
+
+    a.link {
+      padding: 14px 4px;
+      font-size: 18px;
+      font-family: var(--serif);
+      letter-spacing: -0.01em;
+      border-radius: 0;
+      border-bottom: 1px solid var(--rule-soft);
+
+      &::before {
+        display: none;
+      }
+
+      &:hover,
+      &.active {
+        background: transparent;
+      }
+
+      &.active {
+        color: var(--ink);
+      }
+    }
+  }
+
+  body[data-nav-open="true"] {
+    overflow: hidden;
   }
 }
 
@@ -56,6 +119,16 @@
   }
   .hero-meta {
     grid-template-columns: repeat(2, 1fr);
+
+    .cell {
+      padding: 28px 16px 8px;
+      border-right: 1px solid var(--rule-soft);
+      border-bottom: 1px solid var(--rule-soft);
+
+      &:nth-child(2) { padding-right: 0; border-right: none; }
+      &:nth-child(3) { padding-left: 0; border-bottom: none; }
+      &:nth-child(4) { border-bottom: none; }
+    }
   }
   footer .row {
     grid-template-columns: repeat(2, 1fr);
@@ -69,5 +142,42 @@
   .callout {
     grid-template-columns: 1fr;
     text-align: left;
+  }
+
+  .cap {
+    padding: 32px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+/* Sub-400 tightening: most growth happens in container padding + hero h1 */
+@media (max-width: 400px) {
+  :root {
+    --gutter: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 11vw, 64px);
+  }
+
+  .page-head h1 {
+    font-size: clamp(48px, 14vw, 96px);
+  }
+
+  footer .big {
+    font-size: clamp(44px, 14vw, 96px);
+  }
+
+  .nav .row {
+    height: 56px;
+  }
+
+  .nav .links {
+    inset: 56px 0 0 0;
   }
 }

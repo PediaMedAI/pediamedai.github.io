@@ -1,5 +1,6 @@
 ---
-title: 'Publications'
+title: "Publications"
+description: "Peer-reviewed publications and preprints from PediaMed AI — IJCAI, ICASSP, UAI, and WACV papers on pediatric pose estimation, ASD diagnosis, and calibration."
 ---
 
 ### PediaMed AI Research Publications

@@ -2,6 +2,7 @@
 title: "About"
 date: 2026-04-25T00:00:00Z
 layout: "about"
+description: "Pediatric AI research lab building interpretable vision and multimodal models for early detection. Partners: Shenzhen Children's Hospital, NYU, UVA, UIUC."
 ---
 
 PediaMed AI is a pediatric AI research lab building interpretable vision and multimodal models for early detection and clinician-readable explanations. We work with pediatricians, hospitals, and academic collaborators to make sure the tools we build are both technically rigorous and useful at the bedside.

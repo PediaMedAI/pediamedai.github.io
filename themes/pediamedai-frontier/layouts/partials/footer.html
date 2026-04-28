@@ -44,5 +44,7 @@
 <script src="{{ $reveal.RelPermalink }}" integrity="{{ $reveal.Data.Integrity }}" defer></script>
 {{- $themeJs := resources.Get "js/theme.js" | minify | fingerprint }}
 <script src="{{ $themeJs.RelPermalink }}" integrity="{{ $themeJs.Data.Integrity }}" defer></script>
+{{- $navJs := resources.Get "js/nav.js" | minify | fingerprint }}
+<script src="{{ $navJs.RelPermalink }}" integrity="{{ $navJs.Data.Integrity }}" defer></script>
 {{- $pubFilter := resources.Get "js/pub-filter.js" | minify | fingerprint }}
 <script src="{{ $pubFilter.RelPermalink }}" integrity="{{ $pubFilter.Data.Integrity }}" defer></script>

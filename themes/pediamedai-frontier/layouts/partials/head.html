@@ -1,7 +1,4 @@
-{{- $title := .Title }}
-{{- if .IsHome }}{{ $title = .Site.Title }}{{ end }}
-{{- $description := default .Site.Params.metaDescription .Description }}
-{{- if .Description }}{{ $description = .Description }}{{ end }}
+{{- $description := default .Site.Params.metaDescription .Description -}}
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -23,19 +20,19 @@
     })();
   </script>
 
-  {{- /* Fonts: Google Fonts CDN with preconnect + font-display:swap.
-         Self-hosted via Hugo resources.GetRemote was attempted; jsDelivr's
-         response confused Hugo's media-type resolution. Tracked as Stage 3
-         debt (see plan: "Self-host fonts"). */ -}}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  {{- /* Self-hosted fonts. @font-face declarations live in _typography.scss;
+         preload the three faces visible above the fold on every route:
+           – Geist 400               (body)
+           – Instrument Serif        (nav logo)
+           – Instrument Serif italic (display headlines on home / page-head). */ -}}
+  <link rel="preload" href="{{ "/fonts/geist-400.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ "/fonts/instrument-serif-400.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ "/fonts/instrument-serif-400-italic.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
   {{- $css := resources.Get "scss/style.scss" | toCSS (dict "outputStyle" "compressed" "targetPath" "css/style.css") | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
   {{- partial "meta.html" . }}
 
-  {{- $favicon := "favicon.png" -}}
-  <link rel="icon" type="image/png" href="{{ $favicon | absURL }}">
+  <link rel="icon" type="image/png" href="{{ "/favicon-32x32bk.png" | absURL }}">
 </head>

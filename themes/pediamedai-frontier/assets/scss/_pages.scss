@@ -208,6 +208,28 @@
     height: 100%;
     z-index: 2;
   }
+
+  /* Hover affordance: the artifact "responds" to inspection. Confidence
+     rings sharpen and keypoints grow slightly so the visual reads as a
+     real instrument, not just decoration. Gated by hover-capable input
+     (skips on touch) and reduced-motion. */
+  @media (hover: hover) and (pointer: fine) {
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-conf-rings circle {
+        transition: stroke-opacity 0.3s var(--ease);
+      }
+      .hero-keypoints circle {
+        transform-box: fill-box;
+        transform-origin: center;
+        transition: transform 0.3s var(--ease);
+      }
+
+      &:hover {
+        .hero-conf-rings circle { stroke-opacity: 0.85; }
+        .hero-keypoints circle { transform: scale(1.4); }
+      }
+    }
+  }
 }
 
 /* ——— Research theme block ——— */
