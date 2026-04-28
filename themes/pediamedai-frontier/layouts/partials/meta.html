@@ -63,6 +63,17 @@
 {{- if and (eq .Section "publications") (eq .Kind "section") }}
   {{- $articles := slice -}}
   {{- range .Site.Data.publications -}}
+    {{- /* Split the display author string ("Cao X, Ye W, Sizikova E, …, Cao J.")
+           into a list of structured Person objects. Skip the "…" elision token
+           and strip a trailing period from the final author. */ -}}
+    {{- $authors := slice -}}
+    {{- range (split .authors ", ") -}}
+      {{- $name := trim . " " -}}
+      {{- $name = strings.TrimRight "." $name -}}
+      {{- if and $name (ne $name "…") -}}
+        {{- $authors = $authors | append (dict "@type" "Person" "name" $name) -}}
+      {{- end -}}
+    {{- end -}}
     {{- $art := dict
       "@type" "ScholarlyArticle"
       "@id" .url
@@ -71,7 +82,7 @@
       "datePublished" .year
       "url" .url
       "isPartOf" (dict "@type" "PublicationVolume" "name" .venue)
-      "author" .authors
+      "author" $authors
       "publisher" (dict "@type" "Organization" "name" "PediaMed AI" "url" $.Site.BaseURL)
     -}}
     {{- with .arxiv -}}

@@ -5,21 +5,33 @@
       var status = btn.parentElement.querySelector("[data-bib-status]");
       if (!pre) return;
       var text = pre.textContent.trim();
+      var original = btn.textContent;
 
-      var done = function () {
-        var original = btn.textContent;
-        btn.textContent = "Copied";
-        btn.setAttribute("data-copied", "true");
-        if (status) status.textContent = "BibTeX copied to clipboard";
+      var resetAfter = function () {
         setTimeout(function () {
           btn.textContent = original;
           btn.removeAttribute("data-copied");
+          btn.removeAttribute("data-copy-error");
           if (status) status.textContent = "";
         }, 1600);
       };
 
+      var success = function () {
+        btn.textContent = "Copied";
+        btn.setAttribute("data-copied", "true");
+        if (status) status.textContent = "BibTeX copied to clipboard";
+        resetAfter();
+      };
+
+      var failure = function () {
+        btn.textContent = "Copy failed";
+        btn.setAttribute("data-copy-error", "true");
+        if (status) status.textContent = "Copy failed — select the BibTeX manually";
+        resetAfter();
+      };
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, function () {});
+        navigator.clipboard.writeText(text).then(success, failure);
         return;
       }
 
@@ -31,8 +43,10 @@
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand("copy"); done(); } catch (e) {}
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
       document.body.removeChild(ta);
+      ok ? success() : failure();
     });
   });
 })();

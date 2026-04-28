@@ -530,6 +530,11 @@
     color: var(--ok);
     border-color: var(--ok);
   }
+
+  &[data-copy-error="true"] {
+    color: var(--signal);
+    border-color: var(--signal);
+  }
 }
 
 .pub-filter {
