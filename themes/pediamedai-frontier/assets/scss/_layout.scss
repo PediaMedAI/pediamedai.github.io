@@ -132,6 +132,15 @@
   }
 }
 
+/* Partner logos are usually authored for white-bg display. In dark
+   mode, putting a logo with dark text on --bg-elevated (#131415)
+   would obscure it. Keep the tile bone-warm in dark mode so the
+   logos render naturally; the rule + ink shift handles the surround. */
+[data-theme="dark"] .partner-tile {
+  background: #f6f5f1;
+  border-color: color-mix(in oklab, #f6f5f1 86%, transparent);
+}
+
 .section-head {
   display: grid;
   grid-template-columns: 200px 1fr;
