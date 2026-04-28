@@ -21,15 +21,23 @@
     {{- if gt (len $gallery) 0 }}
     {{- $altPrefix := default $.Title $.Params.gallery_alt_prefix -}}
     <h2 class="h2-section">Gallery</h2>
-    <div class="workshop-gallery">
+    <div class="workshop-gallery" data-gallery>
       {{- range $i, $path := $gallery }}
-        {{ partial "img.html" (dict
-          "src" $path
-          "alt" (printf "%s — photo %d" $altPrefix (add $i 1))
-          "width" 800)
-        }}
+        {{- $alt := printf "%s — photo %d" $altPrefix (add $i 1) }}
+        <button type="button" class="workshop-gallery__item" data-gallery-open="{{ $i }}" aria-label="Open {{ $alt }} fullscreen">
+          {{ partial "img.html" (dict "src" $path "alt" $alt "width" 800) }}
+        </button>
       {{- end }}
     </div>
+
+    {{- /* Single dialog reused for any clicked photo. JS swaps src/alt
+           per click. Closes on ESC, backdrop click, or X button. */ -}}
+    <dialog class="lightbox" data-lightbox aria-label="Photo viewer">
+      <button type="button" class="lightbox__close" data-lightbox-close aria-label="Close">×</button>
+      <button type="button" class="lightbox__nav lightbox__nav--prev" data-lightbox-prev aria-label="Previous photo">‹</button>
+      <img class="lightbox__img" data-lightbox-img alt="">
+      <button type="button" class="lightbox__nav lightbox__nav--next" data-lightbox-next aria-label="Next photo">›</button>
+    </dialog>
     {{- end }}
   </div>
 </section>

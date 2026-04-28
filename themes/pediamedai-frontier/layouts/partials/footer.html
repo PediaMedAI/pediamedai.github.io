@@ -52,3 +52,5 @@
 <script src="{{ $bibCopy.RelPermalink }}" integrity="{{ $bibCopy.Data.Integrity }}" defer></script>
 {{- $prefetch := resources.Get "js/prefetch.js" | minify | fingerprint }}
 <script src="{{ $prefetch.RelPermalink }}" integrity="{{ $prefetch.Data.Integrity }}" defer></script>
+{{- $lightbox := resources.Get "js/lightbox.js" | minify | fingerprint }}
+<script src="{{ $lightbox.RelPermalink }}" integrity="{{ $lightbox.Data.Integrity }}" defer></script>

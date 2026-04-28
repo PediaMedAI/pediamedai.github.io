@@ -60,6 +60,34 @@
 <script type="application/ld+json">{{ $org | jsonify | safeJS }}</script>
 {{- end }}
 
+{{- /* BreadcrumbList JSON-LD on every non-home page. Auto-derives the
+       trail from the URL path so /team/xu-cao/ becomes Home › Team ›
+       Xu Cao. Search engines surface this as breadcrumbs in SERP. */ -}}
+{{- if and (not .IsHome) (ne .Kind "404") -}}
+  {{- $items := slice (dict
+    "@type" "ListItem"
+    "position" 1
+    "name" "Home"
+    "item" .Site.BaseURL) -}}
+  {{- $segments := split (strings.TrimSuffix "/" (strings.TrimPrefix "/" .RelPermalink)) "/" -}}
+  {{- $cumulative := "" -}}
+  {{- range $i, $seg := $segments -}}
+    {{- $cumulative = printf "%s/%s" $cumulative $seg -}}
+    {{- $isLast := eq (add $i 1) (len $segments) -}}
+    {{- $name := cond $isLast $.Title (humanize (replace $seg "-" " ")) -}}
+    {{- $items = $items | append (dict
+      "@type" "ListItem"
+      "position" (add $i 2)
+      "name" $name
+      "item" (printf "%s%s/" $.Site.BaseURL (strings.TrimPrefix "/" $cumulative))) -}}
+  {{- end -}}
+  {{- $crumbs := dict
+    "@context" "https://schema.org"
+    "@type" "BreadcrumbList"
+    "itemListElement" $items -}}
+<script type="application/ld+json">{{ $crumbs | jsonify | safeJS }}</script>
+{{- end }}
+
 {{- /* Event JSON-LD for workshop pages — emitted when the page has
        layout: "workshop" frontmatter (matches CVPR + ICLR). Fields
        below are populated from existing frontmatter (badge, dates,
