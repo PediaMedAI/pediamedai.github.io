@@ -309,18 +309,6 @@
 }
 
 /* ——— Team grid ——— */
-.team-section + .team-section {
-  margin-top: 64px;
-}
-
-.team-section h2 {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(28px, 3vw, 36px);
-  letter-spacing: -0.02em;
-  margin-bottom: 20px;
-}
-
 .team-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -335,12 +323,28 @@
   border-bottom: 1px solid var(--rule);
   background: var(--bg-elevated);
   position: relative;
-  transition: background 0.25s var(--ease);
+  transition:
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    transform 0.25s var(--ease);
   display: flex;
   flex-direction: column;
 
-  &:hover {
-    background: var(--bg-tinted);
+  /* Hover/focus: lift the cell and draw a single 1px ring on all
+     four sides via box-shadow. The existing right/bottom borders
+     fade to transparent so the ring isn't doubled, and z-index lifts
+     the cell above its neighbors so the ring overlaps adjacent
+     borders cleanly. transform keeps the lift outside layout flow,
+     so neighboring cells don't shift. Mirrors :focus-within so
+     keyboard tabbing the inner link surfaces the same affordance. */
+  &:hover,
+  &:focus-within {
+    z-index: 1;
+    border-color: transparent;
+    box-shadow:
+      0 0 0 1px var(--ink-3),
+      var(--shadow-2);
+    transform: translateY(-1px);
   }
 
   .avatar {

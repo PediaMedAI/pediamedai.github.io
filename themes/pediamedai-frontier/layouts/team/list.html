@@ -11,40 +11,40 @@
 
 <section class="section flush-top">
   <div class="container">
-    <div class="team-section">
-      <h2 class="h2-section">Clinical leadership</h2>
-      <div class="team-grid">
-        {{- range $i, $p := sort $clinical "Weight" "asc" }}
-          {{ partial "team-cell.html" (dict
-            "name" $p.Title
-            "role" $p.Params.role
-            "bio" $p.Params.bio
-            "image" $p.Params.image
-            "link" $p.Params.link
-            "permalink" $p.RelPermalink
-            "initials" $p.Params.initials
-            "num" (printf "%02d" (add $i 1))
-          ) }}
-        {{- end }}
-      </div>
+    <h2 class="h2-section">Clinical leadership</h2>
+    <div class="team-grid">
+      {{- range $i, $p := sort $clinical "Weight" "asc" }}
+        {{ partial "team-cell.html" (dict
+          "name" $p.Title
+          "role" $p.Params.role
+          "bio" $p.Params.bio
+          "image" $p.Params.image
+          "link" $p.Params.link
+          "permalink" $p.RelPermalink
+          "initials" $p.Params.initials
+          "num" (printf "%02d" (add $i 1))
+        ) }}
+      {{- end }}
     </div>
+  </div>
+</section>
 
-    <div class="team-section">
-      <h2 class="h2-section">Technical leadership</h2>
-      <div class="team-grid">
-        {{- range $i, $p := sort $technical "Weight" "asc" }}
-          {{ partial "team-cell.html" (dict
-            "name" $p.Title
-            "role" $p.Params.role
-            "bio" $p.Params.bio
-            "image" $p.Params.image
-            "link" $p.Params.link
-            "permalink" $p.RelPermalink
-            "initials" $p.Params.initials
-            "num" (printf "%02d" (add $i 1))
-          ) }}
-        {{- end }}
-      </div>
+<section class="section tinted">
+  <div class="container">
+    <h2 class="h2-section">Technical leadership</h2>
+    <div class="team-grid">
+      {{- range $i, $p := sort $technical "Weight" "asc" }}
+        {{ partial "team-cell.html" (dict
+          "name" $p.Title
+          "role" $p.Params.role
+          "bio" $p.Params.bio
+          "image" $p.Params.image
+          "link" $p.Params.link
+          "permalink" $p.RelPermalink
+          "initials" $p.Params.initials
+          "num" (printf "%02d" (add $i 1))
+        ) }}
+      {{- end }}
     </div>
   </div>
 </section>
