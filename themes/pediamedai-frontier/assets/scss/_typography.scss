@@ -20,12 +20,19 @@ $fonts: (
   }
 }
 
+/* Display headlines (Instrument Serif at 56–144px) get optical
+   refinements: balanced wrapping (no orphan word on last line),
+   smarter kerning/ligatures, and slight feature tweaks. Paired
+   selectors below this block apply text-wrap: balance to the
+   actual display headers (.hero h1, .page-head h1, etc.). */
 .display {
   font-family: var(--serif);
   font-weight: 400;
   font-style: italic;
   letter-spacing: -0.02em;
   line-height: 0.95;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "calt";
 }
 
 .display-mix {
@@ -33,6 +40,33 @@ $fonts: (
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "calt";
+}
+
+/* Apply text-wrap: balance to every display-class headline so the
+   last line doesn't orphan a single word. text-wrap: balance is a
+   progressive enhancement — older browsers ignore it gracefully. */
+.hero h1,
+.page-head h1,
+.section-head h2,
+.h2-section,
+.theme-title,
+.display-404,
+footer .big,
+.mission .big {
+  text-wrap: balance;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "calt";
+}
+
+/* Tabular numerals on mono labels keep section indices ("01", "02",
+   …) and dates aligned vertically across lines. */
+.eyebrow,
+.label-mono,
+.kicker,
+.tag {
+  font-variant-numeric: tabular-nums;
 }
 
 .eyebrow {
