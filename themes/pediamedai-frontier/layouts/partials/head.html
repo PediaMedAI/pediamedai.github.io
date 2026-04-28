@@ -35,4 +35,7 @@
   {{- partial "meta.html" . }}
 
   <link rel="icon" type="image/png" href="{{ "/favicon-32x32bk.png" | absURL }}">
+  {{- with .OutputFormats.Get "RSS" }}
+  <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
+  {{- end }}
 </head>

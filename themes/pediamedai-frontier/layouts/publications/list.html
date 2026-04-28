@@ -20,17 +20,29 @@
 
     <div class="pubs">
       {{- range $pubs }}
-      <a class="pub" href="{{ .url }}" target="_blank" rel="noopener" data-pub-tags="{{ delimit .tags " " }}">
+      <article class="pub" data-pub-tags="{{ delimit .tags " " }}">
         <span class="y">{{ .year }}</span>
         <span class="v">{{ .venue }}</span>
-        <span>
-          <span class="t">{{ .title }}</span>
+        <div class="pub-body">
+          <a class="t" href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}<span class="ext" aria-hidden="true"> ↗</span></a>
           <div class="a">{{ .authors }}</div>
-        </span>
-        <span class="ext" aria-hidden="true">↗</span>
-      </a>
+          {{- with .bibtex }}
+          <details class="pub-bib">
+            <summary>Cite</summary>
+            <div class="pub-bib-body">
+              <pre><code>{{ . }}</code></pre>
+              <button type="button" class="btn ghost sm" data-bib-copy>Copy BibTeX</button>
+              <span class="sr-only" role="status" aria-live="polite" data-bib-status></span>
+            </div>
+          </details>
+          {{- end }}
+        </div>
+      </article>
       {{- end }}
     </div>
   </div>
 </section>
+
+{{- /* ScholarlyArticle JSON-LD — one entry per publication so SERPs can
+       surface paper-level rich results (with author, venue, URL). */ -}}
 {{ end }}

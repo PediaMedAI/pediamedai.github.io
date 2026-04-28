@@ -23,41 +23,62 @@
 <meta name="robots" content="noindex">
 {{- end }}
 
+{{- /* JSON-LD assembled via dict + jsonify | safeJS so escaping is handled
+       by Hugo (no manual quote/comma bookkeeping). All schema.org emission
+       lives in this partial. */ -}}
+
 {{- if .IsHome }}
-{{- /* Multi-typed: PediaMed AI is a research-and-medical organization
-       running an ongoing pediatric AI research project. Schema.org's
-       ResearchProject (pending/extension area) is included so SERPs can
-       surface project-flavored rich results in addition to the standard
-       Organization treatment. */ -}}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": ["Organization", "ResearchOrganization", "MedicalOrganization", "ResearchProject"],
-  "name": "PediaMed AI",
-  "url": "{{ .Site.BaseURL }}",
-  "logo": "{{ "/images/home_logo.png" | absURL }}",
-  "description": "{{ $description }}",
-  {{- with .Site.Params.contact_email }}
-  "email": "{{ . }}",
-  {{- end }}
-  "knowsAbout": [
-    "pediatric medicine",
-    "computer vision",
-    "transformer calibration",
-    "infant pose estimation",
-    "autism spectrum disorder",
-    "interpretable machine learning"
-  ],
-  "memberOf": [
-    {"@type": "Organization", "name": "Shenzhen Children's Hospital"},
-    {"@type": "CollegeOrUniversity", "name": "New York University"},
-    {"@type": "CollegeOrUniversity", "name": "University of Virginia"},
-    {"@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign"}
-  ],
-  "sameAs": [
-    "https://github.com/pediamedai"{{ with .Site.Params.twitterHandle }},
-    "https://twitter.com/{{ . | replaceRE "^@" "" }}"{{ end }}
-  ]
-}
-</script>
+  {{- $sameAs := slice "https://github.com/pediamedai" -}}
+  {{- with .Site.Params.twitterHandle -}}
+    {{- $handle := . | replaceRE "^@" "" -}}
+    {{- $sameAs = $sameAs | append (printf "https://twitter.com/%s" $handle) -}}
+  {{- end -}}
+  {{- $org := dict
+    "@context" "https://schema.org"
+    "@type" (slice "Organization" "ResearchOrganization" "MedicalOrganization" "ResearchProject")
+    "name" "PediaMed AI"
+    "url" .Site.BaseURL
+    "logo" (absURL "/images/home_logo.png")
+    "description" $description
+    "knowsAbout" (slice
+      "pediatric medicine"
+      "computer vision"
+      "transformer calibration"
+      "infant pose estimation"
+      "autism spectrum disorder"
+      "interpretable machine learning")
+    "memberOf" (slice
+      (dict "@type" "Organization" "name" "Shenzhen Children's Hospital")
+      (dict "@type" "CollegeOrUniversity" "name" "New York University")
+      (dict "@type" "CollegeOrUniversity" "name" "University of Virginia")
+      (dict "@type" "CollegeOrUniversity" "name" "University of Illinois Urbana-Champaign"))
+    "sameAs" $sameAs
+  -}}
+  {{- with .Site.Params.contact_email -}}
+    {{- $org = merge $org (dict "email" .) -}}
+  {{- end -}}
+<script type="application/ld+json">{{ $org | jsonify | safeJS }}</script>
+{{- end }}
+
+{{- if and (eq .Section "publications") (eq .Kind "section") }}
+  {{- $articles := slice -}}
+  {{- range .Site.Data.publications -}}
+    {{- $art := dict
+      "@type" "ScholarlyArticle"
+      "@id" .url
+      "headline" .title
+      "name" .title
+      "datePublished" .year
+      "url" .url
+      "isPartOf" (dict "@type" "PublicationVolume" "name" .venue)
+      "author" .authors
+      "publisher" (dict "@type" "Organization" "name" "PediaMed AI" "url" $.Site.BaseURL)
+    -}}
+    {{- with .arxiv -}}
+      {{- $art = merge $art (dict "identifier" (dict "@type" "PropertyValue" "propertyID" "arXiv" "value" .)) -}}
+    {{- end -}}
+    {{- $articles = $articles | append $art -}}
+  {{- end -}}
+  {{- $ld := dict "@context" "https://schema.org" "@graph" $articles -}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
 {{- end }}

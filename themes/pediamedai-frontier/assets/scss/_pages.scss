@@ -404,19 +404,12 @@
 
 .pub {
   display: grid;
-  grid-template-columns: 80px 100px 1fr auto;
+  grid-template-columns: 80px 100px 1fr;
   gap: 24px;
   padding: 22px 0;
   border-bottom: 1px solid var(--rule-soft);
   align-items: baseline;
-  transition: background 0.2s var(--ease), padding 0.2s var(--ease);
   position: relative;
-
-  &:hover {
-    background: var(--bg-tinted);
-    margin: 0 -16px;
-    padding: 22px 16px;
-  }
 
   .y {
     font-family: var(--mono);
@@ -433,6 +426,10 @@
     color: var(--signal);
   }
 
+  .pub-body {
+    min-width: 0;
+  }
+
   .t {
     font-family: var(--serif);
     font-size: 22px;
@@ -440,6 +437,19 @@
     letter-spacing: -0.015em;
     color: var(--ink);
     max-width: 56ch;
+    display: inline;
+
+    .ext {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink-3);
+      transition: color 0.2s var(--ease);
+    }
+
+    &:hover .ext {
+      color: var(--ink);
+    }
   }
 
   .a {
@@ -447,13 +457,78 @@
     color: var(--ink-3);
     margin-top: 6px;
   }
+}
 
-  .ext {
+/* ——— BibTeX disclosure ——— */
+.pub-bib {
+  margin-top: 12px;
+
+  > summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
     font-family: var(--mono);
-    font-size: 11px;
-    text-transform: uppercase;
+    font-size: 10.5px;
     letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--ink-3);
+    transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+
+    &::-webkit-details-marker { display: none; }
+    &::marker { content: ""; }
+
+    &::before {
+      content: "+";
+      font-size: 13px;
+      line-height: 0;
+      color: var(--ink-3);
+    }
+
+    &:hover {
+      color: var(--ink);
+      background: var(--bg-tinted);
+      border-color: var(--ink-3);
+    }
+  }
+
+  &[open] > summary::before {
+    content: "−";
+  }
+}
+
+.pub-bib-body {
+  margin-top: 12px;
+  padding: 16px 18px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  position: relative;
+
+  pre {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    /* pre-wrap so long author lists wrap on mobile. The clipboard path
+       reads pre.textContent which preserves the original line breaks
+       regardless of CSS wrapping. */
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+.pub-bib [data-bib-copy] {
+  margin-top: 12px;
+
+  &[data-copied="true"] {
+    color: var(--ok);
+    border-color: var(--ok);
   }
 }
 

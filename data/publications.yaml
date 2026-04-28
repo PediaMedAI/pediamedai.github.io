@@ -7,6 +7,8 @@
 #   tags                                — list, used by /publications/ filter.
 #   featured                            — bool, surfaces on /research/ Selected Works.
 #   tagClass                            — "" | "accent" | "signal", venue-color hint.
+#   bibtex                              — multi-line BibTeX entry; surfaced via
+#                                         the "Cite" disclosure on /publications/.
 - year: "2024"
   venue: "WACV"
   title: "A Survey on Multimodal Large Language Models for Autonomous Driving"
@@ -15,6 +17,14 @@
   tags: [vision, survey]
   featured: true
   tagClass: ""
+  bibtex: |
+    @inproceedings{cui2024survey,
+      title={A Survey on Multimodal Large Language Models for Autonomous Driving},
+      author={Cui, C. and Ma, Y. and Cao, X. and Ye, W. and others},
+      booktitle={IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) Workshop},
+      year={2024},
+      url={https://arxiv.org/abs/2311.12320}
+    }
 - year: "2024"
   venue: "WACV"
   title: "Drive as You Speak: Enabling human-like interaction with LLMs in autonomous vehicles"
@@ -22,6 +32,14 @@
   url: "https://arxiv.org/abs/2309.10228"
   tags: [vision]
   tagClass: ""
+  bibtex: |
+    @inproceedings{cui2024drive,
+      title={Drive as You Speak: Enabling Human-Like Interaction with Large Language Models in Autonomous Vehicles},
+      author={Cui, C. and Ma, Y. and Cao, X. and Ye, W. and Wang, Z.},
+      booktitle={IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) Workshop},
+      year={2024},
+      url={https://arxiv.org/abs/2309.10228}
+    }
 - year: "2024"
   venue: "WACV"
   title: "MACP: Efficient Model Adaptation for Cooperative Perception"
@@ -30,6 +48,14 @@
   tags: [vision]
   featured: true
   tagClass: ""
+  bibtex: |
+    @inproceedings{ma2024macp,
+      title={MACP: Efficient Model Adaptation for Cooperative Perception},
+      author={Ma, Y. and Lu, J. and Cui, C. and Zhao, S. and Cao, X. and Ye, W. and Wang, Z.},
+      booktitle={IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+      year={2024},
+      url={https://arxiv.org/abs/2310.16870v2}
+    }
 - year: "2023"
   venue: "UAI"
   title: "Mitigating Transformer Overconfidence via Lipschitz Regularization"
@@ -38,6 +64,14 @@
   tags: [calibration]
   featured: true
   tagClass: "accent"
+  bibtex: |
+    @inproceedings{ye2023lrformer,
+      title={Mitigating Transformer Overconfidence via Lipschitz Regularization},
+      author={Ye, W. and Ma, Y. and Cao, X. and Tang, K.},
+      booktitle={Uncertainty in Artificial Intelligence (UAI)},
+      year={2023},
+      url={https://proceedings.mlr.press/v216/ye23a.html}
+    }
 - year: "2023"
   venue: "ICASSP"
   title: "ViTASD: Robust Vision Transformer Baselines for Autism Spectrum Disorder Facial Diagnosis"
@@ -46,6 +80,14 @@
   tags: [asd, vision]
   featured: true
   tagClass: "accent"
+  bibtex: |
+    @inproceedings{cao2023vitasd,
+      title={ViTASD: Robust Vision Transformer Baselines for Autism Spectrum Disorder Facial Diagnosis},
+      author={Cao, X. and Ye, W. and Sizikova, E. and Bai, X. and Coffee, M. and Zeng, H. and Cao, J.},
+      booktitle={IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+      year={2023},
+      url={https://ieeexplore.ieee.org/document/10094684}
+    }
 - year: "2022"
   venue: "IJCAI"
   title: "AggPose: Deep aggregation vision transformer for infant pose estimation"
@@ -54,6 +96,14 @@
   tags: [datasets, vision]
   featured: true
   tagClass: "accent"
+  bibtex: |
+    @inproceedings{cao2022aggpose,
+      title={AggPose: Deep Aggregation Vision Transformer for Infant Pose Estimation},
+      author={Cao, X. and Li, X. and Ma, L. and Huang, Y. and Feng, X. and Chen, Z. and Zeng, H. and Cao, J.},
+      booktitle={Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence (IJCAI)},
+      year={2022},
+      url={https://www.ijcai.org/proceedings/2022/700}
+    }
 - year: "2023"
   venue: "Preprint"
   title: "Receive, Reason, and React: Drive as You Say with LLMs in Autonomous Vehicles"
@@ -61,6 +111,14 @@
   url: "https://arxiv.org/abs/2310.08034"
   tags: [vision]
   tagClass: "signal"
+  bibtex: |
+    @article{cui2023receive,
+      title={Receive, Reason, and React: Drive as You Say with Large Language Models in Autonomous Vehicles},
+      author={Cui, C. and Ma, Y. and Cao, X. and Ye, W. and Wang, Z.},
+      journal={arXiv preprint arXiv:2310.08034},
+      year={2023},
+      url={https://arxiv.org/abs/2310.08034}
+    }
 - year: "2023"
   venue: "Preprint"
   title: "PIE: Simulating Disease Progression via Progressive Image Editing"
@@ -69,3 +127,11 @@
   tags: [vision]
   featured: true
   tagClass: "signal"
+  bibtex: |
+    @article{liang2023pie,
+      title={PIE: Simulating Disease Progression via Progressive Image Editing},
+      author={Liang, K. and Cao, X. and Liao, K. D. and Gao, T. and Ye, W. and Chen, Z. and Cao, J. and Nama, T. and Sun, J.},
+      journal={arXiv preprint arXiv:2309.11745},
+      year={2023},
+      url={https://arxiv.org/abs/2309.11745}
+    }
