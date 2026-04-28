@@ -7,6 +7,8 @@ external_url: "https://pediamedai.com/ai4chl/"
 badge: "Done"
 subtitle: "Bring pediatricians, psychologists, educationists, clinicians and AI researchers together to think about the future."
 gallery_alt_prefix: "ICLR 2025 AI4CHL"
+dates: "2025-04-27"
+location: "Singapore"
 description: "ICLR 2025 AI for Children workshop recap. Pediatricians, psychologists, educators, and AI researchers convened to discuss AI for pediatric development."
 gallery:
   - "img/workshops/iclr_workshop/iclr_1.jpg"

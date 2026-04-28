@@ -1,24 +1,28 @@
-{{- /* Render a single founder card. Expects a Page passed in via `.page`, or use a dict with: name, role, bio, image, link, num */ -}}
-{{- $p := . -}}
-{{- $name := $p.name -}}
-{{- $role := $p.role -}}
-{{- $bio := $p.bio -}}
-{{- $image := $p.image -}}
-{{- $link := $p.link -}}
-{{- $num := $p.num -}}
-{{- $initials := $p.initials -}}
+{{- /* Render a single founder card.
+       Args (dict): name, role, bio, image, link (external),
+       permalink (internal /team/{slug}/), num, initials. */ -}}
+{{- $name := .name -}}
+{{- $role := .role -}}
+{{- $bio := .bio -}}
+{{- $image := .image -}}
+{{- $link := .link -}}
+{{- $permalink := .permalink -}}
+{{- $num := .num -}}
+{{- $initials := .initials -}}
 
 <article class="team-cell">
   <div class="num">/{{ $num }}</div>
   <div class="avatar">
-    {{- if $image -}}
-      {{ partial "img.html" (dict "src" $image "alt" (printf "Portrait of %s" $name) "width" 480) }}
-    {{- else -}}
-      <div class="avatar-fallback" aria-hidden="true">{{ $initials }}</div>
-    {{- end -}}
+    {{- if $permalink -}}<a href="{{ $permalink }}" aria-label="{{ $name }} — full profile">{{- end -}}
+      {{- if $image -}}
+        {{ partial "img.html" (dict "src" $image "alt" (printf "Portrait of %s" $name) "width" 480) }}
+      {{- else -}}
+        <div class="avatar-fallback" aria-hidden="true">{{ $initials }}</div>
+      {{- end -}}
+    {{- if $permalink -}}</a>{{- end -}}
   </div>
-  <h3>{{ $name }}</h3>
+  <h3>{{- if $permalink -}}<a href="{{ $permalink }}" class="team-cell-link">{{ $name }}</a>{{- else -}}{{ $name }}{{- end -}}</h3>
   <div class="role">{{ $role }}</div>
   {{- with $bio }}<p class="bio">{{ . }}</p>{{ end }}
-  {{- with $link }}<div class="links"><a href="{{ . }}" rel="noopener noreferrer">Profile ↗</a></div>{{ end }}
+  {{- with $link }}<div class="links"><a href="{{ . }}" rel="noopener noreferrer">External profile ↗</a></div>{{ end }}
 </article>

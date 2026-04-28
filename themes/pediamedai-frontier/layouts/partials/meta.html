@@ -60,6 +60,33 @@
 <script type="application/ld+json">{{ $org | jsonify | safeJS }}</script>
 {{- end }}
 
+{{- /* Event JSON-LD for workshop pages — emitted when the page has
+       layout: "workshop" frontmatter (matches CVPR + ICLR). Fields
+       below are populated from existing frontmatter (badge, dates,
+       location, external_url) where present. */ -}}
+{{- if eq .Layout "workshop" }}
+  {{- $event := dict
+    "@context" "https://schema.org"
+    "@type" "Event"
+    "name" .Title
+    "url" .Permalink
+  -}}
+  {{- with .Params.subtitle -}}
+    {{- $event = merge $event (dict "description" .) -}}
+  {{- end -}}
+  {{- with .Params.dates -}}
+    {{- $event = merge $event (dict "startDate" .) -}}
+  {{- end -}}
+  {{- with .Params.location -}}
+    {{- $event = merge $event (dict "location" (dict "@type" "Place" "name" .)) -}}
+  {{- end -}}
+  {{- with .Params.external_url -}}
+    {{- $event = merge $event (dict "sameAs" .) -}}
+  {{- end -}}
+  {{- $event = merge $event (dict "organizer" (dict "@type" "Organization" "name" "PediaMed AI" "url" .Site.BaseURL)) -}}
+<script type="application/ld+json">{{ $event | jsonify | safeJS }}</script>
+{{- end }}
+
 {{- if and (eq .Section "publications") (eq .Kind "section") }}
   {{- $articles := slice -}}
   {{- range .Site.Data.publications -}}

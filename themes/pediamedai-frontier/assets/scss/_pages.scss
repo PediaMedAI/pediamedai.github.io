@@ -357,6 +357,16 @@
     font-size: 22px;
     letter-spacing: -0.02em;
     line-height: 1.1;
+
+    a.team-cell-link {
+      color: inherit;
+      transition: color 0.15s var(--ease);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--accent);
+      }
+    }
   }
 
   .role {
