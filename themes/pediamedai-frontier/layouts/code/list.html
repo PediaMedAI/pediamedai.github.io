@@ -10,8 +10,12 @@
     <div class="prose">
       {{ .Content }}
     </div>
+  </div>
+</section>
 
-    <h2 class="h2-section">Repositories</h2>
+<section class="section tinted">
+  <div class="container">
+    {{ partial "section-head.html" (dict "meta" "Repositories" "title" "Open <em>implementations.</em>") }}
     <div class="grid-2 reveal">
       {{ partial "card.html" (dict
         "href" "https://github.com/PediaMedAI/AggPose"

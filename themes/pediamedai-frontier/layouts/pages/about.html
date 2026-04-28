@@ -9,8 +9,12 @@
     <div class="prose">
       {{ .Content }}
     </div>
+  </div>
+</section>
 
-    <h2 class="h2-section">Partner institutions</h2>
+<section class="section tinted">
+  <div class="container">
+    {{ partial "section-head.html" (dict "meta" "Partners" "title" "Partner <em>institutions.</em>") }}
     <div class="grid-4 reveal" style="align-items: center;">
       <div class="partner-tile">
         {{ partial "img.html" (dict "src" "img/partners/shenzhen-childrens-hospital.png" "alt" "Shenzhen Children's Hospital" "width" 320) }}
