@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- $role := .Params.role -}}
+{{- $bio := .Params.bio -}}
+{{- $image := .Params.image -}}
+{{- $link := .Params.link -}}
+{{- $initials := .Params.initials -}}
+
+{{ partial "page-head.html" (dict
+  "kicker" "Team"
+  "title" .Title
+  "desc" $role)
+}}
+
+<section class="section">
+  <div class="container">
+    <article class="founder-page">
+      <div class="founder-page__avatar">
+        {{- if $image -}}
+          {{ partial "img.html" (dict "src" $image "alt" (printf "Portrait of %s" .Title) "width" 480) }}
+        {{- else -}}
+          <div class="avatar-fallback" aria-hidden="true">{{ $initials }}</div>
+        {{- end -}}
+      </div>
+
+      <div class="founder-page__body">
+        <p class="body-lg">{{ $bio }}</p>
+
+        {{- with .Content }}
+        <div class="prose">{{ . }}</div>
+        {{- end }}
+
+        <div class="actions mt-lg">
+          {{- with $link }}
+          <a class="btn" href="{{ . }}" target="_blank" rel="noopener">Profile <span class="arrow" aria-hidden="true">↗</span></a>
+          {{- end }}
+          <a class="btn ghost" href="{{ "/team/" | relURL }}">← All founders</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+{{- /* Person JSON-LD per founder. memberOf points back at the home
+       Organization so search engines connect the graph. */ -}}
+{{- $person := dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "name" .Title
+  "url" .Permalink
+  "jobTitle" $role
+  "memberOf" (dict
+    "@type" "Organization"
+    "name" "PediaMed AI"
+    "url" .Site.BaseURL)
+-}}
+{{- with $bio -}}
+  {{- $person = merge $person (dict "description" .) -}}
+{{- end -}}
+{{- with $link -}}
+  {{- $person = merge $person (dict "sameAs" (slice .)) -}}
+{{- end -}}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{ end }}
