@@ -736,6 +736,40 @@ footer {
   }
 }
 
+/* ——— Heading self-link anchors (markdown render-hook) ——— */
+.md-heading {
+  scroll-margin-top: 80px; /* don't hide under sticky nav on hash navigation */
+
+  .md-heading-link {
+    margin-left: 0.4em;
+    color: var(--ink-4);
+    font-family: var(--mono);
+    font-size: 0.7em;
+    font-weight: 400;
+    opacity: 0;
+    transition: opacity 0.15s var(--ease), color 0.15s var(--ease);
+    text-decoration: none;
+    border-bottom: 0;
+  }
+
+  &:hover .md-heading-link,
+  &:focus-within .md-heading-link {
+    opacity: 1;
+  }
+
+  .md-heading-link:hover,
+  .md-heading-link:focus-visible {
+    color: var(--accent);
+  }
+}
+
+/* On touch devices that can't hover, always show the marker so it's reachable. */
+@media (hover: none) {
+  .md-heading .md-heading-link {
+    opacity: 0.4;
+  }
+}
+
 /* ——— Generic prose for static pages ——— */
 .prose {
   font-size: 16px;

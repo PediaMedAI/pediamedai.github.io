@@ -9,6 +9,25 @@
   }
 }
 
+/* Cross-document view transitions — opt-in via meta in head.html.
+   Browsers without support fall through to instant page swaps. */
+@supports (view-transition-name: none) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.28s;
+    animation-timing-function: var(--ease);
+  }
+
+  /* Pin the nav across the transition so it doesn't crossfade with the
+     rest of the page — feels more like a SPA route change. */
+  .nav { view-transition-name: site-nav; }
+
+  ::view-transition-old(site-nav),
+  ::view-transition-new(site-nav) {
+    animation-duration: 0.18s;
+  }
+}
+
 /* ——— Hero pose-overlay sequential reveal (Direction B) ——— */
 @keyframes hero-fade {
   from { opacity: 0; }
@@ -72,5 +91,13 @@
   .hero-viz svg * {
     animation: none !important;
     transform: none !important;
+  }
+
+  /* Suppress cross-document view transitions under reduced-motion. */
+  @supports (view-transition-name: none) {
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
+    }
   }
 }

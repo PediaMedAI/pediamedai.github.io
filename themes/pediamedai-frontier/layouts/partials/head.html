@@ -4,6 +4,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
+  {{- /* Opt into Cross-Document View Transitions: browsers that support
+         it (Chrome 126+, Safari 18+) get a default crossfade between
+         same-origin navigations. Firefox + older browsers ignore. */ -}}
+  <meta name="view-transition" content="same-origin">
 
   <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
   {{- with $description }}<meta name="description" content="{{ . }}">{{ end }}
@@ -35,6 +39,13 @@
   {{- partial "meta.html" . }}
 
   <link rel="icon" type="image/png" href="{{ "/favicon-32x32bk.png" | absURL }}">
+  <link rel="apple-touch-icon" href="{{ "/images/home_logo.png" | absURL }}">
+  <link rel="manifest" href="{{ "/site.webmanifest" | absURL }}">
+  {{- /* theme-color matches the warm bone bg in light mode and the
+         dark surface in dark mode, so the mobile browser chrome
+         blends with the page. */ -}}
+  <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c0d0e" media="(prefers-color-scheme: dark)">
   {{- with .OutputFormats.Get "RSS" }}
   <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
   {{- end }}

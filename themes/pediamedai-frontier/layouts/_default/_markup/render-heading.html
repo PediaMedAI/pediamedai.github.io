@@ -1,0 +1,7 @@
+{{- /* Render markdown headings with a self-link anchor. Hugo's Goldmark
+       autoHeadingID generates the id; we wrap the text plus a hover-only
+       "#" link that points at #{id}. The link is decorative for sighted
+       users and exposed to assistive tech via aria-label. */ -}}
+{{- $level := .Level -}}
+{{- $id := .Anchor -}}
+<h{{ $level }} id="{{ $id }}" class="md-heading">{{ .Text | safeHTML }}{{ if $id }} <a class="md-heading-link" href="#{{ $id }}" aria-label="Link to {{ .PlainText }}">#</a>{{ end }}</h{{ $level }}>
