@@ -4,11 +4,11 @@
 
 {{ partial "ticker.html" . }}
 
-{{- /* —— Mission section —— */ -}}
+{{- /* —— Mission section — 01 —— */ -}}
 <section class="section">
   <div class="container">
     <div class="mission reveal">
-      <div class="meta eyebrow">— Mission</div>
+      <div class="meta eyebrow">— 01 / Mission</div>
       <div class="big">
         Pediatric medicine deserves the same generation of AI tools as oncology and radiology — designed for the bodies, faces, and rare diseases of children.
         <em>We are building them with clinicians, for children.</em>
@@ -17,25 +17,25 @@
 
     <div class="cap-row" style="margin-top: 64px;">
       <div class="cap reveal">
-        <div class="num">— 01 / Interpretable</div>
+        <div class="num">— Interpretable</div>
         <p>Every prediction comes with a faithful, clinician-readable explanation. No black boxes at the bedside.</p>
       </div>
       <div class="cap reveal">
-        <div class="num">— 02 / Pediatric-first</div>
+        <div class="num">— Pediatric-first</div>
         <p>Models trained, validated, and benchmarked on children — not adapted from adult datasets after the fact.</p>
       </div>
       <div class="cap reveal">
-        <div class="num">— 03 / Open by default</div>
+        <div class="num">— Open by default</div>
         <p>Datasets, weights, and methods released openly. Knowledge belongs to the field.</p>
       </div>
     </div>
   </div>
 </section>
 
-{{- /* —— Research preview —— */ -}}
-<section class="section">
+{{- /* —— Research preview — 02 (tinted) —— */ -}}
+<section class="section tinted">
   <div class="container">
-    {{ partial "section-head.html" (dict "meta" "Research" "title" "Three themes, <em>one promise</em>: AI a clinician can defend.") }}
+    {{ partial "section-head.html" (dict "index" "02" "meta" "Research" "title" "Three themes, <em>one promise</em>: AI a clinician can defend.") }}
 
     <div class="grid-3 reveal">
       {{ partial "card.html" (dict
@@ -70,10 +70,10 @@
   </div>
 </section>
 
-{{- /* —— Workshops —— */ -}}
+{{- /* —— Workshops — 03 —— */ -}}
 <section class="section">
   <div class="container">
-    {{ partial "section-head.html" (dict "meta" "Workshops" "title" "Workshops &amp; <em>clinical training.</em>") }}
+    {{ partial "section-head.html" (dict "index" "03" "meta" "Workshops" "title" "Workshops &amp; <em>clinical training.</em>") }}
 
     <div class="grid-2 reveal">
       {{ partial "card.html" (dict
@@ -100,11 +100,12 @@
   </div>
 </section>
 
-{{- /* —— CTA —— */ -}}
-<section class="section">
+{{- /* —— CTA — 04 (tinted) —— */ -}}
+<section class="section tinted">
   <div class="container">
     <div class="cta-band reveal">
       <div>
+        <div class="meta eyebrow" style="margin-bottom: 14px;">— 04 / Collaborate</div>
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Open to collaboration</span>
       </div>
       <div>

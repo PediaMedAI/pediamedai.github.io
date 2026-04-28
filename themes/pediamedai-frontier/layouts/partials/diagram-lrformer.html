@@ -1,0 +1,68 @@
+{{- /*
+  Research-theme diagram — Theme 01 (Foundations / LRFormer).
+  Conceptual illustration: a single-forward-pass prediction with a
+  confidence envelope ±σ(x) that widens as the input moves from
+  in-distribution to out-of-distribution, enclosed by a Lipschitz
+  bound (signal-colored cone). Teaches the value prop of LRFormer
+  without claiming any specific numerical result.
+
+  Theme-aware via CSS custom properties (var(--ink), var(--accent),
+  var(--signal), var(--rule), var(--ink-3/4)). No JS, no motion.
+*/ -}}
+<svg class="diagram diagram--lrformer" viewBox="0 0 720 540" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="diag-lrf-title diag-lrf-desc">
+  <title id="diag-lrf-title">LRFormer: Lipschitz-bounded calibrated uncertainty</title>
+  <desc id="diag-lrf-desc">A diagram showing a mean prediction curve μ(x) with a ±σ confidence envelope that is narrow over in-distribution inputs and widens for out-of-distribution inputs, enclosed by a straight Lipschitz cone. Illustrative; not a measured result.</desc>
+
+  {{- /* Header lockup */ -}}
+  <g font-family="var(--mono)" letter-spacing="0.1em">
+    <text x="40" y="46" font-size="11" fill="var(--ink-3)">LRFORMER · UAI 2023</text>
+    <text x="40" y="64" font-size="9" fill="var(--ink-4)">LIPSCHITZ-BOUNDED · SINGLE FORWARD PASS</text>
+  </g>
+
+  {{- /* Axes */ -}}
+  <g stroke="var(--rule)" stroke-width="0.75" fill="none">
+    <line x1="60"  y1="440" x2="660" y2="440"></line>
+    <line x1="60"  y1="120" x2="60"  y2="440"></line>
+  </g>
+  <text x="48" y="130" font-family="var(--mono)" font-size="10" fill="var(--ink-3)" text-anchor="end">σ</text>
+  <text x="660" y="460" font-family="var(--mono)" font-size="10" fill="var(--ink-3)" text-anchor="end">x →</text>
+
+  {{- /* Mid divider: in-dist | OOD */ -}}
+  <line x1="360" y1="120" x2="360" y2="440" stroke="var(--ink-4)" stroke-width="0.75" stroke-dasharray="3 4" opacity="0.7"></line>
+  <g font-family="var(--mono)" font-size="10" letter-spacing="0.1em" fill="var(--ink-3)">
+    <text x="200" y="468" text-anchor="middle">IN-DISTRIBUTION</text>
+    <text x="510" y="468" text-anchor="middle">OUT-OF-DISTRIBUTION</text>
+  </g>
+
+  {{- /* Lipschitz cone — straight envelope from a focal point on the
+         left, opening rightward. Encloses the σ envelope below. */ -}}
+  <g stroke="var(--signal)" stroke-width="0.75" stroke-dasharray="2 4" stroke-opacity="0.7" fill="none">
+    <line x1="60" y1="248" x2="660" y2="124"></line>
+    <line x1="60" y1="352" x2="660" y2="476"></line>
+  </g>
+  <text x="664" y="124" font-family="var(--mono)" font-size="9" letter-spacing="0.08em" fill="var(--signal)">LIPSCHITZ BOUND</text>
+
+  {{- /* ±σ envelope (filled + dashed edges). Tight on the left,
+         widening on the right to teach calibrated uncertainty. */ -}}
+  <path d="M 60 290 Q 210 286 360 280 Q 510 232 660 200 L 660 400 Q 510 370 360 320 Q 210 314 60 310 Z"
+        fill="var(--accent)" fill-opacity="0.10" stroke="none"></path>
+  <path d="M 60 290 Q 210 286 360 280 Q 510 232 660 200" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 3" stroke-opacity="0.7"></path>
+  <path d="M 60 310 Q 210 314 360 320 Q 510 370 660 400" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 3" stroke-opacity="0.7"></path>
+
+  {{- /* Mean prediction μ(x) — solid */ -}}
+  <path d="M 60 300 Q 210 300 360 300 Q 510 298 660 296" fill="none" stroke="var(--ink)" stroke-width="1.5"></path>
+
+  {{- /* Annotations */ -}}
+  <g font-family="var(--mono)" font-size="10" letter-spacing="0.06em">
+    {{- /* μ(x) callout */ -}}
+    <line x1="200" y1="252" x2="200" y2="298" stroke="var(--ink-3)" stroke-width="0.5" stroke-dasharray="2 2"></line>
+    <text x="200" y="244" text-anchor="middle" fill="var(--ink-2)">μ(x)</text>
+
+    {{- /* ±σ(x) callout */ -}}
+    <line x1="600" y1="220" x2="600" y2="200" stroke="var(--accent)" stroke-width="0.5" stroke-dasharray="2 2"></line>
+    <text x="600" y="192" text-anchor="middle" fill="var(--accent)">± σ(x)</text>
+  </g>
+
+  {{- /* Footer caption */ -}}
+  <text x="40" y="520" font-family="var(--mono)" font-size="9" letter-spacing="0.08em" fill="var(--ink-4)">ILLUSTRATIVE · CONFIDENCE WIDENS WITH DISTRIBUTIONAL SHIFT</text>
+</svg>

@@ -11,7 +11,7 @@
     {{- /* Theme 01 — Foundations / LRFormer */ -}}
     <article class="theme reveal">
       <div class="visual">
-        {{ partial "img.html" (dict "src" "img/research/lrformer.jpg" "alt" "LRFormer architecture sketch" "width" 720) }}
+        {{ partial "diagram-lrformer.html" . }}
       </div>
       <div>
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Theme · Foundations</span>
@@ -27,7 +27,7 @@
     {{- /* Theme 02 — Applied / ViTASD */ -}}
     <article class="theme reveal">
       <div class="visual">
-        {{ partial "img.html" (dict "src" "img/research/vitasd.jpg" "alt" "ViTASD pipeline" "width" 720) }}
+        {{ partial "diagram-vitasd.html" . }}
       </div>
       <div>
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Theme · Applied</span>
@@ -43,7 +43,7 @@
     {{- /* Theme 03 — Open / AggPose */ -}}
     <article class="theme reveal">
       <div class="visual">
-        {{ partial "img.html" (dict "src" "img/research/aggpose.jpg" "alt" "AggPose multi-scale aggregation" "width" 720) }}
+        {{ partial "diagram-aggpose.html" . }}
       </div>
       <div>
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Theme · Open</span>
@@ -59,7 +59,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section tinted">
   <div class="container">
     {{ partial "section-head.html" (dict "meta" "Selected Works" "title" "Recent <em>publications &amp; preprints.</em>") }}
     {{- $featured := where .Site.Data.publications "featured" true -}}

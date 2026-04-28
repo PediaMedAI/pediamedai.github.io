@@ -1,5 +1,10 @@
-{{- /* Two-column section header: 200px label / 1fr title. Pass `meta` and `title` (with HTML allowed). */ -}}
+{{- /* Two-column section header: 200px label / 1fr title.
+       Args:
+         meta   (required)  short label, e.g. "Research"
+         title  (required)  HTML allowed
+         index  (optional)  e.g. "02" — renders as "— 02 / Research"
+                            to give the page a research-paper cadence. */ -}}
 <div class="section-head">
-  <div class="meta eyebrow">— {{ .meta }}</div>
+  <div class="meta eyebrow">— {{ with .index }}{{ . }} / {{ end }}{{ .meta }}</div>
   <h2>{{ .title | safeHTML }}</h2>
 </div>

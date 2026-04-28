@@ -1,0 +1,127 @@
+{{- /*
+  Research-theme diagram — Theme 03 (Open / AggPose).
+  Conceptual illustration: a 4-level feature pyramid (1× / ½ / ¼ / ⅛)
+  on the left feeds an aggregation node, which in turn drives a
+  15-keypoint infant pose schematic on the right. The pose graph
+  intentionally rhymes with the homepage hero artifact (same 15
+  keypoints, same skeleton edges) — this connects the Research-page
+  story back to the hero "instrument."
+
+  Strict allow-list:
+   – No specific dataset size, no benchmark numbers.
+   – Pose figure is a generic skeletal abstraction (no infant photo).
+*/ -}}
+<svg class="diagram diagram--aggpose" viewBox="0 0 720 540" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="diag-agg-title diag-agg-desc">
+  <title id="diag-agg-title">AggPose: multi-scale feature aggregation for infant pose</title>
+  <desc id="diag-agg-desc">A diagram showing four stacked feature maps at decreasing resolutions on the left, lines converging into an aggregation node in the center, and a generic 15-keypoint infant skeleton on the right. The pose graph mirrors the homepage hero artifact. Illustrative; not a measured result.</desc>
+
+  {{- /* Header lockup */ -}}
+  <g font-family="var(--mono)" letter-spacing="0.1em">
+    <text x="40" y="46" font-size="11" fill="var(--ink-3)">AGGPOSE · IJCAI 2022</text>
+    <text x="40" y="64" font-size="9" fill="var(--ink-4)">MULTI-SCALE · 15-LANDMARK INFANT POSE</text>
+  </g>
+
+  {{- /* Feature pyramid — bottom-up, large → small */ -}}
+  <g>
+    {{- /* 1× (largest) — at bottom */ -}}
+    <rect x="40" y="380" width="160" height="60" fill="var(--bg-tinted)" stroke="var(--ink-3)" stroke-width="0.75"></rect>
+    <g stroke="var(--ink-4)" stroke-width="0.4" opacity="0.6">
+      {{- range seq 1 7 }}<line x1="{{ add 40 (mul . 20) }}" y1="380" x2="{{ add 40 (mul . 20) }}" y2="440"></line>{{ end }}
+      {{- range seq 1 2 }}<line x1="40" y1="{{ add 380 (mul . 20) }}" x2="200" y2="{{ add 380 (mul . 20) }}"></line>{{ end }}
+    </g>
+    <text x="210" y="416" font-family="var(--mono)" font-size="10" letter-spacing="0.06em" fill="var(--ink-3)">1×</text>
+
+    {{- /* ½ */ -}}
+    <rect x="60" y="320" width="120" height="46" fill="var(--bg-tinted)" stroke="var(--ink-3)" stroke-width="0.75"></rect>
+    <g stroke="var(--ink-4)" stroke-width="0.4" opacity="0.55">
+      {{- range seq 1 3 }}<line x1="{{ add 60 (mul . 30) }}" y1="320" x2="{{ add 60 (mul . 30) }}" y2="366"></line>{{ end }}
+      <line x1="60" y1="343" x2="180" y2="343"></line>
+    </g>
+    <text x="190" y="348" font-family="var(--mono)" font-size="10" letter-spacing="0.06em" fill="var(--ink-3)">½</text>
+
+    {{- /* ¼ */ -}}
+    <rect x="80" y="268" width="90" height="34" fill="var(--bg-tinted)" stroke="var(--ink-3)" stroke-width="0.75"></rect>
+    <g stroke="var(--ink-4)" stroke-width="0.4" opacity="0.5">
+      <line x1="125" y1="268" x2="125" y2="302"></line>
+      <line x1="80" y1="285" x2="170" y2="285"></line>
+    </g>
+    <text x="180" y="290" font-family="var(--mono)" font-size="10" letter-spacing="0.06em" fill="var(--ink-3)">¼</text>
+
+    {{- /* ⅛ (smallest) */ -}}
+    <rect x="100" y="226" width="60" height="22" fill="var(--bg-tinted)" stroke="var(--ink-3)" stroke-width="0.75"></rect>
+    <line x1="130" y1="226" x2="130" y2="248" stroke="var(--ink-4)" stroke-width="0.4" opacity="0.5"></line>
+    <text x="170" y="241" font-family="var(--mono)" font-size="10" letter-spacing="0.06em" fill="var(--ink-3)">⅛</text>
+  </g>
+
+  {{- /* Pyramid label */ -}}
+  <text x="40" y="468" font-family="var(--mono)" font-size="9" letter-spacing="0.08em" fill="var(--ink-4)">MULTI-SCALE FEATURES</text>
+
+  {{- /* Aggregation lines from each map's right edge → hex node */ -}}
+  <g stroke="var(--ink-3)" stroke-width="0.75" stroke-dasharray="3 3" stroke-opacity="0.65" fill="none">
+    <path d="M 200 410 Q 270 380 290 290"></path>
+    <path d="M 180 343 Q 250 320 290 285"></path>
+    <path d="M 170 285 Q 230 282 290 280"></path>
+    <path d="M 160 237 Q 230 250 290 270"></path>
+  </g>
+
+  {{- /* Aggregation node — hexagon */ -}}
+  <g>
+    <polygon points="328,280 314,304 286,304 272,280 286,256 314,256"
+             fill="var(--bg-elevated)" stroke="var(--ink-2)" stroke-width="1"></polygon>
+    <text x="300" y="284" text-anchor="middle" font-family="var(--mono)" font-size="9" letter-spacing="0.08em" fill="var(--ink-2)">AGG</text>
+  </g>
+
+  {{- /* Arrow → pose */ -}}
+  <g stroke="var(--ink-2)" stroke-width="1" fill="none">
+    <line x1="332" y1="280" x2="378" y2="280"></line>
+  </g>
+  <polygon points="378,276 378,284 386,280" fill="var(--ink-2)"></polygon>
+
+  {{- /* Pose schematic on the right — 15 keypoints + 14 bones,
+         scaled-down rhyme of the hero artifact (same skeleton). */ -}}
+  <g>
+    {{- /* Bones first (under the keypoints) */ -}}
+    <g stroke="var(--ink-2)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.7">
+      {{- /* head→neck */ -}}<line x1="560" y1="131" x2="560" y2="186"></line>
+      {{- /* neck→lsh */ -}}<line x1="560" y1="186" x2="515" y2="204"></line>
+      {{- /* neck→rsh */ -}}<line x1="560" y1="186" x2="605" y2="204"></line>
+      {{- /* lsh→lel */ -}}<line x1="515" y1="204" x2="478" y2="267"></line>
+      {{- /* rsh→rel */ -}}<line x1="605" y1="204" x2="642" y2="267"></line>
+      {{- /* lel→lwr */ -}}<line x1="478" y1="267" x2="460" y2="331"></line>
+      {{- /* rel→rwr */ -}}<line x1="642" y1="267" x2="660" y2="331"></line>
+      {{- /* neck→torso */ -}}<line x1="560" y1="186" x2="560" y2="267"></line>
+      {{- /* torso→lhp */ -}}<line x1="560" y1="267" x2="533" y2="322"></line>
+      {{- /* torso→rhp */ -}}<line x1="560" y1="267" x2="587" y2="322"></line>
+      {{- /* lhp→lkn */ -}}<line x1="533" y1="322" x2="519" y2="386"></line>
+      {{- /* rhp→rkn */ -}}<line x1="587" y1="322" x2="601" y2="386"></line>
+      {{- /* lkn→lan */ -}}<line x1="519" y1="386" x2="510" y2="449"></line>
+      {{- /* rkn→ran */ -}}<line x1="601" y1="386" x2="610" y2="449"></line>
+    </g>
+
+    {{- /* Keypoints (on top of bones) — accent for high-confidence,
+           signal for the wrists (the hero's lowest-confidence pair). */ -}}
+    <g>
+      <circle cx="560" cy="131" r="3" fill="var(--accent)"></circle>
+      <circle cx="560" cy="186" r="3" fill="var(--accent)"></circle>
+      <circle cx="515" cy="204" r="3" fill="var(--accent)"></circle>
+      <circle cx="605" cy="204" r="3" fill="var(--accent)"></circle>
+      <circle cx="478" cy="267" r="3" fill="var(--accent)"></circle>
+      <circle cx="642" cy="267" r="3" fill="var(--accent)"></circle>
+      <circle cx="460" cy="331" r="3" fill="var(--signal)"></circle>
+      <circle cx="660" cy="331" r="3" fill="var(--signal)"></circle>
+      <circle cx="560" cy="267" r="3" fill="var(--accent)"></circle>
+      <circle cx="533" cy="322" r="3" fill="var(--accent)"></circle>
+      <circle cx="587" cy="322" r="3" fill="var(--accent)"></circle>
+      <circle cx="519" cy="386" r="3" fill="var(--accent)"></circle>
+      <circle cx="601" cy="386" r="3" fill="var(--accent)"></circle>
+      <circle cx="510" cy="449" r="3" fill="var(--accent)"></circle>
+      <circle cx="610" cy="449" r="3" fill="var(--accent)"></circle>
+    </g>
+  </g>
+
+  {{- /* Pose label */ -}}
+  <text x="438" y="486" font-family="var(--mono)" font-size="9" letter-spacing="0.08em" fill="var(--ink-3)">POSE · 15 LANDMARKS</text>
+
+  {{- /* Footer caption */ -}}
+  <text x="40" y="520" font-family="var(--mono)" font-size="9" letter-spacing="0.08em" fill="var(--ink-4)">ILLUSTRATIVE · MULTI-SCALE FEATURES → UNIFIED POSE OUTPUT</text>
+</svg>

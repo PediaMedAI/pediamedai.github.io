@@ -263,6 +263,14 @@
       height: 100%;
       object-fit: cover;
     }
+
+    /* Inline-SVG research diagrams. The diagram viewBox is 720×540
+       (4:3) so it fits the visual container without distortion. */
+    .diagram {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
   }
 
   .theme-title {
