@@ -4,7 +4,7 @@
 
     <div class="row">
       <div class="col">
-        <h5>Lab</h5>
+        <h2 class="footer-col-title">Lab</h2>
         <a href="{{ "/research/" | relURL }}">Research</a>
         <a href="{{ "/publications/" | relURL }}">Publications</a>
         <a href="{{ "/team/" | relURL }}">Team</a>
@@ -12,13 +12,13 @@
         <a href="{{ "/workshops/" | relURL }}">Workshops</a>
       </div>
       <div class="col">
-        <h5>About</h5>
+        <h2 class="footer-col-title">About</h2>
         <a href="{{ "/about/" | relURL }}">About</a>
         <a href="{{ "/contact/" | relURL }}">Contact</a>
         <a href="{{ "/code-of-conduct/" | relURL }}">Code of conduct</a>
       </div>
       <div class="col">
-        <h5>Connect</h5>
+        <h2 class="footer-col-title">Connect</h2>
         {{- with .Site.Params.contact_email }}
         <a href="mailto:{{ . }}">{{ . }}</a>
         {{- end }}
@@ -28,7 +28,7 @@
         <a href="https://github.com/pediamedai">GitHub</a>
       </div>
       <div class="col">
-        <h5>Lab note</h5>
+        <h2 class="footer-col-title">Lab note</h2>
         <p style="font-size: 14px; color: color-mix(in oklab, var(--bg) 70%, transparent); line-height: 1.5; margin: 0;">Research updates and clinical partner stories. Newsletter coming later — for now, reach us by email.</p>
       </div>
     </div>

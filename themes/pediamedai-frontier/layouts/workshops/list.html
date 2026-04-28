@@ -7,6 +7,7 @@
 
 <section class="section">
   <div class="container">
+    {{ partial "section-head.html" (dict "meta" "Programs" "title" "Past &amp; <em>planned.</em>") }}
     <div class="grid-2 reveal">
       {{ partial "card.html" (dict
         "href" (relURL "/cvpr/")

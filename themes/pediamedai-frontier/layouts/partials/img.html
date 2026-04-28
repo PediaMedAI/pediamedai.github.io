@@ -29,11 +29,11 @@
 {{- $r := resources.Get $src -}}
 {{- if $r -}}
   {{- if eq $r.MediaType.SubType "svg" -}}
-    <img src="{{ $r.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
+    <img src="{{ $r.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async" width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
   {{- else -}}
     {{- $resized := $r.Resize (printf "%dx webp q%d" $width $quality) -}}
-    <img src="{{ $resized.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" width="{{ $resized.Width }}" height="{{ $resized.Height }}"{{ with $class }} class="{{ . }}"{{ end }}>
+    <img src="{{ $resized.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async" width="{{ $resized.Width }}" height="{{ $resized.Height }}"{{ with $class }} class="{{ . }}"{{ end }}>
   {{- end -}}
 {{- else -}}
-  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="{{ $loading }}" width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async" width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
 {{- end -}}

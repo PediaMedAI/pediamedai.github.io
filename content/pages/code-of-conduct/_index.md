@@ -2,10 +2,11 @@
 title: "Code of conduct"
 date: 2018-12-06T09:29:16+10:00
 url: "/code-of-conduct/"
+description: "Code of conduct for PediaMed AI: inclusivity, professionalism, scientific integrity, authorship, and conflicts-of-interest commitments."
 ---
 _____
 
-#### Purpose of document
+## Purpose of document
 - A code of conduct is a statement of understanding among ourselves about expectations of behavior and values, and as an external statement, reflects our commitments to the community.
 
 - This code of conduct applies to all members of PediaMedAI without exception. We also expect external collaborators to comply with this code when interacting with PediaMedAI, and we extend guidelines (such as inclusion for authorship) to external collaborators.
@@ -15,7 +16,7 @@ _____
 - Management committee (Xu Cao) will deal with any issues arising: 
 
 
-#### Inclusivity
+## Inclusivity
 
 - Enjoyable, high-quality research can only be conducted when you **feel safe, secure, and supported**. All group members are thus dedicated to a **harassment-free experience for everyone, regardless of gender identity and expression, sexual orientation, disability, physical appearance, body size, race, age, and/or religion [^1] (or lack thereof), family status or socio-economic status**. The group members also recognize that some of those biases can be unconscious and creep into different aspects of Academic life and research, such as meetings, publications, citations, hiring, etc. Members should strive to consciously combat those biases and bring awareness to others.
 
@@ -27,7 +28,7 @@ _____
 
 - The PediaMedAI team follows the principle that the whole is greater than the sum of its parts. As such all members are encouraged to communicate openly and frequently about their research, activities and the obstacles they might encounter along the way.
 
-#### Professionalism and conduct
+## Professionalism and conduct
 
 - Be **respectful in all interactions**, communications, and actions.
 
@@ -58,7 +59,7 @@ _____
 
 - **Avoid misunderstandings and exclusion**. Open communication of intent and understanding are key to avoiding misunderstandings and inadvertent exclusion.
 
-#### Team meetings 
+## Team meetings 
 
 - The team has limited occasions to meet and interact with each other, so it is particularly important to make these opportunities as effective as possible for everyone. 
 
@@ -74,7 +75,7 @@ _____
 	- **Avoid side conversations**. This applies to conversations in the chat window while videoconferencing. 
 	- Additional points/comments that one prefers not to raise verbally during the meeting and side conversations on a specific topic are best reserved for our Slack channel **after the meeting is over**. 
 
-#### Unethical and/or unacceptable behavior
+## Unethical and/or unacceptable behavior
 
 - **Unacceptable behaviors include racism, hate speech, harassment, threats, unwelcome sexual attention or contact, personal attacks.**
 
@@ -82,10 +83,11 @@ _____
 
 - Watch out for [microaggressions](https://en.wikipedia.org/wiki/Microaggression). _Be aware that your actions can be hurtful to others or contribute to a negative environment even if you had no intent of harm_. Listen. Offer a genuine apology. Commit to learning and doing better. [^2]
 
-- Sanctions or consequences
-	- The management committee takes inappropriate behavior seriously and **persistent violations of the code** may result in being ejected from the group, loss of funding, and/or notifying the employing institution.
+### Sanctions or consequences
 
-#### Authorship
+The management committee takes inappropriate behavior seriously and **persistent violations of the code** may result in being ejected from the group, loss of funding, and/or notifying the employing institution.
+
+## Authorship
 
 - We will follow the **[Vancouver Group recommendations](http://www.icmje.org/recommendations/)** (VGR) on authorship for all PediaMedAI publications and products (including software, datasets and presentations). The authorship guidelines apply to both PediaMedAI members and external collaborators.
 
@@ -97,7 +99,7 @@ _____
 
 - Appropriate acknowledgement of PediaMedAI is expected in publications and products. Prior to publications or any external communications, authors need to have written approval from NYU on whether our Grantor would like to be acknowledged. NYU will then ask them. If they do, the Grantor will provide the manner and wording of such acknowledgment. Should a publisher for an academic publication require the identification of the Grantor, you may identify them to the extent required by such publisher, as long as you give NYU at least 15 days advance notice to ask them. 
 
-#### Scientific integrity
+## Scientific integrity
 
 - Research should be evidence based and presented **accurately and honestly**, without misleading statements or withholding of pertinent information.
 
@@ -113,7 +115,7 @@ _____
 
 - PediaMedAI scientific impact will rise higher if all its parts are lifted higher. As such, **members are encouraged to amplify each other’s contributions to the project** when opportunities arise (after checking for permissions). 
 
-#### Conflicts of interest
+## Conflicts of interest
 
 - Many members of PediaMedAI are involved in other projects or have collaborators conducting related research. If a research idea being actively pursued by PediaMedAI happens to overlap with a colleague or collaborator of PediaMedAI then there can be a conflict of interest, or a perception of such even if none exists. 
 **We expect members to recognize or anticipate these situations and to inform PediaMedAI of any overlap** to avoid problems arising, discussing them with the management committee. 

@@ -19,10 +19,15 @@
     {{- end }}
 
     {{- if gt (len $gallery) 0 }}
+    {{- $altPrefix := default $.Title $.Params.gallery_alt_prefix -}}
     <h2 class="h2-section">Gallery</h2>
     <div class="workshop-gallery">
-      {{- range $gallery }}
-      <img src="{{ . | relURL }}" alt="" loading="lazy">
+      {{- range $i, $path := $gallery }}
+        {{ partial "img.html" (dict
+          "src" $path
+          "alt" (printf "%s — photo %d" $altPrefix (add $i 1))
+          "width" 800)
+        }}
       {{- end }}
     </div>
     {{- end }}

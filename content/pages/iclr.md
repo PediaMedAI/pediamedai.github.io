@@ -6,13 +6,15 @@ permalink: "/iclr/"
 external_url: "https://pediamedai.com/ai4chl/"
 badge: "Done"
 subtitle: "Bring pediatricians, psychologists, educationists, clinicians and AI researchers together to think about the future."
+gallery_alt_prefix: "ICLR 2025 AI4CHL"
+description: "ICLR 2025 AI for Children workshop recap. Pediatricians, psychologists, educators, and AI researchers convened to discuss AI for pediatric development."
 gallery:
-  - "images/workshops/iclr_workshop/iclr_1.jpg"
-  - "images/workshops/iclr_workshop/iclr_2.jpg"
-  - "images/workshops/iclr_workshop/iclr_3.jpg"
-  - "images/workshops/iclr_workshop/iclr_4.jpg"
-  - "images/workshops/iclr_workshop/iclr_5.jpg"
-  - "images/workshops/iclr_workshop/iclr_6.jpg"
+  - "img/workshops/iclr_workshop/iclr_1.jpg"
+  - "img/workshops/iclr_workshop/iclr_2.jpg"
+  - "img/workshops/iclr_workshop/iclr_3.jpg"
+  - "img/workshops/iclr_workshop/iclr_4.jpg"
+  - "img/workshops/iclr_workshop/iclr_5.jpg"
+  - "img/workshops/iclr_workshop/iclr_6.jpg"
 ---
 
 Current AI research and applications often prioritize adult-focused solutions, while progress in AI designed specifically for children's development, health, and education has lagged behind. The **ICLR 2025 Workshop on AI for Children (AI4CHL)** aimed to spotlight this issue and bring together researchers from diverse fields to discuss the future of AI design and its applications for children.

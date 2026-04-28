@@ -369,11 +369,12 @@
     justify-content: center;
   }
 
-  h4 {
+  .callout-title {
     font-family: var(--serif);
     font-weight: 400;
     font-size: 22px;
     letter-spacing: -0.015em;
+    margin: 0;
   }
 }
 

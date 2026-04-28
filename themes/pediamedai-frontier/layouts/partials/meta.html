@@ -19,6 +19,9 @@
 {{- with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
 
 <link rel="canonical" href="{{ .Permalink }}">
+{{- if eq .Kind "404" }}
+<meta name="robots" content="noindex">
+{{- end }}
 
 {{- if .IsHome }}
 {{- /* Multi-typed: PediaMed AI is a research-and-medical organization
