@@ -4,6 +4,12 @@ title = "PediaMed AI"
 themesDir = "themes"
 theme = "pediamedai-frontier"
 enableEmoji = true
+enableGitInfo = true
+
+# /pages/ is an internal organizational namespace (children re-route to /, /about/,
+# /contact/, /iclr/, /code-of-conduct/). Drop the section index, taxonomy lists,
+# and empty term pages so they don't appear in the sitemap or get indexed.
+disableKinds = ["taxonomy", "term"]
 
 [markup.goldmark.renderer]
   unsafe = true

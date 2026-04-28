@@ -50,3 +50,5 @@
 <script src="{{ $pubFilter.RelPermalink }}" integrity="{{ $pubFilter.Data.Integrity }}" defer></script>
 {{- $bibCopy := resources.Get "js/bib-copy.js" | minify | fingerprint }}
 <script src="{{ $bibCopy.RelPermalink }}" integrity="{{ $bibCopy.Data.Integrity }}" defer></script>
+{{- $prefetch := resources.Get "js/prefetch.js" | minify | fingerprint }}
+<script src="{{ $prefetch.RelPermalink }}" integrity="{{ $prefetch.Data.Integrity }}" defer></script>

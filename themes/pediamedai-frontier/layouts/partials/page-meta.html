@@ -1,0 +1,15 @@
+{{- /* Render a small meta line under the page head: "X min read · Last
+       updated DATE". Auto-shows when reading time is ≥ 4 minutes;
+       force-show with showMeta: true in front matter; suppress with
+       showMeta: false. */ -}}
+{{- $force := index .Params "showMeta" -}}
+{{- $autoShow := ge .ReadingTime 4 -}}
+{{- if and (ne $force false) (or $force $autoShow) -}}
+  {{- $rt := .ReadingTime -}}
+  {{- $hasDate := and .Lastmod (not .Lastmod.IsZero) -}}
+  <div class="page-meta label-mono">
+    {{- with $rt }}<span>{{ . }} min read</span>{{ end -}}
+    {{- if and $rt $hasDate }}<span aria-hidden="true"> · </span>{{ end -}}
+    {{- if $hasDate }}<span>Last updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "Jan 2, 2006" }}</time></span>{{ end -}}
+  </div>
+{{- end -}}

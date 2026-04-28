@@ -419,6 +419,18 @@
   }
 }
 
+/* ——— Page meta strip (reading time + last updated) ——— */
+.page-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: -16px 0 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--ink-3);
+  font-size: 11px;
+}
+
 /* ——— Avatar fallback (typographic initial mark) ——— */
 .avatar-fallback {
   width: 100%;
