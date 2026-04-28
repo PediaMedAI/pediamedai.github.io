@@ -78,13 +78,13 @@
     {{- end }}
   </g>
 
-  {{- /* —— Skeleton bones (driven by data/hero-pose.yaml bones) —— */ -}}
+  {{- /* —— Skeleton bones (driven by data/hero_pose.yaml bones) —— */ -}}
   <g class="hero-bones" stroke="var(--ink-2)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.7">
     {{- range $data.bones }}
       {{- $a := index $byId (index . 0) }}
       {{- $b := index $byId (index . 1) }}
       {{- if and $a $b }}
-    <line x1="{{ $a.x }}" y1="{{ $a.y }}" x2="{{ $b.x }}" y2="{{ $b.y }}"></line>
+    <line x1="{{ $a.cx }}" y1="{{ $a.cy }}" x2="{{ $b.cx }}" y2="{{ $b.cy }}"></line>
       {{- end }}
     {{- end }}
   </g>
@@ -95,7 +95,7 @@
       {{- $isHigh := ge .conf 0.85 }}
       {{- $r := mul (sub 1 .conf) 60 }}
       {{- if lt $r 6.0 }}{{ $r = 6.0 }}{{ end }}
-      <circle cx="{{ .x }}" cy="{{ .y }}" r="{{ $r }}" stroke="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}" stroke-opacity="0.55" stroke-dasharray="2 3"></circle>
+      <circle cx="{{ .cx }}" cy="{{ .cy }}" r="{{ $r }}" stroke="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}" stroke-opacity="0.55" stroke-dasharray="2 3"></circle>
     {{- end }}
   </g>
 
@@ -103,7 +103,7 @@
   <g class="hero-keypoints">
     {{- range $kps }}
       {{- $isHigh := ge .conf 0.85 }}
-      <circle cx="{{ .x }}" cy="{{ .y }}" r="3" fill="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}"></circle>
+      <circle cx="{{ .cx }}" cy="{{ .cy }}" r="3" fill="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}"></circle>
     {{- end }}
   </g>
 

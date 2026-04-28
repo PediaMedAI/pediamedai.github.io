@@ -28,15 +28,19 @@
   }
 }
 
-/* ——— Hero pose-overlay sequential reveal (Direction B) ——— */
+/* ——— Hero pose-overlay sequential reveal (Direction B) ———
+   Keyframes only specify the `from` state. The browser uses each
+   element's COMPUTED opacity for the implicit `to` state, so SVG
+   presentation attributes like opacity="0.18" on the percentile
+   bands or opacity="0.7" on the bones are preserved. (An explicit
+   `to { opacity: 1 }` would override them.) */
 @keyframes hero-fade {
   from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 @keyframes hero-fade-up {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to { transform: translateY(0); }
 }
 
 .hero-viz svg {
