@@ -9,6 +9,10 @@
 #   tagClass                            — "" | "accent" | "signal", venue-color hint.
 #   bibtex                              — multi-line BibTeX entry; surfaced via
 #                                         the "Cite" disclosure on /publications/.
+#   repo                                — optional "owner/name" GitHub path; renders
+#                                         a "Code ↗" chip next to "Cite" on the
+#                                         publications page so researchers can grab
+#                                         the implementation without hopping pages.
 - year: "2024"
   venue: "WACV"
   title: "A Survey on Multimodal Large Language Models for Autonomous Driving"
@@ -64,6 +68,7 @@
   title: "Mitigating Transformer Overconfidence via Lipschitz Regularization"
   authors: "Ye W, Ma Y, Cao X, Tang K."
   url: "https://proceedings.mlr.press/v216/ye23a.html"
+  repo: "IrohXu/Lipschitz-Transformer-PyTorch"
   tags: [calibration]
   featured: true
   tagClass: "accent"
@@ -80,6 +85,7 @@
   title: "ViTASD: Robust Vision Transformer Baselines for Autism Spectrum Disorder Facial Diagnosis"
   authors: "Cao X, Ye W, Sizikova E, Bai X, Coffee M, Zeng H, Cao J."
   url: "https://ieeexplore.ieee.org/document/10094684"
+  repo: "PediaMedAI/ViTASD"
   tags: [asd, vision]
   featured: true
   tagClass: "accent"
@@ -96,6 +102,7 @@
   title: "AggPose: Deep aggregation vision transformer for infant pose estimation"
   authors: "Cao X, Li X, Ma L, Huang Y, Feng X, Chen Z, Zeng H, Cao J."
   url: "https://www.ijcai.org/proceedings/2022/700"
+  repo: "PediaMedAI/AggPose"
   tags: [datasets, vision]
   featured: true
   tagClass: "accent"
@@ -129,6 +136,7 @@
   authors: "Liang K, Cao X, Liao KD, Gao T, Ye W, Chen Z, Cao J, Nama T, Sun J."
   url: "https://arxiv.org/abs/2309.11745"
   arxiv: "2309.11745"
+  repo: "PediaMedAI/PIE"
   tags: [vision]
   featured: true
   tagClass: "signal"

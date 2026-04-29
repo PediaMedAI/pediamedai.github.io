@@ -37,15 +37,22 @@
         <div class="pub-body">
           <a class="t" href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}<span class="ext" aria-hidden="true"> ↗</span></a>
           <div class="a">{{ .authors }}</div>
-          {{- with .bibtex }}
-          <details class="pub-bib">
-            <summary>Cite</summary>
-            <div class="pub-bib-body">
-              <pre><code>{{ . }}</code></pre>
-              <button type="button" class="btn ghost sm" data-bib-copy>Copy BibTeX</button>
-              <span class="sr-only" role="status" aria-live="polite" data-bib-status></span>
-            </div>
-          </details>
+          {{- if or .bibtex .repo }}
+          <div class="pub-actions">
+            {{- with .repo }}
+            <a class="pub-code" href="https://github.com/{{ . }}" target="_blank" rel="noopener" aria-label="Open code on GitHub">Code</a>
+            {{- end }}
+            {{- with .bibtex }}
+            <details class="pub-bib">
+              <summary>Cite</summary>
+              <div class="pub-bib-body">
+                <pre><code>{{ . }}</code></pre>
+                <button type="button" class="btn ghost sm" data-bib-copy>Copy BibTeX</button>
+                <span class="sr-only" role="status" aria-live="polite" data-bib-status></span>
+              </div>
+            </details>
+            {{- end }}
+          </div>
           {{- end }}
         </div>
       </article>

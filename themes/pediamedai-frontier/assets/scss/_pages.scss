@@ -562,9 +562,49 @@
   }
 }
 
+/* ——— Pub action chips (Code + Cite) ——— */
+.pub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: flex-start;
+}
+
+/* "Code ↗" chip — sibling to the BibTeX disclosure. Visually mirrors
+   the Cite summary pill but with an external-link arrow prefix
+   instead of the +/− expand cue. Renders only when a publication
+   has the optional `repo` field set in data/publications.yaml. */
+.pub-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+
+  &::before {
+    content: "↗";
+    font-size: 11px;
+    color: var(--ink-3);
+  }
+
+  &:hover {
+    color: var(--ink);
+    background: var(--bg-tinted);
+    border-color: var(--ink-3);
+  }
+}
+
 /* ——— BibTeX disclosure ——— */
 .pub-bib {
-  margin-top: 12px;
+  /* margin-top removed — pub-actions wrapper handles spacing now. */
 
   > summary {
     list-style: none;
