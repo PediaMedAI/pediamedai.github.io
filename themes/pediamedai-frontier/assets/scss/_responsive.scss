@@ -1,9 +1,19 @@
 @media (max-width: $bp-tablet) {
   /* Tablet: 96px section padding feels too generous once the layout
      compresses to single-column. 80px keeps the breathing room while
-     preventing huge whitespace gaps between condensed sections. */
+     preventing huge whitespace gaps between condensed sections.
+     Spacious/dense modifiers scale proportionally so the rhythm
+     stays intentional at every viewport. */
   .section {
     padding: 80px 0;
+
+    &--spacious {
+      padding: 120px 0;
+    }
+
+    &--dense {
+      padding: 56px 0;
+    }
   }
 
   .hero .stack {

@@ -4,14 +4,14 @@
 
 {{ partial "ticker.html" . }}
 
-{{- /* —— Mission section — 01 —— */ -}}
-<section class="section" id="mission">
+{{- /* —— Mission section — 01 (spacious — manifesto moment) —— */ -}}
+<section class="section section--spacious" id="mission">
   <div class="container">
     <div class="mission reveal">
       <div class="meta eyebrow"><a href="#mission" class="section-anchor" aria-label="Link to section: Mission">— 01 / Mission</a></div>
-      <div class="big">
-        Pediatric medicine deserves the same generation of AI tools as oncology and radiology — designed for the bodies, faces, and rare diseases of children.
-        <em>We are building them with clinicians, for children.</em>
+      <div>
+        <p class="mission__body">Pediatric medicine deserves the same generation of AI tools as oncology and radiology — designed for the bodies, faces, and rare diseases of children.</p>
+        <p class="mission__lede">We are building them <em>with clinicians, for children.</em></p>
       </div>
     </div>
 
@@ -32,8 +32,8 @@
   </div>
 </section>
 
-{{- /* —— Methods — 02 (tinted) —— */ -}}
-<section class="section tinted" id="methods">
+{{- /* —— Methods — 02 (tinted, dense — sequential steps compress) —— */ -}}
+<section class="section tinted section--dense" id="methods">
   <div class="container">
     {{ partial "section-head.html" (dict "id" "methods" "index" "02" "meta" "Methods" "title" "From question <em>to release.</em>") }}
 
@@ -126,16 +126,16 @@
   </div>
 </section>
 
-{{- /* —— CTA — 05 —— */ -}}
-<section class="section" id="collaborate">
+{{- /* —— CTA — 05 (spacious — closing hero) —— */ -}}
+<section class="section section--spacious" id="collaborate">
   <div class="container">
-    <div class="cta-band reveal">
+    <div class="cta-band cta-band--hero reveal">
       <div>
         <div class="meta eyebrow"><a href="#collaborate" class="section-anchor" aria-label="Link to section: Collaborate">— 05 / Collaborate</a></div>
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Open to collaboration</span>
       </div>
       <div>
-        <h2 class="h2-section lg">Clinicians, hospitals, and ML researchers: <em>let's build pediatric AI together.</em></h2>
+        <h2 class="cta-band__title">Clinicians, hospitals, and ML researchers: <em>let's build pediatric AI together.</em></h2>
         <div class="actions mt-lg">
           {{- with .Site.Params.contact_email }}
           <a class="btn lg" href="mailto:{{ . }}">{{ . }} <span class="arrow" aria-hidden="true">↗</span></a>

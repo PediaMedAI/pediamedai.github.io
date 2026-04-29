@@ -22,6 +22,18 @@
     background: var(--bg-tinted);
     border-top-color: transparent;
   }
+
+  /* Density modifiers — Linear-style rhythm. The default 96px is the
+     baseline; spacious sections get room for a typographic moment to
+     breathe (Mission, CTA), dense sections compress sequential
+     content (the Methods process strip). Don't apply both. */
+  &--spacious {
+    padding: 160px 0;
+  }
+
+  &--dense {
+    padding: 64px 0;
+  }
 }
 
 .actions {
@@ -63,6 +75,23 @@
      14px of breathing room reads as deliberate. */
   .meta {
     margin-bottom: 14px;
+  }
+
+  /* Closing-hero variant for the homepage CTA — title scales near
+     hero-h1 weight so the page closes on a deliberate moment, not
+     just-another-section-head. */
+  &__title {
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin: 0;
+    max-width: 18ch;
+
+    em {
+      font-style: italic;
+      color: var(--ink-3);
+    }
   }
 
   @media (max-width: $bp-tablet) {

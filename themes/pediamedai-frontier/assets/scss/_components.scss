@@ -333,24 +333,36 @@
   }
 }
 
-/* ——— Mission row ——— */
+/* ——— Mission row ———
+   Restructured as an editorial manifesto: eyebrow → body sentence
+   (the "deck") → massive italic phrase (the "headline"). The italic
+   close was previously a tail-of-paragraph aside; promoting it to
+   display-tier makes the lab's voice a typographic moment, not a
+   sentence buried at the end of body copy. */
 .mission {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: 32px;
   align-items: start;
 
-  .big {
-    font-size: clamp(32px, 3.6vw, 48px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    max-width: 24ch;
-    color: var(--ink);
+  &__body {
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+    max-width: 36ch;
+    color: var(--ink-2);
+    margin-bottom: 32px;
+  }
 
-    em {
-      font-style: italic;
-      color: var(--ink-3);
-    }
+  &__lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    max-width: 18ch;
+    color: var(--ink);
+    margin: 0;
   }
 }
 
