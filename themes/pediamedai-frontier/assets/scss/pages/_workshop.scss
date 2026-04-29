@@ -1,37 +1,4 @@
 /* ——— Workshop pages ——— */
-.workshop-meta {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  margin: 32px 0;
-
-  .cell {
-    padding: 20px 24px 20px 0;
-    border-right: 1px solid var(--rule-soft);
-
-    &:last-child {
-      border-right: none;
-    }
-
-    .l {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-3);
-    }
-
-    .v {
-      font-size: 16px;
-      color: var(--ink);
-      margin-top: 6px;
-      font-weight: 500;
-    }
-  }
-}
-
 .workshop-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
