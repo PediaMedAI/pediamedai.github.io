@@ -209,10 +209,17 @@ section[id],
     }
   }
 
+  /* Editorial "deck" / standfirst — Instrument Serif italic at a
+     scale larger than body so the page subhead reads as a deliberate
+     lead-in, not just a caption under the headline. */
   .desc {
-    font-size: 18px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
     color: var(--ink-2);
     max-width: 56ch;
-    margin-top: 16px;
+    margin-top: 24px;
   }
 }

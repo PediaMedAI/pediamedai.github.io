@@ -6,6 +6,27 @@
   align-items: center;
   padding: 64px 0;
   border-top: 1px solid var(--rule);
+  position: relative;
+
+  /* 3px page-edge rule on each block — visual anchor that signals
+     "this is one of the themes" without taking layout space. Color
+     per theme echoes the homepage research-card tag colors so the
+     two surfaces feel like the same lab voice (accent / signal /
+     neutral for Foundations / Applied / Open). On nth-child(even)
+     the visual flips to the right column via direction:rtl, so the
+     rule mirrors to match. */
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 96px;
+    bottom: 96px;
+    width: 3px;
+    background: var(--accent);
+  }
+
+  &:nth-child(2)::before { background: var(--signal); }
+  &:nth-child(3)::before { background: var(--ink-3); }
 
   &:nth-child(even) {
     grid-template-columns: 1.2fr 1fr;
@@ -13,6 +34,11 @@
 
     > * {
       direction: ltr;
+    }
+
+    &::before {
+      left: auto;
+      right: 0;
     }
   }
 
