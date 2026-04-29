@@ -1,0 +1,8 @@
+# Hero "currently" micro-line. Single short sentence, sentence case,
+# no trailing period — the partial uppercases the whole thing for the
+# editorial mono treatment.
+#
+# To hide the line entirely, leave `text` empty (text: "") or delete
+# this file. The hero partial conditionally renders only when text
+# is non-empty.
+text: "Planning CV4CHL at CVPR 2026"

@@ -4,6 +4,18 @@
   <div class="container">
     <div class="stack">
       <div class="hero-text">
+        {{- /* Optional "currently" micro-line; reads from
+               data/currently.yaml. Hidden when text is empty
+               or the file is missing. Use this for a single
+               verifiable status sentence — never for marketing. */ -}}
+        {{- with .Site.Data.currently }}
+          {{- with .text }}
+        <div class="hero-currently">
+          <span class="dot" aria-hidden="true"></span>
+          Currently · {{ . }}
+        </div>
+          {{- end }}
+        {{- end }}
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Pediatric AI Research Lab</span>
         <h1>Trustworthy AI for the <em>smallest</em> patients.</h1>
         <p class="sub">PediaMed AI is a pediatric AI research lab building interpretable vision and multimodal models for early detection and clinician-readable explanations.</p>

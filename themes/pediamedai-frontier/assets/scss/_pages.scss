@@ -72,6 +72,30 @@
   }
 }
 
+/* "Currently · …" status line above the hero kicker — pulled from
+   data/currently.yaml. Mirrors the kicker pill's dot+halo treatment
+   but in accent (vs. signal) so the two reads as siblings, not a
+   duplicate. No motion — Direction A static. */
+.hero-currently {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent);
+  }
+}
+
 .hero-meta {
   position: relative;
   margin-top: 64px;
@@ -635,6 +659,19 @@
       color: var(--bg);
       background: var(--ink);
       border-color: var(--ink);
+    }
+
+    /* Count badge — sibling to the chip label. Tabular nums keep the
+       digits aligned across chips; muted color so the chip label
+       remains the dominant element. */
+    .count {
+      margin-left: 6px;
+      color: var(--ink-4);
+      font-variant-numeric: tabular-nums;
+    }
+
+    &[aria-pressed="true"] .count {
+      color: color-mix(in oklab, var(--bg) 60%, transparent);
     }
   }
 }

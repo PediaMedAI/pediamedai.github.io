@@ -277,6 +277,14 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
   border-top: 1px solid var(--rule);
+
+  /* 4-cell variant — used by the homepage Methods process strip
+     (Define → Build → Validate → Release). Mobile breakpoints in
+     _responsive.scss already collapse .cap-row to 2 cols at 980px
+     and 1 col at 600px regardless of cell count. */
+  &.cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .cap {

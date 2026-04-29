@@ -1,6 +1,17 @@
 {{ define "main" }}
 {{- $pubs := .Site.Data.publications -}}
 
+{{- /* Per-tag counts computed at build from data/publications.yaml.
+       Surfaced as small badges next to each filter chip so visitors
+       can scan-without-clicking. "All" reflects total entries. */ -}}
+{{- $tagCounts := dict -}}
+{{- range $pubs -}}
+  {{- range .tags -}}
+    {{- $existing := default 0 (index $tagCounts .) -}}
+    {{- $tagCounts = merge $tagCounts (dict . (add $existing 1)) -}}
+  {{- end -}}
+{{- end -}}
+
 {{ partial "page-head.html" (dict
   "kicker" "Publications"
   "title" "The <em>archive.</em>"
@@ -10,12 +21,12 @@
 <section class="section flush-top">
   <div class="container">
     <div class="pub-filter" role="group" aria-label="Filter publications">
-      <button type="button" data-pub-filter="all" aria-pressed="true">All</button>
-      <button type="button" data-pub-filter="vision" aria-pressed="false">Vision</button>
-      <button type="button" data-pub-filter="asd" aria-pressed="false">ASD</button>
-      <button type="button" data-pub-filter="calibration" aria-pressed="false">Calibration</button>
-      <button type="button" data-pub-filter="datasets" aria-pressed="false">Datasets</button>
-      <button type="button" data-pub-filter="survey" aria-pressed="false">Survey</button>
+      <button type="button" data-pub-filter="all" aria-pressed="true">All <span class="count">{{ len $pubs }}</span></button>
+      <button type="button" data-pub-filter="vision" aria-pressed="false">Vision <span class="count">{{ default 0 (index $tagCounts "vision") }}</span></button>
+      <button type="button" data-pub-filter="asd" aria-pressed="false">ASD <span class="count">{{ default 0 (index $tagCounts "asd") }}</span></button>
+      <button type="button" data-pub-filter="calibration" aria-pressed="false">Calibration <span class="count">{{ default 0 (index $tagCounts "calibration") }}</span></button>
+      <button type="button" data-pub-filter="datasets" aria-pressed="false">Datasets <span class="count">{{ default 0 (index $tagCounts "datasets") }}</span></button>
+      <button type="button" data-pub-filter="survey" aria-pressed="false">Survey <span class="count">{{ default 0 (index $tagCounts "survey") }}</span></button>
     </div>
 
     <div class="pubs">
