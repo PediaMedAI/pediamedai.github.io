@@ -11,6 +11,13 @@
   border-bottom: 1px solid var(--rule-soft);
   align-items: baseline;
   position: relative;
+  transition: background 0.15s var(--ease);
+
+  /* Soft row tint on hover so dense list scanning feels reactive
+     without pulling attention away from the title link. */
+  &:hover {
+    background: color-mix(in oklab, var(--bg-tinted) 55%, transparent);
+  }
 
   .y {
     font-family: var(--mono);

@@ -70,9 +70,13 @@
       margin-bottom: 8px;
     }
 
+    /* Editorial author-byline pattern: full ink + italic so the
+       attribution reads as a deliberate credit rather than caption
+       noise, without competing with the theme title above it. */
     .name {
       font-size: 14.5px;
-      color: var(--ink-2);
+      color: var(--ink);
+      font-style: italic;
     }
   }
 }
