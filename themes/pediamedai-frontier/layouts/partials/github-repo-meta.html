@@ -11,9 +11,9 @@
        Args:
          repo  (required)  e.g. "PediaMedAI/AggPose"
 
-       Output: a fragment of <span class="metric"> elements separated
-       by aria-hidden middots. Designed to be passed to card.html's
-       optional `meta` slot. */ -}}
+       Output: a sequence of plain spans separated by aria-hidden
+       middot spans. Styling is inherited from .card-meta on the
+       wrapping element. */ -}}
 {{- $url := printf "https://api.github.com/repos/%s" .repo -}}
 {{- $r := try (resources.GetRemote $url) -}}
 {{- with $r.Value -}}
@@ -22,11 +22,11 @@
     {{- $stars := .stargazers_count | default 0 -}}
     {{- $lang := .language | default "" -}}
     {{- $pushed := .pushed_at | default "" -}}
-    <span class="metric">★ {{ $stars }}</span>
-    {{- with $lang }}<span class="sep" aria-hidden="true"> · </span><span class="metric">{{ . }}</span>{{ end -}}
+    <span>★ {{ $stars }}</span>
+    {{- with $lang }}<span class="sep" aria-hidden="true"> · </span><span>{{ . }}</span>{{ end -}}
     {{- if $pushed -}}
       {{- $t := time $pushed -}}
-      <span class="sep" aria-hidden="true"> · </span><span class="metric">Updated <time datetime="{{ $t.Format "2006-01-02" }}">{{ $t.Format "Jan 2, 2006" }}</time></span>
+      <span class="sep" aria-hidden="true"> · </span><span>Updated <time datetime="{{ $t.Format "2006-01-02" }}">{{ $t.Format "Jan 2, 2006" }}</time></span>
     {{- end -}}
   {{- end -}}
 {{- end -}}

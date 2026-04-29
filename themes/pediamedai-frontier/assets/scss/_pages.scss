@@ -937,53 +937,6 @@ footer {
   }
 }
 
-.workshop-body {
-  font-size: 16px;
-  line-height: 1.65;
-  color: var(--ink-2);
-  max-width: 72ch;
-
-  h2 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(28px, 3vw, 36px);
-    letter-spacing: -0.02em;
-    margin: 48px 0 16px;
-    color: var(--ink);
-  }
-
-  h3 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: 24px;
-    letter-spacing: -0.015em;
-    margin: 32px 0 12px;
-    color: var(--ink);
-  }
-
-  p {
-    margin-bottom: 16px;
-  }
-
-  ul,
-  ol {
-    margin: 0 0 16px 1.25em;
-  }
-
-  li {
-    margin-bottom: 6px;
-  }
-
-  a {
-    color: var(--accent);
-    border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
-
-    &:hover {
-      border-bottom-color: var(--accent);
-    }
-  }
-}
-
 /* ——— Heading self-link anchors (markdown render-hook) ——— */
 .md-heading {
   scroll-margin-top: 80px; /* don't hide under sticky nav on hash navigation */

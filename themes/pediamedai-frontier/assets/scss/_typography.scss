@@ -22,31 +22,10 @@ $fonts: (
 
 /* Display headlines (Instrument Serif at 56–144px) get optical
    refinements: balanced wrapping (no orphan word on last line),
-   smarter kerning/ligatures, and slight feature tweaks. Paired
-   selectors below this block apply text-wrap: balance to the
-   actual display headers (.hero h1, .page-head h1, etc.). */
-.display {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: -0.02em;
-  line-height: 0.95;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "kern", "liga", "calt";
-}
-
-.display-mix {
-  font-family: var(--serif);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "kern", "liga", "calt";
-}
-
-/* Apply text-wrap: balance to every display-class headline so the
-   last line doesn't orphan a single word. text-wrap: balance is a
-   progressive enhancement — older browsers ignore it gracefully. */
+   smarter kerning/ligatures, and slight feature tweaks. The
+   `.display`/`.display-mix` utility classes were authored
+   speculatively and never used — actual display headlines are
+   styled by their selector (.hero h1, .page-head h1, etc.) below. */
 .hero h1,
 .page-head h1,
 .section-head h2,
@@ -125,21 +104,3 @@ footer .big,
   }
 }
 
-.divider-mono {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: var(--ink-4);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  &::before,
-  &::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--rule-soft);
-  }
-}

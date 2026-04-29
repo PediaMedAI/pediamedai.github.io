@@ -44,4 +44,9 @@
   --accent-soft: #1c2640;
   --signal: #e88467;
   --signal-soft: #2a1c17;
+
+  /* The light-mode --shadow-2 uses a near-ink rgba which becomes
+     invisible against the dark surface. Reach for a deeper black
+     with higher opacity so card/team-cell hover lift still reads. */
+  --shadow-2: 0 24px 48px -24px rgba(0, 0, 0, 0.6);
 }

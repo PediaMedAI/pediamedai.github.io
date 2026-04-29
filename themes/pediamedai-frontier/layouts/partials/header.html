@@ -7,10 +7,14 @@
       <span>PediaMed AI</span>
     </a>
 
-    <div class="links" role="menubar" id="nav-menu">
+    {{- /* Plain &lt;nav&gt; landmark + &lt;a&gt; links is the right ARIA pattern
+           for a static site nav. role="menubar"/"menuitem" implies a
+           desktop menu widget with arrow-key navigation that we don't
+           implement, and screen readers announce it as such. */ -}}
+    <div class="links" id="nav-menu">
       {{- range .Site.Menus.main -}}
         {{- $isActive := or (eq $current .URL) (and (ne .URL "/") (hasPrefix $current .URL)) -}}
-        <a class="link{{ if $isActive }} active{{ end }}" href="{{ .URL | relURL }}" role="menuitem"{{ if $isActive }} aria-current="page"{{ end }}>{{ .Name }}</a>
+        <a class="link{{ if $isActive }} active{{ end }}" href="{{ .URL | relURL }}"{{ if $isActive }} aria-current="page"{{ end }}>{{ .Name }}</a>
       {{- end -}}
     </div>
 

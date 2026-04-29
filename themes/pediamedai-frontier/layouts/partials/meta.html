@@ -28,7 +28,7 @@
        lives in this partial. */ -}}
 
 {{- if .IsHome }}
-  {{- $sameAs := slice "https://github.com/pediamedai" -}}
+  {{- $sameAs := slice "https://github.com/PediaMedAI" -}}
   {{- with .Site.Params.twitterHandle -}}
     {{- $handle := . | replaceRE "^@" "" -}}
     {{- $sameAs = $sameAs | append (printf "https://twitter.com/%s" $handle) -}}

@@ -26,49 +26,6 @@
     background: var(--bg-tinted);
     border-top-color: transparent;
   }
-
-  /* Inverse variant: full-contrast band for closing CTA beats. The
-     footer follows so this also acts as a transition-into-footer. */
-  &.inverse {
-    background: var(--bg-inverse);
-    color: color-mix(in oklab, var(--bg) 86%, transparent);
-    border-top-color: transparent;
-
-    .meta,
-    .eyebrow {
-      color: color-mix(in oklab, var(--bg) 60%, transparent);
-    }
-
-    .h2-section,
-    h2 {
-      color: var(--bg);
-
-      em {
-        color: color-mix(in oklab, var(--bg) 55%, transparent);
-      }
-    }
-
-    .btn:not(.ghost) {
-      background: var(--bg);
-      color: var(--bg-inverse);
-      border-color: var(--bg);
-    }
-
-    .btn.ghost {
-      color: var(--bg);
-      border-color: color-mix(in oklab, var(--bg) 32%, transparent);
-
-      &:hover {
-        background: color-mix(in oklab, var(--bg) 12%, transparent);
-      }
-    }
-
-    .kicker {
-      background: color-mix(in oklab, var(--bg) 8%, transparent);
-      border-color: color-mix(in oklab, var(--bg) 22%, transparent);
-      color: color-mix(in oklab, var(--bg) 78%, transparent);
-    }
-  }
 }
 
 .actions {
