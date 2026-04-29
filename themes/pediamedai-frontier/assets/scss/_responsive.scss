@@ -1,4 +1,4 @@
-@media (max-width: 980px) {
+@media (max-width: $bp-tablet) {
   /* Tablet: 96px section padding feels too generous once the layout
      compresses to single-column. 80px keeps the breathing room while
      preventing huge whitespace gaps between condensed sections. */
@@ -123,7 +123,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $bp-mobile) {
   .grid-3,
   .grid-2,
   .grid-4,

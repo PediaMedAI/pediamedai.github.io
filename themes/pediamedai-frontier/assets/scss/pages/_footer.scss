@@ -1,0 +1,78 @@
+/* ——— Footer ——— */
+/* Footer always uses the inverse-of-body palette: bg = --bg-inverse,
+   foreground colors are derived from --bg (which flips with theme),
+   so the same rules give light text on dark in light mode and dark
+   text on light in dark mode without overrides. */
+footer {
+  background: var(--bg-inverse);
+  color: color-mix(in oklab, var(--bg) 80%, transparent);
+  padding: 96px 0 32px;
+  position: relative;
+  overflow: hidden;
+
+  .big {
+    font-size: clamp(56px, 9vw, 144px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--bg);
+
+    em {
+      font-style: italic;
+      opacity: 0.55;
+    }
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid color-mix(in oklab, var(--bg) 18%, transparent);
+  }
+
+  .col .footer-col-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--bg) 60%, transparent);
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+
+  .col a {
+    display: block;
+    font-size: 14px;
+    padding: 4px 0;
+    color: color-mix(in oklab, var(--bg) 88%, transparent);
+
+    &:hover {
+      color: var(--bg);
+    }
+  }
+
+  /* Standalone copy line in a footer column (the "Lab note" blurb).
+     Slightly muted vs. the link rows above. */
+  .col .footer-note {
+    font-size: 14px;
+    line-height: 1.5;
+    color: color-mix(in oklab, var(--bg) 70%, transparent);
+    margin: 0;
+  }
+
+  .baseline {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid color-mix(in oklab, var(--bg) 14%, transparent);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in oklab, var(--bg) 50%, transparent);
+  }
+}

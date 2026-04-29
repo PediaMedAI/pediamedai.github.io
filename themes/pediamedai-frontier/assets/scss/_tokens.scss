@@ -1,4 +1,14 @@
+/* Responsive breakpoints — single source of truth used by both
+   _responsive.scss (@media queries via Sass variable) and JS islands
+   (matchMedia, via the mirrored CSS custom property). Changing a
+   breakpoint in one place automatically updates both surfaces. */
+$bp-tablet: 980px;
+$bp-mobile: 600px;
+
 :root {
+  --bp-tablet: #{$bp-tablet};
+  --bp-mobile: #{$bp-mobile};
+
   --bg: #f6f5f1;
   --bg-elevated: #ffffff;
   --bg-tinted: #efece4;

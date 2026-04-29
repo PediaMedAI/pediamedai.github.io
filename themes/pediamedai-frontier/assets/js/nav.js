@@ -4,7 +4,11 @@
   var menu = nav && nav.querySelector(".links");
   if (!nav || !btn || !menu) return;
 
-  var mq = window.matchMedia("(min-width: 981px)");
+  // Shared breakpoint — sourced from --bp-tablet which _tokens.scss
+   // mirrors from the Sass $bp-tablet variable used by @media queries.
+   // Falls back to 980 if the custom property isn't readable.
+  var bpTablet = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--bp-tablet"), 10) || 980;
+  var mq = window.matchMedia("(min-width: " + (bpTablet + 1) + "px)");
 
   function setOpen(open) {
     nav.setAttribute("data-nav-open", open ? "true" : "false");

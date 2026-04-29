@@ -3,7 +3,19 @@
 @import "typography";
 @import "layout";
 @import "components";
-@import "pages";
+
+/* Page-scoped sub-modules. Split out from one large _pages.scss so
+   each surface has its own ~150-line file: hero+404, theme blocks,
+   team grid + founder pages, publications, footer, workshop pages,
+   and misc (heading-anchor + prose). */
+@import "pages/hero";
+@import "pages/theme";
+@import "pages/team";
+@import "pages/pub";
+@import "pages/footer";
+@import "pages/workshop";
+@import "pages/misc";
+
 @import "motion";
 @import "responsive";
 @import "print";

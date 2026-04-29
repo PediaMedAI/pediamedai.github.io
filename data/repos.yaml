@@ -1,0 +1,37 @@
+# Last-known-good snapshot of GitHub repo metadata for the 4 repos
+# referenced on /code/ and /publications/. Used as a fallback by
+# layouts/partials/github-repo-meta.html when the live API call fails
+# (network down, rate-limited, transient 5xx) so the build always has
+# something to render.
+#
+# Keys are "owner/name" (matches the `repo` arg passed to the partial).
+# Refresh manually by running:
+#
+#   for r in PediaMedAI/AggPose PediaMedAI/ViTASD \
+#            IrohXu/Lipschitz-Transformer-PyTorch PediaMedAI/PIE; do
+#     curl -s "https://api.github.com/repos/$r" \
+#       | python3 -c "import sys,json; d=json.load(sys.stdin); \
+#         print(f'★ {d[\"stargazers_count\"]} · {d[\"language\"]} · {d[\"pushed_at\"]}')"
+#   done
+#
+# …and update the values below. The live API is the primary source —
+# this YAML only kicks in when the API isn't reachable.
+PediaMedAI/AggPose:
+  stargazers_count: 31
+  language: "Python"
+  pushed_at: "2022-07-20T00:30:10Z"
+
+PediaMedAI/ViTASD:
+  stargazers_count: 29
+  language: "Python"
+  pushed_at: "2023-06-10T04:59:07Z"
+
+IrohXu/Lipschitz-Transformer-PyTorch:
+  stargazers_count: 0
+  language: "Python"
+  pushed_at: "2023-02-19T20:35:43Z"
+
+PediaMedAI/PIE:
+  stargazers_count: 30
+  language: "Python"
+  pushed_at: "2023-10-19T21:18:25Z"

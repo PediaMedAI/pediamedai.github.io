@@ -1,0 +1,206 @@
+/* ——— Publications list ——— */
+.pubs {
+  border-top: 1px solid var(--rule);
+}
+
+.pub {
+  display: grid;
+  grid-template-columns: 80px 100px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  align-items: baseline;
+  position: relative;
+
+  .y {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+  }
+
+  .v {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--signal);
+  }
+
+  .pub-body {
+    min-width: 0;
+  }
+
+  .t {
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    max-width: 56ch;
+    display: inline;
+
+    .ext {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--ink-3);
+      transition: color 0.2s var(--ease);
+    }
+
+    &:hover .ext {
+      color: var(--ink);
+    }
+  }
+
+  .a {
+    font-size: 13px;
+    color: var(--ink-3);
+    margin-top: 6px;
+  }
+}
+
+/* ——— Pub action chips (Code + Cite) ——— */
+.pub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: flex-start;
+}
+
+/* ——— Pub-page chips ———
+   .pub-code (external link), .pub-bib > summary (Cite disclosure),
+   and .pub-filter button (filter toggles) all share the pill shape,
+   mono treatment, and color-only transition. They diverge on density
+   (padding + font-size) and hover behavior, so the base sits on the
+   combined selector and variants add their specifics. */
+.pub-code,
+.pub-bib > summary,
+.pub-filter button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+/* Code + Cite share density and hover behavior */
+.pub-code,
+.pub-bib > summary {
+  padding: 4px 10px;
+  font-size: 10.5px;
+}
+
+.pub-code:hover,
+.pub-bib > summary:hover {
+  color: var(--ink);
+  background: var(--bg-tinted);
+  border-color: var(--ink-3);
+}
+
+.pub-code::before {
+  content: "↗";
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* Cite disclosure: hide the default marker, swap +/− on open */
+.pub-bib > summary {
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker { display: none; }
+  &::marker { content: ""; }
+
+  &::before {
+    content: "+";
+    font-size: 13px;
+    line-height: 0;
+    color: var(--ink-3);
+  }
+}
+
+.pub-bib[open] > summary::before {
+  content: "−";
+}
+
+.pub-bib-body {
+  margin-top: 12px;
+  padding: 16px 18px;
+  background: var(--bg-tinted);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  position: relative;
+
+  pre {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    /* pre-wrap so long author lists wrap on mobile. The clipboard path
+       reads pre.textContent which preserves the original line breaks
+       regardless of CSS wrapping. */
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+.pub-bib [data-bib-copy] {
+  margin-top: 12px;
+
+  &[data-copied="true"] {
+    color: var(--ok);
+    border-color: var(--ok);
+  }
+
+  &[data-copy-error="true"] {
+    color: var(--signal);
+    border-color: var(--signal);
+  }
+}
+
+/* Filter chips: bigger touch target than Code/Cite, with a pressed
+   (toggle) state. Background and font-size are the variant-specific
+   bits; pill shape and base color come from the shared rule above. */
+.pub-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 32px;
+
+  button {
+    padding: 6px 12px;
+    font-size: 11px;
+    background: var(--bg);
+
+    &:hover {
+      color: var(--ink);
+      background: var(--bg-tinted);
+    }
+
+    &[aria-pressed="true"] {
+      color: var(--bg);
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+
+    /* Count badge — sibling to the chip label. Tabular nums keep the
+       digits aligned across chips; muted color so the chip label
+       remains the dominant element. */
+    .count {
+      margin-left: 6px;
+      color: var(--ink-4);
+      font-variant-numeric: tabular-nums;
+    }
+
+    &[aria-pressed="true"] .count {
+      color: color-mix(in oklab, var(--bg) 60%, transparent);
+    }
+  }
+}
