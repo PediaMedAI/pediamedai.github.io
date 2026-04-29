@@ -1,7 +1,8 @@
-/* Responsive breakpoints — single source of truth used by both
-   _responsive.scss (@media queries via Sass variable) and JS islands
-   (matchMedia, via the mirrored CSS custom property). Changing a
-   breakpoint in one place automatically updates both surfaces. */
+/* Responsive breakpoints — single source of truth. The Sass vars
+   power @media queries in _responsive.scss; --bp-tablet is mirrored
+   as a CSS custom property so nav.js can read the same value via
+   getComputedStyle (avoiding a duplicate hardcoded number across
+   SCSS and JS). $bp-mobile is SCSS-only — no JS island reads it. */
 $bp-tablet: 980px;
 $bp-mobile: 600px;
 
@@ -16,7 +17,6 @@ $nav-scroll-buffer: 16px;
 
 :root {
   --bp-tablet: #{$bp-tablet};
-  --bp-mobile: #{$bp-mobile};
 
   --bg: #f6f5f1;
   --bg-elevated: #ffffff;
