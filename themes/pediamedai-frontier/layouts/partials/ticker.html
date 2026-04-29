@@ -1,18 +1,23 @@
-{{- /* Real venues only. Stage 0 lock. */ -}}
+{{- /* Real venues only. Stage 0 lock. Each item links to the paper or
+       workshop page so the ticker is a navigation primitive, not just
+       decoration. The row stays aria-hidden — screen readers reach the
+       same papers via /publications/ and /workshops/. tabindex="-1"
+       keeps the marquee out of the keyboard tab order. */ -}}
 {{- $items := slice
-  "IJCAI 2022 · AggPose"
-  "ICASSP 2023 · ViTASD"
-  "UAI 2023 · LRFormer"
-  "WACV 2024 · MLLM Survey"
-  "ICLR 2025 · AI4CHL Workshop"
-  "CVPR 2026 · CV4CHL (planning)"
+  (dict "label" "IJCAI 2022 · AggPose"            "url" "https://www.ijcai.org/proceedings/2022/700")
+  (dict "label" "ICASSP 2023 · ViTASD"            "url" "https://ieeexplore.ieee.org/document/10094684")
+  (dict "label" "UAI 2023 · LRFormer"             "url" "https://proceedings.mlr.press/v216/ye23a.html")
+  (dict "label" "WACV 2024 · MLLM Survey"         "url" "https://arxiv.org/abs/2311.12320")
+  (dict "label" "ICLR 2025 · AI4CHL Workshop"     "url" (relURL "/iclr/"))
+  (dict "label" "CVPR 2026 · CV4CHL (planning)"   "url" (relURL "/cvpr/"))
 -}}
 <div class="ticker" aria-label="Recent publications and workshops">
   <div class="row" aria-hidden="true">
     {{- range seq 1 2 }}
       {{- range $items }}
-      <span>{{ . }}</span>
-      <span class="dot">●</span>
+        {{- $external := hasPrefix .url "http" }}
+      <a href="{{ .url }}" tabindex="-1"{{ if $external }} target="_blank" rel="noopener"{{ end }}>{{ .label }}</a>
+      <span class="dot" aria-hidden="true">●</span>
       {{- end }}
     {{- end }}
   </div>

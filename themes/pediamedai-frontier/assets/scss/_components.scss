@@ -415,6 +415,24 @@
     span.dot {
       color: var(--signal);
     }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s var(--ease);
+      white-space: nowrap;
+
+      &:hover {
+        color: var(--ink);
+      }
+    }
+  }
+
+  /* Pause the scroll while hovered so moving venue links can actually
+     be clicked. Reduced-motion already kills the animation entirely
+     in _motion.scss, so no override needed there. */
+  &:hover .row {
+    animation-play-state: paused;
   }
 }
 
