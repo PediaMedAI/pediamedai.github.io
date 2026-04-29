@@ -60,18 +60,23 @@
   color: var(--ink-2);
   max-width: 72ch;
 
-  /* Lead paragraph — the first <p> in the prose block reads as a
-     deliberate opening rather than just-another-line. Slightly
-     larger Instrument Serif at full ink, with extra bottom margin
-     to set the body off from it. Only fires when the markdown
-     opens with a paragraph (not a heading or hr). */
-  > p:first-child {
+  /* Drop cap on the first paragraph — the iconic editorial mark
+     that signals "this is where the piece begins." Instrument
+     Serif italic, scaled to ~3 lines of body height, floated so
+     body wraps around. Only fires when the markdown opens with a
+     paragraph (not a heading or hr); ::first-letter degrades
+     gracefully on browsers that don't apply pseudo-element styling
+     to that token. */
+  > p:first-child::first-letter {
     font-family: var(--serif);
-    font-size: clamp(20px, 2vw, 24px);
-    line-height: 1.45;
-    letter-spacing: -0.01em;
+    font-style: italic;
+    font-size: clamp(56px, 7vw, 88px);
+    line-height: 0.82;
     color: var(--ink);
-    margin-bottom: 28px;
+    float: left;
+    margin: 6px 14px 0 0;
+    /* slight tracking pull-in so the cap doesn't crowd the body */
+    letter-spacing: -0.02em;
   }
 
   h2 {
@@ -101,12 +106,19 @@
     margin-bottom: 6px;
   }
 
+  /* Refined link underline — text-decoration with explicit thickness
+     and offset is sharper than border-bottom (sits at the baseline
+     properly, doesn't add to line-height, plays well with descenders). */
   a {
     color: var(--accent);
-    border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.2s var(--ease);
 
     &:hover {
-      border-bottom-color: var(--accent);
+      text-decoration-color: var(--accent);
     }
   }
 
