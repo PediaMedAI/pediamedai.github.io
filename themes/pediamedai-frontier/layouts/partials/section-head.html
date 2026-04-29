@@ -3,8 +3,17 @@
          meta   (required)  short label, e.g. "Research"
          title  (required)  HTML allowed
          index  (optional)  e.g. "02" — renders as "— 02 / Research"
-                            to give the page a research-paper cadence. */ -}}
+                            to give the page a research-paper cadence.
+         id     (optional)  if set, the eyebrow text becomes a self-link
+                            to "#{id}" — small affordance for sharing or
+                            citing a specific section by URL. */ -}}
 <div class="section-head">
-  <div class="meta eyebrow">— {{ with .index }}{{ . }} / {{ end }}{{ .meta }}</div>
+  <div class="meta eyebrow">
+    {{- if .id -}}
+      <a href="#{{ .id }}" class="section-anchor" aria-label="Link to section: {{ .meta }}">— {{ with .index }}{{ . }} / {{ end }}{{ .meta }}</a>
+    {{- else -}}
+      — {{ with .index }}{{ . }} / {{ end }}{{ .meta }}
+    {{- end -}}
+  </div>
   <h2>{{ .title | safeHTML }}</h2>
 </div>

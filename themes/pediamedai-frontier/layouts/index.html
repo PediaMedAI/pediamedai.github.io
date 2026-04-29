@@ -5,10 +5,10 @@
 {{ partial "ticker.html" . }}
 
 {{- /* —— Mission section — 01 —— */ -}}
-<section class="section">
+<section class="section" id="mission">
   <div class="container">
     <div class="mission reveal">
-      <div class="meta eyebrow">— 01 / Mission</div>
+      <div class="meta eyebrow"><a href="#mission" class="section-anchor" aria-label="Link to section: Mission">— 01 / Mission</a></div>
       <div class="big">
         Pediatric medicine deserves the same generation of AI tools as oncology and radiology — designed for the bodies, faces, and rare diseases of children.
         <em>We are building them with clinicians, for children.</em>
@@ -33,9 +33,9 @@
 </section>
 
 {{- /* —— Methods — 02 (tinted) —— */ -}}
-<section class="section tinted">
+<section class="section tinted" id="methods">
   <div class="container">
-    {{ partial "section-head.html" (dict "index" "02" "meta" "Methods" "title" "From question <em>to release.</em>") }}
+    {{ partial "section-head.html" (dict "id" "methods" "index" "02" "meta" "Methods" "title" "From question <em>to release.</em>") }}
 
     <div class="cap-row cols-4 reveal">
       <div class="cap">
@@ -59,9 +59,9 @@
 </section>
 
 {{- /* —— Research preview — 03 —— */ -}}
-<section class="section">
+<section class="section" id="research">
   <div class="container">
-    {{ partial "section-head.html" (dict "index" "03" "meta" "Research" "title" "Three themes, <em>one promise</em>: AI a clinician can defend.") }}
+    {{ partial "section-head.html" (dict "id" "research" "index" "03" "meta" "Research" "title" "Three themes, <em>one promise</em>: AI a clinician can defend.") }}
 
     <div class="grid-3 reveal">
       {{ partial "card.html" (dict
@@ -97,9 +97,9 @@
 </section>
 
 {{- /* —— Workshops — 04 (tinted) —— */ -}}
-<section class="section tinted">
+<section class="section tinted" id="workshops">
   <div class="container">
-    {{ partial "section-head.html" (dict "index" "04" "meta" "Workshops" "title" "Workshops &amp; <em>clinical training.</em>") }}
+    {{ partial "section-head.html" (dict "id" "workshops" "index" "04" "meta" "Workshops" "title" "Workshops &amp; <em>clinical training.</em>") }}
 
     <div class="grid-2 reveal">
       {{ partial "card.html" (dict
@@ -127,11 +127,11 @@
 </section>
 
 {{- /* —— CTA — 05 —— */ -}}
-<section class="section">
+<section class="section" id="collaborate">
   <div class="container">
     <div class="cta-band reveal">
       <div>
-        <div class="meta eyebrow" style="margin-bottom: 14px;">— 05 / Collaborate</div>
+        <div class="meta eyebrow" style="margin-bottom: 14px;"><a href="#collaborate" class="section-anchor" aria-label="Link to section: Collaborate">— 05 / Collaborate</a></div>
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Open to collaboration</span>
       </div>
       <div>
