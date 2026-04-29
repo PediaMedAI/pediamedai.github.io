@@ -5,7 +5,9 @@
       var status = btn.parentElement.querySelector("[data-bib-status]");
       if (!pre) return;
       var text = pre.textContent.trim();
-      var original = btn.textContent;
+      // Trim so whitespace from indented source markup doesn't
+      // get round-tripped into the post-reset label.
+      var original = btn.textContent.trim();
 
       var resetAfter = function () {
         setTimeout(function () {

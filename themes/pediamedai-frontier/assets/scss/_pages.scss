@@ -81,27 +81,17 @@
 }
 
 /* "Currently · …" status line above the hero kicker — pulled from
-   data/currently.yaml. Mirrors the kicker pill's dot+halo treatment
-   but in accent (vs. signal) so the two reads as siblings, not a
-   duplicate. No motion — Direction A static. */
+   data/currently.yaml. Plain mono uppercase, no dot prefix; the
+   kicker pill below already carries a signal-color dot, so the
+   "Currently" word itself does the live-status work here. */
 .hero-currently {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: block;
   margin-bottom: 14px;
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-3);
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 18%, transparent);
-  }
 }
 
 .hero-meta {
@@ -571,11 +561,13 @@
   align-items: flex-start;
 }
 
-/* "Code ↗" chip — sibling to the BibTeX disclosure. Visually mirrors
-   the Cite summary pill but with an external-link arrow prefix
-   instead of the +/− expand cue. Renders only when a publication
-   has the optional `repo` field set in data/publications.yaml. */
-.pub-code {
+/* ——— Pub action chips (Code + Cite share the pill base) ———
+   `.pub-code` is an external link to the GitHub repo; the Cite
+   disclosure `> summary` is a click-to-expand. They diverge only
+   in the ::before glyph (↗ vs +/−), so the shared shape lives
+   on the combined selector. */
+.pub-code,
+.pub-bib > summary {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -588,60 +580,39 @@
   text-transform: uppercase;
   color: var(--ink-3);
   transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.pub-code:hover,
+.pub-bib > summary:hover {
+  color: var(--ink);
+  background: var(--bg-tinted);
+  border-color: var(--ink-3);
+}
+
+.pub-code::before {
+  content: "↗";
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+/* Cite disclosure: hide the default marker, swap +/− on open */
+.pub-bib > summary {
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker { display: none; }
+  &::marker { content: ""; }
 
   &::before {
-    content: "↗";
-    font-size: 11px;
+    content: "+";
+    font-size: 13px;
+    line-height: 0;
     color: var(--ink-3);
-  }
-
-  &:hover {
-    color: var(--ink);
-    background: var(--bg-tinted);
-    border-color: var(--ink-3);
   }
 }
 
-/* ——— BibTeX disclosure ——— */
-.pub-bib {
-  /* margin-top removed — pub-actions wrapper handles spacing now. */
-
-  > summary {
-    list-style: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 10px;
-    border: 1px solid var(--rule);
-    border-radius: 999px;
-    font-family: var(--mono);
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
-
-    &::-webkit-details-marker { display: none; }
-    &::marker { content: ""; }
-
-    &::before {
-      content: "+";
-      font-size: 13px;
-      line-height: 0;
-      color: var(--ink-3);
-    }
-
-    &:hover {
-      color: var(--ink);
-      background: var(--bg-tinted);
-      border-color: var(--ink-3);
-    }
-  }
-
-  &[open] > summary::before {
-    content: "−";
-  }
+.pub-bib[open] > summary::before {
+  content: "−";
 }
 
 .pub-bib-body {

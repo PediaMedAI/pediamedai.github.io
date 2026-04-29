@@ -7,13 +7,14 @@
         {{- /* Optional "currently" micro-line; reads from
                data/currently.yaml. Hidden when text is empty
                or the file is missing. Use this for a single
-               verifiable status sentence — never for marketing. */ -}}
+               verifiable status sentence — never for marketing.
+               No dot prefix here — the kicker pill below already
+               carries a signal-color dot, so two stacked dots
+               read as palette noise. The "Currently" prefix
+               conveys live-status semantics on its own. */ -}}
         {{- with .Site.Data.currently }}
           {{- with .text }}
-        <div class="hero-currently">
-          <span class="dot" aria-hidden="true"></span>
-          Currently · {{ . }}
-        </div>
+        <div class="hero-currently">Currently · {{ . }}</div>
           {{- end }}
         {{- end }}
         <span class="kicker"><span class="dot" aria-hidden="true"></span>Pediatric AI Research Lab</span>
