@@ -5,9 +5,9 @@
   "desc" "PediaMed AI runs and supports workshops at major venues. Recap of past events, planning notes for upcoming ones.")
 }}
 
-<section class="section tinted">
+<section class="section tinted" id="programs">
   <div class="container">
-    {{ partial "section-head.html" (dict "meta" "Programs" "title" "Past &amp; <em>planned.</em>") }}
+    {{ partial "section-head.html" (dict "id" "programs" "meta" "Programs" "title" "Past &amp; <em>planned.</em>") }}
     <div class="grid-2 reveal">
       {{ partial "card.html" (dict
         "href" (relURL "/cvpr/")
