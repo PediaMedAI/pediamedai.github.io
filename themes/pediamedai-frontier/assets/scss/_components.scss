@@ -242,6 +242,29 @@
     letter-spacing: 0.08em;
     color: var(--ink-3);
   }
+
+  /* Live build-time metadata line — used by the Code page for repo
+     star/language/last-pushed signals fetched from the GitHub API.
+     Tabular nums keep digits aligned. Sits above the arrow-cell, so
+     the .body's flex-column flow places it where the desc would
+     extend. Renders as plain prose if the GitHub fetch fails (the
+     partial just outputs nothing). */
+  .card-meta {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+
+    .sep {
+      color: var(--ink-4);
+    }
+
+    time {
+      border-bottom: 0;
+    }
+  }
 }
 
 .tag {

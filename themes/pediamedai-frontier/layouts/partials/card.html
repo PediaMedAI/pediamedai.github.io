@@ -1,4 +1,4 @@
-{{- /* Card with optional image, tags, label, title, desc, and arrow-cell footer.
+{{- /* Card with optional image, tags, label, title, desc, meta, and arrow-cell footer.
        Args:
          href     (required)  link target
          image    (optional)  image src; if set, renders the .img wrapper
@@ -7,6 +7,9 @@
          label    (optional)  label-mono text shown alongside tags
          title    (required)  card heading (HTML allowed)
          desc     (optional)  body-sm text
+         meta     (optional)  raw HTML — renders as a small mono line
+                              between desc and arrow-cell. Used by the
+                              Code page for live GitHub repo signals.
          cta      (optional)  arrow-cell text; if empty, omit arrow-cell
          external (optional)  bool — adds rel/target for cross-origin links
 */ -}}
@@ -17,6 +20,7 @@
 {{- $label := default "" .label -}}
 {{- $title := .title -}}
 {{- $desc := default "" .desc -}}
+{{- $meta := default "" .meta -}}
 {{- $cta := default "" .cta -}}
 {{- $external := default false .external -}}
 
@@ -37,6 +41,7 @@
     {{- end }}
     <h3>{{ $title | safeHTML }}</h3>
     {{- with $desc }}<p class="body-sm">{{ . }}</p>{{ end }}
+    {{- with $meta }}<div class="card-meta">{{ . | safeHTML }}</div>{{ end }}
     {{- with $cta }}
     <div class="arrow-cell"><span>{{ . }}</span><span aria-hidden="true">↗</span></div>
     {{- end }}

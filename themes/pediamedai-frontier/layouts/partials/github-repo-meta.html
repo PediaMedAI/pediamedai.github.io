@@ -1,0 +1,32 @@
+{{- /* GitHub repo metadata — fetched at build time via the GitHub API.
+       Renders nothing on any failure (network down, rate-limited, repo
+       missing, malformed JSON) so a flaky API never breaks the build.
+       Hugo's resources.GetRemote caches responses (default 30 min) so
+       multiple builds in quick succession don't refetch.
+
+       Uses Hugo's `try` keyword (introduced in 0.141.0) to capture
+       errors from GetRemote and Unmarshal — Resource.Err was removed
+       in 0.141.0 in favor of this pattern.
+
+       Args:
+         repo  (required)  e.g. "PediaMedAI/AggPose"
+
+       Output: a fragment of <span class="metric"> elements separated
+       by aria-hidden middots. Designed to be passed to card.html's
+       optional `meta` slot. */ -}}
+{{- $url := printf "https://api.github.com/repos/%s" .repo -}}
+{{- $r := try (resources.GetRemote $url) -}}
+{{- with $r.Value -}}
+  {{- $parsed := try (transform.Unmarshal .) -}}
+  {{- with $parsed.Value -}}
+    {{- $stars := .stargazers_count | default 0 -}}
+    {{- $lang := .language | default "" -}}
+    {{- $pushed := .pushed_at | default "" -}}
+    <span class="metric">★ {{ $stars }}</span>
+    {{- with $lang }}<span class="sep" aria-hidden="true"> · </span><span class="metric">{{ . }}</span>{{ end -}}
+    {{- if $pushed -}}
+      {{- $t := time $pushed -}}
+      <span class="sep" aria-hidden="true"> · </span><span class="metric">Updated <time datetime="{{ $t.Format "2006-01-02" }}">{{ $t.Format "Jan 2, 2006" }}</time></span>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
