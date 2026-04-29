@@ -44,7 +44,9 @@ footer .big,
 .eyebrow,
 .label-mono,
 .kicker,
-.tag {
+.tag,
+.cap .num,
+.team-cell .num {
   font-variant-numeric: tabular-nums;
 }
 
