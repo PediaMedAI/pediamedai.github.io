@@ -194,4 +194,13 @@
   .nav .links {
     inset: $nav-h-sm 0 0 0;
   }
+
+  /* Match the shrunk nav so hash-link landings keep the intended
+     16px buffer (otherwise scroll-margin-top would still target the
+     desktop $nav-h and leave 24px of dead space below the nav). */
+  section[id],
+  .theme[id],
+  .md-heading {
+    scroll-margin-top: $nav-h-sm + $nav-scroll-buffer;
+  }
 }
