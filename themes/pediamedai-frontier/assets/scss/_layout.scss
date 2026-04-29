@@ -157,8 +157,9 @@
 
 /* Hash-link landing offset — the sticky nav is 64px tall, so account
    for it (plus a small breathing buffer) when the browser scrolls
-   to a section by hash. */
-section[id] {
+   to a section or theme article by hash. */
+section[id],
+.theme[id] {
   scroll-margin-top: 80px;
 }
 
