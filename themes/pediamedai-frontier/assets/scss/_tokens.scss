@@ -5,6 +5,15 @@
 $bp-tablet: 980px;
 $bp-mobile: 600px;
 
+/* Sticky nav height — used by .nav .row, the mobile drawer's
+   `inset` offset, and the section[id] `scroll-margin-top` (so a
+   hash-link landing doesn't tuck the section title under the nav).
+   Kept as a Sass var so the derived spacings stay correct if the
+   nav resizes. */
+$nav-h: 64px;
+$nav-h-sm: 56px;     // <400px viewports
+$nav-scroll-buffer: 16px;
+
 :root {
   --bp-tablet: #{$bp-tablet};
   --bp-mobile: #{$bp-mobile};

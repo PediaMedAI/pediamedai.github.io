@@ -61,7 +61,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+    height: $nav-h;
   }
 
   .logo {
@@ -331,27 +331,9 @@
     color: var(--ink-3);
   }
 
-  h3 {
-    font-size: 28px;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-
   p {
     color: var(--ink-3);
     font-size: 14.5px;
-  }
-
-  .icon {
-    width: 56px;
-    height: 56px;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-elevated);
-    margin-bottom: 4px;
   }
 }
 

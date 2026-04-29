@@ -31,7 +31,12 @@
     }
 
     /* Inline-SVG research diagrams. The diagram viewBox is 720×540
-       (4:3) so it fits the visual container without distortion. */
+       (4:3) so it fits the visual container without distortion.
+       Per-diagram modifier classes (.diagram--lrformer / --vitasd
+       / --aggpose) are emitted by the partials as future hooks for
+       diagram-specific tweaks; nothing currently targets them, but
+       the BEM-style names beat anonymous identifiers if a per-paper
+       refinement is ever needed. */
     .diagram {
       width: 100%;
       height: 100%;

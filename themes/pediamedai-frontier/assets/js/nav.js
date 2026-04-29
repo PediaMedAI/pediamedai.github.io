@@ -5,8 +5,8 @@
   if (!nav || !btn || !menu) return;
 
   // Shared breakpoint — sourced from --bp-tablet which _tokens.scss
-   // mirrors from the Sass $bp-tablet variable used by @media queries.
-   // Falls back to 980 if the custom property isn't readable.
+  // mirrors from the Sass $bp-tablet variable used by @media queries.
+  // Falls back to 980 if the custom property isn't readable.
   var bpTablet = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--bp-tablet"), 10) || 980;
   var mq = window.matchMedia("(min-width: " + (bpTablet + 1) + "px)");
 

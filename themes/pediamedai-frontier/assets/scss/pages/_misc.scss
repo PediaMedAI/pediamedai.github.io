@@ -1,6 +1,10 @@
-/* ——— Heading self-link anchors (markdown render-hook) ——— */
+/* ——— Heading self-link anchors (markdown render-hook) ———
+   Applied to every h2/h3/h4 inside markdown-rendered content
+   (workshop pages, code-of-conduct, about). The render hook in
+   layouts/_default/_markup/render-heading.html wraps each heading
+   with class="md-heading" and appends a hover-revealed "#" link. */
 .md-heading {
-  scroll-margin-top: 80px; /* don't hide under sticky nav on hash navigation */
+  scroll-margin-top: $nav-h + $nav-scroll-buffer;
 
   .md-heading-link {
     margin-left: 0.4em;

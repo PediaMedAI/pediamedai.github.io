@@ -69,10 +69,17 @@
   border: 0;
   padding: 0;
   background: transparent;
+  /* 100vh on iOS Safari counts the URL-bar area, so close/nav buttons
+     can clip below the visible viewport. dynamic vh/vw use the actually-
+     visible region. The vh/vw fallbacks cover browsers without dvh. */
   max-width: 100vw;
+  max-width: 100dvw;
   max-height: 100vh;
+  max-height: 100dvh;
   width: 100vw;
+  width: 100dvw;
   height: 100vh;
+  height: 100dvh;
   margin: 0;
   color: var(--bg);
 

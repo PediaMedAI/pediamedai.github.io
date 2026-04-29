@@ -118,6 +118,14 @@
     transform: none !important;
   }
 
+  /* Tag chips look like decorative noise on paper — strip the pill
+     border and let them inline with surrounding text. */
+  .tag {
+    border: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+  }
+
   img {
     max-width: 100% !important;
     height: auto !important;
