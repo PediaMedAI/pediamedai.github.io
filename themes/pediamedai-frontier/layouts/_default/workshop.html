@@ -17,10 +17,14 @@
       <a class="btn" href="{{ . }}" target="_blank" rel="noopener">Workshop website <span class="arrow" aria-hidden="true">↗</span></a>
     </div>
     {{- end }}
+  </div>
+</section>
 
-    {{- if gt (len $gallery) 0 }}
-    {{- $altPrefix := default $.Title $.Params.gallery_alt_prefix -}}
-    <h2 class="h2-section">Gallery</h2>
+{{- if gt (len $gallery) 0 }}
+{{- $altPrefix := default $.Title $.Params.gallery_alt_prefix -}}
+<section class="section tinted" id="gallery">
+  <div class="container">
+    {{ partial "section-head.html" (dict "id" "gallery" "meta" "Gallery" "title" "On-site <em>photos.</em>") }}
     <div class="workshop-gallery" data-gallery>
       {{- range $i, $path := $gallery }}
         {{- $alt := printf "%s — photo %d" $altPrefix (add $i 1) }}
@@ -38,7 +42,7 @@
       <img class="lightbox__img" data-lightbox-img alt="">
       <button type="button" class="lightbox__nav lightbox__nav--next" data-lightbox-next aria-label="Next photo">›</button>
     </dialog>
-    {{- end }}
   </div>
 </section>
+{{- end }}
 {{ end }}
