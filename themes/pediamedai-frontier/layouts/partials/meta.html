@@ -143,6 +143,9 @@
     {{- with .arxiv -}}
       {{- $art = merge $art (dict "identifier" (dict "@type" "PropertyValue" "propertyID" "arXiv" "value" .)) -}}
     {{- end -}}
+    {{- with .repo -}}
+      {{- $art = merge $art (dict "codeRepository" (printf "https://github.com/%s" .)) -}}
+    {{- end -}}
     {{- $articles = $articles | append $art -}}
   {{- end -}}
   {{- $ld := dict "@context" "https://schema.org" "@graph" $articles -}}
