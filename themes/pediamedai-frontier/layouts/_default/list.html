@@ -12,7 +12,7 @@
     </div>
 
     {{- with .Pages }}
-    <div class="grid-3" style="margin-top: 48px;">
+    <div class="grid-3">
       {{- range . }}
       {{ partial "card.html" (dict
         "href" .RelPermalink

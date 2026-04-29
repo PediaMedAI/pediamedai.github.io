@@ -39,8 +39,6 @@
 }
 
 .h2-section {
-  font-family: var(--serif);
-  font-weight: 400;
   font-size: clamp(28px, 3vw, 36px);
   letter-spacing: -0.02em;
   margin: 48px 0 24px;
@@ -64,6 +62,12 @@
   grid-template-columns: 200px 1fr;
   gap: 32px;
   align-items: end;
+
+  /* The eyebrow sits above the kicker pill in the left column;
+     14px of breathing room reads as deliberate. */
+  .meta {
+    margin-bottom: 14px;
+  }
 
   @media (max-width: 980px) {
     grid-template-columns: 1fr;
@@ -110,8 +114,6 @@
   }
 
   h2 {
-    font-family: var(--serif);
-    font-weight: 400;
     font-size: clamp(36px, 4.4vw, 56px);
     line-height: 1;
     letter-spacing: -0.025em;
@@ -179,6 +181,13 @@ section[id],
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+
+  /* --centered: vertically centers child blocks in their cells.
+     Used by the partner-logo grid so logos of different heights
+     line up on a shared baseline. */
+  &--centered {
+    align-items: center;
+  }
 }
 
 .page-head {
@@ -193,8 +202,6 @@ section[id],
   }
 
   h1 {
-    font-family: var(--serif);
-    font-weight: 400;
     font-size: clamp(64px, 10vw, 144px);
     line-height: 0.92;
     letter-spacing: -0.03em;

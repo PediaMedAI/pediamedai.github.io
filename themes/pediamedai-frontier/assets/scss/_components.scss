@@ -68,7 +68,6 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: var(--serif);
     font-size: 22px;
     letter-spacing: -0.02em;
     color: var(--ink);
@@ -213,8 +212,6 @@
   }
 
   h3 {
-    font-family: var(--serif);
-    font-weight: 400;
     font-size: 24px;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -335,8 +332,6 @@
   }
 
   h3 {
-    font-family: var(--serif);
-    font-weight: 400;
     font-size: 28px;
     letter-spacing: -0.02em;
     line-height: 1.1;
@@ -368,8 +363,6 @@
   align-items: start;
 
   .big {
-    font-family: var(--serif);
-    font-weight: 400;
     font-size: clamp(32px, 3.6vw, 48px);
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -381,6 +374,13 @@
       color: var(--ink-3);
     }
   }
+}
+
+/* Mission's cap-row sits 64px below the .big sentence. Scoped via
+   adjacent-sibling combinator so the mission layout owns the spacing
+   instead of an inline style on the markup. */
+.mission + .cap-row {
+  margin-top: 64px;
 }
 
 /* ——— Callout ——— */
@@ -406,12 +406,23 @@
   }
 
   .callout-title {
-    font-family: var(--serif);
-    font-weight: 400;
     font-size: 22px;
     letter-spacing: -0.015em;
     margin: 0;
   }
+}
+
+/* When a callout (e.g. on /contact/) is followed by markdown body
+   prose, give them visible breathing room. */
+.callout + .prose {
+  margin-top: 48px;
+}
+
+/* In the default list layout (e.g. taxonomy or section indexes that
+   render an intro then a child-page grid), the grid sits 48px below
+   the prose intro. */
+.prose + .grid-3 {
+  margin-top: 48px;
 }
 
 /* ——— Ticker ——— */
@@ -487,7 +498,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--serif);
   font-size: clamp(28px, 5vw, 48px);
   letter-spacing: -0.02em;
   color: var(--ink-2);

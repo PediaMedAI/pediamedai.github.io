@@ -20,12 +20,37 @@ $fonts: (
   }
 }
 
-/* Display headlines (Instrument Serif at 56–144px) get optical
-   refinements: balanced wrapping (no orphan word on last line),
-   smarter kerning/ligatures, and slight feature tweaks. The
-   `.display`/`.display-mix` utility classes were authored
-   speculatively and never used — actual display headlines are
-   styled by their selector (.hero h1, .page-head h1, etc.) below. */
+/* Shared base for every Instrument Serif display element. Defining
+   font-family + font-weight in one selector list means the per-component
+   rules below can focus on size, line-height, tracking, and color —
+   and a future tweak (e.g., font-feature-settings) propagates without
+   touching each. */
+.h2-section,
+.section-head h2,
+.page-head h1,
+.hero h1,
+.hero-meta .v,
+.theme-title,
+.team-cell h3,
+.callout-title,
+.cap h3,
+.card h3,
+.mission .big,
+footer .big,
+.display-404,
+.pub .t,
+.founder-page__body .body-lg,
+.avatar-fallback,
+.nav .logo,
+.prose h2,
+.prose h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+}
+
+/* Display headlines at 56–144px get optical refinements: balanced
+   wrapping (no orphan word on last line), smarter kerning, ligatures.
+   Subset of the serif list above, scoped to the display tier. */
 .hero h1,
 .page-head h1,
 .section-head h2,
@@ -69,6 +94,7 @@ footer .big,
   font-size: 19px;
   line-height: 1.5;
   color: var(--ink-2);
+  max-width: 56ch;
 }
 
 .body-md {
