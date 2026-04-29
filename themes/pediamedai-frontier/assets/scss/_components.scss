@@ -240,12 +240,8 @@
     color: var(--ink-3);
   }
 
-  /* Live build-time metadata line — used by the Code page for repo
-     star/language/last-pushed signals fetched from the GitHub API.
-     Tabular nums keep digits aligned. Sits above the arrow-cell, so
-     the .body's flex-column flow places it where the desc would
-     extend. Renders as plain prose if the GitHub fetch fails (the
-     partial just outputs nothing). */
+  /* Build-time repo metadata strip (Code page); rendered via
+     github-repo-meta.html. */
   .card-meta {
     margin-top: 8px;
     font-family: var(--mono);
@@ -358,12 +354,6 @@
   }
 }
 
-/* Mission's cap-row sits 64px below the .big sentence. Scoped via
-   adjacent-sibling combinator so the mission layout owns the spacing
-   instead of an inline style on the markup. */
-.mission + .cap-row {
-  margin-top: 64px;
-}
 
 /* ——— Callout ——— */
 .callout {
@@ -394,18 +384,6 @@
   }
 }
 
-/* When a callout (e.g. on /contact/) is followed by markdown body
-   prose, give them visible breathing room. */
-.callout + .prose {
-  margin-top: 48px;
-}
-
-/* In the default list layout (e.g. taxonomy or section indexes that
-   render an intro then a child-page grid), the grid sits 48px below
-   the prose intro. */
-.prose + .grid-3 {
-  margin-top: 48px;
-}
 
 /* ——— Ticker ——— */
 .ticker {

@@ -22,14 +22,13 @@
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  /* Cancel the desktop nth-child(even) flip outright — at single-
+     column the column-count override is redundant; only direction
+     needs an explicit reset since the desktop rule sets rtl. */
   .theme {
     grid-template-columns: 1fr;
     gap: 32px;
-
-    &:nth-child(even) {
-      grid-template-columns: 1fr;
-      direction: ltr;
-    }
+    direction: ltr;
   }
   .section-head,
   .mission,

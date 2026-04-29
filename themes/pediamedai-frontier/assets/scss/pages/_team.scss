@@ -130,7 +130,6 @@
 
   &__body {
     .body-lg {
-      max-width: 56ch;
       color: var(--ink);
       font-size: clamp(22px, 2.6vw, 28px);
       line-height: 1.35;
@@ -138,6 +137,8 @@
       margin: 0 0 24px;
     }
 
+    /* Narrower than the global .prose 72ch — founder pages keep
+       bio-length text comfortable to scan. */
     .prose {
       max-width: 56ch;
     }

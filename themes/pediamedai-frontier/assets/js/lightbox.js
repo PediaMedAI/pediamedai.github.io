@@ -7,6 +7,7 @@
   var prev = dialog.querySelector("[data-lightbox-prev]");
   var next = dialog.querySelector("[data-lightbox-next]");
   var close = dialog.querySelector("[data-lightbox-close]");
+  if (!img || !prev || !next || !close) return;
 
   // Snapshot the photo sources at load time. Each entry: {src, alt}.
   var items = Array.prototype.map.call(

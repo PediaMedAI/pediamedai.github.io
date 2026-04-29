@@ -1,3 +1,20 @@
+/* ——— Page-composition spacing ———
+   Adjacent-sibling rules that own the gap between two surfaces on
+   the same page. Living here (next to .prose / page-level concerns)
+   rather than in _components.scss because they describe page flow,
+   not component internals. */
+.mission + .cap-row {
+  margin-top: 64px;
+}
+
+.callout + .prose {
+  margin-top: 48px;
+}
+
+.prose + .grid-3 {
+  margin-top: 48px;
+}
+
 /* ——— Heading self-link anchors (markdown render-hook) ———
    Applied to every h2/h3/h4 inside markdown-rendered content
    (workshop pages, code-of-conduct, about). The render hook in

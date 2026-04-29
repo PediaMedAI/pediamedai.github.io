@@ -6,6 +6,9 @@
     <main id="main">
       {{- block "main" . }}{{ end }}
     </main>
-    {{- partial "footer.html" . }}
+    {{- /* Footer is fully page-invariant (Site.Params + now() + 7 JS
+           pipelines), so partialCached avoids re-running the resource
+           lookups for every page in the build. */ -}}
+    {{- partialCached "footer.html" . }}
   </body>
 </html>

@@ -1,35 +1,19 @@
-{{- /* GitHub repo metadata — fetched live from the GitHub API at
-       build time, with a fallback to data/repos.yaml when the live
-       call fails (network down, rate-limited, transient 5xx). The
-       partial renders nothing only if BOTH paths fail (e.g. the
-       repo isn't in the YAML and the API is unreachable).
+{{- /* GitHub repo metadata. Live API → fallback to data/repos.yaml.
 
        Hugo caches resources.GetRemote responses (default 30 min) so
-       multiple builds in quick succession don't re-fetch.
+       repeated builds don't re-fetch. The fallback covers offline /
+       rate-limited builds.
 
        Args:
          repo  (required)  e.g. "PediaMedAI/AggPose"
+       Output: bare spans separated by aria-hidden middots; styling
+       is inherited from the surrounding .card-meta wrapper. */ -}}
 
-       Output: a sequence of plain spans separated by aria-hidden
-       middot spans. Styling is inherited from .card-meta on the
-       wrapping element. */ -}}
-{{- $repo := .repo -}}
-
-{{- /* —— Live fetch —— */ -}}
-{{- $url := printf "https://api.github.com/repos/%s" $repo -}}
-{{- $r := try (resources.GetRemote $url) -}}
-{{- $data := dict -}}
-{{- with $r.Value -}}
-  {{- $parsed := try (transform.Unmarshal .) -}}
-  {{- with $parsed.Value -}}
-    {{- $data = . -}}
-  {{- end -}}
-{{- end -}}
-
-{{- /* —— Fallback to snapshot if live fetch yielded nothing —— */ -}}
-{{- if not $data -}}
-  {{- with index $.Site.Data.repos $repo -}}
-    {{- $data = . -}}
+{{- $url := printf "https://api.github.com/repos/%s" .repo -}}
+{{- $data := index $.Site.Data.repos .repo -}}
+{{- with try (resources.GetRemote $url) -}}
+  {{- with .Value -}}
+    {{- with (try (transform.Unmarshal .)).Value -}}{{- $data = . -}}{{- end -}}
   {{- end -}}
 {{- end -}}
 
@@ -39,8 +23,8 @@
   {{- $pushed := .pushed_at | default "" -}}
   <span>★ {{ $stars }}</span>
   {{- with $lang }}<span class="sep" aria-hidden="true"> · </span><span>{{ . }}</span>{{ end -}}
-  {{- if $pushed -}}
-    {{- $t := time $pushed -}}
+  {{- with $pushed -}}
+    {{- $t := time . -}}
     <span class="sep" aria-hidden="true"> · </span><span>Updated <time datetime="{{ $t.Format "2006-01-02" }}">{{ $t.Format "Jan 2, 2006" }}</time></span>
   {{- end -}}
 {{- end -}}
