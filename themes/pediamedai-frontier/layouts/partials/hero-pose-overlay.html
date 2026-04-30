@@ -39,6 +39,12 @@
   {{- end -}}
 {{- end -}}
 
+{{- /* High-confidence threshold — keypoints/bars at or above this
+       value render in --accent (calm); below renders in --signal
+       (warm) so the eye lands on uncertain landmarks. Hoisted here
+       so all three loops below stay in lockstep. */ -}}
+{{- $highConf := 0.85 -}}
+
 <svg class="lattice" viewBox="0 0 540 540" preserveAspectRatio="xMidYMid meet" aria-labelledby="hero-pose-title hero-pose-desc" role="img">
   <title id="hero-pose-title">Illustrative pediatric pose-overlay artifact</title>
   <desc id="hero-pose-desc">A diagrammatic infant pose overlay with 15 landmark points and per-point confidence rings, layered over light growth-chart percentile bands. The visual illustrates how AggPose attaches calibrated confidence to each landmark; it is not a live model output.</desc>
@@ -92,7 +98,7 @@
   {{- /* —— Confidence rings (high = accent, low = signal) —— */ -}}
   <g class="hero-conf-rings" fill="none" stroke-width="1">
     {{- range $kps }}
-      {{- $isHigh := ge .conf 0.85 }}
+      {{- $isHigh := ge .conf $highConf }}
       {{- $r := mul (sub 1 .conf) 60 }}
       {{- if lt $r 6.0 }}{{ $r = 6.0 }}{{ end }}
       <circle cx="{{ .cx }}" cy="{{ .cy }}" r="{{ $r }}" stroke="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}" stroke-opacity="0.55" stroke-dasharray="2 3"></circle>
@@ -102,7 +108,7 @@
   {{- /* —— Keypoints —— */ -}}
   <g class="hero-keypoints">
     {{- range $kps }}
-      {{- $isHigh := ge .conf 0.85 }}
+      {{- $isHigh := ge .conf $highConf }}
       <circle cx="{{ .cx }}" cy="{{ .cy }}" r="3" fill="{{ if $isHigh }}var(--accent){{ else }}var(--signal){{ end }}"></circle>
     {{- end }}
   </g>
@@ -124,7 +130,7 @@
       <text x="28" y="{{ $y }}" fill="var(--ink-3)">{{ $b.name }}</text>
       <rect x="64" y="{{ sub $y 6 }}" width="64" height="6" fill="var(--bg-tinted)"></rect>
       {{- $w := mul $b.conf 64 }}
-      <rect x="64" y="{{ sub $y 6 }}" width="{{ $w }}" height="6" fill="{{ if ge $b.conf 0.85 }}var(--accent){{ else }}var(--signal){{ end }}"></rect>
+      <rect x="64" y="{{ sub $y 6 }}" width="{{ $w }}" height="6" fill="{{ if ge $b.conf $highConf }}var(--accent){{ else }}var(--signal){{ end }}"></rect>
     {{- end }}
   </g>
 </svg>

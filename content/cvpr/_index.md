@@ -6,7 +6,9 @@ external_url: "https://pediamedai.com/cv4chl/"
 badge: "Planning"
 subtitle: "Bringing pediatricians, psychologists, educationists, clinicians and CV researchers together to think about the future."
 dates: "2026-06-03"
+enddates: "2026-06-07"
 location: "Denver, Colorado, USA"
+event_image: "img/workshops/cv4chl_bg.jpg"
 description: "CVPR 2026 workshop on computer vision for children's development, health, and education — Denver, June 2026. Hosting the Children's Gait Competition."
 ---
 

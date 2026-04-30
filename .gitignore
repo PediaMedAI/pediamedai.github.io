@@ -9,5 +9,8 @@ resources/_gen/
 .DS_Store
 *.sw[a-z]
 
+# Claude Code per-project session state
+.claude/
+
 # Internal-only design reference (contains prototype copy with fabricated claims — do not publish)
 design_handoff_pediamedai_redesign/

@@ -7,6 +7,7 @@
   var prev = dialog.querySelector("[data-lightbox-prev]");
   var next = dialog.querySelector("[data-lightbox-next]");
   var close = dialog.querySelector("[data-lightbox-close]");
+  var status = dialog.querySelector("[data-lightbox-status]");
   if (!img || !prev || !next || !close) return;
 
   // Snapshot the photo sources at load time. Each entry: {src, alt}.
@@ -23,6 +24,12 @@
     index = (i + items.length) % items.length;
     img.src = items[index].src;
     img.alt = items[index].alt;
+    if (status) {
+      // Announced via aria-live=polite — gives SR users the photo
+      // position context that's visible to sighted users via the
+      // ‹ / › nav cues.
+      status.textContent = "Photo " + (index + 1) + " of " + items.length + ": " + items[index].alt;
+    }
   }
 
   gallery.querySelectorAll("[data-gallery-open]").forEach(function (btn) {

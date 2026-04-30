@@ -123,6 +123,8 @@
     "@type" "Event"
     "name" .Title
     "url" .Permalink
+    "eventStatus" "https://schema.org/EventScheduled"
+    "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode"
   -}}
   {{- with .Params.subtitle -}}
     {{- $event = merge $event (dict "description" .) -}}
@@ -130,8 +132,23 @@
   {{- with .Params.dates -}}
     {{- $event = merge $event (dict "startDate" .) -}}
   {{- end -}}
+  {{- /* endDate falls back to startDate when frontmatter doesn't
+         specify, so single-day workshops still get a complete date
+         range for the Google rich-result. */ -}}
+  {{- $endDate := default .Params.dates .Params.enddates -}}
+  {{- with $endDate -}}
+    {{- $event = merge $event (dict "endDate" .) -}}
+  {{- end -}}
   {{- with .Params.location -}}
     {{- $event = merge $event (dict "location" (dict "@type" "Place" "name" .)) -}}
+  {{- end -}}
+  {{- /* event_image lives under assets/ — process through resource
+         pipeline so the emitted URL points at the actual fingerprinted
+         JPEG/WebP rather than a path that doesn't exist publicly. */ -}}
+  {{- with .Params.event_image -}}
+    {{- with resources.Get . -}}
+      {{- $event = merge $event (dict "image" (printf "%s%s" $.Site.BaseURL (strings.TrimPrefix "/" .RelPermalink))) -}}
+    {{- end -}}
   {{- end -}}
   {{- with .Params.external_url -}}
     {{- $event = merge $event (dict "sameAs" .) -}}
@@ -162,6 +179,7 @@
       "name" .title
       "datePublished" .year
       "url" .url
+      "inLanguage" "en"
       "isPartOf" (dict "@type" "PublicationVolume" "name" .venue)
       "author" $authors
       "publisher" (dict "@type" "Organization" "name" "PediaMed AI" "url" $.Site.BaseURL)

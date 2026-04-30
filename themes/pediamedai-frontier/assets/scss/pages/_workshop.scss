@@ -1,3 +1,43 @@
+/* ——— Workshop event-meta strip ———
+   Thin mono-uppercase row sits between the page-head and the body on
+   workshop layouts, naming the event's date / location / status the
+   way a conference banner would. The badge is colored to mirror the
+   page-head kicker (planning vs done), giving a single visual cue
+   for upcoming-vs-past at a glance. */
+.event-meta {
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 0;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+
+    &:not(:last-child)::after {
+      content: "·";
+      margin: 0 14px;
+      color: var(--ink-4);
+    }
+
+    &--accent {
+      color: var(--accent);
+    }
+  }
+}
+
 /* ——— Workshop pages ——— */
 .workshop-gallery {
   display: grid;

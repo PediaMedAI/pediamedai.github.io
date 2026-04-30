@@ -6,6 +6,40 @@
 
 {{ partial "page-head.html" (dict "kicker" $badge "title" .Title "desc" $subtitle) }}
 
+{{- /* Event meta strip — date range + location, mono uppercase, thin
+       hairline separators. Sits between the page-head h1 and the body
+       so workshop pages feel like event objects, not generic articles.
+       Date formatting collapses single-day events to a bare date and
+       expands multi-day to "Mon D – Mon D, YYYY". */ -}}
+{{- with .Params.dates }}
+  {{- $start := time . -}}
+  {{- $end := time (default . $.Params.enddates) -}}
+  {{- /* Tighten the label so a multi-day same-year run reads "Jun 3 –
+         7, 2026" instead of repeating the year, and a same-day event
+         collapses to a single date. */ -}}
+  {{- $dateLabel := "" -}}
+  {{- if eq ($start.Format "2006-01-02") ($end.Format "2006-01-02") -}}
+    {{- $dateLabel = $start.Format "Jan 2, 2006" -}}
+  {{- else if eq ($start.Year) ($end.Year) -}}
+    {{- if eq ($start.Month) ($end.Month) -}}
+      {{- $dateLabel = printf "%s–%d, %d" ($start.Format "Jan 2") ($end.Day) ($end.Year) -}}
+    {{- else -}}
+      {{- $dateLabel = printf "%s – %s, %d" ($start.Format "Jan 2") ($end.Format "Jan 2") ($end.Year) -}}
+    {{- end -}}
+  {{- else -}}
+    {{- $dateLabel = printf "%s – %s" ($start.Format "Jan 2, 2006") ($end.Format "Jan 2, 2006") -}}
+  {{- end }}
+<div class="event-meta">
+  <div class="container">
+    <ul class="event-meta__list">
+      <li class="event-meta__item">{{ $dateLabel }}</li>
+      {{- with $.Params.location }}<li class="event-meta__item">{{ . }}</li>{{ end }}
+      <li class="event-meta__item event-meta__item--accent">{{ $badge }}</li>
+    </ul>
+  </div>
+</div>
+{{- end }}
+
 <section class="section">
   <div class="container">
     <div class="prose">
@@ -41,6 +75,7 @@
       <button type="button" class="lightbox__nav lightbox__nav--prev" data-lightbox-prev aria-label="Previous photo">‹</button>
       <img class="lightbox__img" data-lightbox-img alt="">
       <button type="button" class="lightbox__nav lightbox__nav--next" data-lightbox-next aria-label="Next photo">›</button>
+      <span class="sr-only" role="status" aria-live="polite" data-lightbox-status></span>
     </dialog>
   </div>
 </section>
