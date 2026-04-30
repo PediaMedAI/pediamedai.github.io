@@ -62,6 +62,10 @@ $nav-scroll-buffer: 16px;
   --accent-soft: #1c2640;
   --signal: #e88467;
   --signal-soft: #2a1c17;
+  /* --ok lifts to a brighter mint so the bib-copy "Copied" feedback
+     on a dark .btn.sm clears AA at 12px. The light-mode forest green
+     is too dark on the inverted background. */
+  --ok: #6fcb8e;
 
   /* The light-mode --shadow-2 uses a near-ink rgba which becomes
      invisible against the dark surface. Reach for a deeper black

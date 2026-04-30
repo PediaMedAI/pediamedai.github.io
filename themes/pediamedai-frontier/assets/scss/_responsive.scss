@@ -39,6 +39,15 @@
     grid-template-columns: 1fr;
     gap: 32px;
     direction: ltr;
+
+    /* Cancel the desktop nth-child(even) flip on the side-rule too —
+       at single-column the rule should sit on the same edge for every
+       theme, not alternate sides. The desktop rule sets right: 0 on
+       theme 02; reset it back to left: 0 here. */
+    &:nth-child(even)::before {
+      left: 0;
+      right: auto;
+    }
   }
   .section-head,
   .mission,
@@ -175,6 +184,26 @@
     &:last-child {
       border-bottom: none;
     }
+  }
+}
+
+/* Touch-target floor: on coarse pointers (touch devices), bump
+   compact interactive elements to a 44×44 tap area. Desktop / mouse
+   stays at the tighter desktop sizing. */
+@media (pointer: coarse) {
+  .nav .theme-toggle,
+  .nav .nav-toggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .btn.sm,
+  .pub-code,
+  .pub-bib > summary,
+  .pub-filter button {
+    min-height: 44px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 

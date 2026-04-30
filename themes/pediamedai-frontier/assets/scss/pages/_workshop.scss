@@ -11,6 +11,9 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
+    /* Row gap matches font-size so wrapped lines breathe. Column gap
+       is zero — the leading · on items 2+ provides its own spacing. */
+    gap: 6px 0;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -26,10 +29,16 @@
     display: inline-flex;
     align-items: center;
 
-    &:not(:last-child)::after {
-      content: "·";
-      margin: 0 14px;
-      color: var(--ink-4);
+    /* Use a leading · on items 2+ so when the row wraps, the
+       separator falls at the start of a new line with its item
+       (reading like a list bullet) instead of orphaning at the
+       end of the previous line. */
+    & + & {
+      &::before {
+        content: "·";
+        margin: 0 14px;
+        color: var(--ink-4);
+      }
     }
 
     &--accent {
@@ -145,10 +154,5 @@
   }
 }
 
-@media (max-width: $bp-mobile) {
-  .lightbox__nav {
-    width: 36px;
-    height: 36px;
-    font-size: 24px;
-  }
-}
+/* Lightbox nav stays 44×44 across viewports — touch users on mobile
+   need the full target. The desktop sizing already meets the floor. */

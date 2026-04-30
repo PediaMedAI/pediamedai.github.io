@@ -79,6 +79,19 @@
     letter-spacing: -0.02em;
   }
 
+  /* On phones the drop-cap dominates the first 2-3 lines and squeezes
+     body text to ~25 chars/line — the editorial flourish costs more
+     than it earns. Suppress under the mobile breakpoint. */
+  @media (max-width: $bp-mobile) {
+    > p:first-child::first-letter {
+      font-size: inherit;
+      float: none;
+      margin: 0;
+      letter-spacing: normal;
+      line-height: inherit;
+    }
+  }
+
   h2 {
     font-size: clamp(28px, 3vw, 36px);
     letter-spacing: -0.02em;
