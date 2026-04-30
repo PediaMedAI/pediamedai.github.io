@@ -6,9 +6,10 @@
     <main id="main">
       {{- block "main" . }}{{ end }}
     </main>
-    {{- /* Footer is fully page-invariant (Site.Params + now() + 7 JS
-           pipelines), so partialCached avoids re-running the resource
-           lookups for every page in the build. */ -}}
+    {{- /* Footer markup is page-invariant — cacheable. Scripts are
+           page-context-aware (publications/workshop gates), so they
+           live in their own partial, rendered fresh per page. */ -}}
     {{- partialCached "footer.html" . }}
+    {{- partial "scripts.html" . }}
   </body>
 </html>

@@ -1,10 +1,13 @@
 <footer>
   <div class="container">
-    <div class="big">Trustworthy AI <em>for every child.</em></div>
+    <div class="footer-finale">
+      <div class="meta eyebrow">— PediaMed AI · {{ now.Year }}</div>
+      <div class="big">Trustworthy AI <em>for every child.</em></div>
+    </div>
 
     <div class="row">
       <div class="col">
-        <h2 class="footer-col-title">Lab</h2>
+        <h3 class="footer-col-title">Lab</h3>
         <a href="{{ "/research/" | relURL }}">Research</a>
         <a href="{{ "/publications/" | relURL }}">Publications</a>
         <a href="{{ "/team/" | relURL }}">Team</a>
@@ -12,13 +15,13 @@
         <a href="{{ "/workshops/" | relURL }}">Workshops</a>
       </div>
       <div class="col">
-        <h2 class="footer-col-title">About</h2>
+        <h3 class="footer-col-title">About</h3>
         <a href="{{ "/about/" | relURL }}">About</a>
         <a href="{{ "/contact/" | relURL }}">Contact</a>
         <a href="{{ "/code-of-conduct/" | relURL }}">Code of conduct</a>
       </div>
       <div class="col">
-        <h2 class="footer-col-title">Connect</h2>
+        <h3 class="footer-col-title">Connect</h3>
         {{- with .Site.Params.contact_email }}
         <a href="mailto:{{ . }}">{{ . }}</a>
         {{- end }}
@@ -28,7 +31,7 @@
         <a href="https://github.com/PediaMedAI">GitHub</a>
       </div>
       <div class="col">
-        <h2 class="footer-col-title">Lab note</h2>
+        <h3 class="footer-col-title">Lab note</h3>
         <p class="footer-note">Research updates and clinical partner stories. Newsletter coming later — for now, reach us by email.</p>
       </div>
     </div>
@@ -39,18 +42,3 @@
     </div>
   </div>
 </footer>
-
-{{- $reveal := resources.Get "js/reveal.js" | minify | fingerprint }}
-<script src="{{ $reveal.RelPermalink }}" integrity="{{ $reveal.Data.Integrity }}" defer></script>
-{{- $themeJs := resources.Get "js/theme.js" | minify | fingerprint }}
-<script src="{{ $themeJs.RelPermalink }}" integrity="{{ $themeJs.Data.Integrity }}" defer></script>
-{{- $navJs := resources.Get "js/nav.js" | minify | fingerprint }}
-<script src="{{ $navJs.RelPermalink }}" integrity="{{ $navJs.Data.Integrity }}" defer></script>
-{{- $pubFilter := resources.Get "js/pub-filter.js" | minify | fingerprint }}
-<script src="{{ $pubFilter.RelPermalink }}" integrity="{{ $pubFilter.Data.Integrity }}" defer></script>
-{{- $bibCopy := resources.Get "js/bib-copy.js" | minify | fingerprint }}
-<script src="{{ $bibCopy.RelPermalink }}" integrity="{{ $bibCopy.Data.Integrity }}" defer></script>
-{{- $prefetch := resources.Get "js/prefetch.js" | minify | fingerprint }}
-<script src="{{ $prefetch.RelPermalink }}" integrity="{{ $prefetch.Data.Integrity }}" defer></script>
-{{- $lightbox := resources.Get "js/lightbox.js" | minify | fingerprint }}
-<script src="{{ $lightbox.RelPermalink }}" integrity="{{ $lightbox.Data.Integrity }}" defer></script>

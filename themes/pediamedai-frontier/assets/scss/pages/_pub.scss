@@ -141,7 +141,7 @@
   padding: 16px 18px;
   background: var(--bg-tinted);
   border: 1px solid var(--rule);
-  border-radius: 4px;
+  border-radius: var(--radius);
   position: relative;
 
   pre {

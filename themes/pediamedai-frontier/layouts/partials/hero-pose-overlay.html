@@ -62,7 +62,7 @@
     <path d="M30 340 Q 130 300 270 260 T 510 200"></path>
     <path d="M30 300 Q 130 260 270 220 T 510 160" stroke-dasharray="3 3"></path>
   </g>
-  <g class="hero-bg-labels" font-family="var(--mono)" font-size="9" fill="var(--ink-4)" opacity="0.6">
+  <g class="hero-bg-labels" font-family="var(--mono)" font-size="9" fill="var(--ink-3)" opacity="0.85">
     <text x="514" y="322">P3</text>
     <text x="514" y="282">P15</text>
     <text x="514" y="242">P50</text>
@@ -116,7 +116,7 @@
   </g>
 
   {{- /* —— Per-keypoint confidence bars (lower-left mini-panel, derived from $bars) —— */ -}}
-  <g class="hero-bars" font-family="var(--mono)" font-size="8" fill="var(--ink-4)" letter-spacing="0.06em">
+  <g class="hero-bars" font-family="var(--mono)" font-size="8" fill="var(--ink-3)" letter-spacing="0.06em">
     <rect x="22" y="406" width="116" height="92" fill="var(--bg-elevated)" stroke="var(--rule)" rx="3" opacity="0.92"></rect>
     <text x="28" y="418">15 LANDMARKS</text>
     {{- range $i, $b := $bars }}

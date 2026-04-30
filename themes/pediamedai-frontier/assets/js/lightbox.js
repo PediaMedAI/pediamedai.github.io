@@ -17,6 +17,7 @@
   if (!items.length) return;
 
   var index = 0;
+  var lastTrigger = null;
 
   function show(i) {
     index = (i + items.length) % items.length;
@@ -26,6 +27,7 @@
 
   gallery.querySelectorAll("[data-gallery-open]").forEach(function (btn) {
     btn.addEventListener("click", function () {
+      lastTrigger = btn;
       show(parseInt(btn.getAttribute("data-gallery-open"), 10) || 0);
       if (typeof dialog.showModal === "function") dialog.showModal();
       else dialog.setAttribute("open", "");
@@ -36,6 +38,15 @@
     if (typeof dialog.close === "function") dialog.close();
     else dialog.removeAttribute("open");
   }
+
+  // Restore focus on close — covers backdrop click, close button, and
+  // Esc (which fires the native cancel→close sequence). One listener
+  // beats branching at every dismissal site.
+  dialog.addEventListener("close", function () {
+    if (lastTrigger && typeof lastTrigger.focus === "function") {
+      lastTrigger.focus();
+    }
+  });
 
   close.addEventListener("click", dismiss);
   prev.addEventListener("click", function () { show(index - 1); });

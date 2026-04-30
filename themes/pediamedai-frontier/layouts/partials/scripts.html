@@ -1,0 +1,23 @@
+{{- /* Global scripts — every page. */ -}}
+{{- $reveal := resources.Get "js/reveal.js" | minify | fingerprint }}
+<script src="{{ $reveal.RelPermalink }}" integrity="{{ $reveal.Data.Integrity }}" defer></script>
+{{- $themeJs := resources.Get "js/theme.js" | minify | fingerprint }}
+<script src="{{ $themeJs.RelPermalink }}" integrity="{{ $themeJs.Data.Integrity }}" defer></script>
+{{- $navJs := resources.Get "js/nav.js" | minify | fingerprint }}
+<script src="{{ $navJs.RelPermalink }}" integrity="{{ $navJs.Data.Integrity }}" defer></script>
+{{- $prefetch := resources.Get "js/prefetch.js" | minify | fingerprint }}
+<script src="{{ $prefetch.RelPermalink }}" integrity="{{ $prefetch.Data.Integrity }}" defer></script>
+
+{{- /* Section-gated scripts — only emitted on pages that need them, so
+       the publications-only filter/copy logic and the workshop-only
+       lightbox don't ship to every route. */ -}}
+{{- if eq .Section "publications" }}
+{{- $pubFilter := resources.Get "js/pub-filter.js" | minify | fingerprint }}
+<script src="{{ $pubFilter.RelPermalink }}" integrity="{{ $pubFilter.Data.Integrity }}" defer></script>
+{{- $bibCopy := resources.Get "js/bib-copy.js" | minify | fingerprint }}
+<script src="{{ $bibCopy.RelPermalink }}" integrity="{{ $bibCopy.Data.Integrity }}" defer></script>
+{{- end }}
+{{- if eq .Layout "workshop" }}
+{{- $lightbox := resources.Get "js/lightbox.js" | minify | fingerprint }}
+<script src="{{ $lightbox.RelPermalink }}" integrity="{{ $lightbox.Data.Integrity }}" defer></script>
+{{- end }}

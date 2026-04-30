@@ -10,6 +10,17 @@ footer {
   position: relative;
   overflow: hidden;
 
+  /* Closing finale — small mono eyebrow above the slab gives it a
+     deliberate "section opener" feel, matching the —— 01 / Mission ——
+     pattern on the homepage so the footer reads as the page's real
+     final section, not just a margin block. */
+  .footer-finale {
+    .eyebrow {
+      color: color-mix(in oklab, var(--bg) 55%, transparent);
+      margin-bottom: 18px;
+    }
+  }
+
   .big {
     font-size: clamp(56px, 9vw, 144px);
     line-height: 0.95;

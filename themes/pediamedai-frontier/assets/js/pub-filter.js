@@ -4,8 +4,11 @@
   if (!btns.length || !pubs.length) return;
 
   var STORAGE_KEY = "pediamedai-pub-filter";
+  var current = null;
 
   function apply(filter) {
+    if (filter === current) return;
+    current = filter;
     btns.forEach(function (b) {
       b.setAttribute("aria-pressed", b.getAttribute("data-pub-filter") === filter ? "true" : "false");
     });

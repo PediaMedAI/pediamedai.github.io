@@ -32,10 +32,13 @@
         <span class="corner tr" aria-hidden="true"></span>
         <span class="corner bl" aria-hidden="true"></span>
         <span class="corner br" aria-hidden="true"></span>
-        <div class="hud tl">[ POSE OVERLAY · AGGPOSE ]<br>ILLUSTRATIVE PEDIATRIC<br>MODEL ARTIFACT</div>
-        <div class="hud tr">CONFIDENCE<br>ENCODING</div>
-        <div class="hud bl">15 LANDMARKS</div>
-        <div class="hud br">AGGPOSE · IJCAI 2022</div>
+        {{- /* HUD labels duplicate the SVG <title>/<desc> semantics; mark
+               aria-hidden so screen readers don't read the visual frame
+               labels as floating fragments. */ -}}
+        <div class="hud tl" aria-hidden="true">[ POSE OVERLAY · AGGPOSE ]<br>ILLUSTRATIVE PEDIATRIC<br>MODEL ARTIFACT</div>
+        <div class="hud tr" aria-hidden="true">CONFIDENCE<br>ENCODING</div>
+        <div class="hud bl" aria-hidden="true">15 LANDMARKS</div>
+        <div class="hud br" aria-hidden="true">AGGPOSE · IJCAI 2022</div>
         {{ partial "hero-pose-overlay.html" . }}
       </div>
     </div>

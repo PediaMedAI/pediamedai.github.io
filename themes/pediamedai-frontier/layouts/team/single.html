@@ -56,6 +56,9 @@
 {{- with $bio -}}
   {{- $person = merge $person (dict "description" .) -}}
 {{- end -}}
+{{- with $image -}}
+  {{- $person = merge $person (dict "image" (absURL .)) -}}
+{{- end -}}
 {{- with $link -}}
   {{- $person = merge $person (dict "sameAs" (slice .)) -}}
 {{- end -}}

@@ -11,7 +11,7 @@
          same-origin navigations. Firefox + older browsers ignore. */ -}}
   <meta name="view-transition" content="same-origin">
 
-  <title>{{ if not .IsHome }}{{ .Title }} · {{ end }}{{ .Site.Title }}</title>
+  <title>{{ if .IsHome }}{{ default .Site.Title .Site.Params.ogTitle }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
   {{- with $description }}<meta name="description" content="{{ . }}">{{ end }}
 
   {{- /* Theme bootstrap — set data-theme before paint to avoid flash */ -}}

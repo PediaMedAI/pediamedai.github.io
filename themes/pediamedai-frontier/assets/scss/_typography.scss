@@ -6,7 +6,6 @@ $fonts: (
   ("Instrument Serif", 400, italic, "instrument-serif-400-italic"),
   ("Geist",            400, normal, "geist-400"),
   ("Geist",            500, normal, "geist-500"),
-  ("Geist",            600, normal, "geist-600"),
   ("JetBrains Mono",   400, normal, "jetbrains-mono-400")
 );
 
@@ -67,13 +66,17 @@ footer .big,
 }
 
 /* Tabular numerals on mono labels keep section indices ("01", "02",
-   …) and dates aligned vertically across lines. */
+   …) and dates aligned vertically across lines. The hero-meta strip's
+   large display values (8 / 3 / 4 / 2) and the footer version stamp
+   are also numerals worth aligning across lines. */
 .eyebrow,
 .label-mono,
 .kicker,
 .tag,
 .cap .num,
-.team-cell .num {
+.team-cell .num,
+.hero-meta .v,
+footer .baseline {
   font-variant-numeric: tabular-nums;
 }
 

@@ -277,13 +277,13 @@
   &.signal {
     color: var(--signal);
     border-color: color-mix(in oklab, var(--signal) 30%, var(--rule));
-    background: color-mix(in oklab, var(--signal) 8%, var(--bg));
+    background: var(--signal-soft);
   }
 
   &.accent {
     color: var(--accent);
     border-color: color-mix(in oklab, var(--accent) 30%, var(--rule));
-    background: color-mix(in oklab, var(--accent) 8%, var(--bg));
+    background: var(--accent-soft);
   }
 }
 
@@ -381,7 +381,7 @@
   .icon {
     width: 56px;
     height: 56px;
-    border-radius: 4px;
+    border-radius: var(--radius);
     background: var(--bg-tinted);
     border: 1px solid var(--rule);
     display: flex;
@@ -434,10 +434,11 @@
     }
   }
 
-  /* Pause the scroll while hovered so moving venue links can actually
-     be clicked. Reduced-motion already kills the animation entirely
-     in _motion.scss, so no override needed there. */
-  &:hover .row {
+  /* Pause the scroll while hovered or keyboard-focused so moving venue
+     links can actually be clicked / activated. Reduced-motion already
+     kills the animation entirely in _motion.scss, no override needed. */
+  &:hover .row,
+  &:focus-within .row {
     animation-play-state: paused;
   }
 }

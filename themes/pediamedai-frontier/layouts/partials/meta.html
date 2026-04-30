@@ -3,20 +3,45 @@
 {{- if .IsHome }}{{ $ogTitle = default .Site.Title .Site.Params.ogTitle }}{{ end }}
 {{- $ogImage := default .Site.Params.ogImage "/images/home_logo.png" -}}
 
+{{- /* og:type by page kind. Home + section indexes are "website";
+       team singles (Person profiles) are "profile"; workshop layouts
+       (CVPR/ICLR event pages) are "article" since they have a date and
+       a recap; everything else (about, contact, code-of-conduct, 404)
+       is "article". Logo is a 2656×2656 square — twitter:card uses
+       "summary" so platforms render it as a square thumbnail rather
+       than center-cropping it horizontally for summary_large_image.
+       Switch to summary_large_image once a proper 1200×630 social
+       card is shipped. */ -}}
+{{- $ogType := "article" -}}
+{{- if .IsHome -}}{{ $ogType = "website" -}}
+{{- else if eq .Kind "section" -}}{{ $ogType = "website" -}}
+{{- else if and (eq .Section "team") (eq .Kind "page") -}}{{ $ogType = "profile" -}}
+{{- end -}}
+
 <meta property="og:title" content="{{ $ogTitle }}">
-<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:type" content="{{ $ogType }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
 {{- with $description }}<meta property="og:description" content="{{ . }}">{{ end }}
-{{- with $ogImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+{{- /* og:image:alt — for home, $ogTitle already includes the lab
+       descriptor, so just use it. For interior pages, append the
+       site identity for context in social previews. */ -}}
+{{- $ogImageAlt := cond .IsHome $ogTitle (printf "%s — %s" $ogTitle .Site.Title) -}}
+{{- with $ogImage }}
+<meta property="og:image" content="{{ . | absURL }}">
+<meta property="og:image:alt" content="{{ $ogImageAlt }}">
+{{- end }}
 
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 {{- with .Site.Params.twitterHandle }}
 <meta name="twitter:site" content="{{ . }}">
 {{- end }}
 <meta name="twitter:title" content="{{ $ogTitle }}">
 {{- with $description }}<meta name="twitter:description" content="{{ . }}">{{ end }}
-{{- with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+{{- with $ogImage }}
+<meta name="twitter:image" content="{{ . | absURL }}">
+<meta name="twitter:image:alt" content="{{ $ogImageAlt }}">
+{{- end }}
 
 <link rel="canonical" href="{{ .Permalink }}">
 {{- if eq .Kind "404" }}
@@ -116,8 +141,9 @@
 {{- end }}
 
 {{- if and (eq .Section "publications") (eq .Kind "section") }}
+{{- with .Site.Data.publications }}
   {{- $articles := slice -}}
-  {{- range .Site.Data.publications -}}
+  {{- range . -}}
     {{- /* Split the display author string ("Cao X, Ye W, Sizikova E, …, Cao J.")
            into a list of structured Person objects. Skip the "…" elision token
            and strip a trailing period from the final author. */ -}}
@@ -150,4 +176,5 @@
   {{- end -}}
   {{- $ld := dict "@context" "https://schema.org" "@graph" $articles -}}
 <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{- end }}
 {{- end }}
