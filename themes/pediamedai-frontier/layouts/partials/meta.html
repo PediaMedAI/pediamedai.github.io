@@ -190,6 +190,9 @@
     {{- with .repo -}}
       {{- $art = merge $art (dict "codeRepository" (printf "https://github.com/%s" .)) -}}
     {{- end -}}
+    {{- with .tags -}}
+      {{- $art = merge $art (dict "keywords" (delimit . ", ")) -}}
+    {{- end -}}
     {{- $articles = $articles | append $art -}}
   {{- end -}}
   {{- $ld := dict "@context" "https://schema.org" "@graph" $articles -}}
