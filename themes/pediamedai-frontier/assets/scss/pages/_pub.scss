@@ -45,6 +45,10 @@
     color: var(--ink);
     max-width: 56ch;
     display: inline;
+    /* Long paper titles — "A Survey on Multimodal Large Language
+       Models for Autonomous Driving" — wrap awkwardly at narrow
+       widths without hyphenation. */
+    hyphens: auto;
 
     .ext {
       font-family: var(--mono);

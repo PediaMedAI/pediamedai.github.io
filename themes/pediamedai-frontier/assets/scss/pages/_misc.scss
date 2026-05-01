@@ -143,6 +143,24 @@
     border-radius: 3px;
   }
 
+  /* Editorial blockquote — accent side-rule echoes the Research theme
+     page-edge bar so quotes feel like part of the lab's voice. Italic
+     serif lifts the quote out of body-tier sans. */
+  blockquote {
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    margin: 32px 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(19px, 2vw, 22px);
+    line-height: 1.45;
+    color: var(--ink-2);
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   hr {
     border: none;
     border-top: 1px solid var(--rule);

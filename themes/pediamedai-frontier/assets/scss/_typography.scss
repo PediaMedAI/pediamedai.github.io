@@ -76,6 +76,7 @@ footer .big,
 .cap .num,
 .team-cell .num,
 .hero-meta .v,
+.hero-currently,
 footer .baseline {
   font-variant-numeric: tabular-nums;
 }
@@ -83,6 +84,9 @@ footer .baseline {
 .eyebrow {
   font-family: var(--mono);
   font-size: 11px;
+  /* Mono uppercase labels at cap-height look "loose" with body
+     line-height; tightening lifts dead air above the glyphs. */
+  line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-3);
@@ -91,6 +95,7 @@ footer .baseline {
 .label-mono {
   font-family: var(--mono);
   font-size: 11px;
+  line-height: 1;
   letter-spacing: 0.06em;
   color: var(--ink-3);
 }
@@ -100,18 +105,25 @@ footer .baseline {
   line-height: 1.5;
   color: var(--ink-2);
   max-width: 56ch;
+  /* Pretty over balance for body — optimizes wrap quality, prevents
+     orphaned single-word last lines, but doesn't re-flow entire
+     blocks the way balance does. */
+  text-wrap: pretty;
+  text-rendering: optimizeLegibility;
 }
 
 .body-md {
   font-size: 15.5px;
   line-height: 1.55;
   color: var(--ink-2);
+  text-wrap: pretty;
 }
 
 .body-sm {
   font-size: 13.5px;
   line-height: 1.55;
   color: var(--ink-3);
+  text-wrap: pretty;
 }
 
 .kicker {

@@ -1,7 +1,7 @@
 .reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transform: translateY(24px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
 
   &.in {
     opacity: 1;
@@ -35,22 +35,23 @@
 
 @keyframes hero-fade-up {
   from { opacity: 0; transform: translateY(8px); }
-  to { transform: translateY(0); }
 }
 
 /* Hero timing tokens — extracted so the dependent panel start times
-   stay in sync if anyone tunes the keypoint stagger or count. */
+   stay in sync if anyone tunes the keypoint stagger or count. The
+   total settle time is ~1.4s so first-paint motion reads as "alive"
+   without slipping into demo theatre territory. */
 $bone-count: 14;
-$bone-start: 0.35s;
-$bone-stagger: 0.035s;
-$bone-dur: 0.4s;
+$bone-start: 0.2s;
+$bone-stagger: 0.02s;
+$bone-dur: 0.3s;
 
 $kp-count: 15;
-$ring-start: 0.85s;
-$ring-dur: 0.35s;
-$kp-start: 0.9s;
-$kp-stagger: 0.04s;
-$kp-dur: 0.3s;
+$ring-start: 0.55s;
+$ring-dur: 0.25s;
+$kp-start: 0.6s;
+$kp-stagger: 0.025s;
+$kp-dur: 0.22s;
 
 // Last keypoint finishes here; annotation panels start after.
 $kp-settled: $kp-start + ($kp-count - 1) * $kp-stagger + $kp-dur;

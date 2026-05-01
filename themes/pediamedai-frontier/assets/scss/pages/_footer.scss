@@ -29,7 +29,11 @@ footer {
 
     em {
       font-style: italic;
-      opacity: 0.55;
+      /* Match the italic-em treatment elsewhere (var(--ink-3)),
+         translated to the inverted footer palette: 55% of --bg
+         mixed with transparent reads as the same secondary-ink
+         tint and stays theme-aware. */
+      color: color-mix(in oklab, var(--bg) 55%, transparent);
     }
   }
 

@@ -51,7 +51,10 @@
   h1 {
     font-size: clamp(56px, 9vw, 128px);
     line-height: 0.9;
-    letter-spacing: -0.035em;
+    /* Tracking tightens at the high end of the type-size clamp so
+       128px display copy doesn't read as loose; 56px gets the gentler
+       end of the range. */
+    letter-spacing: clamp(-0.04em, -0.4vw, -0.02em);
     color: var(--ink);
     margin: 28px 0 24px;
     max-width: 14ch;
@@ -250,7 +253,15 @@
 
       &:hover {
         .hero-conf-rings circle { stroke-opacity: 0.85; }
-        .hero-keypoints circle { transform: scale(1.4); }
+        /* Gentler scale + per-keypoint stagger so the inspection
+           response reads as the artifact "noticing" rather than a
+           lockstep bloom step. */
+        .hero-keypoints circle { transform: scale(1.2); }
+        @for $i from 1 through 15 {
+          .hero-keypoints circle:nth-child(#{$i}) {
+            transition-delay: #{($i - 1) * 0.012}s;
+          }
+        }
       }
     }
   }

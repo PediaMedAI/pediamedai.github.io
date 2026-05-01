@@ -26,6 +26,11 @@ body {
   line-height: 1.5;
   letter-spacing: -0.005em;
   min-height: 100vh;
+  /* Smooth the body palette flip when the user toggles the theme.
+     The pre-paint bootstrap in head.html sets data-theme before the
+     first frame so initial loads do not animate; only user-triggered
+     toggles get the 0.2s ease. */
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
 a {
@@ -97,7 +102,11 @@ button {
 .nav-toggle:focus-visible,
 .pub-bib > summary:focus-visible,
 .pub-code:focus-visible,
-.pub-filter button:focus-visible {
+.pub-filter button:focus-visible,
+.kicker.section-anchor:focus-visible,
+.workshop-gallery__item:focus-visible,
+.lightbox__close:focus-visible,
+.lightbox__nav:focus-visible {
   outline: none;
   box-shadow:
     0 0 0 2px var(--bg),

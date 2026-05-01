@@ -237,7 +237,9 @@ section[id],
   h1 {
     font-size: clamp(72px, 12vw, 168px);
     line-height: 0.88;
-    letter-spacing: -0.035em;
+    /* Tracking tightens at the high end of the clamp so 168px reads
+       as deliberate display type, not a wide ad headline. */
+    letter-spacing: clamp(-0.045em, -0.5vw, -0.025em);
     margin-top: 24px;
 
     em {
