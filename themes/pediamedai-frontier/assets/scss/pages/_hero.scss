@@ -205,7 +205,7 @@
     letter-spacing: 0.08em;
     color: var(--ink-3);
     text-transform: uppercase;
-    z-index: 3;
+    z-index: $z-raised;
     pointer-events: none;
 
     &.tl {
@@ -233,6 +233,9 @@
     inset: 0;
     width: 100%;
     height: 100%;
+    /* SVG sits between $z-base (1) and $z-raised (3) so HUDs render
+       above; using a literal 2 since the ladder doesn't need a third
+       in-flow layer name. */
     z-index: 2;
   }
 

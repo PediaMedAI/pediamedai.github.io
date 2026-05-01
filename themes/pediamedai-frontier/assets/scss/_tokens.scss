@@ -15,6 +15,19 @@ $nav-h: 64px;
 $nav-h-sm: 56px;     // <400px viewports
 $nav-scroll-buffer: 16px;
 
+/* Z-index ladder — one place for every stacking decision so future
+   additions slot into a documented scale instead of guessing.
+     base / raised: in-flow component layering (theme photos, hero
+                    HUD vs SVG, callout vs body)
+     drawer:        mobile nav drawer panel (below sticky nav)
+     sticky:        the sticky nav itself
+     top:           skip-link, ahead of everything */
+$z-base:    1;
+$z-raised:  3;
+$z-drawer:  49;
+$z-sticky:  50;
+$z-top:     100;
+
 :root {
   --bp-tablet: #{$bp-tablet};
 

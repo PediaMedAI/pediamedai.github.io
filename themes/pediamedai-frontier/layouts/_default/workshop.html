@@ -34,7 +34,12 @@
     <ul class="event-meta__list">
       <li class="event-meta__item">{{ $dateLabel }}</li>
       {{- with $.Params.location }}<li class="event-meta__item">{{ . }}</li>{{ end }}
-      <li class="event-meta__item event-meta__item--accent">{{ $badge }}</li>
+      {{- /* Color the badge by status — accent (blue) signals upcoming,
+             default ink reads as past/neutral. Mirrors the homepage
+             workshop card tags. */ -}}
+      {{- $badgeClass := "event-meta__item" -}}
+      {{- if eq (lower $badge) "planning" -}}{{ $badgeClass = "event-meta__item event-meta__item--accent" -}}{{- end }}
+      <li class="{{ $badgeClass }}">{{ $badge }}</li>
     </ul>
   </div>
 </div>

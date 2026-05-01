@@ -51,7 +51,7 @@
 .nav {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: $z-sticky;
   background: color-mix(in oklab, var(--bg) 86%, transparent);
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
@@ -290,8 +290,14 @@
   }
 }
 
-/* ——— Capability row ——— */
+/* ——— Capability row ———
+   Rendered as <ul> in the layout, so reset list defaults so the grid
+   isn't left with bullets and indentation. Screen readers announce
+   "list, N items" — the right shape for principles / process steps. */
 .cap-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;

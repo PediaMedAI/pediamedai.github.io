@@ -29,7 +29,7 @@
      keyboard tabbing the inner link surfaces the same affordance. */
   &:hover,
   &:focus-within {
-    z-index: 1;
+    z-index: $z-base;
     border-color: transparent;
     box-shadow:
       0 0 0 1px var(--ink-3),
