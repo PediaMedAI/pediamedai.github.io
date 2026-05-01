@@ -217,6 +217,7 @@
     letter-spacing: -0.02em;
     color: var(--ink);
     text-wrap: pretty;
+    -webkit-hyphens: auto;
     hyphens: auto;
   }
 

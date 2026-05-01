@@ -47,7 +47,8 @@
     display: inline;
     /* Long paper titles — "A Survey on Multimodal Large Language
        Models for Autonomous Driving" — wrap awkwardly at narrow
-       widths without hyphenation. */
+       widths without hyphenation. Safari pre-17 needs the prefix. */
+    -webkit-hyphens: auto;
     hyphens: auto;
 
     .ext {
