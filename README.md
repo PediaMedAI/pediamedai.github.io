@@ -45,8 +45,9 @@ themes/pediamedai-frontier/
                                          bib-copy.js (BibTeX clipboard),
                                          hero pose-overlay is pure CSS animation
     img/                                 images processed via Hugo's pipeline
-                                         (resize + WebP) — research/, team/,
-                                         partners/, workshops/
+                                         (resize + WebP) — team/, partners/,
+                                         workshops/ (research themes are
+                                         inline SVG diagrams, not raster)
   layouts/
     _default/                            baseof, single, list, workshop
     partials/                            head, header, footer, hero,
@@ -62,8 +63,15 @@ themes/pediamedai-frontier/
                                          Serif r/i, Geist 400/500,
                                          JetBrains Mono 400)
 static/
-  favicon-32x32bk.png
-  images/home_logo.png                   used by ogImage + JSON-LD logo
+  favicon-16x16.png, favicon-32x32.png,
+  favicon.svg                            SVG adapts to dark/light browser
+                                         chrome via embedded prefers-color-scheme
+  icon-180.png, icon-192.png,
+  icon-512.png                           apple-touch-icon + PWA manifest icons
+  images/social-card.png                 1200x630 OpenGraph / twitter card
+  images/home_logo.png                   square logo used as JSON-LD
+                                         Organization logo
+  site.webmanifest
   robots.txt
 ```
 
