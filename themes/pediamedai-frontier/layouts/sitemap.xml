@@ -12,9 +12,19 @@
     {{- with .Sitemap.ChangeFreq }}
     <changefreq>{{ . }}</changefreq>
     {{- end }}
-    {{- if ge .Sitemap.Priority 0.0 }}
-    <priority>{{ .Sitemap.Priority }}</priority>
+    {{- /* Hugo defaults page priority to -1 ("unset"). Respect any
+           explicit per-page override (>= 0); otherwise derive from
+           page Kind so crawlers see the home and section indexes
+           ranked above deep singles. */ -}}
+    {{- $priority := .Sitemap.Priority -}}
+    {{- if lt $priority 0.0 -}}
+      {{- if .IsHome -}}{{ $priority = 1.0 -}}
+      {{- else if eq .Kind "section" -}}{{ $priority = 0.8 -}}
+      {{- else if and (eq .Kind "page") (eq .Section "team") -}}{{ $priority = 0.7 -}}
+      {{- else -}}{{ $priority = 0.5 -}}
+      {{- end -}}
     {{- end }}
+    <priority>{{ $priority }}</priority>
   </url>
     {{- end }}
   {{ end }}

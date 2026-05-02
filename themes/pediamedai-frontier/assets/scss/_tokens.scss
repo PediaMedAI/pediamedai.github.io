@@ -58,6 +58,11 @@ $z-top:     100;
   --shadow-2: 0 24px 48px -24px rgba(12, 13, 14, 0.18);
 
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Theme native form controls (checkboxes, radios, range, progress)
+     with --accent so any future form picks up brand color in both
+     light and dark — no per-mode override needed since var() reflows. */
+  accent-color: var(--accent);
 }
 
 [data-theme="dark"] {

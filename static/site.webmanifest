@@ -1,7 +1,11 @@
 {
   "name": "PediaMed AI",
   "short_name": "PediaMed AI",
+  "id": "/",
   "description": "Pediatric AI research lab building interpretable vision and multimodal models for early detection and clinician-readable explanations.",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["education", "medical", "science"],
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f6f5f1",

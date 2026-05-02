@@ -9,6 +9,10 @@ html {
      The reduced-motion override in _motion.scss flips this back to
      auto for users who prefer that. */
   scroll-behavior: smooth;
+  /* Reserve scrollbar gutter even when content is short, so navigating
+     between a short page (no scrollbar) and a tall page (scrollbar
+     present) doesn't shift content horizontally. */
+  scrollbar-gutter: stable;
 }
 
 html,
