@@ -54,12 +54,12 @@ themes/pediamedai-frontier/
                                          section-head, card, ticker,
                                          team-cell, img, meta, logo-mark
     {research,team,publications,
-     workshops,code,jobs,pages,cvpr}/    per-section layouts
+     workshops,code,jobs,pages}/         per-section layouts
     index.html                           home
     404.html
   static/
-    fonts/                               6 self-hosted woff2 (Instrument
-                                         Serif r/i, Geist 400/500/600,
+    fonts/                               5 self-hosted woff2 (Instrument
+                                         Serif r/i, Geist 400/500,
                                          JetBrains Mono 400)
 static/
   favicon-32x32bk.png
