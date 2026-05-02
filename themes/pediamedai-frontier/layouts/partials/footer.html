@@ -26,9 +26,9 @@
         <a href="mailto:{{ . }}">{{ . }}</a>
         {{- end }}
         {{- with .Site.Params.twitterHandle }}
-        <a href="https://twitter.com/{{ . | replaceRE "^@" "" }}">Twitter / X</a>
+        <a href="https://twitter.com/{{ . | replaceRE "^@" "" }}" target="_blank" rel="noopener">Twitter / X</a>
         {{- end }}
-        <a href="https://github.com/PediaMedAI">GitHub</a>
+        <a href="https://github.com/PediaMedAI" target="_blank" rel="noopener">GitHub</a>
       </div>
       <div class="col">
         <h3 class="footer-col-title">Lab note</h3>

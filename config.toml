@@ -5,6 +5,7 @@ themesDir = "themes"
 theme = "pediamedai-frontier"
 enableEmoji = true
 enableGitInfo = true
+disableHugoGeneratorInject = true
 
 # /pages/ is an internal organizational namespace (children re-route to /, /about/,
 # /contact/, /iclr/, /code-of-conduct/). Drop the section index, taxonomy lists,
