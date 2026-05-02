@@ -13,6 +13,11 @@
 #                                         a "Code ↗" chip next to "Cite" on the
 #                                         publications page so researchers can grab
 #                                         the implementation without hopping pages.
+#   arxiv                               — optional arXiv id (e.g. "2311.12320");
+#                                         emitted as a PropertyValue identifier
+#                                         on the ScholarlyArticle JSON-LD so
+#                                         search engines can dedupe across the
+#                                         arXiv canonical and the venue PDF.
 - year: "2024"
   venue: "WACV"
   title: "A Survey on Multimodal Large Language Models for Autonomous Driving"
