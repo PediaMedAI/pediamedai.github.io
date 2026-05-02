@@ -1,17 +1,17 @@
 {{- $description := default .Site.Params.metaDescription .Description }}
 {{- $ogTitle := default .Site.Title .Title }}
 {{- if .IsHome }}{{ $ogTitle = default .Site.Title .Site.Params.ogTitle }}{{ end }}
-{{- $ogImage := default .Site.Params.ogImage "/images/home_logo.png" -}}
+{{- /* Hugo's default is `default FALLBACK INPUT` — return INPUT if
+       truthy, else FALLBACK. The arg order matters; reversed it would
+       always fall to the literal because the literal is never empty. */ -}}
+{{- $ogImage := default "/images/social-card.png" .Site.Params.ogImage -}}
 
 {{- /* og:type by page kind. Home + section indexes are "website";
        team singles (Person profiles) are "profile"; workshop layouts
        (CVPR/ICLR event pages) are "article" since they have a date and
        a recap; everything else (about, contact, code-of-conduct, 404)
-       is "article". Logo is a 2656×2656 square — twitter:card uses
-       "summary" so platforms render it as a square thumbnail rather
-       than center-cropping it horizontally for summary_large_image.
-       Switch to summary_large_image once a proper 1200×630 social
-       card is shipped. */ -}}
+       is "article". OG image is the 1200×630 social card at
+       /images/social-card.png; twitter:card is summary_large_image. */ -}}
 {{- $ogType := "article" -}}
 {{- if .IsHome -}}{{ $ogType = "website" -}}
 {{- else if eq .Kind "section" -}}{{ $ogType = "website" -}}
@@ -29,12 +29,12 @@
 {{- $ogImageAlt := cond .IsHome $ogTitle (printf "%s — %s" $ogTitle .Site.Title) -}}
 {{- with $ogImage }}
 <meta property="og:image" content="{{ . | absURL }}">
-<meta property="og:image:width" content="2656">
-<meta property="og:image:height" content="2656">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{{ $ogImageAlt }}">
 {{- end }}
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 {{- with .Site.Params.twitterHandle }}
 <meta name="twitter:site" content="{{ . }}">
 {{- end }}

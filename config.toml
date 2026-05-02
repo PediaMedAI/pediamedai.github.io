@@ -15,12 +15,29 @@ disableKinds = ["taxonomy", "term"]
 [markup.goldmark.renderer]
   unsafe = true
 
+# Smart-typography for all markdown content: straight quotes become
+# curly, double-hyphens become en-dash, triple become em-dash, ellipsis
+# triplets collapse. Template-literal copy is swept manually since this
+# only affects rendered markdown. Defaults are explicit so future Hugo
+# changes to defaults don't silently shift the output.
+[markup.goldmark.extensions.typographer]
+  disable = false
+  leftSingleQuote = "&lsquo;"
+  rightSingleQuote = "&rsquo;"
+  leftDoubleQuote = "&ldquo;"
+  rightDoubleQuote = "&rdquo;"
+  ellipsis = "&hellip;"
+  emDash = "&mdash;"
+  enDash = "&ndash;"
+  leftAngleQuote = "&laquo;"
+  rightAngleQuote = "&raquo;"
+
 [params]
   contact_email = "contact@pediamedai.com"
   twitterHandle = "@pediamedai"
   metaDescription = "PediaMed AI is a pediatric AI research lab building interpretable vision and multimodal models for early detection and clinician-readable explanations."
   ogTitle = "PediaMed AI — Pediatric AI Research Lab"
-  ogImage = "/images/home_logo.png"
+  ogImage = "/images/social-card.png"
 
 [[menu.main]]
   name = "Home"

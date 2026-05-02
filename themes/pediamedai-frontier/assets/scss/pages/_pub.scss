@@ -12,6 +12,12 @@
   align-items: baseline;
   position: relative;
   transition: background 0.15s var(--ease);
+  /* Skip layout/paint for off-screen rows; the auto keyword lets the
+     browser learn each row's measured height after first render and
+     reuse it. The 140px floor covers a typical row before first paint
+     so the page's overall scrollbar height is right from the start. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 140px;
 
   /* Soft row tint on hover so dense list scanning feels reactive
      without pulling attention away from the title link. */

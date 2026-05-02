@@ -101,7 +101,11 @@ footer .baseline {
 }
 
 .body-lg {
-  font-size: 19px;
+  /* Fluid 17→19px between 360 and ~1280 viewports; rem-anchored so
+     user font-size pref scales the floor with the rest of the site.
+     calc() wrapper keeps Sass from trying to add rem + vi at compile
+     time — the browser does the arithmetic at runtime. */
+  font-size: clamp(1.0625rem, calc(1rem + 0.25vi), 1.1875rem);
   line-height: 1.5;
   color: var(--ink-2);
   max-width: 56ch;
@@ -113,14 +117,14 @@ footer .baseline {
 }
 
 .body-md {
-  font-size: 15.5px;
+  font-size: 0.96875rem; /* 15.5px — rem so user pref scales it */
   line-height: 1.55;
   color: var(--ink-2);
   text-wrap: pretty;
 }
 
 .body-sm {
-  font-size: 13.5px;
+  font-size: 0.84375rem; /* 13.5px — rem so user pref scales it */
   line-height: 1.55;
   color: var(--ink-3);
   text-wrap: pretty;

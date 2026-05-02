@@ -6,6 +6,15 @@
   <meta name="color-scheme" content="light dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="format-detection" content="telephone=no">
+  {{- /* Permissive CSP — restricts every external origin to self
+         and blocks remote scripts/styles entirely. 'unsafe-inline'
+         is required for the theme bootstrap below and the per-page
+         JSON-LD blocks emitted by meta.html (both are first-party
+         and reviewed at build time). On a static site without user
+         input this is a defense-in-depth layer rather than the main
+         line; HTTP-header CSP would be stronger but isn't available
+         on GitHub Pages. */ -}}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self';">
   {{- /* Opt into Cross-Document View Transitions: browsers that support
          it (Chrome 126+, Safari 18+) get a default crossfade between
          same-origin navigations. Firefox + older browsers ignore. */ -}}
@@ -55,6 +64,24 @@
          blends with the page. */ -}}
   <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0c0d0e" media="(prefers-color-scheme: dark)">
+
+  {{- /* Speculation Rules — Chromium-only declarative prefetch hints.
+         Augments prefetch.js (which still runs as a fallback in
+         Firefox/Safari): on hover/focus the browser prefetches any
+         same-origin path without an extension (i.e., HTML pages, not
+         downloads). Other engines ignore the script tag silently. */ -}}
+  <script type="speculationrules">
+  {
+    "prefetch": [{
+      "source": "document",
+      "where": {"and": [
+        {"href_matches": "/*"},
+        {"not": {"href_matches": "/*.*"}}
+      ]},
+      "eagerness": "moderate"
+    }]
+  }
+  </script>
 
   {{- /* DNS prefetch for paper hosts on /publications/ so click-outs to
          arxiv et al. don't pay the DNS+TLS cost on cold cache. */ -}}

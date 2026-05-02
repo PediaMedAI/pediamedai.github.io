@@ -26,7 +26,11 @@ body {
 }
 
 body {
-  font-size: 16px;
+  /* 1rem (not 16px) so user-set browser default font-size scales the
+     whole site — assistive tech increases base size, screen-reader
+     users with bumped defaults get larger text everywhere instead of
+     this stylesheet pinning to 16. */
+  font-size: 1rem;
   line-height: 1.5;
   letter-spacing: -0.005em;
   min-height: 100vh;
