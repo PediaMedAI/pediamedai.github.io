@@ -16,7 +16,7 @@
     <article class="founder-page">
       <div class="founder-page__avatar">
         {{- if $image -}}
-          {{ partial "img.html" (dict "src" $image "alt" (printf "Portrait of %s" .Title) "width" 480) }}
+          {{ partial "img.html" (dict "src" $image "alt" (printf "Portrait of %s" .Title) "width" 480 "priority" true) }}
         {{- else -}}
           <div class="avatar-fallback" aria-hidden="true">{{ $initials }}</div>
         {{- end -}}

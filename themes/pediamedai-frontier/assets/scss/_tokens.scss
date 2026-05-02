@@ -38,7 +38,11 @@ $z-top:     100;
   --ink: #0c0d0e;
   --ink-2: #2a2b2c;
   --ink-3: #5b5d5e;
-  --ink-4: #8d8e8f;
+  /* Bumped from #8d8e8f (3.06:1) to clear WCAG AA 4.5:1 even on the
+     11–13.5px supplementary text where this token shows up (pub-filter
+     count badge, card-meta separator, team-cell num). Decorative-only
+     hover anchors using this token also become a touch more inviting. */
+  --ink-4: #6e7072;
   --rule: #d9d6cc;
   --rule-soft: #e7e4d9;
   --accent: #1d4ed8;
@@ -73,7 +77,8 @@ $z-top:     100;
   --ink: #f6f5f1;
   --ink-2: #d9d6cc;
   --ink-3: #9a9c9e;
-  --ink-4: #6b6d6f;
+  /* Lifted from #6b6d6f (3.62:1) to mirror the light-mode AA fix above. */
+  --ink-4: #8d8f91;
   --rule: #25272a;
   --rule-soft: #1b1d1f;
   --accent: #6f9bff;

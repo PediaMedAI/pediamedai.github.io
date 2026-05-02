@@ -205,6 +205,17 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  /* Desktop nav links sit at 8+14+font ≈ 32px on mouse — fine for a
+     pointer that lands on a pixel. Touch needs the WCAG 2.2 SC 2.5.8
+     floor of 24×24 (and Apple/Material guidance of 44). Lifting the
+     vertical padding on coarse pointers covers Surface / iPad-with-
+     keyboard users without bloating the desktop nav. */
+  .nav a.link {
+    min-height: 44px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
 }
 
 /* Sub-400 tightening: most growth happens in container padding + hero h1 */

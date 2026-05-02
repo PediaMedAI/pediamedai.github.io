@@ -1,11 +1,11 @@
 {{- /* Render an <img>.
 
-       If the path resolves as a theme asset under assets/ (raster sources
-       get resized to {width}x and converted to WebP at the configured
-       quality; SVGs pass through), Hugo emits a fingerprinted local URL.
-       Otherwise the path is treated as a static URL and passed through
-       relURL — this lets callers reference any path uniformly without
-       branching at the call site.
+       Raster theme assets get resized to {width}x and converted to WebP
+       at the configured quality. When the source is at least 2× the
+       target width, a 2x source is also emitted via srcset so retina
+       displays don't render a soft image. SVGs pass through as a single
+       <img>. External / static paths are passed through relURL so
+       callers don't have to branch at the call site.
 
        Args:
          src      (required)  e.g. "img/workshops/cv4chl_bg.jpg" or "/images/legacy.jpg"
@@ -16,7 +16,11 @@
                               reserve layout space and avoid CLS.
          height   (optional)  HTML height attribute (only used when not derivable)
          quality  (optional)  WebP quality (default 82; logos can use ~70)
-         loading  (optional)  default "lazy"
+         loading  (optional)  default "lazy" — overridden to "eager" when priority is set
+         priority (optional)  bool — set true for the LCP image on a page;
+                              emits loading="eager" + fetchpriority="high"
+                              so the browser starts the fetch immediately
+                              and prioritizes the response.
          class    (optional)
 */ -}}
 {{- $src := .src -}}
@@ -24,16 +28,22 @@
 {{- $width := default 800 .width -}}
 {{- $height := default 0 .height -}}
 {{- $quality := default 82 .quality -}}
-{{- $loading := default "lazy" .loading -}}
+{{- $priority := default false .priority -}}
+{{- $loading := default (cond $priority "eager" "lazy") .loading -}}
 {{- $class := default "" .class -}}
 {{- $r := resources.Get $src -}}
 {{- if $r -}}
   {{- if eq $r.MediaType.SubType "svg" -}}
-    <img src="{{ $r.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async" width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
+    <img src="{{ $r.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ if $priority }} fetchpriority="high"{{ end }} width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
   {{- else -}}
     {{- $resized := $r.Resize (printf "%dx webp q%d" $width $quality) -}}
-    <img src="{{ $resized.RelPermalink }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async" width="{{ $resized.Width }}" height="{{ $resized.Height }}"{{ with $class }} class="{{ . }}"{{ end }}>
+    {{- $srcset := "" -}}
+    {{- if ge $r.Width (mul $width 2) -}}
+      {{- $resized2x := $r.Resize (printf "%dx webp q%d" (mul $width 2) $quality) -}}
+      {{- $srcset = printf "%s 1x, %s 2x" $resized.RelPermalink $resized2x.RelPermalink -}}
+    {{- end -}}
+    <img src="{{ $resized.RelPermalink }}"{{ with $srcset }} srcset="{{ . }}"{{ end }} alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ if $priority }} fetchpriority="high"{{ end }} width="{{ $resized.Width }}" height="{{ $resized.Height }}"{{ with $class }} class="{{ . }}"{{ end }}>
   {{- end -}}
 {{- else -}}
-  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async" width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ if $priority }} fetchpriority="high"{{ end }} width="{{ $width }}"{{ if gt $height 0 }} height="{{ $height }}"{{ end }}{{ with $class }} class="{{ . }}"{{ end }}>
 {{- end -}}
