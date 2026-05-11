@@ -89,9 +89,9 @@ The management committee takes inappropriate behavior seriously and **persistent
 
 ## Authorship
 
-- We will follow the **[Vancouver Group recommendations](http://www.icmje.org/recommendations/)** (VGR) on authorship for all PediaMedAI publications and products (including software, datasets and presentations). The authorship guidelines apply to both PediaMedAI members and external collaborators.
+- We will follow the **[Vancouver Group recommendations](https://www.icmje.org/recommendations/)** (VGR) on authorship for all PediaMedAI publications and products (including software, datasets and presentations). The authorship guidelines apply to both PediaMedAI members and external collaborators.
 
-- We will use the **[CRediT taxonomy](http://credit.niso.org/)** for describing the authorship contributions.
+- We will use the **[CRediT taxonomy](https://credit.niso.org/)** for describing the authorship contributions.
 
 - Ideas for manuscripts are often the results of group discussions and/or casual conversations among different members. Authors should strive to keep lines of communication with the rest of the team open at all stages of a manuscript creation, but especially in this early stage, when the same idea might have bubbled simultaneously in different minds. The creation process of manuscripts should then **allow sufficient time for co-authors to contribute and review**. Participants should strive to contribute and respond in a timely manner.
 

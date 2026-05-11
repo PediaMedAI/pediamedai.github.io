@@ -12,14 +12,16 @@
 
 <article class="team-cell">
   <div class="num">/{{ $num }}</div>
+  {{- /* Avatar is decorative — the founder's name below is the
+         single keyboard / AT entry point to their profile. Wrapping
+         the image in another anchor to the same URL would double the
+         link announcement on every cell. */ -}}
   <div class="avatar">
-    {{- if $permalink -}}<a href="{{ $permalink }}" aria-label="{{ $name }} — full profile">{{- end -}}
-      {{- if $image -}}
-        {{ partial "img.html" (dict "src" $image "alt" (printf "Portrait of %s" $name) "width" 480) }}
-      {{- else -}}
-        <div class="avatar-fallback" aria-hidden="true">{{ $initials }}</div>
-      {{- end -}}
-    {{- if $permalink -}}</a>{{- end -}}
+    {{- if $image -}}
+      {{ partial "img.html" (dict "src" $image "alt" (printf "Portrait of %s" $name) "width" 480) }}
+    {{- else -}}
+      <div class="avatar-fallback" aria-hidden="true">{{ $initials }}</div>
+    {{- end -}}
   </div>
   <h3>{{- if $permalink -}}<a href="{{ $permalink }}" class="team-cell-link">{{ $name }}</a>{{- else -}}{{ $name }}{{- end -}}</h3>
   <div class="role">{{ $role }}</div>

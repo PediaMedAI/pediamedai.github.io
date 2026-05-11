@@ -45,8 +45,9 @@
 <meta name="twitter:image:alt" content="{{ $ogImageAlt }}">
 {{- end }}
 
+{{- if ne .Kind "404" }}
 <link rel="canonical" href="{{ .Permalink }}">
-{{- if eq .Kind "404" }}
+{{- else }}
 <meta name="robots" content="noindex">
 {{- end }}
 
@@ -153,7 +154,10 @@
     {{- end -}}
   {{- end -}}
   {{- with .Params.external_url -}}
-    {{- $event = merge $event (dict "sameAs" .) -}}
+    {{- /* Schema.org defines sameAs as an array of URLs; wrap a
+           single value so structured-data validators don't flag the
+           string form. */ -}}
+    {{- $event = merge $event (dict "sameAs" (slice .)) -}}
   {{- end -}}
   {{- $event = merge $event (dict "organizer" (dict "@type" "Organization" "name" "PediaMed AI" "url" .Site.BaseURL)) -}}
 <script type="application/ld+json">{{ $event | jsonify | safeJS }}</script>

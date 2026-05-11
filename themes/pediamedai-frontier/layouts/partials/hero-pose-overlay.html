@@ -49,17 +49,6 @@
   <title id="hero-pose-title">Illustrative pediatric pose-overlay artifact</title>
   <desc id="hero-pose-desc">A diagrammatic infant pose overlay with 15 landmark points and per-point confidence rings, layered over light growth-chart percentile bands. The visual illustrates how AggPose attaches calibrated confidence to each landmark; it is not a live model output.</desc>
 
-  <defs>
-    <radialGradient id="halo-accent" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.18"></stop>
-      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"></stop>
-    </radialGradient>
-    <radialGradient id="halo-signal" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="var(--signal)" stop-opacity="0.22"></stop>
-      <stop offset="100%" stop-color="var(--signal)" stop-opacity="0"></stop>
-    </radialGradient>
-  </defs>
-
   {{- /* —— Growth-chart percentile bands (background, low opacity) —— */ -}}
   <g class="hero-bg-percentiles" opacity="0.18" stroke="currentColor" fill="none" stroke-width="0.75">
     <path d="M30 460 Q 130 420 270 380 T 510 320" stroke-dasharray="3 3"></path>

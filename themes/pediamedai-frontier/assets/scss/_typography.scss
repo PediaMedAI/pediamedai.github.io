@@ -153,3 +153,14 @@ footer .baseline {
   }
 }
 
+/* SVG presentation attribute `font-family="var(--mono)"` doesn't
+   reliably resolve CSS custom properties across browsers (only
+   Chrome 91+ and Safari 15.4+ honor it in attribute syntax). The
+   hero pose overlay and research-theme diagrams set the attribute
+   for source-of-truth, but force the mono family via the cascade
+   here so labels render in JetBrains Mono on every engine. */
+.lattice text,
+.diagram text {
+  font-family: var(--mono);
+}
+

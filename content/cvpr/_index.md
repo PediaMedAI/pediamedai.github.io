@@ -24,7 +24,7 @@ Current computer vision (CV) research and applications often prioritize adult-fo
 - **Pediatric healthcare** — Early diagnosis through medical imaging and video analysis can lead to timely interventions, improving prognoses and reducing infant mortality.
 - **Global impact** — CV can provide scalable, accessible tools for children in low-resource countries, bridging gaps in education, healthcare, and developmental support.
 
-## Children Gait Competition
+## Children's Gait Competition
 
 The world's first computer vision challenge for pediatric gait analysis, with applications in automated clinical assessment and disease prediction. **1st Place:** NVIDIA RTX 5080 GPU or latest AR glasses.
 

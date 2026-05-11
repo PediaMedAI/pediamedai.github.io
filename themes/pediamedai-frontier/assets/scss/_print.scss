@@ -33,8 +33,18 @@
   .theme-toggle,
   .nav-toggle,
   .ticker,
-  .pub-filter {
+  .pub-filter,
+  /* Interactive BibTeX controls don't belong on paper; the <pre>
+     itself is still visible inside a printed .pub-bib. */
+  .pub-bib [data-bib-copy],
+  .pub-bib > summary {
     display: none !important;
+  }
+
+  /* Force-open the BibTeX disclosure so the citation prints even
+     when the user didn't expand it on-screen. */
+  .pub-bib .pub-bib-body {
+    display: block !important;
   }
 
   .reveal {

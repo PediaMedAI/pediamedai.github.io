@@ -48,7 +48,7 @@
            /cvpr/ (_index.md) are counted alongside /iclr/. */ -}}
     {{- $pubCount := len .Site.Data.publications -}}
     {{- $workshopCount := len (where .Site.Pages "Layout" "workshop") -}}
-    <div class="hero-meta" aria-label="Lab at a glance">
+    <div class="hero-meta" role="group" aria-label="Lab at a glance">
       <a class="cell" href="{{ "/publications/" | relURL }}">
         <div class="v">{{ $pubCount }}</div>
         <div class="l">Publications &amp; preprints</div>

@@ -1,0 +1,19 @@
+{{- /* Markdown link render-hook — applies the site-wide external-link
+       policy to every markdown anchor so prose links stay consistent
+       with the templated ones in card.html / publications/list.html /
+       footer.html.
+
+       External = absolute http(s):// URL whose origin differs from
+       .Site.BaseURL. Mailto:, tel:, anchor-only (#…) and relative
+       paths all fall through to the internal branch unchanged. */ -}}
+{{- $url := .Destination -}}
+{{- $external := false -}}
+{{- if or (hasPrefix $url "http://") (hasPrefix $url "https://") -}}
+  {{- $external = true -}}
+  {{- if hasPrefix $url .Page.Site.BaseURL -}}{{- $external = false -}}{{- end -}}
+{{- end -}}
+{{- if $external -}}
+<a href="{{ $url | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener noreferrer">{{ .Text | safeHTML }}{{ partial "external-link-cue.html" . }}</a>
+{{- else -}}
+<a href="{{ $url | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- end -}}

@@ -2,7 +2,6 @@
 title: "ICLR 2025 Workshop on AI for Children (AI4CHL)"
 date: 2025-01-15T00:00:00Z
 layout: "workshop"
-permalink: "/iclr/"
 external_url: "https://pediamedai.com/ai4chl/"
 badge: "Done"
 subtitle: "Bring pediatricians, psychologists, educationists, clinicians and AI researchers together to think about the future."
