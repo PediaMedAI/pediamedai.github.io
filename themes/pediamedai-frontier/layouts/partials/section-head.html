@@ -10,7 +10,7 @@
 <div class="section-head">
   <div class="meta eyebrow">
     {{- if .id -}}
-      <a href="#{{ .id }}" class="section-anchor" aria-label="Link to section: {{ .meta }}">— {{ with .index }}{{ . }} / {{ end }}{{ .meta }}</a>
+      <a href="#{{ .id }}" class="section-anchor" aria-label="{{ .meta }} section">— {{ with .index }}{{ . }} / {{ end }}{{ .meta }}</a>
     {{- else -}}
       — {{ with .index }}{{ . }} / {{ end }}{{ .meta }}
     {{- end -}}
