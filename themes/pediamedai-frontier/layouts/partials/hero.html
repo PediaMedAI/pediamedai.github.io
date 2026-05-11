@@ -43,23 +43,28 @@
       </div>
     </div>
 
+    {{- /* Derive counts so they don't drift as the archive grows.
+           .Site.Pages (not .RegularPages) so section indexes like
+           /cvpr/ (_index.md) are counted alongside /iclr/. */ -}}
+    {{- $pubCount := len .Site.Data.publications -}}
+    {{- $workshopCount := len (where .Site.Pages "Layout" "workshop") -}}
     <div class="hero-meta" aria-label="Lab at a glance">
-      <div class="cell">
-        <div class="v">8</div>
+      <a class="cell" href="{{ "/publications/" | relURL }}">
+        <div class="v">{{ $pubCount }}</div>
         <div class="l">Publications &amp; preprints</div>
-      </div>
-      <div class="cell">
+      </a>
+      <a class="cell" href="{{ "/research/" | relURL }}">
         <div class="v">3</div>
         <div class="l">Research themes</div>
-      </div>
-      <div class="cell">
+      </a>
+      <a class="cell" href="{{ "/about/" | relURL }}#partners">
         <div class="v">4</div>
         <div class="l">Partner institutions</div>
-      </div>
-      <div class="cell">
-        <div class="v">2</div>
+      </a>
+      <a class="cell" href="{{ "/workshops/" | relURL }}">
+        <div class="v">{{ $workshopCount }}</div>
         <div class="l">Workshops</div>
-      </div>
+      </a>
     </div>
   </div>
 </section>

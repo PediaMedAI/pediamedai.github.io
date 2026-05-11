@@ -16,7 +16,7 @@
     {{- range seq 1 2 }}
       {{- range $items }}
         {{- $external := hasPrefix .url "http" }}
-      <a href="{{ .url }}" tabindex="-1"{{ if $external }} target="_blank" rel="noopener"{{ end }}>{{ .label }}</a>
+      <a href="{{ .url }}" tabindex="-1"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .label }}</a>
       <span class="dot" aria-hidden="true">●</span>
       {{- end }}
     {{- end }}

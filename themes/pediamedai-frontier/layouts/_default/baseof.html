@@ -3,7 +3,7 @@
   {{- partial "head.html" . }}
   <body>
     {{- partial "header.html" . }}
-    <main id="main">
+    <main id="main" data-nav-inert>
       {{- block "main" . }}{{ end }}
     </main>
     {{- /* Footer markup is page-invariant — cacheable. Scripts are

@@ -12,6 +12,20 @@
   {{- end -}}
 {{- end -}}
 
+{{- /* Acronym / casing overrides only. Everything else falls back to
+       `humanize` so adding a new tag in publications.yaml just works. */ -}}
+{{- $tagNames := dict "asd" "ASD" -}}
+
+{{- /* Chip order: most-frequent first, alpha tie-break. Stable across
+       builds because Hugo's sort returns a deterministic order on the
+       (count, name) tuple. */ -}}
+{{- $tagList := slice -}}
+{{- range $tag, $count := $tagCounts -}}
+  {{- $tagList = $tagList | append (dict "tag" $tag "count" $count "name" (default (humanize $tag) (index $tagNames $tag))) -}}
+{{- end -}}
+{{- $tagList = sort $tagList "name" "asc" -}}
+{{- $tagList = sort $tagList "count" "desc" -}}
+
 {{ partial "page-head.html" (dict
   "kicker" "Publications"
   "title" "The <em>archive.</em>"
@@ -22,11 +36,9 @@
   <div class="container">
     <div class="pub-filter" role="group" aria-label="Filter publications">
       <button type="button" data-pub-filter="all" aria-pressed="true">All <span class="count">{{ len $pubs }}</span></button>
-      <button type="button" data-pub-filter="vision" aria-pressed="false">Vision <span class="count">{{ default 0 (index $tagCounts "vision") }}</span></button>
-      <button type="button" data-pub-filter="asd" aria-pressed="false">ASD <span class="count">{{ default 0 (index $tagCounts "asd") }}</span></button>
-      <button type="button" data-pub-filter="calibration" aria-pressed="false">Calibration <span class="count">{{ default 0 (index $tagCounts "calibration") }}</span></button>
-      <button type="button" data-pub-filter="datasets" aria-pressed="false">Datasets <span class="count">{{ default 0 (index $tagCounts "datasets") }}</span></button>
-      <button type="button" data-pub-filter="survey" aria-pressed="false">Survey <span class="count">{{ default 0 (index $tagCounts "survey") }}</span></button>
+      {{- range $tagList }}
+      <button type="button" data-pub-filter="{{ .tag }}" aria-pressed="false">{{ .name }} <span class="count">{{ .count }}</span></button>
+      {{- end }}
     </div>
 
     <div class="pubs">
@@ -35,12 +47,12 @@
         <span class="y">{{ .year }}</span>
         <span class="v">{{ .venue }}</span>
         <div class="pub-body">
-          <a class="t" href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}<span class="ext" aria-hidden="true"> ↗</span></a>
+          <a class="t" href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}<span class="ext" aria-hidden="true"> ↗</span>{{ partial "external-link-cue.html" . }}</a>
           <div class="a">{{ .authors }}</div>
           {{- if or .bibtex .repo }}
           <div class="pub-actions">
             {{- with .repo }}
-            <a class="pub-code" href="https://github.com/{{ . }}" target="_blank" rel="noopener" aria-label="Open code on GitHub">Code</a>
+            <a class="pub-code" href="https://github.com/{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Open code on GitHub (opens in new tab)">Code</a>
             {{- end }}
             {{- with .bibtex }}
             <details class="pub-bib">

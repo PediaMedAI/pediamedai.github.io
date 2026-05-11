@@ -414,6 +414,13 @@
   padding: 18px 0;
   overflow: hidden;
   position: relative;
+  /* Soft fade-in/fade-out at the container edges so items don't snap
+     in and out against the hairline borders. Mask is opaque from 5%
+     to 95% — wide enough that the hard cutoff isn't perceptible but
+     narrow enough that the ticker copy stays legible end-to-end. */
+  $ticker-mask: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: $ticker-mask;
+  -webkit-mask-image: $ticker-mask;
 
   .row {
     display: flex;

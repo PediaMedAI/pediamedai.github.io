@@ -1,4 +1,12 @@
 (function () {
+  // Skip when speculation rules are supported — head.html already
+  // ships a <script type="speculationrules"> that handles hover-based
+  // prefetch declaratively. Avoids emitting redundant <link rel=
+  // "prefetch"> on Chromium 109+.
+  if (typeof HTMLScriptElement !== "undefined" &&
+      HTMLScriptElement.supports &&
+      HTMLScriptElement.supports("speculationrules")) return;
+
   // Skip on slow / metered connections.
   var ci = navigator.connection;
   if (ci && (ci.saveData || /2g/i.test(ci.effectiveType || ""))) return;

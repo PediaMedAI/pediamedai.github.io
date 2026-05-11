@@ -1,4 +1,4 @@
-<footer>
+<footer data-nav-inert>
   <div class="container">
     <div class="footer-finale">
       <div class="meta eyebrow">— PediaMed AI · {{ now.Year }}</div>
@@ -26,9 +26,9 @@
         <a href="mailto:{{ . }}">{{ . }}</a>
         {{- end }}
         {{- with .Site.Params.twitterHandle }}
-        <a href="https://twitter.com/{{ . | replaceRE "^@" "" }}" target="_blank" rel="noopener">Twitter / X</a>
+        <a href="https://twitter.com/{{ . | replaceRE "^@" "" }}" target="_blank" rel="noopener noreferrer">Twitter / X{{ partial "external-link-cue.html" . }}</a>
         {{- end }}
-        <a href="https://github.com/PediaMedAI" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/PediaMedAI" target="_blank" rel="noopener noreferrer">GitHub{{ partial "external-link-cue.html" . }}</a>
       </div>
       <div class="col">
         <h3 class="footer-col-title">Lab note</h3>

@@ -24,7 +24,7 @@
 {{- $cta := default "" .cta -}}
 {{- $external := default false .external -}}
 
-<a class="card" href="{{ $href }}"{{ if $external }} target="_blank" rel="noopener"{{ end }}>
+<a class="card" href="{{ $href }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>
   {{- with $image }}
   <div class="img">
     {{ partial "img.html" (dict "src" . "alt" $imageAlt "width" 960) }}
@@ -45,5 +45,6 @@
     {{- with $cta }}
     <div class="arrow-cell"><span>{{ . }}</span><span aria-hidden="true">↗</span></div>
     {{- end }}
+    {{- if $external }}{{ partial "external-link-cue.html" . }}{{ end }}
   </div>
 </a>

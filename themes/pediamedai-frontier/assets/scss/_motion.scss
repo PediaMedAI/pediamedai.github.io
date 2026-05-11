@@ -104,12 +104,14 @@ $kp-settled: $kp-start + ($kp-count - 1) * $kp-stagger + $kp-dur;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Kill running animations and instant-snap scroll. Color/background/
+     opacity transitions are kept — WCAG's concern is vestibular motion
+     (large transforms, parallax, autoplay), not subtle state fades. */
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
 
@@ -119,6 +121,15 @@ $kp-settled: $kp-start + ($kp-count - 1) * $kp-stagger + $kp-dur;
 
   .reveal {
     opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Hover lifts are the only remaining motion vector — neutralize the
+     transforms on .btn / .card / arrow without touching the color or
+     border-color transitions on those same elements. */
+  .btn:hover,
+  .btn:hover .arrow,
+  .card:hover {
     transform: none !important;
   }
 

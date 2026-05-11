@@ -45,7 +45,10 @@
     grid-template-columns: 1.1fr 1fr;
     gap: 64px;
     align-items: center;
-    min-height: 540px;
+    /* Floor of 420px keeps the artifact from collapsing on short
+       laptop viewports; ceiling of 600px prevents a stretched gap
+       below the CTAs when the copy is short on tall monitors. */
+    min-height: clamp(420px, 56vh, 600px);
   }
 
   h1 {
@@ -96,9 +99,16 @@
   gap: 0;
   border-top: 1px solid var(--rule);
 
+  /* Cells are anchors — each one navigates to its source surface
+     (publications, research, partners, workshops). The hover lifts
+     the value and surfaces an underline so the affordance reads as a
+     link without breaking the editorial-grid feel. */
   .cell {
     padding: 40px 24px 8px;
     border-right: 1px solid var(--rule-soft);
+    display: block;
+    color: inherit;
+    transition: background 0.2s var(--ease);
 
     &:first-child {
       padding-left: 0;
@@ -114,6 +124,7 @@
       letter-spacing: -0.02em;
       color: var(--ink);
       line-height: 1;
+      transition: color 0.2s var(--ease);
     }
 
     .l {
@@ -123,6 +134,13 @@
       letter-spacing: 0.1em;
       color: var(--ink-3);
       margin-top: 8px;
+      transition: color 0.2s var(--ease);
+    }
+
+    @media (hover: hover) {
+      &:hover .l {
+        color: var(--ink);
+      }
     }
   }
 }
