@@ -1,5 +1,7 @@
 baseURL = "https://pediamedai.github.io/"
-languageCode = "en-us"
+# BCP 47 canonical form — lowercase language, uppercase region. Feeds
+# <html lang> and the RSS <language> element.
+languageCode = "en-US"
 title = "PediaMed AI"
 themesDir = "themes"
 theme = "pediamedai-frontier"

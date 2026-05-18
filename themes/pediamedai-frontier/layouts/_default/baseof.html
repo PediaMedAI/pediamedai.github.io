@@ -3,7 +3,12 @@
   {{- partial "head.html" . }}
   <body>
     {{- partial "header.html" . }}
-    <main id="main" data-nav-inert>
+    {{- /* tabindex="-1" makes #main a real focus destination so the
+           skip-link moves keyboard focus into the content, not just
+           the scroll offset. The page-wide focus ring is suppressed
+           in _reset.scss (#main:focus) — it's a destination, not a
+           control. */ -}}
+    <main id="main" tabindex="-1" data-nav-inert>
       {{- block "main" . }}{{ end }}
     </main>
     {{- /* Footer markup is page-invariant — cacheable. Scripts are
