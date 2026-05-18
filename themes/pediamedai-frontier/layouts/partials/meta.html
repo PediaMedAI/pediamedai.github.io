@@ -1,4 +1,4 @@
-{{- $description := default .Site.Params.metaDescription .Description }}
+{{- $description := partial "page-description.html" . }}
 {{- $ogTitle := default .Site.Title .Title }}
 {{- if .IsHome }}{{ $ogTitle = default .Site.Title .Site.Params.ogTitle }}{{ end }}
 {{- /* Hugo's default is `default FALLBACK INPUT` — return INPUT if
@@ -22,6 +22,9 @@
 <meta property="og:type" content="{{ $ogType }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
+{{- /* og:locale — Facebook-style underscore form, derived from the
+       site languageCode (en-US -> en_US) so it can't drift. */ -}}
+<meta property="og:locale" content="{{ replace .Site.LanguageCode "-" "_" }}">
 {{- with $description }}<meta property="og:description" content="{{ . }}">{{ end }}
 {{- /* og:image:alt — for home, $ogTitle already includes the lab
        descriptor, so just use it. For interior pages, append the

@@ -1,0 +1,11 @@
+{{- /* Resolves the meta / OG / Twitter description for a page, so
+       head.html and meta.html stay in sync from one source.
+
+       Founder pages carry no frontmatter `description`; fall back to
+       the person's bio so each profile gets a unique blurb instead of
+       repeating the lab-wide default. Returns a string. */ -}}
+{{- $description := default .Site.Params.metaDescription .Description -}}
+{{- if and (eq .Section "team") (eq .Kind "page") -}}
+  {{- $description = default $description .Params.bio -}}
+{{- end -}}
+{{- return $description -}}
