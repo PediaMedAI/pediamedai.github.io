@@ -32,6 +32,12 @@
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  /* The desktop .team-grid shrinks its width to the founder count
+     (--team-cols); at tablet every grid is full-width 2-up, so that
+     count-based width would wrongly narrow a 2-founder section. */
+  .team-grid {
+    width: 100%;
+  }
   /* Cancel the desktop nth-child(even) flip outright — at single-
      column the column-count override is redundant; only direction
      needs an explicit reset since the desktop rule sets rtl. */

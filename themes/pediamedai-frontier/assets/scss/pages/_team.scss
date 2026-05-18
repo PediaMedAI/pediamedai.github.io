@@ -1,7 +1,16 @@
-/* ——— Team grid ——— */
+/* ——— Team grid ———
+   --team-cols (the founder count, set inline by team-section.html and
+   capped at $team-cols-max) drives both the column count and the grid
+   width — so a short section (e.g. 2 clinical leads) keeps the same
+   card width as a full row instead of stretching its cards or leaving
+   a dangling border across empty tracks. */
+$team-cols-max: 4;
+
 .team-grid {
+  --team-cols: #{$team-cols-max};
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(var(--team-cols), 1fr);
+  width: calc(var(--team-cols) / #{$team-cols-max} * 100%);
   gap: 0;
   border-top: 1px solid var(--rule);
   border-left: 1px solid var(--rule);

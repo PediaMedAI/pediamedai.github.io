@@ -3,9 +3,15 @@
          heading  (required)  e.g. "Clinical leadership"
          pages    (required)  slice of founder Page objects
                               already filtered by track. */ -}}
-<h2 class="h2-section">{{ .heading }}</h2>
-<div class="team-grid">
-  {{- range $i, $p := sort .pages "Weight" "asc" }}
+{{- /* Founder count drives the grid width via --team-cols (see
+       .team-grid in _team.scss). Cap must match $team-cols-max there.
+       `with` skips the heading too when a track has no founders. */ -}}
+{{- $cols := len .pages -}}
+{{- if gt $cols 4 }}{{ $cols = 4 }}{{ end -}}
+{{- with .pages }}
+<h2 class="h2-section">{{ $.heading }}</h2>
+<div class="team-grid" style="--team-cols: {{ $cols }}">
+  {{- range $i, $p := sort . "Weight" "asc" }}
     {{ partial "team-cell.html" (dict
       "name" $p.Title
       "role" $p.Params.role
@@ -18,3 +24,4 @@
     ) }}
   {{- end }}
 </div>
+{{- end }}
