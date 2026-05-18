@@ -304,10 +304,13 @@
   border-top: 1px solid var(--rule);
 
   /* 4-cell variant — used by the homepage Methods process strip
-     (Define → Build → Validate → Release). Mobile breakpoints in
-     _responsive.scss already collapse .cap-row to 2 cols at 980px
-     and 1 col at 600px regardless of cell count. */
-  &.cols-4 {
+     (Define → Build → Validate → Release). :where() keeps this at
+     the same specificity as the bare .cap-row selector, so the
+     responsive overrides in _responsive.scss collapse it to 2 cols
+     at 980px and 1 at 600px by source order — without :where(),
+     `.cap-row.cols-4` would outrank them (media queries add no
+     specificity) and the strip would stay 4-up on mobile. */
+  &:where(.cols-4) {
     grid-template-columns: repeat(4, 1fr);
   }
 }
