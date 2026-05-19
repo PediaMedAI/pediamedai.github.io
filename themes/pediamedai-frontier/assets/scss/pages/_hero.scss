@@ -152,11 +152,9 @@
   position: relative;
   aspect-ratio: 1 / 1;
   width: 100%;
-  /* Right-aligned within its grid column, capped so it stays inside
-     the container — flush with the same right edge as the nav and
-     footer. (It previously bled off to the viewport edge on wide
-     screens, which detached it from the headline.) */
-  max-width: 560px;
+  /* Capped and right-aligned within its grid column, so it stays
+     flush with the same right edge as the nav and footer. */
+  max-width: 540px;
   margin-left: auto;
 
   .frame {
