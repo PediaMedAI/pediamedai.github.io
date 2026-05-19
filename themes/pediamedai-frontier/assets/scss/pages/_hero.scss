@@ -152,20 +152,12 @@
   position: relative;
   aspect-ratio: 1 / 1;
   width: 100%;
-  max-width: 540px;
+  /* Right-aligned within its grid column, capped so it stays inside
+     the container — flush with the same right edge as the nav and
+     footer. (It previously bled off to the viewport edge on wide
+     screens, which detached it from the headline.) */
+  max-width: 560px;
   margin-left: auto;
-
-  /* Desktop bleed-right: at viewports wider than --maxw, the artifact
-     escapes the container's right edge to meet the viewport edge,
-     so it reads as a real instrument hanging off the page rather
-     than a decorative tile inside a column. The .hero parent already
-     has overflow: hidden, so any subpixel slop is clipped cleanly.
-     The formula: outer body margin (negative half of viewport−maxw)
-     + the container's own right padding (--gutter). */
-  @media (min-width: 1281px) {
-    margin-right: calc((100vw - var(--maxw)) / -2 - var(--gutter));
-    max-width: 620px;
-  }
 
   .frame {
     position: absolute;
