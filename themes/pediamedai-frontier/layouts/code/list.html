@@ -60,4 +60,25 @@
     </div>
   </div>
 </section>
+
+{{- /* MedCaseAgent Web is in beta — keep the "signal" Beta tag and the
+       not-final wording until the platform is finalized. The meta
+       description in content/code/_index.md also says "in beta";
+       update both files together. */ -}}
+<section class="section" id="platform">
+  <div class="container">
+    {{ partial "section-head.html" (dict "id" "platform" "meta" "Platform" "title" "Clinical tools <em>in testing.</em>") }}
+    <div class="grid-2 reveal">
+      {{ partial "card.html" (dict
+        "href" "https://www.musong.site/"
+        "external" true
+        "tags" (slice (dict "class" "signal" "text" "Beta"))
+        "label" "Case reporting"
+        "title" "MedCaseAgent Web"
+        "desc" "Automatic clinical case report generation platform — drafts structured case reports from text and attached case images. In beta; features and outputs are not final."
+        "cta" "www.musong.site")
+      }}
+    </div>
+  </div>
+</section>
 {{ end }}
