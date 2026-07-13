@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="{{ .Site.Title }}">
 {{- /* og:locale — Facebook-style underscore form, derived from the
        site languageCode (en-US -> en_US) so it can't drift. */ -}}
-<meta property="og:locale" content="{{ replace .Site.LanguageCode "-" "_" }}">
+<meta property="og:locale" content="{{ replace .Site.Language.Locale "-" "_" }}">
 {{- with $description }}<meta property="og:description" content="{{ . }}">{{ end }}
 {{- /* og:image:alt — for home, $ogTitle already includes the lab
        descriptor, so just use it. For interior pages, append the
@@ -167,7 +167,7 @@
 {{- end }}
 
 {{- if and (eq .Section "publications") (eq .Kind "section") }}
-{{- with .Site.Data.publications }}
+{{- with hugo.Data.publications }}
   {{- $articles := slice -}}
   {{- range . -}}
     {{- /* Split the display author string ("Cao X, Ye W, Sizikova E, …, Cao J.")

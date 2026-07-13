@@ -10,7 +10,7 @@
        is inherited from the surrounding .card-meta wrapper. */ -}}
 
 {{- $url := printf "https://api.github.com/repos/%s" .repo -}}
-{{- $data := index $.Site.Data.repos .repo -}}
+{{- $data := index hugo.Data.repos .repo -}}
 {{- with try (resources.GetRemote $url) -}}
   {{- with .Value -}}
     {{- with (try (transform.Unmarshal .)).Value -}}{{- $data = . -}}{{- end -}}

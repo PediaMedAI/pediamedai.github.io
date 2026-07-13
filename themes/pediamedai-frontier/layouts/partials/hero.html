@@ -12,7 +12,7 @@
                carries a signal-color dot, so two stacked dots
                read as palette noise. The "Currently" prefix
                conveys live-status semantics on its own. */ -}}
-        {{- with .Site.Data.currently }}
+        {{- with hugo.Data.currently }}
           {{- with .text }}
         <div class="hero-currently">Currently · {{ . }}</div>
           {{- end }}
@@ -46,7 +46,7 @@
     {{- /* Derive counts so they don't drift as the archive grows.
            .Site.Pages (not .RegularPages) so section indexes like
            /cvpr/ (_index.md) are counted alongside /iclr/. */ -}}
-    {{- $pubCount := len .Site.Data.publications -}}
+    {{- $pubCount := len hugo.Data.publications -}}
     {{- $workshopCount := len (where .Site.Pages "Layout" "workshop") -}}
     <div class="hero-meta" role="group" aria-label="Lab at a glance">
       <a class="cell" href="{{ "/publications/" | relURL }}">

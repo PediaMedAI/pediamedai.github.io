@@ -17,7 +17,7 @@
   lockstep.
 */ -}}
 
-{{- $data := .Site.Data.hero_pose -}}
+{{- $data := hugo.Data.hero_pose -}}
 {{- $kps := $data.keypoints -}}
 
 {{- /* Build a name -> point lookup so bones and the bar panel can

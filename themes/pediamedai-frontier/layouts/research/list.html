@@ -62,7 +62,7 @@
 <section class="section tinted" id="selected-works">
   <div class="container">
     {{ partial "section-head.html" (dict "id" "selected-works" "meta" "Selected Works" "title" "Recent <em>publications &amp; preprints.</em>") }}
-    {{- $featured := where .Site.Data.publications "featured" true -}}
+    {{- $featured := where hugo.Data.publications "featured" true -}}
     <div class="grid-3 reveal">
       {{- range $featured }}
         {{- $tagText := cond (eq .venue "Preprint") "Preprint" (printf "%s · %s" .year .venue) -}}
