@@ -1,7 +1,8 @@
-# Matches the GitHub Pages custom domain (CNAME) so local/preview
-# builds emit the same canonical + OG URLs as production. CI still
-# overrides via --baseURL from the Pages config at deploy time.
-baseURL = "https://www.pediamedai.com/"
+# Matches the GitHub Pages custom domain so local/preview builds emit
+# the same canonical + OG URLs as production (the apex — www and
+# github.io both 301 here). CI still overrides via --baseURL from the
+# Pages config at deploy time.
+baseURL = "https://pediamedai.com/"
 # BCP 47 canonical form — lowercase language, uppercase region. Feeds
 # <html lang> and the RSS <language> element (config key: locale,
 # the 0.158+ name for languageCode).
