@@ -47,6 +47,7 @@
 
 <section class="section">
   <div class="container">
+    {{ partial "page-toc.html" . }}
     <div class="prose">
       {{ .Content }}
     </div>
@@ -59,6 +60,54 @@
   </div>
 </section>
 
+{{- /* —— Competition leaderboard (HLE-style) — data/leaderboard.yaml,
+       gated on `leaderboard: true` front matter so only competition
+       pages render it. With no entries yet the table shows the honest
+       empty state from the data file — never placeholder numbers. */ -}}
+{{- $lb := hugo.Data.leaderboard }}
+{{- if and .Params.leaderboard $lb }}
+<section class="section tinted" id="leaderboard">
+  <div class="container">
+    {{ partial "section-head.html" (dict "id" "leaderboard" "meta" "Leaderboard" "title" (printf "%s — <em>results.</em>" $lb.title)) }}
+
+    <div class="leaderboard reveal">
+      <table class="leaderboard__table">
+        <caption class="sr-only">{{ $lb.title }} leaderboard</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Team</th>
+            <th scope="col">Institution</th>
+            <th scope="col">Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{- range $lb.entries }}
+          <tr>
+            <td class="leaderboard__rank">{{ .rank }}</td>
+            <td>{{ .team }}</td>
+            <td>{{ .institution }}</td>
+            <td class="leaderboard__score">{{ .score }}</td>
+          </tr>
+          {{- else }}
+          <tr class="leaderboard__empty">
+            <td colspan="4">{{ $lb.status }}</td>
+          </tr>
+          {{- end }}
+        </tbody>
+      </table>
+    </div>
+
+    {{- with $lb.note }}<p class="leaderboard__note">{{ . }}</p>{{ end }}
+    {{- with $lb.submit_url }}
+    <div class="actions mt-lg">
+      <a class="btn" href="{{ . }}" target="_blank" rel="noopener noreferrer">Submission details <span class="arrow" aria-hidden="true">↗</span>{{ partial "external-link-cue.html" . }}</a>
+    </div>
+    {{- end }}
+  </div>
+</section>
+{{- end }}
+
 {{- if gt (len $gallery) 0 }}
 {{- $altPrefix := default $.Title $.Params.gallery_alt_prefix -}}
 <section class="section tinted" id="gallery">
@@ -67,7 +116,16 @@
     <div class="workshop-gallery" data-gallery>
       {{- range $i, $path := $gallery }}
         {{- $alt := printf "%s — photo %d" $altPrefix (add $i 1) }}
-        <button type="button" class="workshop-gallery__item" data-gallery-open="{{ $i }}" aria-label="Open {{ $alt }} fullscreen">
+        {{- /* data-gallery-full: a large WebP rendition for the lightbox,
+               so the modal doesn't upscale the 800px grid thumbnail on
+               big/retina screens. Capped at the source width — Hugo
+               would happily upscale past it. */ -}}
+        {{- $full := "" }}
+        {{- with resources.Get $path }}
+          {{- $w := int (math.Min 1600 .Width) }}
+          {{- $full = (.Resize (printf "%dx webp q82" $w)).RelPermalink }}
+        {{- end }}
+        <button type="button" class="workshop-gallery__item" data-gallery-open="{{ $i }}"{{ with $full }} data-gallery-full="{{ . }}"{{ end }} aria-label="Open {{ $alt }} fullscreen">
           {{ partial "img.html" (dict "src" $path "alt" $alt "width" 800) }}
         </button>
       {{- end }}

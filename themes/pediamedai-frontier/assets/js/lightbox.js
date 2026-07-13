@@ -11,10 +11,21 @@
   if (!img || !prev || !next || !close) return;
 
   // Snapshot the photo sources at load time. Each entry: {src, alt}.
+  // Prefer the button's data-gallery-full (a large rendition emitted
+  // by the template) over the grid thumbnail, so the modal doesn't
+  // upscale an 800px thumbnail on big or retina screens. currentSrc
+  // falls back through the thumbnail's own srcset choice.
   var items = Array.prototype.map.call(
-    gallery.querySelectorAll("[data-gallery-open] img"),
-    function (el) { return { src: el.src, alt: el.alt }; }
-  );
+    gallery.querySelectorAll("[data-gallery-open]"),
+    function (btn) {
+      var el = btn.querySelector("img");
+      if (!el) return null;
+      return {
+        src: btn.getAttribute("data-gallery-full") || el.currentSrc || el.src,
+        alt: el.alt
+      };
+    }
+  ).filter(Boolean);
   if (!items.length) return;
 
   var index = 0;

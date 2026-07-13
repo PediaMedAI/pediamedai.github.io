@@ -1,0 +1,27 @@
+{{- /* Custom RSS — mirrors Hugo's embedded template, plus an
+       xml-stylesheet PI so the feed renders as a readable page in the
+       browser (see static/rss.xsl). Feed readers ignore the PI;
+       browsers without client-side XSLT fall back to raw XML. */ -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+{{ printf "<?xml-stylesheet href=\"/rss.xsl\" type=\"text/xsl\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Site.Title | transform.XMLEscape | safeHTML }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ .Site.Params.metaDescription | transform.XMLEscape | safeHTML }}</description>
+    <language>{{ .Site.Language.Locale }}</language>
+    <lastBuildDate>{{ now.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
+    {{- with .OutputFormats.Get "RSS" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+    {{- end }}
+    {{- range first 20 .Site.RegularPages.ByLastmod.Reverse }}
+    <item>
+      <title>{{ .Title | transform.XMLEscape | safeHTML }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ (default .Date .Lastmod).Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      <description>{{ (default (.Summary | plainify) .Description) | transform.XMLEscape | safeHTML }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

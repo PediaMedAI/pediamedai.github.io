@@ -1,0 +1,46 @@
+# Lab updates timeline — single source of truth for the homepage
+# "Updates" section (latest 4, see layouts/index.html) and the full
+# log on /about/#updates. Newest first; templates re-sort by `date`
+# desc so ordering here is a convention, not a requirement.
+#
+# Fields:
+#   date     (required)  ISO "YYYY-MM-DD" string (keep it quoted).
+#                        Used for <time datetime> and sorting.
+#   display  (optional)  Human label when the honest precision is
+#                        coarser than a day (e.g. "2023") — avoids
+#                        implying a day-level date we don't have.
+#   title    (required)  One sentence, sentence case, no trailing period.
+#   url      (optional)  Internal path ("/cvpr/") or absolute URL.
+#
+# Only verifiable lab events belong here — no aspirational entries.
+- date: "2026-06-11"
+  title: "MedCaseAgent Web, the lab's case-report platform, opens in beta"
+  url: "/code/"
+
+- date: "2026-02-28"
+  title: "CV4CHL — Workshop on Computer Vision for Children — announced for CVPR 2026 in Denver"
+  url: "/cvpr/"
+
+- date: "2025-04-27"
+  title: "AI4CHL workshop held at ICLR 2025 in Singapore"
+  url: "/iclr/"
+
+- date: "2024-01-01"
+  display: "2024"
+  title: "Three workshop papers on multimodal LLMs and cooperative perception published at WACV 2024"
+  url: "/publications/"
+
+- date: "2023-08-01"
+  display: "2023"
+  title: "LRFormer published at UAI 2023 — Lipschitz-bounded uncertainty for vision transformers"
+  url: "https://proceedings.mlr.press/v216/ye23a.html"
+
+- date: "2023-06-01"
+  display: "2023"
+  title: "ViTASD published at ICASSP 2023 — a vision-transformer baseline for pediatric autism analysis"
+  url: "https://ieeexplore.ieee.org/document/10094684"
+
+- date: "2022-07-01"
+  display: "2022"
+  title: "AggPose published at IJCAI 2022 — open infant pose-estimation dataset and model"
+  url: "https://www.ijcai.org/proceedings/2022/700"

@@ -11,6 +11,7 @@ enddates: "2025-04-27"
 location: "Singapore"
 event_image: "img/workshops/iclr_workshop/iclr_1.jpg"
 description: "ICLR 2025 AI for Children workshop recap. Pediatricians, psychologists, educators, and AI researchers convened to discuss AI for pediatric development."
+toc: true
 gallery:
   - "img/workshops/iclr_workshop/iclr_1.jpg"
   - "img/workshops/iclr_workshop/iclr_2.jpg"

@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{- $pubs := .Site.Data.publications -}}
+{{- $pubs := hugo.Data.publications -}}
 
 {{- /* Per-tag counts computed at build from data/publications.yaml.
        Surfaced as small badges next to each filter chip so visitors
@@ -41,6 +41,11 @@
       {{- end }}
     </div>
 
+    {{- /* Visible result summary doubling as the screen-reader live
+           region — pub-filter.js rewrites it on every filter change so
+           AT users hear that rows appeared/disappeared. */ -}}
+    <p class="pub-count" role="status" data-pub-count>{{ len $pubs }} publications</p>
+
     <div class="pubs">
       {{- range $pubs }}
       <article class="pub" data-pub-tags="{{ delimit .tags " " }}">
@@ -70,6 +75,17 @@
       </article>
       {{- end }}
     </div>
+
+    {{- /* One-click .bib of the whole archive, assembled at build from
+           the same YAML entries that power the per-paper Cite blocks. */ -}}
+    {{- $bibs := slice }}
+    {{- range $pubs }}{{ with .bibtex }}{{ $bibs = $bibs | append (strings.TrimSpace .) }}{{ end }}{{ end }}
+    {{- if $bibs }}
+    {{- $bibFile := resources.FromString "publications.bib" (printf "%s\n" (delimit $bibs "\n\n")) }}
+    <div class="actions mt-lg">
+      <a class="btn ghost" href="{{ $bibFile.RelPermalink }}" download="pediamedai-publications.bib">Download all citations (.bib)</a>
+    </div>
+    {{- end }}
   </div>
 </section>
 

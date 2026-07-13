@@ -163,3 +163,67 @@
 
 /* Lightbox nav stays 44×44 across viewports — touch users on mobile
    need the full target. The desktop sizing already meets the floor. */
+
+/* ——— Competition leaderboard (data/leaderboard.yaml) ———
+   Rendered by workshop.html on pages with `leaderboard: true`. The
+   wrapper owns horizontal overflow so a wide results table scrolls
+   inside its card instead of stretching the page. */
+.leaderboard {
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+}
+
+.leaderboard__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: var(--ink-2);
+
+  th {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--ink-3);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  td {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+}
+
+.leaderboard__rank {
+  font-family: var(--mono);
+  color: var(--ink-3);
+}
+
+.leaderboard__score {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.leaderboard__empty td {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  padding: 28px 20px;
+}
+
+.leaderboard__note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-3);
+  max-width: 60ch;
+}

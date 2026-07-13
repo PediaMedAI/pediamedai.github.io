@@ -1,0 +1,21 @@
+{{- /* Dated updates list — data/news.yaml rows.
+       Args:
+         items  (required)  slice of dicts { date, display?, title, url? }
+       Each row: mono date column (200px, echoing section-head's label
+       column) + the update sentence, optionally linked. `display`
+       overrides the formatted date label when an entry's honest
+       precision is coarser than a day. */ -}}
+<ol class="news-list">
+  {{- range .items }}
+  {{- $t := time .date }}
+  <li class="news-item">
+    <time class="news-item__date" datetime="{{ $t.Format "2006-01-02" }}">{{ default ($t.Format "Jan 2, 2006") .display }}</time>
+    <p class="news-item__body">
+      {{- if .url }}
+      {{- $external := hasPrefix .url "http" }}
+      <a href="{{ if $external }}{{ .url }}{{ else }}{{ relURL .url }}{{ end }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .title }}{{ if $external }}<span class="ext" aria-hidden="true"> ↗</span>{{ partial "external-link-cue.html" . }}{{ end }}</a>
+      {{- else }}{{ .title }}{{ end -}}
+    </p>
+  </li>
+  {{- end }}
+</ol>

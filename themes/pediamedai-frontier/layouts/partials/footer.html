@@ -38,6 +38,10 @@
 
     <div class="baseline">
       <span>© {{ now.Year }} PediaMed AI</span>
+      {{- /* Partner-network cities (AMI-style locations strip) — the
+             homes of the partner institutions shown on /about/#partners,
+             not lab offices. Keep in sync with partials/partners.html. */}}
+      <span>Partner network: Shenzhen · New York · Charlottesville · Urbana-Champaign</span>
       <span>v.{{ now.Format "2006.01" }} · Built with clinicians, for children</span>
     </div>
   </div>

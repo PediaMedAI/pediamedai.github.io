@@ -3,6 +3,11 @@
          href     (required)  link target
          image    (optional)  image src; if set, renders the .img wrapper
          imageAlt (optional)  alt text
+         viz      (optional)  raw inline-SVG HTML (a diagram partial) rendered
+                              in place of an image. aria-hidden — inside a
+                              link the visible title/desc carry the meaning;
+                              exposing the SVG's own title would balloon the
+                              link's accessible name.
          tags     (optional)  slice of dicts { class, text }
          label    (optional)  label-mono text shown alongside tags
          title    (required)  card heading (HTML allowed)
@@ -15,6 +20,7 @@
 */ -}}
 {{- $href := .href -}}
 {{- $image := .image -}}
+{{- $viz := default "" .viz -}}
 {{- $imageAlt := default "" .imageAlt -}}
 {{- $tags := default (slice) .tags -}}
 {{- $label := default "" .label -}}
@@ -29,6 +35,9 @@
   <div class="img">
     {{ partial "img.html" (dict "src" . "alt" $imageAlt "width" 960) }}
   </div>
+  {{- end }}
+  {{- with $viz }}
+  <div class="img img--viz" aria-hidden="true">{{ . | safeHTML }}</div>
   {{- end }}
   <div class="body">
     {{- if or (gt (len $tags) 0) $label }}

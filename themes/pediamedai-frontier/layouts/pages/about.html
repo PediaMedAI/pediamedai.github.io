@@ -12,23 +12,24 @@
   </div>
 </section>
 
+{{- /* Full updates log — the homepage shows the latest 4 entries and
+       links here for the rest. Same data/news.yaml source. */ -}}
+{{- $news := sort (default (slice) hugo.Data.news) "date" "desc" }}
+{{- if $news }}
+<section class="section" id="updates">
+  <div class="container">
+    {{ partial "section-head.html" (dict "id" "updates" "meta" "Updates" "title" "The <em>log.</em>") }}
+    <div class="reveal">
+      {{ partial "news-list.html" (dict "items" $news) }}
+    </div>
+  </div>
+</section>
+{{- end }}
+
 <section class="section tinted" id="partners">
   <div class="container">
     {{ partial "section-head.html" (dict "id" "partners" "meta" "Partners" "title" "Partner <em>institutions.</em>") }}
-    <div class="grid-4 grid-4--centered reveal">
-      <div class="partner-tile">
-        {{ partial "img.html" (dict "src" "img/partners/shenzhen-childrens-hospital.png" "alt" "Shenzhen Children’s Hospital" "width" 320) }}
-      </div>
-      <div class="partner-tile sm">
-        {{ partial "img.html" (dict "src" "img/partners/nyu.svg" "alt" "New York University" "width" 106 "height" 36) }}
-      </div>
-      <div class="partner-tile sm">
-        {{ partial "img.html" (dict "src" "img/partners/uva.svg" "alt" "University of Virginia" "width" 162 "height" 52) }}
-      </div>
-      <div class="partner-tile">
-        {{ partial "img.html" (dict "src" "img/partners/uiuc.png" "alt" "University of Illinois Urbana-Champaign" "width" 320) }}
-      </div>
-    </div>
+    {{ partial "partners.html" . }}
   </div>
 </section>
 {{ end }}

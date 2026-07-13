@@ -10,6 +10,8 @@ enddates: "2026-06-07"
 location: "Denver, Colorado, USA"
 event_image: "img/workshops/cv4chl_bg.jpg"
 description: "CVPR 2026 workshop on computer vision for children's development, health, and education — Denver, June 2026. Hosting the Children's Gait Competition."
+leaderboard: true
+toc: true
 ---
 
 Current computer vision (CV) research and applications often prioritize adult-focused solutions, while progress in CV designed specifically for children's development, health, and education has lagged behind. The **CVPR 2026 Workshop on Computer Vision for Children (CV4CHL)** aims to spotlight this critical gap and bring together researchers from diverse fields to discuss the future of CV design and its applications for children.

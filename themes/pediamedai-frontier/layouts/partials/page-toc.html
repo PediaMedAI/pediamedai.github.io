@@ -1,0 +1,14 @@
+{{- /* Inline table of contents for long prose pages. Opt-in via
+       `toc: true` front matter; renders nothing when the page has no
+       headings (TableOfContents emits an empty <nav>). Heading ids
+       come from Goldmark's auto-ids, which the render-heading hook
+       preserves — so these links match the #-anchor affordances. */ -}}
+{{- if .Params.toc }}
+{{- $toc := .TableOfContents }}
+{{- if gt (len (plainify $toc)) 1 }}
+<div class="page-toc">
+  <div class="meta eyebrow">Contents</div>
+  {{ $toc }}
+</div>
+{{- end }}
+{{- end }}

@@ -1,0 +1,18 @@
+# Children's Gait Competition (CV4CHL @ CVPR 2026) leaderboard.
+# Rendered on any workshop page with `leaderboard: true` front matter
+# (currently /cvpr/) by layouts/_default/workshop.html.
+#
+# `entries` is empty until real submissions/baselines exist — the
+# template renders `status` as an empty-state row instead. Never seed
+# this file with placeholder numbers; the table is public.
+#
+# Entry fields when results land:
+#   rank         integer
+#   team         display name
+#   institution  affiliation (optional, "" to omit)
+#   score        string — keep the metric's own formatting ("0.87", "92.1%")
+title: "Children's Gait Competition"
+status: "No submissions yet — baseline results will be posted here when the competition opens."
+note: "Task definition, data access, and the official evaluation metric are published on the workshop site."
+submit_url: "https://pediamedai.com/cv4chl/"
+entries: []

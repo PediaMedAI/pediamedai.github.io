@@ -1,7 +1,11 @@
-baseURL = "https://pediamedai.github.io/"
+# Matches the GitHub Pages custom domain (CNAME) so local/preview
+# builds emit the same canonical + OG URLs as production. CI still
+# overrides via --baseURL from the Pages config at deploy time.
+baseURL = "https://www.pediamedai.com/"
 # BCP 47 canonical form — lowercase language, uppercase region. Feeds
-# <html lang> and the RSS <language> element.
-languageCode = "en-US"
+# <html lang> and the RSS <language> element (config key: locale,
+# the 0.158+ name for languageCode).
+locale = "en-US"
 title = "PediaMed AI"
 themesDir = "themes"
 theme = "pediamedai-frontier"
@@ -13,6 +17,16 @@ disableHugoGeneratorInject = true
 # /contact/, /iclr/, /code-of-conduct/). Drop the section index, taxonomy lists,
 # and empty term pages so they don't appear in the sitemap or get indexed.
 disableKinds = ["taxonomy", "term"]
+
+# /llms.txt — plain-text site map for LLM crawlers (llmstxt.org
+# convention). Rendered by layouts/index.llms.txt on the home page.
+[outputFormats.llms]
+  baseName = "llms"
+  mediaType = "text/plain"
+  isPlainText = true
+
+[outputs]
+  home = ["html", "rss", "llms"]
 
 [markup.goldmark.renderer]
   unsafe = true
