@@ -25,7 +25,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.150.0
+      # Keep in sync with local dev installs — version drift between CI
+      # and laptops makes "works on my machine" bugs.
+      HUGO_VERSION: 0.163.1
+      HUGO_CACHEDIR: ${{ github.workspace }}/.hugo-cache
     steps:
       - name: Install Hugo CLI
         run: |
@@ -42,6 +45,19 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
 
+      # Hugo's module/image-processing cache — image renditions and
+      # resources.GetRemote responses (GitHub star counts) carry over
+      # between runs, so builds are faster and resilient to GitHub API
+      # rate limits. run_id keys always miss, so restore-keys does the
+      # work and the post-step saves the refreshed cache.
+      - name: Restore Hugo cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.hugo-cache
+          key: hugo-cache-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            hugo-cache-${{ runner.os }}-
+
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
@@ -51,6 +67,11 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      # Regression net: fail the deploy if any internal href/src in the
+      # built site doesn't resolve to a file in ./public.
+      - name: Check internal links
+        run: python3 scripts/check_internal_links.py public
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

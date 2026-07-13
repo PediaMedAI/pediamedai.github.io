@@ -37,6 +37,12 @@ data/
   repos.yaml                             cached GitHub-repo metadata for
                                          the /code/ page; live API call
                                          is the runtime fallback
+  news.yaml                              dated lab updates — homepage
+                                         "Updates" section (latest 4) +
+                                         full log on /about/#updates
+  leaderboard.yaml                       Children's Gait Competition
+                                         leaderboard on /cvpr/ (empty-state
+                                         until real results exist)
 themes/pediamedai-frontier/
   theme.toml
   assets/
@@ -45,8 +51,8 @@ themes/pediamedai-frontier/
       _layout, _components, _motion,       browser reset, type scale,
       _responsive, _print                  grid, components, motion,
                                            media-query overrides, print)
-      pages/                               page-scoped: _hero, _theme,
-                                           _team, _pub, _footer,
+      pages/                               page-scoped: _hero, _home,
+                                           _theme, _team, _pub, _footer,
                                            _workshop, _misc
       style.scss                           import manifest
     js/                                  vanilla-JS islands (deferred;
@@ -136,7 +142,10 @@ Schema.org JSON-LD lives in `partials/meta.html` and `team/single.html`:
 ## Deployment
 
 GitHub Actions workflow (`.github/workflows/hugo.yml`) deploys the
-`redesign` branch to GitHub Pages on every push. CI uses Hugo 0.150.
+`redesign` branch to GitHub Pages on every push. CI uses Hugo 0.163,
+caches Hugo's resource cache between runs, and fails the build if any
+internal link in the output is broken
+(`scripts/check_internal_links.py`).
 
 ## Adding content
 
@@ -146,6 +155,11 @@ GitHub Actions workflow (`.github/workflows/hugo.yml`) deploys the
   `tagClass`, `bibtex`, `arxiv`, `repo`). The `bibtex:` literal block
   is the source for the Cite disclosure on `/publications/`; setting
   `featured: true` also surfaces the entry on `/research/` Selected Works.
+- **A lab update** — prepend an entry to `data/news.yaml` (`date`,
+  `title`, optional `url`/`display` — the file header documents the
+  rules). The homepage shows the latest 4; `/about/#updates` shows all.
+- **A leaderboard result** — append to `entries` in
+  `data/leaderboard.yaml` (`rank`, `team`, `institution`, `score`).
 - **A new founder** — add `content/team/<slug>.md` with frontmatter:
   `title`, `role`, `track` (clinical|technical), `weight`, `link`,
   `image` (optional theme asset path under `img/team/`), `initials`
