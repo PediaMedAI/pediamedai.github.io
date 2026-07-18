@@ -3,6 +3,7 @@
 @import "typography";
 @import "layout";
 @import "components";
+@import "news";
 
 /* Page-scoped sub-modules. Split out from one large _pages.scss so
    each surface has its own ~150-line file: hero+404, theme blocks,
