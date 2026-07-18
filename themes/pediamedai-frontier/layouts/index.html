@@ -146,27 +146,21 @@
   <div class="container">
     {{ partial "section-head.html" (dict "id" "workshops" "index" "05" "meta" "Workshops" "title" "Workshops &amp; <em>clinical training.</em>") }}
 
+    {{- /* Cards from data/workshops.yaml — shared with /workshops/ and
+           the /updates/ mirror page so all three stay in sync. */ -}}
     <div class="grid-2 reveal">
+      {{- range hugo.Data.workshops }}
       {{ partial "card.html" (dict
-        "href" (relURL "/cvpr/")
-        "image" "img/workshops/cv4chl_bg.jpg"
-        "imageAlt" "CVPR 2026 CV4CHL workshop background"
-        "tags" (slice (dict "class" "accent" "text" "Planning"))
-        "label" "June 2026 · Denver"
-        "title" "CVPR 2026 · Computer Vision for Children (CV4CHL)"
-        "desc" "Workshop on computer vision for children’s development, health, and education. Hosting the Children’s Gait Competition."
-        "cta" "Workshop site")
+        "href" (relURL .href)
+        "image" .image
+        "imageAlt" .imageAlt
+        "tags" (slice (dict "class" .statusClass "text" .status))
+        "label" .label
+        "title" .title
+        "desc" .desc
+        "cta" .cta)
       }}
-      {{ partial "card.html" (dict
-        "href" (relURL "/iclr/")
-        "image" "img/workshops/iclr_workshop/iclr_1.jpg"
-        "imageAlt" "ICLR 2025 AI4CHL workshop"
-        "tags" (slice (dict "class" "" "text" "Done"))
-        "label" "2025 · Singapore"
-        "title" "ICLR 2025 · AI for Children (AI4CHL)"
-        "desc" "Workshop bringing pediatricians, psychologists, educators, and AI researchers together. Recap and gallery inside."
-        "cta" "Workshop recap")
-      }}
+      {{- end }}
     </div>
   </div>
 </section>

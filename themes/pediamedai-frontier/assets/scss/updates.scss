@@ -1,0 +1,194 @@
+/* ——— Standalone /updates/ mirror page bundle ———
+   Compiled and inlined into layouts/updates/list.html so the emitted
+   HTML file carries its own styles (self-contained, no external
+   stylesheet request). Reuses the site's design tokens, reset,
+   typography, the shared .card / .tag components, and the news-list
+   partial styles — then adds only the minimal single-column layout
+   this page needs. Keeping these @imports means the page inherits
+   brand changes automatically; nothing here is duplicated. */
+@import "tokens";
+@import "reset";
+@import "typography";
+@import "components"; // .card / .tag (other shared components are unused here)
+@import "news";       // .news-list / .news-item (shared with the homepage)
+
+/* Centered reading column — narrower than the site's --maxw so the
+   simplified page reads like a single document, closer to the
+   reference (amilabs.xyz/updates). */
+.up-wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+/* —— Mini header: wordmark + a "back to the full site" cue —— */
+.up-header {
+  border-bottom: 1px solid var(--rule-soft);
+
+  .up-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+  }
+}
+
+.up-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+
+  .mark {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.up-back {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  transition: color 0.15s var(--ease);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--ink);
+  }
+}
+
+/* —— Page title —— */
+.up-hero {
+  padding: 72px 0 8px;
+}
+
+.up-hero h1 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(56px, 10vw, 120px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-top: 14px;
+
+  em {
+    font-style: italic;
+    color: var(--ink-3);
+  }
+}
+
+.up-hero p {
+  font-size: clamp(1.0625rem, calc(1rem + 0.25vi), 1.1875rem);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 56ch;
+  margin-top: 22px;
+  text-wrap: pretty;
+}
+
+/* —— Sections (Updates, Workshops) —— */
+.up-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--rule);
+
+  &:first-of-type {
+    border-top: none;
+    padding-top: 40px;
+  }
+}
+
+.up-section__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.up-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.up-section__more {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  transition: color 0.15s var(--ease);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+  }
+}
+
+/* Workshop cards — two up, collapsing to one on narrow viewports. */
+.up-workshops {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: $bp-mobile) {
+  .up-workshops {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* —— Footer: on-brand finale + baseline —— */
+.up-footer {
+  padding: 56px 0 72px;
+  border-top: 1px solid var(--rule);
+}
+
+.up-footer__big {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+
+  em {
+    font-style: italic;
+    color: var(--ink-3);
+  }
+}
+
+.up-footer__base {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+
+  a {
+    color: inherit;
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+  }
+}
