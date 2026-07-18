@@ -9,21 +9,6 @@
 {{- $news := sort (default (slice) hugo.Data.news) "date" "desc" -}}
 {{- $workshops := default (slice) hugo.Data.workshops -}}
 {{- $desc := .Description | default .Site.Params.metaDescription -}}
-
-{{- /* Standalone mode — set via HUGO_PARAMS_STANDALONEUPDATES=true on the
-       cross-repo sync build only. This same template renders two
-       different contexts: embedded (a /updates/ subpage of the full
-       site, both on one domain) and standalone (this page IS the site
-       root of pediamedai-updates.git, synced to its own domain, with
-       the full site living on a separate domain entirely). Every link
-       that would otherwise resolve "within this site" has to become an
-       absolute cross-domain link in standalone mode instead. */ -}}
-{{- $standalone := .Site.Params.standaloneUpdates | default false -}}
-{{- $fullSiteBase := "https://pediamedai.github.io/" -}}
-{{- $homeHref := cond $standalone $fullSiteBase ("/" | relURL) -}}
-{{- $aboutUpdatesHref := cond $standalone (printf "%sabout/#updates" $fullSiteBase) (printf "%s#updates" ("/about/" | relURL)) -}}
-{{- $workshopsHref := cond $standalone (printf "%sworkshops/" $fullSiteBase) ("/workshops/" | relURL) -}}
-{{- $canonical := cond $standalone .Site.BaseURL .Permalink -}}
 <!doctype html>
 <html lang="{{ .Site.Language.Locale | default "en" }}">
 <head>
@@ -40,7 +25,7 @@
 
   <title>{{ .Title }} · {{ .Site.Title }}</title>
   <meta name="description" content="{{ $desc }}">
-  <link rel="canonical" href="{{ $canonical }}">
+  <link rel="canonical" href="{{ .Permalink }}">
 
   {{- /* Match the full site: set data-theme before first paint so dark
          mode (OS preference or the toggle set on the main site — shared
@@ -92,11 +77,11 @@
 <body>
   <header class="up-header">
     <div class="up-wrap">
-      <a class="up-logo" href="{{ $homeHref }}" aria-label="PediaMed AI home">
+      <a class="up-logo" href="{{ "/" | relURL }}" aria-label="PediaMed AI home">
         <span class="mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
         <span>PediaMed AI</span>
       </a>
-      <a class="up-back" href="{{ $homeHref }}">← Full site</a>
+      <a class="up-back" href="{{ "/" | relURL }}">← Full site</a>
     </div>
   </header>
 
@@ -117,7 +102,7 @@
       <section class="up-section" id="updates" aria-labelledby="updates-h">
         <div class="up-section__head">
           <h2 id="updates-h">Updates</h2>
-          <a class="up-section__more" href="{{ $aboutUpdatesHref }}">Full log ↗</a>
+          <a class="up-section__more" href="{{ "/about/" | relURL }}#updates">Full log ↗</a>
         </div>
         {{ partial "news-list.html" (dict "items" $news) }}
       </section>
@@ -128,7 +113,7 @@
       <section class="up-section" id="workshops" aria-labelledby="workshops-h">
         <div class="up-section__head">
           <h2 id="workshops-h">Workshops</h2>
-          <a class="up-section__more" href="{{ $workshopsHref }}">All workshops ↗</a>
+          <a class="up-section__more" href="{{ "/workshops/" | relURL }}">All workshops ↗</a>
         </div>
         <div class="up-workshops">
           {{- range $workshops }}
@@ -145,7 +130,7 @@
             {{- $imgHTML = printf `<img src="data:%s;base64,%s" alt="%s" width="%d" height="%d" loading="lazy" decoding="async">` $resized.MediaType.Type ($resized.Content | base64Encode) ($w.imageAlt | htmlEscape) $resized.Width $resized.Height -}}
           {{- end }}
           {{ partial "card.html" (dict
-            "href" (cond $standalone (printf "%s%s" $fullSiteBase (strings.TrimPrefix "/" $w.href)) (relURL $w.href))
+            "href" (relURL $w.href)
             "imageHTML" $imgHTML
             "tags" (slice (dict "class" $w.statusClass "text" $w.status))
             "label" $w.label
@@ -166,11 +151,7 @@
       <div class="up-footer__base">
         <span>© {{ now.Year }} PediaMed AI</span>
         {{- with .Site.Params.contact_email }}<span>{{ . }}</span>{{ end }}
-        {{- if $standalone }}
-        <span>Full site at <a href="{{ $fullSiteBase }}">pediamedai.github.io</a></span>
-        {{- else }}
         <span>Mirror of <a href="{{ "/" | relURL }}">pediamedai.com</a></span>
-        {{- end }}
       </div>
     </div>
   </footer>
