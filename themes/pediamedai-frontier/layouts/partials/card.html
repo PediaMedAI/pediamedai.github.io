@@ -3,13 +3,6 @@
          href     (required)  link target
          image    (optional)  image src; if set, renders the .img wrapper
          imageAlt (optional)  alt text
-         imageHTML (optional) raw <img> HTML to render in the .img wrapper
-                              instead of `image` (e.g. a pre-built
-                              base64 data-URI <img> for a standalone page
-                              that can't rely on root-relative asset
-                              paths). Unlike `viz`, NOT aria-hidden — the
-                              caller's <img> is expected to carry its own
-                              real alt text.
          viz      (optional)  raw inline-SVG HTML (a diagram partial) rendered
                               in place of an image. aria-hidden — inside a
                               link the visible title/desc carry the meaning;
@@ -27,7 +20,6 @@
 */ -}}
 {{- $href := .href -}}
 {{- $image := .image -}}
-{{- $imageHTML := default "" .imageHTML -}}
 {{- $viz := default "" .viz -}}
 {{- $imageAlt := default "" .imageAlt -}}
 {{- $tags := default (slice) .tags -}}
@@ -43,9 +35,6 @@
   <div class="img">
     {{ partial "img.html" (dict "src" . "alt" $imageAlt "width" 960) }}
   </div>
-  {{- end }}
-  {{- with $imageHTML }}
-  <div class="img">{{ . | safeHTML }}</div>
   {{- end }}
   {{- with $viz }}
   <div class="img img--viz" aria-hidden="true">{{ . | safeHTML }}</div>

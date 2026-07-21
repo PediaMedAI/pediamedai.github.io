@@ -1,13 +1,17 @@
-{{- /* Standalone, self-contained "simplified mirror" of the site.
-       Renders a full HTML document WITHOUT extending _default/baseof.html
-       so the emitted /updates/index.html carries its own inlined CSS and
-       has no dependency on the shared bundle. It is data-driven: the two
-       sections read the same sources of truth as the full site —
-       data/news.yaml (updates) and data/workshops.yaml (workshops) — so
-       every rebuild mirrors the live content automatically. Kept out of
-       the primary nav (no menu entry) as a separate page. */ -}}
+{{- /* Standalone, self-contained, single-entry "simplified mirror" —
+       structurally mirrors amilabs.xyz/updates: one dated announcement,
+       no section list, no navigation back to the main site. Renders a
+       full HTML document WITHOUT extending _default/baseof.html so the
+       emitted /updates/index.html carries its own inlined CSS and has
+       no dependency on the shared bundle. Data-driven: always shows the
+       single latest entry from data/news.yaml (the same source the
+       homepage's compact strip reads), rendering its optional `body`
+       paragraphs if written, or its bare `title` as a fallback for a
+       future entry with no narrative — so the mirror updates itself on
+       every deploy with no separate publish step. Kept out of the
+       primary nav (no menu entry) as a separate page. */ -}}
 {{- $news := sort (default (slice) hugo.Data.news) "date" "desc" -}}
-{{- $workshops := default (slice) hugo.Data.workshops -}}
+{{- $latest := index $news 0 -}}
 {{- $desc := .Description | default .Site.Params.metaDescription -}}
 <!doctype html>
 <html lang="{{ .Site.Language.Locale | default "en" }}">
@@ -75,72 +79,42 @@
   <meta name="theme-color" content="#0c0d0e" media="(prefers-color-scheme: dark)">
 </head>
 <body>
-  <header class="up-header">
+  {{- /* Identity only, not navigation — no <a> here and no other link
+         anywhere on the page. This mirror is a dead end by design: no
+         way back to the main site. Logo mark + "Updates." as a single
+         masthead lockup, not a separate nav strip + hero. */ -}}
+  <header class="up-masthead">
     <div class="up-wrap">
-      <a class="up-logo" href="{{ "/" | relURL }}" aria-label="PediaMed AI home">
-        <span class="mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
-        <span>PediaMed AI</span>
-      </a>
-      <a class="up-back" href="{{ "/" | relURL }}">← Full site</a>
+      <span class="up-masthead__mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
+      <h1>Updates.</h1>
     </div>
   </header>
 
   <main>
     <div class="up-wrap">
-      <div class="up-hero">
-        <div class="eyebrow">— PediaMed AI</div>
-        {{- /* Distinct from the "Updates" h2 immediately below — a page
-               title that duplicated the first section heading read as a
-               mistake, not a hierarchy. .Title ("Updates") still drives
-               the <title> tag / SEO above. */ -}}
-        <h1>The lab, <em>at a glance.</em></h1>
-        <p>The latest from the lab, plus the workshops we run and support. A pared-down view — the full site has research, publications, team, and code.</p>
-      </div>
-
-      {{- /* —— Updates — the full activity log from data/news.yaml —— */ -}}
-      {{- if $news }}
-      <section class="up-section" id="updates" aria-labelledby="updates-h">
-        <div class="up-section__head">
-          <h2 id="updates-h">Updates</h2>
-          <a class="up-section__more" href="{{ "/about/" | relURL }}#updates">Full log ↗</a>
-        </div>
-        {{ partial "news-list.html" (dict "items" $news) }}
-      </section>
-      {{- end }}
-
-      {{- /* —— Workshops — cards from data/workshops.yaml —— */ -}}
-      {{- if $workshops }}
-      <section class="up-section" id="workshops" aria-labelledby="workshops-h">
-        <div class="up-section__head">
-          <h2 id="workshops-h">Workshops</h2>
-          <a class="up-section__more" href="{{ "/workshops/" | relURL }}">All workshops ↗</a>
-        </div>
-        <div class="up-workshops">
-          {{- range $workshops }}
-          {{- $w := . -}}
-          {{- /* Card images embedded as base64 data URIs — unlike
-                 partials/img.html's root-relative RelPermalink (used on
-                 the homepage / /workshops/), this page has to keep
-                 working when opened as a bare file://, where a
-                 root-relative /img/... path 404s against the filesystem
-                 root instead of the site root. */ -}}
-          {{- $imgHTML := "" -}}
-          {{- with resources.Get $w.image }}
-            {{- $resized := .Resize "960x webp q82" -}}
-            {{- $imgHTML = printf `<img src="data:%s;base64,%s" alt="%s" width="%d" height="%d" loading="lazy" decoding="async">` $resized.MediaType.Type ($resized.Content | base64Encode) ($w.imageAlt | htmlEscape) $resized.Width $resized.Height -}}
-          {{- end }}
-          {{ partial "card.html" (dict
-            "href" (relURL $w.href)
-            "imageHTML" $imgHTML
-            "tags" (slice (dict "class" $w.statusClass "text" $w.status))
-            "label" $w.label
-            "title" $w.title
-            "desc" $w.desc
-            "cta" $w.cta)
-          }}
-          {{- end }}
-        </div>
-      </section>
+      {{- /* —— The single latest entry from data/news.yaml —— */ -}}
+      {{- with $latest }}
+      <article class="up-entry">
+        <p class="up-entry__date">
+          <time datetime="{{ (time .date).Format "2006-01-02" }}">{{ (time .date).Format "January 2, 2006" }}</time>
+          — {{ .title }}
+        </p>
+        {{- if .body }}
+        {{- range .body }}
+        <p class="up-entry__body">{{ . }}</p>
+        {{- end }}
+        {{- else }}
+        {{- /* Fallback for a future entry with no narrative written —
+               show the bare title rather than force a padded story. */ -}}
+        <p class="up-entry__body">{{ .title }}</p>
+        {{- end }}
+        {{- with .url }}
+        {{- $external := hasPrefix . "http" }}
+        <p class="up-entry__link">
+          <a href="{{ if $external }}{{ . }}{{ else }}{{ relURL . }}{{ end }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ if $external }}{{ . | strings.TrimPrefix "https://" | strings.TrimPrefix "http://" | strings.TrimSuffix "/" }}{{ else }}{{ relURL . }}{{ end }} <span aria-hidden="true">↗</span></a>{{ if $external }}{{ partial "external-link-cue.html" . }}{{ end }}
+        </p>
+        {{- end }}
+      </article>
       {{- end }}
     </div>
   </main>
@@ -151,7 +125,6 @@
       <div class="up-footer__base">
         <span>© {{ now.Year }} PediaMed AI</span>
         {{- with .Site.Params.contact_email }}<span>{{ . }}</span>{{ end }}
-        <span>Mirror of <a href="{{ "/" | relURL }}">pediamedai.com</a></span>
       </div>
     </div>
   </footer>

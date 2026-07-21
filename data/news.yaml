@@ -11,8 +11,20 @@
 #                        implying a day-level date we don't have.
 #   title    (required)  One sentence, sentence case, no trailing period.
 #   url      (optional)  Internal path ("/cvpr/") or absolute URL.
+#   body     (optional)  List of paragraph strings — a longer narrative
+#                        write-up. Only /updates/ reads this (the single
+#                        latest entry, in full); the homepage strip and
+#                        /about/#updates only ever use `title` and are
+#                        unaffected by its presence.
 #
 # Only verifiable lab events belong here — no aspirational entries.
+- date: "2026-06-25"
+  title: "\"Decoding Children's Gait Behavior\" accepted to ECCV 2026"
+  url: "https://pediamedai.com/ChildrenGait/"
+  body:
+    - "Our paper “Decoding Children’s Gait Behavior” has been accepted to the European Conference on Computer Vision (ECCV 2026), a collaboration with the Rehg Lab and partner institutions — Y. Shen, B. Li, M. Huang, Y. Liu, X. Cao, J. Jin, Z. Li, A. Liu, J. Kim, J. Zhu, F. Lan, J. Cao, J. Chen, I. Lourentzou, and J. M. Rehg."
+    - "The paper introduces one of the first large multi-camera video repositories of children with developmental motor conditions, together with new methods for detecting subtle gait abnormalities directly from video — work that sits alongside the lab’s broader effort on computer vision for children’s health and development."
+
 - date: "2026-06-11"
   title: "MedCaseAgent Web, the lab's case-report platform, opens in Beta"
   url: "/code/"

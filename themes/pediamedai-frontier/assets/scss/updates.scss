@@ -1,16 +1,18 @@
 /* ——— Standalone /updates/ mirror page bundle ———
    Compiled and inlined into layouts/updates/list.html so the emitted
    HTML file carries its own styles (self-contained, no external
-   stylesheet request). Reuses the site's design tokens, reset,
-   typography, the shared .card / .tag components, and the news-list
-   partial styles — then adds only the minimal single-column layout
-   this page needs. Keeping these @imports means the page inherits
-   brand changes automatically; nothing here is duplicated. */
+   stylesheet request). Reuses the site's design tokens, reset, and
+   typography, then adds only the minimal single-column layout this
+   page needs. Keeping these @imports means the page inherits brand
+   changes automatically; nothing here is duplicated.
+   Note: unlike earlier versions of this page, .card/.tag (_components)
+   and .news-list (_news) are NOT imported — the page no longer renders
+   workshop cards or a news list, just a single narrative entry, so
+   pulling in those unused rule sets would only bloat the self-contained
+   output. */
 @import "tokens";
 @import "reset";
 @import "typography";
-@import "components"; // .card / .tag (other shared components are unused here)
-@import "news";       // .news-list / .news-item (shared with the homepage)
 
 /* Centered reading column — narrower than the site's --maxw so the
    simplified page reads like a single document, closer to the
@@ -22,132 +24,95 @@
   width: 100%;
 }
 
-/* —— Mini header: wordmark + a "back to the full site" cue —— */
-.up-header {
-  border-bottom: 1px solid var(--rule-soft);
+/* —— Masthead: logo mark + "Updates." as one lockup, not a nav strip.
+       This page has no navigation anywhere — a dead end by design, so
+       the mark is identity, not an escape hatch back to the main site.
+       Icon and title share a single font-size (the clamp below) so
+       they scale together at every viewport width, rather than being
+       sized independently and drifting out of proportion. —— */
+.up-masthead {
+  padding: 56px 0 40px;
 
   .up-wrap {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding-top: 26px;
-    padding-bottom: 26px;
+    gap: 0.18em;
+    font-size: clamp(56px, 10vw, 120px);
   }
 }
 
-.up-logo {
+.up-masthead__mark {
   display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--serif);
-  font-size: 22px;
-  letter-spacing: -0.02em;
+  flex-shrink: 0;
+  width: 0.82em;
+  height: 0.82em;
   color: var(--ink);
 
-  .mark {
-    display: inline-flex;
-    width: 24px;
-    height: 24px;
+  svg {
+    width: 100%;
+    height: 100%;
   }
 }
 
-.up-back {
+.up-masthead h1 {
+  font-family: var(--serif);
+  font-style: normal;
+  font-variant-caps: small-caps;
+  font-size: 1em;
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* —— The single latest entry from data/news.yaml —— */
+.up-entry {
+  padding: 40px 0 56px;
+  border-top: 1px solid var(--rule);
+  margin-top: 40px;
+}
+
+.up-entry__date {
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-3);
-  white-space: nowrap;
-  transition: color 0.15s var(--ease);
+  margin-bottom: 24px;
 
-  &:hover,
-  &:focus-visible {
-    color: var(--ink);
+  time {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-/* —— Page title —— */
-.up-hero {
-  padding: 72px 0 8px;
-}
-
-.up-hero h1 {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(56px, 10vw, 120px);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  margin-top: 14px;
-
-  em {
-    font-style: italic;
-    color: var(--ink-3);
-  }
-}
-
-.up-hero p {
+.up-entry__body {
   font-size: clamp(1.0625rem, calc(1rem + 0.25vi), 1.1875rem);
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--ink-2);
-  max-width: 56ch;
-  margin-top: 22px;
+  max-width: 62ch;
   text-wrap: pretty;
-}
 
-/* —— Sections (Updates, Workshops) —— */
-.up-section {
-  padding: 56px 0;
-  border-top: 1px solid var(--rule);
-
-  &:first-of-type {
-    border-top: none;
-    padding-top: 40px;
+  & + & {
+    margin-top: 20px;
   }
 }
 
-.up-section__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 28px;
-}
+.up-entry__link {
+  margin-top: 28px;
 
-.up-section h2 {
-  font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 44px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
+  a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
 
-.up-section__more {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  white-space: nowrap;
-  transition: color 0.15s var(--ease);
-
-  &:hover,
-  &:focus-visible {
-    color: var(--accent);
-  }
-}
-
-/* Workshop cards — two up, collapsing to one on narrow viewports. */
-.up-workshops {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: $bp-mobile) {
-  .up-workshops {
-    grid-template-columns: 1fr;
+    &:hover,
+    &:focus-visible {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
   }
 }
 
@@ -179,16 +144,4 @@
   font-size: 11px;
   letter-spacing: 0.06em;
   color: var(--ink-3);
-
-  a {
-    color: inherit;
-    border-bottom: 1px solid var(--rule);
-    transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
-
-    &:hover,
-    &:focus-visible {
-      color: var(--ink);
-      border-color: var(--ink);
-    }
-  }
 }
