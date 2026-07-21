@@ -27,25 +27,28 @@
 /* —— Masthead: logo mark + "Updates." as one lockup, not a nav strip.
        This page has no navigation anywhere — a dead end by design, so
        the mark is identity, not an escape hatch back to the main site.
-       Icon and title share a single font-size (the clamp below) so
-       they scale together at every viewport width, rather than being
-       sized independently and drifting out of proportion. —— */
+       Sizing/proportions measured directly off amilabs.xyz/updates'
+       computed styles (not eyeballed): their title runs 30px on mobile
+       up to 50px at desktop width, their logo mark ~1.28x that
+       font-size, with a gap around 0.3em — a modest masthead, not a
+       display-scale hero. Icon and title share one font-size (the
+       clamp below) so they scale together at every viewport width. */
 .up-masthead {
-  padding: 56px 0 40px;
+  padding: 40px 0 32px;
 
   .up-wrap {
     display: flex;
     align-items: center;
-    gap: 0.18em;
-    font-size: clamp(56px, 10vw, 120px);
+    gap: 0.3em;
+    font-size: clamp(30px, 4vw, 52px);
   }
 }
 
 .up-masthead__mark {
   display: inline-flex;
   flex-shrink: 0;
-  width: 0.82em;
-  height: 0.82em;
+  width: 1.28em;
+  height: 1.28em;
   color: var(--ink);
 
   svg {
@@ -55,12 +58,22 @@
 }
 
 .up-masthead h1 {
-  font-family: var(--serif);
+  /* Deliberately not var(--serif)/Instrument Serif here — the reference
+     (amilabs.xyz/updates) sets its title in Cmunrm (Computer Modern,
+     LaTeX's default serif). Embedding Computer Modern itself would mean
+     sourcing and verifying a new font file just for one word; a system
+     serif gets visually close for free — and is literally what the
+     reference's own font-family stack falls back to
+     (Cmunrm, "Times New Roman", sans-serif). Scoped to this one
+     element only — every other page on the site keeps Instrument
+     Serif. */
+  font-family: "Times New Roman", Times, Georgia, serif;
   font-style: normal;
+  font-weight: 400;
   font-variant-caps: small-caps;
   font-size: 1em;
-  line-height: 0.92;
-  letter-spacing: 0.01em;
+  line-height: 1.05;
+  letter-spacing: normal;
   color: var(--ink);
   margin: 0;
 }
@@ -86,8 +99,16 @@
 }
 
 .up-entry__body {
-  font-size: clamp(1.0625rem, calc(1rem + 0.25vi), 1.1875rem);
-  line-height: 1.6;
+  /* Same reasoning as .up-masthead h1: the reference sets its body
+     copy in the same Cmunrm/Computer Modern face as its title (18px,
+     weight 400, normal tracking, 23px line-height — measured directly
+     off amilabs.xyz/updates, not the sans-serif I assumed earlier).
+     Matching font-family + size/leading here, keeping the token-based
+     color so light/dark mode still work correctly. */
+  font-family: "Times New Roman", Times, Georgia, serif;
+  font-size: 18px;
+  line-height: 23px;
+  letter-spacing: normal;
   color: var(--ink-2);
   max-width: 62ch;
   text-wrap: pretty;
