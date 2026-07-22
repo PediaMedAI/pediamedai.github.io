@@ -50,7 +50,7 @@ disableKinds = ["taxonomy", "term"]
   rightAngleQuote = "&raquo;"
 
 [params]
-  contact_email = "contact@pediamedai.com"
+  contact_email = "pediamedai@gmail.com"
   twitterHandle = "@pediamedai"
   metaDescription = "PediaMed AI is a pediatric AI research lab building interpretable vision and multimodal models for early detection and clinician-readable explanations."
   ogTitle = "PediaMed AI — Pediatric AI Research Lab"

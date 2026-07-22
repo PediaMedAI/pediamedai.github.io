@@ -17,4 +17,4 @@ We collaborate with Shenzhen Children's Hospital, New York University, the Unive
 
 ## Get in touch
 
-For research collaboration, hospital partnerships, press, or general inquiries, email [contact@pediamedai.com](mailto:contact@pediamedai.com).
+For research collaboration, hospital partnerships, press, or general inquiries, email [pediamedai@gmail.com](mailto:pediamedai@gmail.com).
