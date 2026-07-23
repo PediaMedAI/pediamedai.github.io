@@ -1,11 +1,15 @@
 # Workshops — single source of truth for the summary cards shown on the
-# homepage (#workshops), the /workshops/ list, and the simplified
-# /updates/ mirror page. Editing here updates all three at once.
+# hidden full site's own homepage-equivalent (#workshops, see
+# layouts/pmai-x7k2q9/list.html) and its /pmai-x7k2q9/workshops/ list.
+# Editing here updates both at once. (The real site homepage,
+# layouts/index.html, doesn't use this file at all — see data/news.yaml
+# instead.)
 #
 # The canonical workshop pages (with full detail) live in
-# content/cvpr/_index.md (CV4CHL) and content/pages/iclr.md (AI4CHL);
-# this file only holds the card-level summary each surface renders via
-# partials/card.html. Order is display order (upcoming first).
+# content/pmai-x7k2q9/cvpr/_index.md (CV4CHL) and
+# content/pmai-x7k2q9/pages/iclr.md (AI4CHL); this file only holds the
+# card-level summary each surface renders via partials/card.html.
+# Order is display order (upcoming first).
 #
 # Fields:
 #   href        (required)  internal path to the workshop page.
@@ -18,7 +22,7 @@
 #   title       (required)  card heading (inline HTML allowed).
 #   desc        (required)  one- or two-sentence summary.
 #   cta         (required)  arrow-cell call-to-action text.
-- href: "/cvpr/"
+- href: "/pmai-x7k2q9/cvpr/"
   image: "img/workshops/cv4chl_bg.jpg"
   imageAlt: "CVPR 2026 CV4CHL workshop background"
   status: "Planning"
@@ -28,7 +32,7 @@
   desc: "Workshop on computer vision for children’s development, health, and education. Hosting the Children’s Gait Competition."
   cta: "Workshop site"
 
-- href: "/iclr/"
+- href: "/pmai-x7k2q9/iclr/"
   image: "img/workshops/iclr_workshop/iclr_1.jpg"
   imageAlt: "ICLR 2025 AI4CHL workshop"
   status: "Done"

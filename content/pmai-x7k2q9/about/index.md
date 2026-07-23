@@ -2,6 +2,12 @@
 title: "About"
 date: 2026-04-25T00:00:00Z
 layout: "about"
+# Explicit type override so template lookup still finds
+# layouts/pages/about.html after this page moved out from under
+# content/pages/ (flattened directly under content/pmai-x7k2q9/) —
+# Hugo's <section>/<layout>.html lookup otherwise uses the page's
+# actual directory-derived section ("pmai-x7k2q9"), not "pages".
+type: "pages"
 description: "Pediatric AI research lab building interpretable vision and multimodal models for early detection. Partners: Shenzhen Children's Hospital, NYU, UVA, UIUC."
 ---
 

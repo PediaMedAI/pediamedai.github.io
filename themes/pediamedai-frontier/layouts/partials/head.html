@@ -22,6 +22,14 @@
 
   <title>{{ if .IsHome }}{{ default .Site.Title .Site.Params.ogTitle }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
   {{- with $description }}<meta name="description" content="{{ . }}">{{ end }}
+  {{- /* Unlinked, non-indexed mirror of the former homepage — see
+         content/pmai-x7k2q9/_index.md. Not a real access boundary
+         (this repo is public), just kept out of search engines and
+         off the visible site (config.toml's menu, RSS, llms.txt, and
+         the standalone 404 page all avoid linking here too). */ -}}
+  {{- if strings.HasPrefix .RelPermalink "/pmai-x7k2q9/" }}
+  <meta name="robots" content="noindex, nofollow">
+  {{- end }}
 
   {{- /* Theme bootstrap — set data-theme before paint to avoid flash */ -}}
   <script>
@@ -87,9 +95,13 @@
   }
   </script>
 
-  {{- /* DNS prefetch for paper hosts on /publications/ so click-outs to
-         arxiv et al. don't pay the DNS+TLS cost on cold cache. */ -}}
-  {{- if and (eq .Section "publications") (eq .Kind "section") }}
+  {{- /* DNS prefetch for paper hosts on /pmai-x7k2q9/publications/ so
+         click-outs to arxiv et al. don't pay the DNS+TLS cost on cold
+         cache. Checking .RelPermalink rather than .Section — Hugo's
+         .Section for content nested under content/pmai-x7k2q9/ is
+         unverified for this repo's exact version/structure, and a
+         permalink-prefix check is unambiguous either way. */ -}}
+  {{- if and (strings.HasPrefix .RelPermalink "/pmai-x7k2q9/publications/") (eq .Kind "section") }}
   <link rel="dns-prefetch" href="https://arxiv.org">
   <link rel="dns-prefetch" href="https://ieeexplore.ieee.org">
   <link rel="dns-prefetch" href="https://proceedings.mlr.press">

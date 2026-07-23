@@ -1,7 +1,7 @@
 ---
 title: "Code of conduct"
 date: 2018-12-06T09:29:16+10:00
-url: "/code-of-conduct/"
+url: "/pmai-x7k2q9/code-of-conduct/"
 description: "Code of conduct for PediaMed AI: inclusivity, professionalism, scientific integrity, authorship, and conflicts-of-interest commitments."
 toc: true
 ---

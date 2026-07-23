@@ -14,7 +14,17 @@
     {{- with .OutputFormats.Get "RSS" }}
     <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
     {{- end }}
-    {{- range first 20 .Site.RegularPages.ByLastmod.Reverse }}
+    {{- /* Exclude the unlinked /pmai-x7k2q9/ prefix — the feed is a
+           public, commonly-crawled/aggregated surface, and listing
+           those pages here would leak the hidden path exactly like an
+           unfiltered sitemap would. */ -}}
+    {{- $feedPages := slice -}}
+    {{- range .Site.RegularPages.ByLastmod.Reverse -}}
+      {{- if not (strings.HasPrefix .RelPermalink "/pmai-x7k2q9/") -}}
+        {{- $feedPages = $feedPages | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- range first 20 $feedPages }}
     <item>
       <title>{{ .Title | transform.XMLEscape | safeHTML }}</title>
       <link>{{ .Permalink }}</link>

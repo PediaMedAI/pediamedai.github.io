@@ -1,7 +1,9 @@
-# Lab updates timeline — single source of truth for the homepage
-# "Updates" section (latest 4, see layouts/index.html) and the full
-# log on /about/#updates. Newest first; templates re-sort by `date`
-# desc so ordering here is a convention, not a requirement.
+# Lab updates timeline — single source of truth for the site homepage
+# (layouts/index.html, the single latest entry only), the hidden full
+# site's own "Updates" section (latest 4, see layouts/pmai-x7k2q9/list.html),
+# and its full log on /pmai-x7k2q9/about/#updates. Newest first;
+# templates re-sort by `date` desc so ordering here is a convention,
+# not a requirement.
 #
 # Fields:
 #   date     (required)  ISO "YYYY-MM-DD" string (keep it quoted).
@@ -10,12 +12,12 @@
 #                        coarser than a day (e.g. "2023") — avoids
 #                        implying a day-level date we don't have.
 #   title    (required)  One sentence, sentence case, no trailing period.
-#   url      (optional)  Internal path ("/cvpr/") or absolute URL.
+#   url      (optional)  Internal path ("/pmai-x7k2q9/cvpr/") or absolute URL.
 #   body     (optional)  List of paragraph strings — a longer narrative
-#                        write-up. Only /updates/ reads this (the single
-#                        latest entry, in full); the homepage strip and
-#                        /about/#updates only ever use `title` and are
-#                        unaffected by its presence.
+#                        write-up. Only the homepage reads this (the
+#                        single latest entry, in full); the hidden
+#                        site's strip and full log only ever use
+#                        `title` and are unaffected by its presence.
 #
 # Only verifiable lab events belong here — no aspirational entries.
 - date: "2026-06-25"
@@ -27,20 +29,20 @@
 
 - date: "2026-06-11"
   title: "MedCaseAgent Web, the lab's case-report platform, opens in Beta"
-  url: "/code/"
+  url: "/pmai-x7k2q9/code/"
 
 - date: "2026-02-28"
   title: "CV4CHL — Workshop on Computer Vision for Children — announced for CVPR 2026 in Denver"
-  url: "/cvpr/"
+  url: "/pmai-x7k2q9/cvpr/"
 
 - date: "2025-04-27"
   title: "AI4CHL workshop held at ICLR 2025 in Singapore"
-  url: "/iclr/"
+  url: "/pmai-x7k2q9/iclr/"
 
 - date: "2024-01-01"
   display: "2024"
   title: "Three workshop papers on multimodal LLMs and cooperative perception published at WACV 2024"
-  url: "/publications/"
+  url: "/pmai-x7k2q9/publications/"
 
 - date: "2023-08-01"
   display: "2023"

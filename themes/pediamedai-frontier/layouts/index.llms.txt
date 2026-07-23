@@ -2,17 +2,23 @@
        llms.txt convention (https://llmstxt.org). Enabled by the
        `llms` output format on the home page in config.toml. Lists
        every rendered page with its meta description so an agent can
-       pick the right URL without crawling the nav. */ -}}
+       pick the right URL without crawling the nav.
+
+       Excludes the unlinked /pmai-x7k2q9/ prefix — this file's entire
+       purpose is being an easy-to-parse site map for crawlers, so
+       leaving those pages in would defeat the point of hiding them
+       (arguably worse than the sitemap/RSS cases, since this format is
+       specifically designed to be machine-read wholesale). */ -}}
 # {{ .Site.Title }}
 
 > {{ .Site.Params.metaDescription }}
 
 ## Pages
 
-{{ range .Site.Sections }}{{ if and .Permalink (ne .Title "Pages") -}}
+{{ range .Site.Sections }}{{ if and .Permalink (ne .Title "Pages") (not (strings.HasPrefix .RelPermalink "/pmai-x7k2q9/")) -}}
 - [{{ .Title }}]({{ .Permalink }}){{ with .Description }}: {{ . }}{{ end }}
 {{ end }}{{ end -}}
-{{ range .Site.RegularPages.ByTitle }}{{ if .Permalink -}}
+{{ range .Site.RegularPages.ByTitle }}{{ if and .Permalink (not (strings.HasPrefix .RelPermalink "/pmai-x7k2q9/")) -}}
 - [{{ .Title }}]({{ .Permalink }}){{ with .Description }}: {{ . }}{{ end }}
 {{ end }}{{ end }}
 ## Feeds

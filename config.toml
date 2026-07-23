@@ -14,9 +14,13 @@ enableEmoji = true
 enableGitInfo = true
 disableHugoGeneratorInject = true
 
-# /pages/ is an internal organizational namespace (children re-route to /, /about/,
-# /contact/, /iclr/, /code-of-conduct/). Drop the section index, taxonomy lists,
-# and empty term pages so they don't appear in the sitemap or get indexed.
+# Drop taxonomy lists and empty term pages so they don't appear in the
+# sitemap or get indexed. (About/Contact/ICLR/Code-of-conduct used to
+# live under a "pages" organizational namespace with its own permalinks
+# rule; now flattened directly under content/pmai-x7k2q9/ — each with
+# an explicit `type: "pages"` front-matter override so template lookup
+# still finds layouts/pages/about.html etc. regardless of the flatter
+# content location. See content/pmai-x7k2q9/about/index.md.)
 disableKinds = ["taxonomy", "term"]
 
 # /llms.txt — plain-text site map for LLM crawlers (llmstxt.org
@@ -56,35 +60,38 @@ disableKinds = ["taxonomy", "term"]
   ogTitle = "PediaMed AI — Pediatric AI Research Lab"
   ogImage = "/images/social-card.png"
 
+# Nav is only ever rendered on pages under /pmai-x7k2q9/ — the real
+# homepage (layouts/index.html) is a standalone template that doesn't
+# extend baseof.html/header.html at all. So "Home" here means "this
+# section's own homepage-equivalent," not the real site root — keeping
+# in-section navigation self-contained rather than bouncing visitors
+# out to an unrelated page.
 [[menu.main]]
   name = "Home"
-  url = "/"
+  url = "/pmai-x7k2q9/"
   weight = 1
 
 [[menu.main]]
   name = "Research"
-  url = "/research/"
+  url = "/pmai-x7k2q9/research/"
   weight = 2
 
 [[menu.main]]
   name = "Publications"
-  url = "/publications/"
+  url = "/pmai-x7k2q9/publications/"
   weight = 3
 
 [[menu.main]]
   name = "Team"
-  url = "/team/"
+  url = "/pmai-x7k2q9/team/"
   weight = 4
 
 [[menu.main]]
   name = "Code"
-  url = "/code/"
+  url = "/pmai-x7k2q9/code/"
   weight = 5
 
 [[menu.main]]
   name = "Workshops"
-  url = "/workshops/"
+  url = "/pmai-x7k2q9/workshops/"
   weight = 6
-
-[permalinks]
-  pages = "/:contentbasename/"

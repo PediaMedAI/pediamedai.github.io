@@ -1,210 +1,137 @@
-{{ define "main" }}
+{{- /* Standalone, self-contained, single-entry site homepage.
+       Structurally mirrors amilabs.xyz/updates: one dated announcement,
+       no section list, no navigation anywhere. Renders a full HTML
+       document WITHOUT extending _default/baseof.html so the emitted
+       page carries its own inlined CSS and has no dependency on the
+       shared bundle. Data-driven: always shows the single latest entry
+       from data/news.yaml, rendering its optional `body` paragraphs if
+       written, or its bare `title` as a fallback for a future entry
+       with no narrative — so the homepage updates itself on every
+       deploy with no separate publish step.
 
-{{ partial "hero.html" . }}
+       This used to live at /updates/ (a mirror of the "real" homepage);
+       now it IS the homepage. The former rich homepage moved to
+       layouts/pmai-x7k2q9/list.html, an unlinked, non-indexed path —
+       see content/pmai-x7k2q9/_index.md and partials/head.html's
+       noindex block. This page has zero links to it or anywhere else —
+       a dead end by design. */ -}}
+{{- $news := sort (default (slice) hugo.Data.news) "date" "desc" -}}
+{{- $latest := index $news 0 -}}
+{{- $desc := .Description | default .Site.Params.metaDescription -}}
+<!doctype html>
+<html lang="{{ .Site.Language.Locale | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  {{- /* Page-specific CSP: this standalone page inlines its CSS and the
+         theme-bootstrap script, so style-src / script-src must allow
+         'unsafe-inline' (the main site links an external stylesheet and
+         can be stricter). Both inline blocks are first-party and
+         reviewed at build time. */ -}}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self';">
 
-{{ partial "ticker.html" . }}
+  <title>{{ .Title }} · {{ .Site.Title }}</title>
+  <meta name="description" content="{{ $desc }}">
+  <link rel="canonical" href="{{ .Permalink }}">
 
-{{- /* —— Mission section — 01 (spacious — manifesto moment) —— */ -}}
-<section class="section section--spacious" id="mission">
-  <div class="container">
-    <div class="mission reveal">
-      <div class="meta eyebrow"><a href="#mission" class="section-anchor" aria-label="Mission section">— 01 / Mission</a></div>
-      <div>
-        <p class="mission__body">Pediatric medicine deserves the same generation of AI tools as oncology and radiology — designed for the bodies, faces, and rare diseases of children.</p>
-        <p class="mission__lede">We are building them <em>with clinicians, for children.</em></p>
-      </div>
+  {{- /* Match the full site: set data-theme before first paint so dark
+         mode (OS preference or the toggle set on the main site — shared
+         localStorage on the same origin) applies without a flash. */ -}}
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("pediamedai-theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", stored || (prefersDark ? "dark" : "light"));
+      } catch (e) {}
+    })();
+  </script>
+
+  {{- /* Inline the compiled bundle so the page is self-contained — no
+         preload links either, since this page has no external font
+         requests left to hint (see the font-embedding step below).
+         Hugo's SCSS transpiler prepends a UTF-8 BOM to the output;
+         harmless for an external <link> (browsers strip it) but inside
+         <style> it becomes part of the first selector (﻿:root) and
+         silently drops the token block — so trim it before inlining. */ -}}
+  {{- $css := resources.Get "scss/updates.scss" | toCSS (dict "outputStyle" "compressed") | minify -}}
+  {{- $cssText := $css.Content | strings.TrimPrefix "﻿" -}}
+
+  {{- /* Embed the faces this page actually uses as base64 data URIs, so
+         type doesn't fall back to a system serif when the page is
+         opened as a bare file:// (root-relative /fonts/*.woff2 URLs
+         only resolve when served from an actual origin — GitHub Pages
+         or a dev server). The fonts live under static/, outside Hugo's
+         asset pipeline, so resources.Get can't reach them — os.ReadFile
+         can. geist-500 is unused on this page and stays a normal
+         (non-embedded, harmless-if-unresolved) @font-face. */ -}}
+  {{- range (slice "geist-400" "instrument-serif-400" "instrument-serif-400-italic" "jetbrains-mono-400") }}
+    {{- $slug := . -}}
+    {{- with try (os.ReadFile (printf "themes/pediamedai-frontier/static/fonts/%s.woff2" $slug)) -}}
+      {{- if not .Err -}}
+        {{- $dataURI := printf "url(data:font/woff2;base64,%s)" (.Value | base64Encode) -}}
+        {{- $cssText = replace $cssText (printf "url(/fonts/%s.woff2)" $slug) $dataURI -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end }}
+  <style>{{ $cssText | safeCSS }}</style>
+
+  <link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | absURL }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicon-32x32.png" | absURL }}">
+  <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c0d0e" media="(prefers-color-scheme: dark)">
+</head>
+<body>
+  {{- /* Identity only, not navigation — no <a> here and no other link
+         anywhere on the page. This mirror is a dead end by design: no
+         way back to the main site. Logo mark + "Updates." as a single
+         masthead lockup, not a separate nav strip + hero. */ -}}
+  <header class="up-masthead">
+    <div class="up-wrap">
+      <span class="up-masthead__mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
+      <h1>Updates.</h1>
     </div>
+  </header>
 
-    <ul class="cap-row">
-      <li class="cap reveal">
-        <div class="num">— Interpretable</div>
-        <p>Every prediction comes with a faithful, clinician-readable explanation. No black boxes at the bedside.</p>
-      </li>
-      <li class="cap reveal">
-        <div class="num">— Pediatric-first</div>
-        <p>Models trained, validated, and benchmarked on children — not adapted from adult datasets after the fact.</p>
-      </li>
-      <li class="cap reveal">
-        <div class="num">— Open by default</div>
-        <p>Datasets, weights, and methods released openly. Knowledge belongs to the field.</p>
-      </li>
-    </ul>
-
-    {{- /* Partner-institution strip — understated logo row anchoring
-           the mission claims to the hospitals and universities behind
-           them. Same partial as /about/#partners. */ -}}
-    <div class="partner-strip">
-      <div class="meta eyebrow">Partner institutions</div>
-      {{ partial "partners.html" . }}
-    </div>
-  </div>
-</section>
-
-{{- /* —— Methods — 02 (tinted, dense — sequential steps compress) —— */ -}}
-<section class="section tinted section--dense" id="methods">
-  <div class="container">
-    {{ partial "section-head.html" (dict "id" "methods" "index" "02" "meta" "Methods" "title" "From question <em>to release.</em>") }}
-
-    <ol class="cap-row cols-4 reveal">
-      <li class="cap">
-        <div class="num">— 01 / Define</div>
-        <p>A pediatric clinical question, scoped with hospital and university collaborators.</p>
-      </li>
-      <li class="cap">
-        <div class="num">— 02 / Build</div>
-        <p>Vision and multimodal models with reference implementations and training recipes.</p>
-      </li>
-      <li class="cap">
-        <div class="num">— 03 / Validate</div>
-        <p>Calibration error, robustness checks, and — where applicable — clinician review.</p>
-      </li>
-      <li class="cap">
-        <div class="num">— 04 / Release</div>
-        <p>Code, weights, and training recipes ship with the paper — under permissive licenses wherever clinical-data licensing allows.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-{{- /* —— Research preview — 03 —— */ -}}
-<section class="section" id="research">
-  <div class="container">
-    {{ partial "section-head.html" (dict "id" "research" "index" "03" "meta" "Research" "title" "Three themes, <em>one method.</em>") }}
-
-    <div class="grid-3 reveal">
-      {{ partial "card.html" (dict
-        "href" (relURL "/research/")
-        "tags" (slice (dict "class" "accent" "text" "01"))
-        "label" "Foundations"
-        "title" "Clinician-Defensible AI"
-        "desc" "Calibrated, Lipschitz-bounded transformers that know what they don’t know. Uncertainty isn’t a feature — it’s a clinical requirement."
-        "cta" "LRFormer · UAI 2023")
-      }}
-      {{ partial "card.html" (dict
-        "href" (relURL "/research/")
-        "tags" (slice (dict "class" "signal" "text" "02"))
-        "label" "Applied"
-        "title" "Pediatric Behavioral &amp; Vision Models"
-        "desc" "Vision transformers for facial and behavioral analysis — built to support, never replace, the clinical interview."
-        "cta" "ViTASD · ICASSP 2023")
-      }}
-      {{ partial "card.html" (dict
-        "href" (relURL "/research/")
-        "tags" (slice (dict "class" "" "text" "03"))
-        "label" "Open"
-        "title" "Open Tools for Underserved Children"
-        "desc" "Open datasets and infant pose estimation released to any lab that needs them. Impact measured in children reached, not papers cited."
-        "cta" "AggPose · IJCAI 2022")
-      }}
-    </div>
-
-    <div class="actions mt-lg">
-      <a class="btn ghost" href="{{ "/research/" | relURL }}">All research <span class="arrow" aria-hidden="true">↗</span></a>
-    </div>
-  </div>
-</section>
-
-{{- /* —— In practice — 04 (tinted — HLE-style sample-task strip).
-       The three research diagrams as clickable concept previews; the
-       full annotated versions live on /research/. aria-hidden inside
-       card.html's viz slot — title + desc carry the semantics. */ -}}
-<section class="section tinted" id="cases">
-  <div class="container">
-    {{ partial "section-head.html" (dict "id" "cases" "index" "04" "meta" "In practice" "title" "What we're building, <em>illustrated.</em>") }}
-
-    <div class="grid-3 reveal">
-      {{ partial "card.html" (dict
-        "href" (printf "%s#foundations" (relURL "/research/"))
-        "viz" (partial "diagram-lrformer.html" .)
-        "label" "TASK · UNCERTAINTY"
-        "title" "Calibrated uncertainty"
-        "desc" "Confidence envelopes that widen out of distribution — uncertainty a clinician can act on."
-        "cta" "LRFormer · UAI 2023")
-      }}
-      {{ partial "card.html" (dict
-        "href" (printf "%s#applied" (relURL "/research/"))
-        "viz" (partial "diagram-vitasd.html" .)
-        "label" "TASK · ASD ANALYSIS"
-        "title" "Pediatric ASD analysis"
-        "desc" "A vision-transformer baseline for autism facial analysis, with a Gaussian-process decoder for robustness."
-        "cta" "ViTASD · ICASSP 2023")
-      }}
-      {{ partial "card.html" (dict
-        "href" (printf "%s#open" (relURL "/research/"))
-        "viz" (partial "diagram-aggpose.html" .)
-        "label" "TASK · INFANT POSE"
-        "title" "Infant pose estimation"
-        "desc" "Open dataset and high-resolution transformer supporting early neurodevelopmental assessment."
-        "cta" "AggPose · IJCAI 2022")
-      }}
-    </div>
-  </div>
-</section>
-
-{{- /* —— Workshops — 05 —— */ -}}
-<section class="section" id="workshops">
-  <div class="container">
-    {{ partial "section-head.html" (dict "id" "workshops" "index" "05" "meta" "Workshops" "title" "Workshops &amp; <em>clinical training.</em>") }}
-
-    {{- /* Cards from data/workshops.yaml — shared with /workshops/ and
-           the /updates/ mirror page so all three stay in sync. */ -}}
-    <div class="grid-2 reveal">
-      {{- range hugo.Data.workshops }}
-      {{ partial "card.html" (dict
-        "href" (relURL .href)
-        "image" .image
-        "imageAlt" .imageAlt
-        "tags" (slice (dict "class" .statusClass "text" .status))
-        "label" .label
-        "title" .title
-        "desc" .desc
-        "cta" .cta)
-      }}
+  <main>
+    <div class="up-wrap">
+      {{- /* —— The single latest entry from data/news.yaml —— */ -}}
+      {{- with $latest }}
+      <article class="up-entry">
+        <p class="up-entry__date">
+          <time datetime="{{ (time .date).Format "2006-01-02" }}">{{ (time .date).Format "January 2, 2006" }}</time>
+          — {{ .title }}
+        </p>
+        {{- if .body }}
+        {{- range .body }}
+        <p class="up-entry__body">{{ . }}</p>
+        {{- end }}
+        {{- else }}
+        {{- /* Fallback for a future entry with no narrative written —
+               show the bare title rather than force a padded story. */ -}}
+        <p class="up-entry__body">{{ .title }}</p>
+        {{- end }}
+        {{- with .url }}
+        {{- $external := hasPrefix . "http" }}
+        <p class="up-entry__link">
+          <a href="{{ if $external }}{{ . }}{{ else }}{{ relURL . }}{{ end }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ if $external }}{{ . | strings.TrimPrefix "https://" | strings.TrimPrefix "http://" | strings.TrimSuffix "/" }}{{ else }}{{ relURL . }}{{ end }} <span aria-hidden="true">↗</span></a>{{ if $external }}{{ partial "external-link-cue.html" . }}{{ end }}
+        </p>
+        {{- end }}
+      </article>
       {{- end }}
     </div>
-  </div>
-</section>
+  </main>
 
-{{- /* —— Updates — 06 (tinted, dense — dated activity log). Latest 4
-       entries from data/news.yaml; the full log lives on /about/#updates. */ -}}
-{{- $news := sort (default (slice) hugo.Data.news) "date" "desc" }}
-{{- if $news }}
-<section class="section tinted section--dense" id="updates">
-  <div class="container">
-    {{ partial "section-head.html" (dict "id" "updates" "index" "06" "meta" "Updates" "title" "Recent <em>activity.</em>") }}
-
-    <div class="reveal">
-      {{ partial "news-list.html" (dict "items" (first 4 $news)) }}
-    </div>
-
-    {{- if gt (len $news) 4 }}
-    <div class="actions mt-lg">
-      <a class="btn ghost" href="{{ "/about/" | relURL }}#updates">All updates <span class="arrow" aria-hidden="true">↗</span></a>
-    </div>
-    {{- end }}
-  </div>
-</section>
-{{- end }}
-
-{{- /* —— CTA — 07 (spacious — closing hero) —— */ -}}
-<section class="section section--spacious" id="collaborate">
-  <div class="container">
-    <div class="cta-band cta-band--hero reveal">
-      <div>
-        <div class="meta eyebrow"><a href="#collaborate" class="section-anchor" aria-label="Collaborate section">— 07 / Collaborate</a></div>
-        <span class="kicker"><span class="dot" aria-hidden="true"></span>Open to collaboration</span>
-      </div>
-      <div>
-        <h2 class="cta-band__title">Clinicians, hospitals, and ML researchers: <em>let’s build pediatric AI together.</em></h2>
-        <div class="actions mt-lg">
-          {{- with .Site.Params.contact_email }}
-          <a class="btn lg" href="mailto:{{ . }}">{{ . }} <span class="arrow" aria-hidden="true">↗</span></a>
-          {{- end }}
-          <a class="btn ghost lg" href="{{ "/team/" | relURL }}">Meet the team</a>
-        </div>
+  <footer class="up-footer">
+    <div class="up-wrap">
+      <div class="up-footer__big">Trustworthy AI <em>for every child.</em></div>
+      <div class="up-footer__base">
+        <span>© {{ now.Year }} PediaMed AI</span>
+        {{- with .Site.Params.contact_email }}<span>{{ . }}</span>{{ end }}
       </div>
     </div>
-  </div>
-</section>
-
-{{ end }}
+  </footer>
+</body>
+</html>
