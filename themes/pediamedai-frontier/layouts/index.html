@@ -63,8 +63,16 @@
     </div>
   </main>
 
-  <footer class="about-baseline">
-    © {{ now.Year }} PediaMed AI
+  {{- /* Same footer as /updates/ — the two public pages share one
+         closing block (finale line + © + contact email). */ -}}
+  <footer class="up-footer">
+    <div class="up-wrap">
+      <div class="up-footer__big">Trustworthy AI <em>for every child.</em></div>
+      <div class="up-footer__base">
+        <span>© {{ now.Year }} PediaMed AI</span>
+        {{- with .Site.Params.contact_email }}<span>{{ . }}</span>{{ end }}
+      </div>
+    </div>
   </footer>
 </body>
 </html>

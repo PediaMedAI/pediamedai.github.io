@@ -317,7 +317,9 @@ $mini-serif: "Times New Roman", Times, Georgia, serif;
 .about-body {
   max-width: 860px;
   margin: 0 auto;
-  padding: 72px 24px 0;
+  /* Bottom padding gives breathing room before the shared .up-footer's
+     top hairline (the footer block is identical to /updates/'). */
+  padding: 72px 24px 88px;
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -367,16 +369,4 @@ $mini-serif: "Times New Roman", Times, Georgia, serif;
   & + & {
     margin-top: 16px;
   }
-}
-
-/* Bottom baseline for the About page (its contact info lives up in the
-   hero strip, so the footer is just a quiet copyright line). */
-.about-baseline {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 96px 24px 72px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--ink-3);
 }
