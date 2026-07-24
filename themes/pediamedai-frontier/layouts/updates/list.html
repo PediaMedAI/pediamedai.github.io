@@ -1,0 +1,65 @@
+{{- /* Updates page — the minimal single-entry "Updates." mirror
+       (amilabs.xyz/updates style), relocated here from the site root.
+       Standalone/self-contained via partials/minimal-head.html; shares
+       the top nav with the About page via partials/minimal-header.html.
+       Data-driven: always shows the single latest entry from
+       data/news.yaml (rendering its optional `body` paragraphs, or its
+       bare `title` as a fallback), so it updates itself on every deploy
+       with no separate publish step. */ -}}
+{{- $news := sort (default (slice) hugo.Data.news) "date" "desc" -}}
+{{- $latest := index $news 0 -}}
+<!doctype html>
+<html lang="{{ .Site.Language.Locale | default "en" }}">
+{{ partial "minimal-head.html" . }}
+<body>
+  {{ partial "minimal-header.html" . }}
+
+  <main>
+    {{- /* Page-title lockup (a div, not a second <header> banner —
+           the nav above is the page's banner). */ -}}
+    <div class="up-masthead">
+      <div class="up-wrap">
+        <span class="up-masthead__mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
+        <h1>Updates.</h1>
+      </div>
+    </div>
+
+    <div class="up-wrap">
+      {{- /* —— The single latest entry from data/news.yaml —— */ -}}
+      {{- with $latest }}
+      <article class="up-entry">
+        <p class="up-entry__date">
+          <time datetime="{{ (time .date).Format "2006-01-02" }}">{{ (time .date).Format "January 2, 2006" }}</time>
+          — {{ .title }}
+        </p>
+        {{- if .body }}
+        {{- range .body }}
+        <p class="up-entry__body">{{ . }}</p>
+        {{- end }}
+        {{- else }}
+        {{- /* Fallback for a future entry with no narrative written —
+               show the bare title rather than force a padded story. */ -}}
+        <p class="up-entry__body">{{ .title }}</p>
+        {{- end }}
+        {{- with .url }}
+        {{- $external := hasPrefix . "http" }}
+        <p class="up-entry__link">
+          <a href="{{ if $external }}{{ . }}{{ else }}{{ relURL . }}{{ end }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ if $external }}{{ . | strings.TrimPrefix "https://" | strings.TrimPrefix "http://" | strings.TrimSuffix "/" }}{{ else }}{{ relURL . }}{{ end }} <span aria-hidden="true">↗</span></a>{{ if $external }}{{ partial "external-link-cue.html" . }}{{ end }}
+        </p>
+        {{- end }}
+      </article>
+      {{- end }}
+    </div>
+  </main>
+
+  <footer class="up-footer">
+    <div class="up-wrap">
+      <div class="up-footer__big">Trustworthy AI <em>for every child.</em></div>
+      <div class="up-footer__base">
+        <span>© {{ now.Year }} PediaMed AI</span>
+        {{- with .Site.Params.contact_email }}<span>{{ . }}</span>{{ end }}
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

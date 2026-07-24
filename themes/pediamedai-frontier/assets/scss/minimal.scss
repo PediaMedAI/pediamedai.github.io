@@ -1,0 +1,382 @@
+/* ——— Minimal public-site bundle (About + Updates) ———
+   Compiled and inlined by partials/minimal-head.html into the two
+   standalone public pages — layouts/index.html (About / main) and
+   layouts/updates/list.html (the "Updates." mirror) — so each emitted
+   HTML file carries its own styles (self-contained, no external
+   stylesheet request). Reuses the site's design tokens, reset, and
+   typography, then adds only the minimal layout these pages need.
+   Keeping these @imports means the pages inherit brand changes
+   automatically; nothing here is duplicated.
+   Note: .card/.tag (_components) and .news-list (_news) are NOT
+   imported — these pages render neither cards nor a news list, so
+   pulling in those unused rule sets would only bloat the output.
+   The hidden full site under /pmai-x7k2q9/ uses style.scss instead —
+   a separate visual system. */
+@import "tokens";
+@import "reset";
+@import "typography";
+
+/* Shared Times-New-Roman serif stack + small-caps display treatment,
+   matching the reference (amilabs.xyz sets its titles/body in Cmunrm /
+   Computer Modern; a classical system serif gets visually close for
+   free and is literally what its own font stack falls back to). Scoped
+   to these two public pages via the classes below — every other page
+   on the site keeps Instrument Serif (var(--serif)). */
+$mini-serif: "Times New Roman", Times, Georgia, serif;
+
+/* Centered reading column — narrower than the site's --maxw so the
+   simplified page reads like a single document, closer to the
+   reference (amilabs.xyz/updates). */
+.up-wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+/* —— Masthead: logo mark + "Updates." as one lockup, not a nav strip.
+       This page has no navigation anywhere — a dead end by design, so
+       the mark is identity, not an escape hatch back to the main site.
+       Sizing/proportions measured directly off amilabs.xyz/updates'
+       computed styles (not eyeballed): their title runs 30px on mobile
+       up to 50px at desktop width, their logo mark ~1.28x that
+       font-size, with a gap around 0.3em — a modest masthead, not a
+       display-scale hero. Icon and title share one font-size (the
+       clamp below) so they scale together at every viewport width. */
+.up-masthead {
+  padding: 40px 0 32px;
+
+  .up-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    font-size: clamp(30px, 4vw, 52px);
+  }
+}
+
+.up-masthead__mark {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 1.28em;
+  height: 1.28em;
+  color: var(--ink);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.up-masthead h1 {
+  font-family: $mini-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-variant-caps: small-caps;
+  font-size: 1em;
+  line-height: 1.05;
+  letter-spacing: normal;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* —— The single latest entry from data/news.yaml —— */
+.up-entry {
+  padding: 40px 0 56px;
+  border-top: 1px solid var(--rule);
+  margin-top: 40px;
+}
+
+.up-entry__date {
+  /* Serif (not mono/uppercase) so the entry heading matches the rest
+     of the minimal pages' Times-New-Roman type — and the reference
+     (amilabs.xyz/updates sets its "March 10, 2026 — …" dateline in the
+     same serif, bold). */
+  font-family: $mini-serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 24px;
+
+  time {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.up-entry__body {
+  /* 18px / 23px line-height, normal tracking — measured directly off
+     amilabs.xyz/updates' body copy. Token-based color so light/dark
+     stay correct. */
+  font-family: $mini-serif;
+  font-size: 18px;
+  line-height: 23px;
+  letter-spacing: normal;
+  color: var(--ink-2);
+  max-width: 62ch;
+  text-wrap: pretty;
+
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.up-entry__link {
+  margin-top: 28px;
+
+  a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--rule);
+    transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+  }
+}
+
+/* —— Footer: on-brand finale + baseline —— */
+.up-footer {
+  padding: 56px 0 72px;
+  border-top: 1px solid var(--rule);
+}
+
+.up-footer__big {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+
+  em {
+    font-style: italic;
+    color: var(--ink-3);
+  }
+}
+
+.up-footer__base {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+/* ═══ Shared header (World Labs-style bar) — on both public pages ═══
+   Logo + wordmark on the left, "About" / "Updates" on the right.
+   Only two links, no CTA button. */
+.mini-nav {
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.mini-nav__wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.mini-nav__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+
+  .mini-nav__mark {
+    display: inline-flex;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+
+    svg { width: 100%; height: 100%; }
+  }
+}
+
+.mini-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+
+  a {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink-3);
+    transition: color 0.15s var(--ease);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--ink);
+    }
+
+    &[aria-current="page"] {
+      color: var(--ink);
+    }
+  }
+}
+
+/* ═══ About / main page ═══ */
+
+/* Hero: centered logo + serif small-caps tagline (amilabs main-page
+   style). Tagline reuses the exact treatment on .up-masthead h1. */
+.about-hero {
+  text-align: center;
+  padding: 112px 0 8px;
+}
+
+.about-hero__logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  color: var(--ink);
+
+  /* Big centered logo lockup, matching the amilabs.xyz main page's
+     large hero logo (its wordmark renders ~160px tall). */
+  .about-hero__mark {
+    display: inline-flex;
+    width: 116px;
+    height: 116px;
+
+    svg { width: 100%; height: 100%; }
+  }
+
+  .about-hero__name {
+    font-family: var(--serif);
+    font-size: 32px;
+    letter-spacing: -0.01em;
+  }
+}
+
+.about-hero__tagline {
+  font-family: $mini-serif;
+  font-variant-caps: small-caps;
+  font-weight: 400;
+  font-size: clamp(38px, 6.5vw, 64px);
+  line-height: 1.08;
+  letter-spacing: normal;
+  color: var(--ink);
+  margin: 52px auto 0;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+/* Contact / Locations strip — serif label over a mono value in a
+   tinted rounded pill (measured off amilabs: mono 12px, 9px radius). */
+.about-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 64px 0 8px;
+}
+
+.about-contact__col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.about-contact__label {
+  font-family: $mini-serif;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.about-contact__value {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  background: var(--bg-tinted);
+  border-radius: 9px;
+  padding: 5px 9px;
+
+  a { color: inherit; }
+  a:hover,
+  a:focus-visible { color: var(--accent); }
+}
+
+/* Mission intro + numbered focus areas, each in its own subtle
+   light-gray panel — the amilabs.xyz main-page content style: a
+   tinted fill with a hairline border, a centered bold serif heading,
+   and justified serif body. */
+.about-body {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 72px 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* The intro sits in a subtle light-gray panel (amilabs.xyz main-page
+   card style); the numbered focus areas below share the same
+   typography but no card — plain blocks, so the intro reads as the
+   highlighted overview and the details flow beneath it. */
+.about-panel {
+  background: var(--bg-tinted);
+  border: 1px solid var(--rule-soft);
+  border-radius: 12px;
+  padding: 44px clamp(28px, 6vw, 64px);
+}
+
+.about-section {
+  /* Match the panel's inner horizontal inset so the plain sections'
+     text column lines up with the intro card's text. */
+  padding: 4px clamp(28px, 6vw, 64px);
+}
+
+.about-block__title {
+  font-family: $mini-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--ink);
+  margin-bottom: 28px;
+
+  .about-block__num {
+    color: var(--ink-4);
+    font-weight: 700;
+  }
+}
+
+.about-block__body {
+  font-family: $mini-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  color: var(--ink-2);
+
+  & + & {
+    margin-top: 16px;
+  }
+}
+
+/* Bottom baseline for the About page (its contact info lives up in the
+   hero strip, so the footer is just a quiet copyright line). */
+.about-baseline {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 96px 24px 72px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}

@@ -1,0 +1,20 @@
+{{- /* Shared top nav for the two public pages (World Labs-style bar):
+       logo + wordmark on the left, "About" (/) and "Updates" (/updates/)
+       on the right. Only two links, no CTA button. Active link is
+       marked via aria-current by comparing the current page's
+       .RelPermalink to each target. */ -}}
+{{- $rel := .RelPermalink -}}
+{{- $aboutURL := "/" | relURL -}}
+{{- $updatesURL := "/updates/" | relURL -}}
+<header class="mini-nav">
+  <div class="mini-nav__wrap">
+    <a class="mini-nav__logo" href="{{ $aboutURL }}" aria-label="PediaMed AI home">
+      <span class="mini-nav__mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
+      <span>PediaMed AI</span>
+    </a>
+    <nav class="mini-nav__links" aria-label="Primary">
+      <a href="{{ $aboutURL }}"{{ if eq $rel $aboutURL }} aria-current="page"{{ end }}>About</a>
+      <a href="{{ $updatesURL }}"{{ if eq $rel $updatesURL }} aria-current="page"{{ end }}>Updates</a>
+    </nav>
+  </div>
+</header>

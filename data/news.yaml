@@ -1,9 +1,9 @@
-# Lab updates timeline — single source of truth for the site homepage
-# (layouts/index.html, the single latest entry only), the hidden full
-# site's own "Updates" section (latest 4, see layouts/pmai-x7k2q9/list.html),
-# and its full log on /pmai-x7k2q9/about/#updates. Newest first;
-# templates re-sort by `date` desc so ordering here is a convention,
-# not a requirement.
+# Lab updates timeline — single source of truth for the public Updates
+# page (/updates/, layouts/updates/list.html — the single latest entry
+# only), the hidden full site's own "Updates" section (latest 4, see
+# layouts/pmai-x7k2q9/list.html), and its full log on
+# /pmai-x7k2q9/about/#updates. Newest first; templates re-sort by
+# `date` desc so ordering here is a convention, not a requirement.
 #
 # Fields:
 #   date     (required)  ISO "YYYY-MM-DD" string (keep it quoted).
@@ -14,8 +14,8 @@
 #   title    (required)  One sentence, sentence case, no trailing period.
 #   url      (optional)  Internal path ("/pmai-x7k2q9/cvpr/") or absolute URL.
 #   body     (optional)  List of paragraph strings — a longer narrative
-#                        write-up. Only the homepage reads this (the
-#                        single latest entry, in full); the hidden
+#                        write-up. Only the /updates/ page reads this
+#                        (the single latest entry, in full); the hidden
 #                        site's strip and full log only ever use
 #                        `title` and are unaffected by its presence.
 #

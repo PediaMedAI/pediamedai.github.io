@@ -1,137 +1,70 @@
-{{- /* Standalone, self-contained, single-entry site homepage.
-       Structurally mirrors amilabs.xyz/updates: one dated announcement,
-       no section list, no navigation anywhere. Renders a full HTML
-       document WITHOUT extending _default/baseof.html so the emitted
-       page carries its own inlined CSS and has no dependency on the
-       shared bundle. Data-driven: always shows the single latest entry
-       from data/news.yaml, rendering its optional `body` paragraphs if
-       written, or its bare `title` as a fallback for a future entry
-       with no narrative — so the homepage updates itself on every
-       deploy with no separate publish step.
-
-       This used to live at /updates/ (a mirror of the "real" homepage);
-       now it IS the homepage. The former rich homepage moved to
-       layouts/pmai-x7k2q9/list.html, an unlinked, non-indexed path —
-       see content/pmai-x7k2q9/_index.md and partials/head.html's
-       noindex block. This page has zero links to it or anywhere else —
-       a dead end by design. */ -}}
-{{- $news := sort (default (slice) hugo.Data.news) "date" "desc" -}}
-{{- $latest := index $news 0 -}}
-{{- $desc := .Description | default .Site.Params.metaDescription -}}
+{{- /* About / main page — styled after the amilabs.xyz main page:
+       centered logo + serif small-caps tagline, a Contact/Locations
+       strip, then the lab's mission intro and three numbered focus
+       areas. Standalone/self-contained via partials/minimal-head.html;
+       shares the top nav with the Updates page via
+       partials/minimal-header.html. All copy is data-driven from this
+       page's front matter (content/_index.md). The hidden full site is
+       untouched, at /pmai-x7k2q9/. */ -}}
 <!doctype html>
 <html lang="{{ .Site.Language.Locale | default "en" }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="light dark">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  {{- /* Page-specific CSP: this standalone page inlines its CSS and the
-         theme-bootstrap script, so style-src / script-src must allow
-         'unsafe-inline' (the main site links an external stylesheet and
-         can be stricter). Both inline blocks are first-party and
-         reviewed at build time. */ -}}
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; form-action 'self';">
-
-  <title>{{ .Title }} · {{ .Site.Title }}</title>
-  <meta name="description" content="{{ $desc }}">
-  <link rel="canonical" href="{{ .Permalink }}">
-
-  {{- /* Match the full site: set data-theme before first paint so dark
-         mode (OS preference or the toggle set on the main site — shared
-         localStorage on the same origin) applies without a flash. */ -}}
-  <script>
-    (function () {
-      try {
-        var stored = localStorage.getItem("pediamedai-theme");
-        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-        document.documentElement.setAttribute("data-theme", stored || (prefersDark ? "dark" : "light"));
-      } catch (e) {}
-    })();
-  </script>
-
-  {{- /* Inline the compiled bundle so the page is self-contained — no
-         preload links either, since this page has no external font
-         requests left to hint (see the font-embedding step below).
-         Hugo's SCSS transpiler prepends a UTF-8 BOM to the output;
-         harmless for an external <link> (browsers strip it) but inside
-         <style> it becomes part of the first selector (﻿:root) and
-         silently drops the token block — so trim it before inlining. */ -}}
-  {{- $css := resources.Get "scss/updates.scss" | toCSS (dict "outputStyle" "compressed") | minify -}}
-  {{- $cssText := $css.Content | strings.TrimPrefix "﻿" -}}
-
-  {{- /* Embed the faces this page actually uses as base64 data URIs, so
-         type doesn't fall back to a system serif when the page is
-         opened as a bare file:// (root-relative /fonts/*.woff2 URLs
-         only resolve when served from an actual origin — GitHub Pages
-         or a dev server). The fonts live under static/, outside Hugo's
-         asset pipeline, so resources.Get can't reach them — os.ReadFile
-         can. geist-500 is unused on this page and stays a normal
-         (non-embedded, harmless-if-unresolved) @font-face. */ -}}
-  {{- range (slice "geist-400" "instrument-serif-400" "instrument-serif-400-italic" "jetbrains-mono-400") }}
-    {{- $slug := . -}}
-    {{- with try (os.ReadFile (printf "themes/pediamedai-frontier/static/fonts/%s.woff2" $slug)) -}}
-      {{- if not .Err -}}
-        {{- $dataURI := printf "url(data:font/woff2;base64,%s)" (.Value | base64Encode) -}}
-        {{- $cssText = replace $cssText (printf "url(/fonts/%s.woff2)" $slug) $dataURI -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end }}
-  <style>{{ $cssText | safeCSS }}</style>
-
-  <link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | absURL }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicon-32x32.png" | absURL }}">
-  <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0c0d0e" media="(prefers-color-scheme: dark)">
-</head>
+{{ partial "minimal-head.html" . }}
 <body>
-  {{- /* Identity only, not navigation — no <a> here and no other link
-         anywhere on the page. This mirror is a dead end by design: no
-         way back to the main site. Logo mark + "Updates." as a single
-         masthead lockup, not a separate nav strip + hero. */ -}}
-  <header class="up-masthead">
-    <div class="up-wrap">
-      <span class="up-masthead__mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
-      <h1>Updates.</h1>
-    </div>
-  </header>
+  {{ partial "minimal-header.html" . }}
 
   <main>
-    <div class="up-wrap">
-      {{- /* —— The single latest entry from data/news.yaml —— */ -}}
-      {{- with $latest }}
-      <article class="up-entry">
-        <p class="up-entry__date">
-          <time datetime="{{ (time .date).Format "2006-01-02" }}">{{ (time .date).Format "January 2, 2006" }}</time>
-          — {{ .title }}
-        </p>
-        {{- if .body }}
+    {{- /* —— Hero: centered logo + tagline —— */ -}}
+    <section class="about-hero">
+      <div class="about-hero__logo">
+        <span class="about-hero__mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
+        <span class="about-hero__name">PediaMed AI</span>
+      </div>
+      {{- with .Params.tagline }}
+      <h1 class="about-hero__tagline">{{ . }}</h1>
+      {{- end }}
+    </section>
+
+    {{- /* —— Contact / Locations strip —— */ -}}
+    <section class="about-contact" aria-label="Contact and locations">
+      {{- with .Site.Params.contact_email }}
+      <div class="about-contact__col">
+        <div class="about-contact__label">Contact</div>
+        <div class="about-contact__value"><a href="mailto:{{ . }}">{{ . }}</a></div>
+      </div>
+      {{- end }}
+      {{- with .Params.locations }}
+      <div class="about-contact__col">
+        <div class="about-contact__label">Locations</div>
+        <div class="about-contact__value">{{ . }}</div>
+      </div>
+      {{- end }}
+    </section>
+
+    {{- /* —— Mission intro + numbered focus areas, each in a panel
+           (amilabs.xyz main-page content style) —— */ -}}
+    <div class="about-body">
+      {{- /* Intro overview in a gray card; numbered focus areas below
+             as plain (un-carded) blocks. */ -}}
+      {{- with .Params.intro }}
+      <section class="about-panel">
+        <h2 class="about-block__title">PediaMed AI</h2>
+        <p class="about-block__body">{{ . }}</p>
+      </section>
+      {{- end }}
+
+      {{- range .Params.sections }}
+      <section class="about-section">
+        <h2 class="about-block__title"><span class="about-block__num">{{ .num }} —</span> {{ .title }}</h2>
         {{- range .body }}
-        <p class="up-entry__body">{{ . }}</p>
+        <p class="about-block__body">{{ . }}</p>
         {{- end }}
-        {{- else }}
-        {{- /* Fallback for a future entry with no narrative written —
-               show the bare title rather than force a padded story. */ -}}
-        <p class="up-entry__body">{{ .title }}</p>
-        {{- end }}
-        {{- with .url }}
-        {{- $external := hasPrefix . "http" }}
-        <p class="up-entry__link">
-          <a href="{{ if $external }}{{ . }}{{ else }}{{ relURL . }}{{ end }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ if $external }}{{ . | strings.TrimPrefix "https://" | strings.TrimPrefix "http://" | strings.TrimSuffix "/" }}{{ else }}{{ relURL . }}{{ end }} <span aria-hidden="true">↗</span></a>{{ if $external }}{{ partial "external-link-cue.html" . }}{{ end }}
-        </p>
-        {{- end }}
-      </article>
+      </section>
       {{- end }}
     </div>
   </main>
 
-  <footer class="up-footer">
-    <div class="up-wrap">
-      <div class="up-footer__big">Trustworthy AI <em>for every child.</em></div>
-      <div class="up-footer__base">
-        <span>© {{ now.Year }} PediaMed AI</span>
-        {{- with .Site.Params.contact_email }}<span>{{ . }}</span>{{ end }}
-      </div>
-    </div>
+  <footer class="about-baseline">
+    © {{ now.Year }} PediaMed AI
   </footer>
 </body>
 </html>
