@@ -16,7 +16,7 @@
     {{- /* —— Hero: centered logo + tagline —— */ -}}
     <section class="about-hero">
       <div class="about-hero__logo">
-        <span class="about-hero__mark" aria-hidden="true">{{ partial "logo-mark.html" . }}</span>
+        <span class="about-hero__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 256) }}</span>
         <span class="about-hero__name">PediaMed AI</span>
       </div>
       {{- with .Params.tagline }}
