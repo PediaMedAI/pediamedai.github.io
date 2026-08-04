@@ -1,13 +1,12 @@
-{{- /* Updates page — the minimal single-entry "Updates." mirror
-       (amilabs.xyz/updates style), relocated here from the site root.
-       Standalone/self-contained via partials/minimal-head.html; shares
-       the top nav with the About page via partials/minimal-header.html.
-       Data-driven: always shows the single latest entry from
-       data/news.yaml (rendering its optional `body` paragraphs, or its
-       bare `title` as a fallback), so it updates itself on every deploy
-       with no separate publish step. */ -}}
+{{- /* Updates page — the "Updates." mirror (amilabs.xyz/updates
+       style), relocated here from the site root. Standalone/
+       self-contained via partials/minimal-head.html; shares the top
+       nav with the About page via partials/minimal-header.html.
+       Data-driven: renders every entry from data/news.yaml, newest
+       first (its optional `body` paragraphs when present; otherwise
+       just the dateline, no padded filler paragraph), so it updates
+       itself on every deploy with no separate publish step. */ -}}
 {{- $news := sort (default (slice) hugo.Data.news) "date" "desc" -}}
-{{- $latest := index $news 0 -}}
 <!doctype html>
 <html lang="{{ .Site.Language.Locale | default "en" }}">
 {{ partial "minimal-head.html" . }}
@@ -25,21 +24,15 @@
     </div>
 
     <div class="up-wrap">
-      {{- /* —— The single latest entry from data/news.yaml —— */ -}}
-      {{- with $latest }}
+      {{- /* —— Every entry from data/news.yaml, newest first —— */ -}}
+      {{- range $news }}
       <article class="up-entry">
         <p class="up-entry__date">
           <time datetime="{{ (time .date).Format "2006-01-02" }}">{{ (time .date).Format "January 2, 2006" }}</time>
           — {{ .title }}
         </p>
-        {{- if .body }}
         {{- range .body }}
         <p class="up-entry__body">{{ . }}</p>
-        {{- end }}
-        {{- else }}
-        {{- /* Fallback for a future entry with no narrative written —
-               show the bare title rather than force a padded story. */ -}}
-        <p class="up-entry__body">{{ .title }}</p>
         {{- end }}
         {{- with .url }}
         {{- $external := hasPrefix . "http" }}

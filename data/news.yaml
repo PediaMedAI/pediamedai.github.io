@@ -1,6 +1,6 @@
 # Lab updates timeline — single source of truth for the public Updates
-# page (/updates/, layouts/updates/list.html — the single latest entry
-# only), the hidden full site's own "Updates" section (latest 4, see
+# page (/updates/, layouts/updates/list.html — every entry, newest
+# first), the hidden full site's own "Updates" section (latest 4, see
 # layouts/pmai-x7k2q9/list.html), and its full log on
 # /pmai-x7k2q9/about/#updates. Newest first; templates re-sort by
 # `date` desc so ordering here is a convention, not a requirement.
@@ -30,6 +30,13 @@
 - date: "2026-06-11"
   title: "MedCaseAgent Web, the lab's case-report platform, opens in Beta"
   url: "/pmai-x7k2q9/code/"
+
+- date: "2026-06-04"
+  title: "CV4CHL held at CVPR 2026 — Children's Gait Competition results are live"
+  url: "https://pediamedai.com/cv4chl/"
+  body:
+    - "The CVPR 2026 Workshop on Computer Vision for Children (CV4CHL) took place June 4, 2026 in Denver, bringing pediatricians, psychologists, educators, and computer-vision researchers together around the gap in CV research for children's health, development, and education."
+    - "Final results for the workshop's Children's Gait Competition — the first computer-vision challenge for pediatric gait analysis — are now published, with the full leaderboard available on Kaggle."
 
 - date: "2026-02-28"
   title: "CV4CHL — Workshop on Computer Vision for Children — announced for CVPR 2026 in Denver"
