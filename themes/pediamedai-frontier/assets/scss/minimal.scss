@@ -237,7 +237,9 @@ $mini-serif: "Times New Roman", Times, Georgia, serif;
    style). Tagline reuses the exact treatment on .up-masthead h1. */
 .about-hero {
   text-align: center;
-  padding: 112px 0 8px;
+  /* Extra top air — the reference opens with a deep quiet margin
+     before the logo lockup. */
+  padding: 144px 0 8px;
 }
 
 .about-hero__logo {
@@ -272,7 +274,7 @@ $mini-serif: "Times New Roman", Times, Georgia, serif;
   line-height: 1.08;
   letter-spacing: normal;
   color: var(--ink);
-  margin: 52px auto 0;
+  margin: 72px auto 0;
   max-width: 18ch;
   text-wrap: balance;
 }
@@ -284,7 +286,7 @@ $mini-serif: "Times New Roman", Times, Georgia, serif;
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  padding: 64px 0 8px;
+  padding: 88px 0 8px;
 }
 
 .about-contact__col {
@@ -317,16 +319,18 @@ $mini-serif: "Times New Roman", Times, Georgia, serif;
 /* Mission intro + numbered focus areas, each in its own subtle
    light-gray panel — the amilabs.xyz main-page content style: a
    tinted fill with a hairline border, a centered bold serif heading,
-   and justified serif body. */
+   and a left-aligned serif body. */
 .about-body {
   max-width: 860px;
   margin: 0 auto;
   /* Bottom padding gives breathing room before the shared .up-footer's
      top hairline (the footer block is identical to /updates/'). */
-  padding: 72px 24px 88px;
+  padding: 96px 24px 88px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  /* Generous separation between the intro panel and the numbered
+     sections — the airy, floating rhythm that defines the reference. */
+  gap: 40px;
 }
 
 /* The intro sits in a subtle light-gray panel (amilabs.xyz main-page
@@ -365,9 +369,13 @@ $mini-serif: "Times New Roman", Times, Georgia, serif;
   font-family: $mini-serif;
   font-size: 18px;
   line-height: 1.5;
-  text-align: justify;
-  -webkit-hyphens: auto;
-  hyphens: auto;
+  /* Left-aligned, ragged-right — matches the /updates/ page's body and
+     reads cleaner than justified here: this column is narrow enough
+     that justify + auto-hyphenation produced stacked line-end hyphens
+     and uneven word-spacing. amilabs justifies, but on a much wider
+     measure where it stays even; left-aligned is the safer match. */
+  text-align: left;
+  text-wrap: pretty;
   color: var(--ink-2);
 
   & + & {
