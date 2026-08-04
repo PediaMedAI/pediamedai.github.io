@@ -2,11 +2,13 @@
        style), relocated here from the site root. Standalone/
        self-contained via partials/minimal-head.html; shares the top
        nav with the About page via partials/minimal-header.html.
-       Data-driven: renders every entry from data/news.yaml, newest
-       first (its optional `body` paragraphs when present; otherwise
-       just the dateline, no padded filler paragraph), so it updates
-       itself on every deploy with no separate publish step. */ -}}
-{{- $news := sort (default (slice) hugo.Data.news) "date" "desc" -}}
+       Data-driven: renders only the featured entries from
+       data/news.yaml — those with a `body` narrative — newest first.
+       The terse one-liner entries (used by the hidden site's compact
+       news strip/log) are intentionally omitted here so this page
+       stays a short reel of full write-ups. Add a `body` to an entry
+       in data/news.yaml to surface it on this page. */ -}}
+{{- $news := sort (where (default (slice) hugo.Data.news) "body" "!=" nil) "date" "desc" -}}
 <!doctype html>
 <html lang="{{ .Site.Language.Locale | default "en" }}">
 {{ partial "minimal-head.html" . }}
@@ -24,7 +26,7 @@
     </div>
 
     <div class="up-wrap">
-      {{- /* —— Every entry from data/news.yaml, newest first —— */ -}}
+      {{- /* —— Featured entries (those with a `body`), newest first —— */ -}}
       {{- range $news }}
       <article class="up-entry">
         <p class="up-entry__date">
