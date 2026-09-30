@@ -1,77 +1,76 @@
-{{- /* About / main page — styled after the amilabs.xyz main page:
-       centered logo + serif small-caps tagline, a Contact/Locations
-       strip, then the lab's mission intro and three numbered focus
-       areas. Standalone/self-contained via partials/minimal-head.html;
-       shares the top nav with the Updates page via
-       partials/minimal-header.html. All copy is data-driven from this
+{{- /* About / main page — a full-bleed video hero
+       (partials/video-hero.html) followed by the mission statement,
+       the three numbered focus areas and a footer, all in the hero's
+       Helvetica / black-on-white system (assets/scss/_video-hero.scss,
+       _home-sections.scss). Standalone/self-contained via
+       partials/minimal-head.html. All copy is data-driven from this
        page's front matter (content/_index.md). The hidden full site is
        untouched, at /pmai-x7k2q9/. */ -}}
 <!doctype html>
 <html lang="{{ .Site.Language.Locale | default "en" }}">
 {{ partial "minimal-head.html" . }}
-<body>
-  {{ partial "minimal-header.html" . }}
+<body class="vs-page">
+  {{ partial "video-hero.html" . }}
 
-  <main>
-    {{- /* —— Hero: centered logo + tagline —— */ -}}
-    <section class="about-hero">
-      <div class="about-hero__logo">
-        <span class="about-hero__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 256) }}</span>
-        <span class="about-hero__name">PediaMed AI</span>
-      </div>
-      {{- with .Params.tagline }}
-      <h1 class="about-hero__tagline">{{ . }}</h1>
-      {{- end }}
-    </section>
-
-    {{- /* —— Contact / Locations strip —— */ -}}
-    <section class="about-contact" aria-label="Contact and locations">
-      {{- with .Site.Params.contact_email }}
-      <div class="about-contact__col">
-        <div class="about-contact__label">Contact</div>
-        <div class="about-contact__value"><a href="mailto:{{ . }}">{{ . }}</a></div>
-      </div>
-      {{- end }}
-      {{- with .Params.locations }}
-      <div class="about-contact__col">
-        <div class="about-contact__label">Locations</div>
-        <div class="about-contact__value">{{ . }}</div>
-      </div>
-      {{- end }}
-    </section>
-
-    {{- /* —— Mission intro + numbered focus areas, each in a panel
-           (amilabs.xyz main-page content style) —— */ -}}
-    <div class="about-body">
-      {{- /* Intro overview in a gray card; numbered focus areas below
-             as plain (un-carded) blocks. */ -}}
-      {{- with .Params.intro }}
-      <section class="about-panel">
-        <h2 class="about-block__title">PediaMed AI</h2>
-        <p class="about-block__body">{{ . }}</p>
-      </section>
-      {{- end }}
-
-      {{- range .Params.sections }}
-      <section class="about-section">
-        <h2 class="about-block__title"><span class="about-block__num">{{ .num }} —</span> {{ .title }}</h2>
-        {{- range .body }}
-        <p class="about-block__body">{{ . }}</p>
+  <main class="vs">
+    {{- /* —— Mission: tagline headline beside the intro + contact —— */ -}}
+    <section class="vs-mission" id="mission">
+      <div class="vs-mission__left">
+        <p class="vs-eyebrow">Our Mission</p>
+        {{- with .Params.tagline }}
+        <h2 class="vs-headline">{{ . }}</h2>
         {{- end }}
-      </section>
+      </div>
+      <div class="vs-mission__right">
+        {{- with .Params.intro }}
+        <p class="vs-lead">{{ . }}</p>
+        {{- end }}
+        <dl class="vs-meta">
+          {{- with .Site.Params.contact_email }}
+          <div>
+            <dt>Contact</dt>
+            <dd><a href="mailto:{{ . }}">{{ . }}</a></dd>
+          </div>
+          {{- end }}
+          {{- with .Params.locations }}
+          <div>
+            <dt>Locations</dt>
+            <dd>{{ . }}</dd>
+          </div>
+          {{- end }}
+        </dl>
+      </div>
+    </section>
+
+    {{- /* —— Numbered focus areas —— */ -}}
+    <section class="vs-focus" aria-labelledby="vs-focus-title">
+      <p class="vs-eyebrow" id="vs-focus-title">Focus Areas</p>
+      {{- range .Params.sections }}
+      <article class="vs-area" id="focus-{{ .num }}">
+        <span class="vs-area__num">{{ .num }}</span>
+        <h3 class="vs-area__title">{{ .title }}</h3>
+        <div class="vs-area__body">
+          {{- range .body }}
+          <p>{{ . }}</p>
+          {{- end }}
+        </div>
+      </article>
       {{- end }}
-    </div>
+    </section>
   </main>
 
-  {{- /* Same footer as /updates/ — the two public pages share one
-         closing block (finale line + © + contact email). */ -}}
-  <footer class="up-footer">
-    <div class="up-wrap">
-      <div class="up-footer__big">Trustworthy AI <em>for every child.</em></div>
-      <div class="up-footer__base">
-        <span>© {{ now.Year }} PediaMed AI</span>
-        {{- with .Site.Params.contact_email }}<span>{{ . }}</span>{{ end }}
-      </div>
+  <footer class="vs-footer">
+    <p class="vs-footer__big">{{ with .Params.hero }}{{ .footerLine }}{{ end }}</p>
+    <div class="vs-footer__base">
+      <span class="vs-footer__brand">
+        <span class="vs-footer__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 64) }}</span>
+        © {{ now.Year }} PediaMed AI
+      </span>
+      <span class="vs-footer__links">
+        {{- with .Site.Params.contact_email }}
+        <a href="mailto:{{ . }}">{{ . }}</a>
+        {{- end }}
+      </span>
     </div>
   </footer>
 </body>

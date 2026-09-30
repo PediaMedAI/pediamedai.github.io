@@ -1,6 +1,6 @@
-# Lab updates timeline — single source of truth for the public Updates
-# page (/updates/, layouts/updates/list.html — every entry, newest
-# first), the hidden full site's own "Updates" section (latest 4, see
+# Lab updates timeline — single source of truth for the homepage news
+# bar (newest entry, partials/video-hero.html), the hidden full site's
+# own "Updates" section (latest 4, see
 # layouts/pmai-x7k2q9/list.html), and its full log on
 # /pmai-x7k2q9/about/#updates. Newest first; templates re-sort by
 # `date` desc so ordering here is a convention, not a requirement.
@@ -14,10 +14,10 @@
 #   title    (required)  One sentence, sentence case, no trailing period.
 #   url      (optional)  Internal path ("/pmai-x7k2q9/cvpr/") or absolute URL.
 #   body     (optional)  List of paragraph strings — a longer narrative
-#                        write-up. Only the /updates/ page reads this
-#                        (the single latest entry, in full); the hidden
-#                        site's strip and full log only ever use
-#                        `title` and are unaffected by its presence.
+#                        write-up. No page currently renders it (the
+#                        old /updates/ page was removed); kept for a
+#                        future news page. The homepage bar and the
+#                        hidden site only use `title` / `url`.
 #
 # Only verifiable lab events belong here — no aspirational entries.
 - date: "2026-06-25"

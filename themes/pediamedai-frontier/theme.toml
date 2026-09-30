@@ -1,4 +1,4 @@
-name = "PediaMedAI Frontier"
+name = "PediaMed AI Frontier"
 license = "MIT"
 description = "Editorial pediatric AI research lab theme — warm bone palette, clinical instrumentation, Instrument Serif + Geist + JetBrains Mono."
 homepage = "https://github.com/PediaMedAI/pediamedai.github.io"
@@ -10,5 +10,5 @@ min_version = "0.150.0"
   name = "PediaMed AI"
 
 [original]
-  name = "PediaMedAI Frontier"
+  name = "PediaMed AI Frontier"
   homepage = "https://github.com/PediaMedAI/pediamedai.github.io"
