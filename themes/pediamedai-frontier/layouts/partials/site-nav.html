@@ -1,0 +1,25 @@
+{{- /* Top bar for the public content pages (e.g. /publications/) —
+       the homepage carries its own nav inside partials/video-hero.html.
+       Brand (from the homepage's `hero.brand`), page links, language
+       switch, email. Styles: assets/scss/_papers.scss. */ -}}
+{{- $home := site.Home -}}
+{{- $current := .RelPermalink -}}
+<header class="pg-nav">
+  <a href="{{ "/" | relLangURL }}" class="pg-nav__brand">
+    <span class="pg-nav__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 64) }}</span>
+    {{- with $home.Params.hero }}{{ .brand }}{{ end -}}
+  </a>
+  <nav class="pg-nav__links" aria-label="{{ T "primaryNav" }}">
+    {{- $pubs := "/publications/" | relLangURL }}
+    <a href="{{ "/" | relLangURL }}" class="pg-nav__home">{{ T "home" }}</a>
+    <a href="{{ $pubs }}"{{ if eq $current $pubs }} aria-current="page"{{ end }}>{{ T "publications" }}</a>
+    {{- range .Translations }}
+    <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" lang="{{ .Language.Locale }}" aria-label="{{ T "switchLanguage" (dict "Label" .Language.Label) }}">{{ .Language.Label }}</a>
+    {{- end }}
+    {{- with site.Params.contact_email }}
+    <a href="mailto:{{ . }}" class="pg-nav__icon" aria-label="{{ T "emailUs" (dict "Email" .) }}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </a>
+    {{- end }}
+  </nav>
+</header>

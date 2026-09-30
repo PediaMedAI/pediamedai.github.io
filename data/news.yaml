@@ -12,6 +12,11 @@
 #                        coarser than a day (e.g. "2023") — avoids
 #                        implying a day-level date we don't have.
 #   title    (required)  One sentence, sentence case, no trailing period.
+#   title_zh (optional)  Chinese title for the /zh/ homepage news bar;
+#                        falls back to `title` when absent.
+#   summary  (optional)  One or two sentences shown beside the title in
+#                        the homepage news bar (newest entry only).
+#   summary_zh (optional) Chinese summary; falls back to `summary`.
 #   url      (optional)  Internal path ("/pmai-x7k2q9/cvpr/") or absolute URL.
 #   body     (optional)  List of paragraph strings — a longer narrative
 #                        write-up. No page currently renders it (the
@@ -20,8 +25,19 @@
 #                        hidden site only use `title` / `url`.
 #
 # Only verifiable lab events belong here — no aspirational entries.
+- date: "2026-09-01"
+  display: "2026-09"
+  title: "PediaMed AI selected for the first cohort of Anthropic's AI for Science rare disease research grants"
+  title_zh: "儿医智能入选首批 Anthropic AI for Science 罕见病研究资助计划"
+  summary: "The grant supports our research into rare diseases of child development, as part of Anthropic's program building a community of researchers exploring how AI can reshape our understanding of rare disease."
+  summary_zh: "该资助将支持我们开展儿童发育相关罕见病研究。这一计划旨在汇聚一批研究者，共同探索 AI 如何重塑人类对罕见病的理解。"
+  url: "https://www.anthropic.com/news/rare-disease-research-grants"
+
 - date: "2026-06-25"
   title: "\"Decoding Children's Gait Behavior\" accepted to ECCV 2026"
+  title_zh: "论文“Decoding Children's Gait Behavior”被 ECCV 2026 接收"
+  summary: "A collaboration with the Rehg Lab and partner institutions, the paper introduces one of the first large multi-camera video repositories of children with developmental motor conditions, along with new methods for detecting subtle gait abnormalities directly from video."
+  summary_zh: "该论文与 Rehg Lab 及多家合作机构共同完成，建立了首批记录发育性运动障碍儿童的大规模多机位视频库之一，并提出了直接从视频中识别细微步态异常的新方法。"
   url: "https://pediamed.ai/ChildrenGait/"
   body:
     - "Our paper “Decoding Children’s Gait Behavior” has been accepted to the European Conference on Computer Vision (ECCV 2026), a collaboration with the Rehg Lab and partner institutions — Y. Shen, B. Li, M. Huang, Y. Liu, X. Cao, J. Jin, Z. Li, A. Liu, J. Kim, J. Zhu, F. Lan, J. Cao, J. Chen, I. Lourentzou, and J. M. Rehg."

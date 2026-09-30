@@ -4,7 +4,8 @@
        Helvetica / black-on-white system (assets/scss/_video-hero.scss,
        _home-sections.scss). Standalone/self-contained via
        partials/minimal-head.html. All copy is data-driven from this
-       page's front matter (content/_index.md). The hidden full site is
+       page's front matter (content/_index.md; the Chinese mirror at
+       /zh/ reads content/_index.zh.md). The hidden full site is
        untouched, at /pmai-x7k2q9/. */ -}}
 <!doctype html>
 <html lang="{{ .Site.Language.Locale | default "en" }}">
@@ -16,7 +17,7 @@
     {{- /* —— Mission: tagline headline beside the intro + contact —— */ -}}
     <section class="vs-mission" id="mission">
       <div class="vs-mission__left">
-        <p class="vs-eyebrow">Our Mission</p>
+        <p class="vs-eyebrow">{{ T "ourMission" }}</p>
         {{- with .Params.tagline }}
         <h2 class="vs-headline">{{ . }}</h2>
         {{- end }}
@@ -28,13 +29,13 @@
         <dl class="vs-meta">
           {{- with .Site.Params.contact_email }}
           <div>
-            <dt>Contact</dt>
+            <dt>{{ T "contact" }}</dt>
             <dd><a href="mailto:{{ . }}">{{ . }}</a></dd>
           </div>
           {{- end }}
           {{- with .Params.locations }}
           <div>
-            <dt>Locations</dt>
+            <dt>{{ T "locations" }}</dt>
             <dd>{{ . }}</dd>
           </div>
           {{- end }}
@@ -44,7 +45,7 @@
 
     {{- /* —— Numbered focus areas —— */ -}}
     <section class="vs-focus" aria-labelledby="vs-focus-title">
-      <p class="vs-eyebrow" id="vs-focus-title">Focus Areas</p>
+      <p class="vs-eyebrow" id="vs-focus-title">{{ T "focusAreas" }}</p>
       {{- range .Params.sections }}
       <article class="vs-area" id="focus-{{ .num }}">
         <span class="vs-area__num">{{ .num }}</span>
@@ -57,21 +58,34 @@
       </article>
       {{- end }}
     </section>
+
+    {{- /* —— Supporters & partners (front matter `support:`); each shows
+           its `logo` (static/images/partners/) or, without one, its name. */ -}}
+    {{- with .Params.support }}
+    <section class="vs-support" id="support" aria-labelledby="vs-support-title">
+      <p class="vs-eyebrow" id="vs-support-title">{{ T "supportedBy" }}</p>
+      {{- range . }}
+      <article class="vs-backer">
+        <h3 class="vs-backer__name">
+          {{- if .logo }}
+          <img class="vs-backer__logo" src="{{ .logo | relURL }}" alt="{{ .name }}" loading="lazy" decoding="async">
+          {{- else }}{{ .name }}{{ end -}}
+        </h3>
+        <div class="vs-backer__body">
+          <p class="vs-backer__program">{{ .program }}</p>
+          {{- with .text }}
+          <p>{{ . }}</p>
+          {{- end }}
+          {{- with .url }}
+          <a class="vs-backer__link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ T "learnMore" }} <span aria-hidden="true">↗</span></a>
+          {{- end }}
+        </div>
+      </article>
+      {{- end }}
+    </section>
+    {{- end }}
   </main>
 
-  <footer class="vs-footer">
-    <p class="vs-footer__big">{{ with .Params.hero }}{{ .footerLine }}{{ end }}</p>
-    <div class="vs-footer__base">
-      <span class="vs-footer__brand">
-        <span class="vs-footer__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 64) }}</span>
-        © {{ now.Year }} PediaMed AI
-      </span>
-      <span class="vs-footer__links">
-        {{- with .Site.Params.contact_email }}
-        <a href="mailto:{{ . }}">{{ . }}</a>
-        {{- end }}
-      </span>
-    </div>
-  </footer>
+  {{ partial "site-footer.html" . }}
 </body>
 </html>

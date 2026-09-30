@@ -4,26 +4,33 @@
        bottom bar carrying the latest entry from data/news.yaml.
        Replaces minimal-header.html on this page only (it carries its
        own nav + slide-in menu). All copy lives under `hero:` in
-       content/_index.md. Styles: assets/scss/_video-hero.scss. The
+       content/_index.md (English) and content/_index.zh.md (Chinese);
+       UI strings come from i18n/{en,zh}.yaml. Styles: assets/scss/_video-hero.scss. The
        video and webfont are external — see the CSP in
        partials/minimal-head.html. */ -}}
 {{- $h := .Params.hero -}}
 {{- $latest := index (sort (default (slice) hugo.Data.news) "date" "desc") 0 -}}
-<section class="vh" aria-label="Introduction">
+{{- $lang := .Language.Lang -}}
+<section class="vh" aria-label="{{ T "introduction" }}">
   <video class="vh-video" src="{{ $h.video }}" autoplay loop muted playsinline aria-hidden="true"></video>
 
   <div class="vh-content">
-    <nav class="vh-nav" aria-label="Primary">
+    <nav class="vh-nav" aria-label="{{ T "primaryNav" }}">
       <div class="vh-nav__left">
-        <a href="{{ "/" | relURL }}" class="vh-brand"><span class="vh-brand__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 64) }}</span>{{ $h.brand }}</a>
+        <a href="{{ "/" | relLangURL }}" class="vh-brand"><span class="vh-brand__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 64) }}</span>{{ $h.brand }}</a>
         <button type="button" class="vh-menu-toggle" data-vh-open aria-controls="vh-menu" aria-expanded="false">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-          <span class="vh-menu-toggle__label">Menu</span>
+          <span class="vh-menu-toggle__label">{{ T "menu" }}</span>
         </button>
       </div>
       <div class="vh-nav__right">
+        <a href="{{ "/publications/" | relLangURL }}" class="vh-nav__link vh-nav__link--wide">{{ T "publications" }}</a>
+        {{- /* Language switch: links to this page in the other language(s). */ -}}
+        {{- range .Translations }}
+        <a href="{{ .RelPermalink }}" class="vh-nav__link" hreflang="{{ .Language.Lang }}" lang="{{ .Language.Locale }}" aria-label="{{ T "switchLanguage" (dict "Label" .Language.Label) }}">{{ .Language.Label }}</a>
+        {{- end }}
         {{- with .Site.Params.contact_email }}
-        <a href="mailto:{{ . }}" class="vh-icon-btn" aria-label="Email {{ . }}">
+        <a href="mailto:{{ . }}" class="vh-icon-btn" aria-label="{{ T "emailUs" (dict "Email" .) }}">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         </a>
         {{- end }}
@@ -45,7 +52,9 @@
 
       <div class="vh-main__right">
         <p class="vh-copy">
-          {{- range $i, $line := $h.copyLines }}{{ if $i }} {{ end }}<span class="vh-copy__line">{{ $line }}</span>{{ end -}}
+          {{- /* Lines join with a space on mobile — except in Chinese, which
+                 doesn't put spaces between phrases. */ -}}
+          {{- range $i, $line := $h.copyLines }}{{ if and $i (ne $lang "zh") }} {{ end }}<span class="vh-copy__line">{{ $line }}</span>{{ end -}}
         </p>
         <div class="vh-cta">
           <a href="{{ $h.secondaryCta.url }}" class="vh-btn-filled">
@@ -56,50 +65,65 @@
       </div>
     </div>
 
+    {{- /* News bar: the newest entry in data/news.yaml — label + date
+           and title on the left, its summary + link on the right.
+           Per-language fields (`title_zh`, `summary_zh`) fall back to
+           the English ones. */ -}}
+    {{- with $latest }}
+    {{- $title := $h.barTitle | default (index . (printf "title_%s" $lang)) | default .title }}
+    {{- $summary := index . (printf "summary_%s" $lang) | default .summary }}
+    {{- $url := .url }}
+    {{- $external := hasPrefix $url "http" }}
     <div class="vh-bar-wrap">
       <div class="vh-bar">
         <div class="vh-bar__left">
           <span class="vh-bar__num">{{ $h.barNumber }}</span>
-          {{- with $latest }}
           <div>
-            <p class="vh-bar__date"><time datetime="{{ (time .date).Format "2006-01-02" }}">{{ (time .date).Format "2006-01-02" }}</time></p>
+            {{- /* `display` = coarser honest precision (e.g. "2026-09"). */}}
+            {{- $when := .display | default ((time .date).Format "2006-01-02") }}
+            <p class="vh-bar__date">{{ T "latestNews" }} · <time datetime="{{ $when }}">{{ $when }}</time></p>
             <h2 class="vh-bar__title">
-              {{- $title := $h.barTitle | default .title -}}
-              {{- with .url }}
-              {{- $external := hasPrefix . "http" }}
+              {{- with $url }}
               <a href="{{ if $external }}{{ . }}{{ else }}{{ relURL . }}{{ end }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ $title }}</a>
               {{- else }}{{ $title }}{{ end -}}
             </h2>
           </div>
+        </div>
+        {{- if or $summary $url }}
+        <div class="vh-bar__right">
+          {{- with $summary }}
+          <p class="vh-bar__text">{{ . }}</p>
+          {{- end }}
+          {{- with $url }}
+          <a class="vh-bar__more" href="{{ if $external }}{{ . }}{{ else }}{{ relURL . }}{{ end }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ T "readMore" }} <span aria-hidden="true">↗</span></a>
           {{- end }}
         </div>
-        <div class="vh-bar__right">
-          <p class="vh-bar__text">{{ $h.barText }}</p>
-        </div>
+        {{- end }}
       </div>
     </div>
+    {{- end }}
   </div>
 
   {{- /* Slide-in menu: 500ms panel slide, blurred backdrop, links fade
          and rise with a 75ms stagger, footer last. */ -}}
   <div id="vh-menu" class="vh-menu" aria-hidden="true">
     <div class="vh-menu__backdrop" data-vh-close></div>
-    <div class="vh-menu__panel" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="vh-menu__panel" role="dialog" aria-modal="true" aria-label="{{ T "siteMenu" }}">
       <div class="vh-menu__header">
-        <a href="{{ "/" | relURL }}" class="vh-brand"><span class="vh-brand__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 64) }}</span>{{ $h.brand }}</a>
-        <button type="button" class="vh-icon-btn" data-vh-close aria-label="Close menu">
+        <a href="{{ "/" | relLangURL }}" class="vh-brand"><span class="vh-brand__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 64) }}</span>{{ $h.brand }}</a>
+        <button type="button" class="vh-icon-btn" data-vh-close aria-label="{{ T "closeMenu" }}">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
       </div>
-      <nav class="vh-menu__links" aria-label="Site">
+      <nav class="vh-menu__links" aria-label="{{ T "siteNav" }}">
         {{- range $i, $item := $h.menu }}
-        {{- $url := $item.url }}{{ if not (hasPrefix $url "#") }}{{ $url = relURL $url }}{{ end }}
+        {{- $url := $item.url }}{{ if not (hasPrefix $url "#") }}{{ $url = relLangURL $url }}{{ end }}
         <a href="{{ $url }}" class="vh-menu__link" data-vh-close style="--vh-delay: {{ mul 75 (add $i 1) }}ms">{{ $item.label }}</a>
         {{- end }}
       </nav>
       {{- with .Site.Params.contact_email }}
       <div class="vh-menu__footer" style="--vh-delay: {{ add 50 (mul 75 (len $h.menu)) }}ms">
-        <p class="vh-menu__footer-label">Reach out now</p>
+        <p class="vh-menu__footer-label">{{ T "reachOut" }}</p>
         <a href="mailto:{{ . }}" class="vh-menu__footer-email">{{ . }}</a>
       </div>
       {{- end }}

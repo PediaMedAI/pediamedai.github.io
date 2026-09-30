@@ -1,0 +1,56 @@
+# Publications shown on the public /publications/ page (and /zh/
+# mirror) — layouts/papers/list.html. Newest year first; entries in the
+# same year keep this file's order. Paper metadata isn't translated.
+#
+# Fields:
+#   id       (required)  Short slug, used as the HTML anchor.
+#   title    (required)  Paper title.
+#   authors  (required)  Author list as one string.
+#   venue    (required)  Venue name, e.g. "ECCV".
+#   year     (required)  Publication year (number).
+#   image    (optional)  Thumbnail under static/, e.g. a method figure.
+#   note     (optional)  One extra line (preprint title, award, ...).
+#   links    (optional)  List of { label, url } — Paper, Code, Dataset,
+#                        Project, ... Shown in this order.
+#
+# Note: data/publications.yaml is the hidden full site's (/pmai-x7k2q9/)
+# separate, older list.
+- id: "cogsense"
+  title: "Toward Cognitive Supersensing in Multimodal Large Language Model"
+  authors: "Boyi Li, Yifan Shen, Yuanzhe Liu, Yifan Xu, Jiateng Liu, Xinzhuo Li, Zhengyuan Li, Jingyuan Zhu, Yunhan Zhong, Fangzhou Lan, Jianguo Cao, James M. Rehg, Heng Ji, Ismini Lourentzou, Xu Cao"
+  venue: "NeurIPS"
+  year: 2026
+  image: "/images/publications/cogsense.jpg"
+  links:
+    - { label: "Paper", url: "https://arxiv.org/abs/2602.01541" }
+    - { label: "Project", url: "https://pediamed.ai/Cognition-MLLM/cogsense/" }
+    - { label: "Code", url: "https://github.com/PediaMedAI/Cognition-MLLM" }
+    - { label: "Benchmark", url: "https://huggingface.co/datasets/PediaMedAI/CogSense-Bench" }
+    - { label: "Model", url: "https://huggingface.co/PediaMedAI/CogSense-8B" }
+
+- id: "childpose"
+  title: "ChildPose: Foundation for Children Pose Modeling"
+  authors: "Jiakai Chen, Yifan Shen, Boyi Li, Chuanmiao Dong, Xu Cao"
+  venue: "NeurIPS"
+  year: 2026
+
+- id: "chronovision"
+  title: "ChronoVision: Temporal Reasoning via Latent State Reconstruction"
+  authors: "Yifan Shen, Jian Xu, Boyi Li, Yuner Zhang, Tianjiao Yu, Bingxuan Li, Houze Yang, Rushi Wang, Xu Cao"
+  venue: "EMNLP"
+  year: 2026
+  image: "/images/publications/chronovision.jpg"
+  links:
+    - { label: "Paper", url: "https://arxiv.org/abs/2608.05631" }
+
+- id: "childrengait"
+  title: "Decoding Children's Gait Behavior"
+  authors: "Yifan Shen, Boyi Li, Meihuan Huang, Yuanzhe Liu, Xu Cao, Jinyang Jin, Zhengyuan Li, Anglin Liu, Junho Kim, Jingyuan Zhu, Fangzhou Lan, Jianguo Cao, Jintai Chen, Ismini Lourentzou, James M. Rehg"
+  venue: "ECCV"
+  year: 2026
+  image: "/images/publications/childrengait.png"
+  links:
+    - { label: "Paper", url: "https://arxiv.org/abs/2608.00371" }
+    - { label: "Project", url: "https://pediamed.ai/ChildrenGait/" }
+    - { label: "Code", url: "https://github.com/PediaMedAI/ChildrenGait" }
+    - { label: "Dataset", url: "https://huggingface.co/datasets/PediaMedAI/ChildrenGait" }

@@ -1,0 +1,19 @@
+{{- /* Footer shared by the public pages (homepage, /publications/):
+       closing line from the homepage's `hero.footerLine`, then logo +
+       © + links. Language-aware via site.Home. */ -}}
+{{- $home := site.Home -}}
+<footer class="vs-footer">
+  <p class="vs-footer__big">{{ with $home.Params.hero }}{{ .footerLine }}{{ end }}</p>
+  <div class="vs-footer__base">
+    <span class="vs-footer__brand">
+      <span class="vs-footer__mark" aria-hidden="true">{{ partial "logo-mark.html" (dict "size" 64) }}</span>
+      © {{ now.Year }} {{ site.Title }}
+    </span>
+    <span class="vs-footer__links">
+      <a href="{{ "/publications/" | relLangURL }}">{{ T "publications" }}</a>
+      {{- with site.Params.contact_email }}
+      <a href="mailto:{{ . }}">{{ . }}</a>
+      {{- end }}
+    </span>
+  </div>
+</footer>

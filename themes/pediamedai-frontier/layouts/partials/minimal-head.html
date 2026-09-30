@@ -1,4 +1,5 @@
-{{- /* <head> for the standalone public homepage (layouts/index.html).
+{{- /* <head> for the standalone public pages (layouts/index.html,
+       layouts/papers/list.html).
        Inlines the compiled minimal.scss bundle and embeds the fonts as
        base64 so the page is self-contained; the one exception is the
        video hero's external video + webfont, allowed in the CSP below.
@@ -18,6 +19,15 @@
   <title>{{ if .IsHome }}{{ with .Params.hero }}{{ .pageTitle }}{{ end }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ $desc }}">
   <link rel="canonical" href="{{ .Permalink }}">
+  {{- /* English (main) and Chinese (/zh/) versions of the same page. */ -}}
+  {{- if .IsTranslated }}
+  {{- range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">
+  {{- if eq .Language.Lang "en" }}
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+  {{- end }}
+  {{- end }}
+  {{- end }}
 
   {{- /* Set data-theme before first paint so dark mode (OS preference
          or a stored toggle) applies without a flash. */ -}}
@@ -56,10 +66,8 @@
     {{- end -}}
   {{- end }}
   <style>{{ $cssText | safeCSS }}</style>
-  {{- /* Webfont for the homepage video hero (partials/video-hero.html). */ -}}
-  {{- if .IsHome }}
+  {{- /* Helvetica webfont used by the public pages' design. */}}
   <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/95cecf452d3208890088a5b4c19c7ecf?family=Helvetica+Neue+ME">
-  {{- end }}
 
   <link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | absURL }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ "/favicon-32x32.png" | absURL }}">

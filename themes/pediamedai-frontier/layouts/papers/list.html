@@ -1,0 +1,58 @@
+{{- /* Public publications page (/publications/, /zh/publications/) —
+       modeled on nemx.ai's publications page: overline + big title +
+       intro, a "Selected publications · N papers" heading, then one row
+       per paper (thumbnail | title, authors, venue, links). Papers come
+       from data/papers.yaml (shared by both languages); page copy from
+       content/publications/_index{,.zh}.md. */ -}}
+{{- $papers := sort (default (slice) hugo.Data.papers) "year" "desc" -}}
+<!doctype html>
+<html lang="{{ .Site.Language.Locale | default "en" }}">
+{{ partial "minimal-head.html" . }}
+<body class="vs-page">
+  {{ partial "site-nav.html" . }}
+
+  <main class="vs pg">
+    <header class="pg-head">
+      {{- with .Params.overline }}
+      <p class="pg-head__overline">{{ . }}</p>
+      {{- end }}
+      <h1 class="pg-head__title">{{ .Title }}</h1>
+      {{- with .Params.intro }}
+      <p class="pg-head__intro">{{ . }}</p>
+      {{- end }}
+    </header>
+
+    <div class="pg-collection">
+      <h2>{{ T "selectedPublications" }}</h2>
+      <span>{{ T "paperCount" (len $papers) }}</span>
+    </div>
+
+    <div class="pub-list">
+      {{- range $papers }}
+      <article class="pub{{ if not .image }} pub--no-image{{ end }}" id="{{ .id }}">
+        {{- with .image }}
+        <img class="pub__image" src="{{ . | relURL }}" alt="" loading="lazy" decoding="async">
+        {{- end }}
+        <div>
+          <h3 class="pub__title">{{ .title }}</h3>
+          <p class="pub__authors">{{ .authors }}</p>
+          <p class="pub__venue">{{ .venue }}, {{ .year }}</p>
+          {{- with .note }}
+          <p class="pub__note">{{ . }}</p>
+          {{- end }}
+          {{- with .links }}
+          <div class="pub__links">
+            {{- range . }}
+            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .label }} <span aria-hidden="true">↗</span></a>
+            {{- end }}
+          </div>
+          {{- end }}
+        </div>
+      </article>
+      {{- end }}
+    </div>
+  </main>
+
+  {{ partial "site-footer.html" . }}
+</body>
+</html>

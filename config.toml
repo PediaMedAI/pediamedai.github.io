@@ -24,6 +24,24 @@ disableHugoGeneratorInject = true
 # content location. See content/pmai-x7k2q9/about/index.md.)
 disableKinds = ["taxonomy", "term"]
 
+# English is the main site at /; the Chinese mirror lives under /zh/.
+# Only the homepage is translated (content/_index.zh.md) — the hidden
+# full site under /pmai-x7k2q9/ stays English-only. UI strings live in
+# themes/pediamedai-frontier/i18n/{en,zh}.yaml.
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    weight = 1
+    label = "English"
+    locale = "en-US"
+  [languages.zh]
+    weight = 2
+    label = "中文"
+    locale = "zh-CN"
+    title = "儿医智能"
+
 # /llms.txt — plain-text site map for LLM crawlers (llmstxt.org
 # convention). Rendered by layouts/index.llms.txt on the home page.
 [outputFormats.llms]
