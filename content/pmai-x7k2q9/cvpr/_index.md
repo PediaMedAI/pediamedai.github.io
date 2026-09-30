@@ -2,7 +2,7 @@
 title: "CVPR 2026 Workshop on Computer Vision for Children (CV4CHL)"
 date: 2025-06-01T00:00:00Z
 layout: "workshop"
-external_url: "https://pediamedai.com/cv4chl/"
+external_url: "https://pediamed.ai/cv4chl/"
 badge: "Planning"
 subtitle: "Bringing pediatricians, psychologists, educationists, clinicians and CV researchers together to think about the future."
 dates: "2026-06-03"

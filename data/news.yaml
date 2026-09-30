@@ -22,7 +22,7 @@
 # Only verifiable lab events belong here — no aspirational entries.
 - date: "2026-06-25"
   title: "\"Decoding Children's Gait Behavior\" accepted to ECCV 2026"
-  url: "https://pediamedai.com/ChildrenGait/"
+  url: "https://pediamed.ai/ChildrenGait/"
   body:
     - "Our paper “Decoding Children’s Gait Behavior” has been accepted to the European Conference on Computer Vision (ECCV 2026), a collaboration with the Rehg Lab and partner institutions — Y. Shen, B. Li, M. Huang, Y. Liu, X. Cao, J. Jin, Z. Li, A. Liu, J. Kim, J. Zhu, F. Lan, J. Cao, J. Chen, I. Lourentzou, and J. M. Rehg."
     - "The paper introduces one of the first large multi-camera video repositories of children with developmental motor conditions, together with new methods for detecting subtle gait abnormalities directly from video — work that sits alongside the lab’s broader effort on computer vision for children’s health and development."
@@ -33,7 +33,7 @@
 
 - date: "2026-06-04"
   title: "CV4CHL held at CVPR 2026 — Children's Gait Competition results are live"
-  url: "https://pediamedai.com/cv4chl/"
+  url: "https://pediamed.ai/cv4chl/"
   body:
     - "The CVPR 2026 Workshop on Computer Vision for Children (CV4CHL) took place June 4, 2026 in Denver, bringing pediatricians, psychologists, educators, and computer-vision researchers together around the gap in CV research for children's health, development, and education."
     - "Final results for the workshop's Children's Gait Competition — the first computer-vision challenge for pediatric gait analysis — are now published, with the full leaderboard available on Kaggle."

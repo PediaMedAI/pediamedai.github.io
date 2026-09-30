@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /pmai-x7k2q9/
 
-Sitemap: https://pediamedai.com/sitemap.xml
+Sitemap: https://pediamed.ai/sitemap.xml
