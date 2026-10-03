@@ -46,8 +46,12 @@ html:has(.vs-page),
   padding: 6rem 1.25rem;
 }
 
-.vs-mission__left { max-width: 38rem; }
-.vs-mission__right { max-width: 28rem; }
+/* Equal shares (from md up), each capped, so the headline and the
+   paragraph both read as wide lines at every width. */
+.vs-mission__left,
+.vs-mission__right { flex: 1 1 0%; min-width: 0; }
+.vs-mission__left { max-width: 42rem; }
+.vs-mission__right { max-width: 38rem; }
 
 .vs-headline {
   font-size: 1.875rem;
@@ -260,14 +264,14 @@ html:has(.vs-page),
 @media (min-width: $vh-md) {
   .vs-mission { flex-direction: row; justify-content: space-between; align-items: flex-start; }
   .vs-area {
-    grid-template-columns: 7rem minmax(0, 1fr) minmax(0, 1.3fr);
+    grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.3fr);
     gap: 2rem;
     align-items: start;
   }
   /* Name spans the number + title columns so the body lines up with
      the focus-area bodies above. */
   .vs-backer {
-    grid-template-columns: 7rem minmax(0, 1fr) minmax(0, 1.3fr);
+    grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.3fr);
     gap: 2rem;
     align-items: start;
   }
@@ -280,11 +284,11 @@ html:has(.vs-page),
   .vs-lead { font-size: 17px; }
   .vs-focus { padding: 0 3rem 9rem; }
   .vs-support { padding: 0 3rem 9rem; }
-  .vs-backer { grid-template-columns: 12rem minmax(0, 1fr) minmax(0, 1.3fr); gap: 3rem; padding: 3.5rem 0; }
+  .vs-backer { grid-template-columns: 6rem minmax(0, 1fr) minmax(0, 1.3fr); gap: 3rem; padding: 3.5rem 0; }
   .vs-backer__name { font-size: 3rem; }
   .vs-backer__logo { width: 16rem; height: 3.5rem; }
   .vs-backer__body p { font-size: 15px; }
-  .vs-area { grid-template-columns: 12rem minmax(0, 1fr) minmax(0, 1.3fr); gap: 3rem; padding: 3.5rem 0; }
+  .vs-area { grid-template-columns: 6rem minmax(0, 1fr) minmax(0, 1.3fr); gap: 3rem; padding: 3.5rem 0; }
   .vs-area__num { font-size: 3.75rem; }
   .vs-area__body p { font-size: 15px; }
   .vs-footer { margin: 0 2rem; padding: 5rem 3rem 2.5rem; }

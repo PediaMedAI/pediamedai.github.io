@@ -204,7 +204,9 @@ $vh-xl: 1280px;
   gap: 1.5rem;
 }
 
-.vh-bar__left { display: flex; align-items: flex-start; gap: 1rem; flex-shrink: 0; }
+/* Left (news title) and right (summary) share the width roughly
+   evenly, so neither wraps into a narrow column. */
+.vh-bar__left { display: flex; align-items: flex-start; gap: 1rem; flex: 1 1 0%; min-width: 0; }
 .vh-bar__num { font-size: 2.25rem; font-weight: 200; color: #000; line-height: 1; }
 
 .vh-bar__date {
@@ -222,12 +224,12 @@ $vh-xl: 1280px;
   color: #000;
   line-height: 1.375;
   letter-spacing: normal;
-  max-width: 220px;
+  max-width: 28rem;
 
   a:hover { opacity: 0.7; }
 }
 
-.vh-bar__right { flex: 1 1 0%; max-width: 36rem; }
+.vh-bar__right { flex: 1.2 1 0%; min-width: 0; max-width: 44rem; }
 .vh-bar__text { font-size: 0.875rem; line-height: 1.625; color: #525252; }
 
 .vh-bar__more {
